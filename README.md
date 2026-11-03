@@ -179,6 +179,31 @@ npm ci --prefix vendor/ccr
 .venv/bin/python scripts/accept_coding.py --label repair-check
 ```
 
+### Run bounded experiments with MetaHarness and Claude Code
+
+The optional [MetaHarness integration](integrations/metaharness/README.md) runs
+multiple approved weight patches against one unchanged checkpoint, validates
+supplied evaluation receipts, applies Flywheel qualification, ranks development
+candidates through Darwin, and verifies RVF evidence and exact rollback.
+Weight-EFT adapters export guarded SFT/DPO data and explicit unexecuted training
+plans. The controller does not perform inference or grant activation authority.
+
+```sh
+(cd integrations/metaharness && npm ci --ignore-scripts)
+(cd native && cargo build --locked --release --bin weight_evolution)
+mkdir -p runtime
+node integrations/metaharness/src/cli.mjs fixture \
+  --dir "$PWD/runtime/metaharness-fixture" \
+  --binary "$PWD/native/target/release/weight_evolution"
+```
+
+The fixture runs real native edits and restoration with synthetic outcomes.
+For operator-approved inputs, use `bash scripts/install-metaharness.sh --help`
+and the [Claude Code/Ruflo module](plugins/ruflo-metaharness/README.md).
+The installer prepares a private project-local runtime profile and Claude launcher.
+See [ADRs 012–014](docs/adr/ADR-012-metaharness-bounded-experiment-runner.md) and
+the [CPU benchmark](docs/benchmarks/metaharness-cpu.md) for architecture and evidence.
+
 ## How the governed workflow works
 
 <p align="center"><img src="docs/assets/governed-lifecycle.svg" alt="Inspect, propose, patch, independently evaluate, request authority, activate only with authorization, and preserve rollback" width="100%"></p>

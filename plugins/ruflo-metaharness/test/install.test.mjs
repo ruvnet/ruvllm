@@ -1,0 +1,41 @@
+import assert from 'node:assert/strict';
+import { spawnSync } from 'node:child_process';
+import { mkdtemp, mkdir, readFile, rm, stat, symlink } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { dirname, join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import test from 'node:test';
+import { createFixture } from '../../../integrations/metaharness/src/fixture.mjs';
+import { runExperiment } from '../../../integrations/metaharness/src/engine.mjs';
+
+const repo = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
+const installer = join(repo, 'scripts/install-metaharness.sh');
+
+test('installer creates a private usable profile, preserves existing files and rejects symlinks', async t => {
+  const temporary = await mkdtemp(join(tmpdir(), 'metaharness-install-'));
+  t.after(() => rm(temporary, { recursive: true, force: true }));
+  const fixture = await createFixture({ directory: join(temporary, 'fixture'), binaryPath: join(repo, 'native/target/release/weight_evolution') });
+  const fixtureConfig = JSON.parse(await readFile(fixture.configPath, 'utf8'));
+  const fixturePlan = JSON.parse(await readFile(fixture.planPath, 'utf8'));
+  const configDir = join(temporary, 'profile'); const outputRoot = join(temporary, 'outputs');
+  const args = ['--configure-only', '--config-dir', configDir, '--output-root', outputRoot, ...fixtureConfig.readRoots.flatMap(path => ['--read-root', path]), '--policy', fixturePlan.policy];
+  const installed = spawnSync('bash', [installer, ...args], { cwd: repo, encoding: 'utf8', timeout: 30000 });
+  assert.equal(installed.status, 0, installed.stderr + installed.stdout);
+  const configPath = join(configDir, 'runtime.json'); const configBytes = await readFile(configPath);
+  assert.equal((await stat(configPath)).mode & 0o777, 0o600);
+  assert.equal((await stat(outputRoot)).mode & 0o777, 0o700);
+  assert.equal((await stat(join(configDir, 'launch-claude.sh'))).mode & 0o777, 0o700);
+  const config = JSON.parse(configBytes);
+  assert.equal(config.schema, 'ruvllm-experiment-runtime/v1');
+  assert.equal(config.writeRoot, outputRoot);
+  assert.equal(config.policySha256s.length, 1);
+  await runExperiment({ configPath, planPath: fixture.planPath });
+  const repeated = spawnSync('bash', [installer, ...args], { cwd: repo, encoding: 'utf8', timeout: 30000 });
+  assert.notEqual(repeated.status, 0);
+  assert.match(repeated.stderr, /refuses to replace/);
+  assert.deepEqual(await readFile(configPath), configBytes);
+  const linked = join(temporary, 'linked-profile'); await symlink(configDir, linked);
+  const rejected = spawnSync('bash', [installer, ...args.map(value => value === configDir ? linked : value)], { cwd: repo, encoding: 'utf8', timeout: 30000 });
+  assert.notEqual(rejected.status, 0);
+  assert.match(rejected.stderr, /Symlink paths/);
+});

@@ -1,0 +1,8 @@
+{
+  "name": "ruflo-metaharness",
+  "version": "0.1.0",
+  "description": "Run policy-bounded RuVLLM weight experiments with MetaHarness evidence and exact rollback.",
+  "author": { "name": "rUv", "url": "https://github.com/ruvnet" },
+  "license": "Apache-2.0",
+  "keywords": ["ruflo", "ruvllm", "metaharness", "weights", "experiments"]
+}
