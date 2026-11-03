@@ -1,60 +1,48 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="764" viewBox="0 0 1200 764" role="img" aria-labelledby="title desc">
-<title id="title">Governed lifecycle: propose, evaluate, authorize, acknowledge</title>
-<desc id="desc">The research path pins the model and experiment, applies a bounded patch, and evaluates paired outputs. A separate Core Memory authority checks policy and approval before authorization. Activation requires runtime acknowledgement with matching digests and generation. A rollback restores the original checkpoint. These are distinct lifecycle states; a benchmark result alone cannot authorize deployment.</desc>
-<defs>
-  <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#081725"/><stop offset="1" stop-color="#050b13"/></linearGradient>
-  <linearGradient id="accent" x2="1" y2="0"><stop stop-color="#65ead4"/><stop offset="1" stop-color="#75aaff"/></linearGradient>
-  <radialGradient id="aura"><stop stop-color="#3bbbd0" stop-opacity=".14"/><stop offset="1" stop-color="#3bbbd0" stop-opacity="0"/></radialGradient>
-  <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#476079" opacity=".22"/></pattern>
-  <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 6 3 0 6" fill="none" stroke="#53748d" stroke-width="1.2"/></marker>
-</defs>
-<style>
-  text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill:#edf6ff; }
-  .mono { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace; }
-  .muted { fill:#9aafc2; } .subtle { fill:#6f8aa1; } .mint { fill:#71e8cd; } .amber { fill:#f5c77b; }
-  .flow { animation: flow 8s linear infinite; } .pulse { animation: pulse 5s ease-in-out infinite; }
-  @keyframes flow { to { stroke-dashoffset:-96; } }
-  @keyframes pulse { 0%,100% { opacity:.48; } 50% { opacity:1; } }
-  @media (prefers-reduced-motion: reduce) { .flow,.pulse,.cell { animation:none !important; } }
-</style>
-<rect width="1200" height="764" rx="24" fill="url(#bg)"/>
-<rect x="1" y="1" width="1198" height="762" rx="23" fill="none" stroke="#263d50"/>
-<rect x="1" y="1" width="1198" height="762" rx="23" fill="url(#dots)"/>
-
-<text x="48" y="57" font-size="13" letter-spacing="2.3" class="mono mint">CONTROL PLANE / MODEL PLANE</text>
-<text x="48" y="106" font-size="36" font-weight="650" letter-spacing="-1">A result is evidence. Authority is separate.</text>
-<text x="48" y="142" font-size="18" class="muted">One lineage from frozen source to acknowledged model generation.</text>
-<rect x="48" y="181" width="1104" height="216" rx="18" fill="#0c1b28" stroke="#2c4558"/>
-<text x="70" y="211" font-size="12" letter-spacing="2" class="mono subtle">RESEARCH</text>
-<g fill="#102535" stroke="#345066"><rect x="72" y="231" width="310" height="141" rx="12"/><rect x="445" y="231" width="310" height="141" rx="12"/><rect x="818" y="231" width="310" height="141" rx="12"/></g>
-<path d="M383 301h59m314 0h59" fill="none" stroke="#53748d" stroke-width="1.5" marker-end="url(#arrow)"/>
-<path d="M384 301h48m325 0h48" fill="none" stroke="#71e8cd" stroke-width="2" stroke-dasharray="4 20" class="flow"/>
-<g font-size="12" class="mono mint"><text x="94" y="259">01 / FREEZE</text><text x="467" y="259">02 / INTERVENE</text><text x="840" y="259">03 / EVALUATE</text></g>
-<g font-size="23" font-weight="600"><text x="94" y="295">Pin the experiment</text><text x="467" y="295">Apply a bounded edit</text><text x="840" y="295">Compare paired runs</text></g>
-<g font-size="15" class="muted"><text x="94" y="323">Model · prompts · runtime · policy</text><text x="94" y="347">Plan recorded before release</text><text x="467" y="323">Allowed tensors · count · delta</text><text x="467" y="347">ruvLLM creates a new checkpoint</text><text x="840" y="323">Correctness and completion</text><text x="840" y="347">External runner, saved raw outputs</text></g>
-<path d="M974 373v57H227v42" stroke="#52778d" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
-<rect x="413" y="413" width="374" height="33" rx="16" fill="#0b1520" stroke="#486471"/>
-<text x="600" y="434" text-anchor="middle" font-size="12" class="mono muted">SIGNED EVIDENCE ≠ DEPLOYMENT AUTHORITY</text>
-<rect x="48" y="462" width="731" height="202" rx="18" fill="#1b1d21" stroke="#66583c"/>
-<text x="70" y="492" font-size="12" letter-spacing="2" class="mono amber">AUTHORITY / CORE MEMORY</text>
-<rect x="72" y="513" width="310" height="126" rx="12" fill="#28251f" stroke="#897144"/>
-<rect x="445" y="513" width="310" height="126" rx="12" fill="#102535" stroke="#345066"/>
-<path d="M383 576h59" fill="none" stroke="#88734b" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="94" y="540" font-size="12" class="mono amber">04 / POLICY + APPROVAL</text>
-<text x="94" y="575" font-size="23" font-weight="600">Authorize explicitly</text>
-<text x="94" y="605" font-size="15" class="muted">Qualification alone is insufficient</text>
-<text x="467" y="540" font-size="12" class="mono mint">05 / RUNTIME ACK</text>
-<text x="467" y="575" font-size="23" font-weight="600">Bind the generation</text>
-<text x="467" y="605" font-size="15" class="muted">Model · patch · topology · protocol</text>
-<rect x="818" y="462" width="310" height="202" rx="18" fill="#0b202a" stroke="#37656b"/>
-<path d="M779 576h36" stroke="#53748d" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
-<text x="840" y="492" font-size="12" letter-spacing="1" class="mono mint">RECOVERY</text>
-<path d="M857 529a15 15 0 1 1-9 26m-1-34v12h12" fill="none" stroke="#71e8cd" stroke-width="2" stroke-linecap="round"/>
-<text x="840" y="587" font-size="23" font-weight="600">Restore original bytes</text>
-<text x="840" y="615" font-size="15" class="muted">Exact source SHA256 required</text>
-<text x="840" y="640" font-size="13" class="mono subtle">ROLLBACK RECEIPT PRESERVED</text>
-<path d="M49 693h1102" stroke="#263d50"/>
-<circle cx="59" cy="725" r="5" fill="#f5c77b" class="pulse"/>
-<text x="76" y="731" font-size="15" class="muted">Recorded local run: research gate failed; authorization and observed activation remained empty.</text>
-
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">How RuVLLM runs a reversible weight experiment</title>
+  <desc id="desc">Four steps: freeze the model, tasks and limits; edit a new copy; compare answers on the same tasks; verify exact byte restoration. Results do not automatically deploy a model.</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1">
+      <stop stop-color="#101c35" />
+      <stop offset="1" stop-color="#111827" />
+    </linearGradient>
+    <linearGradient id="blue">
+      <stop stop-color="#60a5fa" />
+      <stop offset="1" stop-color="#818cf8" />
+    </linearGradient>
+    <linearGradient id="mint">
+      <stop stop-color="#5eead4" />
+      <stop offset="1" stop-color="#a7f3d0" />
+    </linearGradient>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M1 1 L7 4 L1 7" stroke="#6682a7" fill="none" stroke-width="1.5" />
+    </marker>
+  </defs>
+  <style>text{font-family:ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif}.flow{animation:flow 6s linear infinite}.pulse{animation:pulse 4s ease-in-out infinite}.cell{animation:cell 5s ease-in-out infinite}@keyframes flow{to{stroke-dashoffset:-80}}@keyframes pulse{0%,100%{opacity:.55}50%{opacity:1}}@keyframes cell{0%,100%{fill:#174a50;stroke:#5eead4}50%{fill:#5eead4;stroke:#a7f3d0}}@media(prefers-reduced-motion:reduce){.flow,.pulse,.cell{animation:none!important}}</style>
+  <rect width="960" height="540" rx="24" fill="url(#bg)" />
+  <rect x="1" y="1" width="958" height="538" rx="23" stroke="#304361" fill="none" />
+  <text x="40" y="55" font-size="34" fill="#f8fafc" font-weight="700">One experiment. A clear way back.</text>
+  <text x="40" y="90" font-size="22" fill="#bacce4" font-weight="400">Keep the original safe while you test a candidate.</text>
+  <rect x="40" y="128" width="400" height="124" rx="16" fill="#15253e" stroke="#3a5275" />
+  <text x="62" y="161" font-size="18" fill="#5eead4" font-weight="700">01</text>
+  <text x="62" y="198" font-size="27" fill="#f1f5f9" font-weight="650">Freeze the setup</text>
+  <text x="62" y="230" font-size="21" fill="#bacce4" font-weight="400">Fix the model, tasks and limits.</text>
+  <rect x="520" y="128" width="400" height="124" rx="16" fill="#15253e" stroke="#3a5275" />
+  <text x="542" y="161" font-size="18" fill="#5eead4" font-weight="700">02</text>
+  <text x="542" y="198" font-size="27" fill="#f1f5f9" font-weight="650">Edit a copy</text>
+  <text x="542" y="230" font-size="21" fill="#bacce4" font-weight="400">Change only approved values.</text>
+  <rect x="520" y="304" width="400" height="124" rx="16" fill="#15253e" stroke="#3a5275" />
+  <text x="542" y="337" font-size="18" fill="#5eead4" font-weight="700">03</text>
+  <text x="542" y="374" font-size="27" fill="#f1f5f9" font-weight="650">Compare answers</text>
+  <text x="542" y="406" font-size="21" fill="#bacce4" font-weight="400">Same tasks. Same settings.</text>
+  <rect x="40" y="304" width="400" height="124" rx="16" fill="#15253e" stroke="#3a5275" />
+  <text x="62" y="337" font-size="18" fill="#5eead4" font-weight="700">04</text>
+  <text x="62" y="374" font-size="27" fill="#f1f5f9" font-weight="650">Verify restoration</text>
+  <text x="62" y="406" font-size="21" fill="#bacce4" font-weight="400">Recover every original byte.</text>
+  <path d="M444 190h70" fill="none" stroke="#6682a7" stroke-width="2" marker-end="url(#arrow)" />
+  <path d="M720 256v42" fill="none" stroke="#6682a7" stroke-width="2" marker-end="url(#arrow)" />
+  <path d="M516 366h-70" fill="none" stroke="#6682a7" stroke-width="2" marker-end="url(#arrow)" />
+  <path d="M444 190h66M720 256v38M516 366h-66" fill="none" stroke="#5eead4" stroke-width="3" stroke-dasharray="5 12" class="flow" />
+  <rect x="40" y="462" width="880" height="50" rx="12" fill="#153a3d" stroke="#396d6b" />
+  <text x="480" y="494" font-size="22" fill="#b9f3e7" font-weight="500" text-anchor="middle">A result is evidence. Deployment needs separate approval.</text>
 </svg>
