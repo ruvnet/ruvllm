@@ -77,6 +77,8 @@ This was 16 fresh synthetic arithmetic questions with a 2,048 token cap, one pai
 
 The server binding check fixes a concrete failure: MLX LM model lookup could drop the configured adapter when an HTTP request named the model. The server now binds the base and adapter together and checks the loaded tensors. Earlier affected HTTP receipts were invalidated. The direct offline benchmark results were unaffected.
 
+The portable scorer also starts the actual interpreter inside macOS Python framework installations. Their normal launcher attempts a second executable, which the strict sandbox correctly rejected. The fix retains one permitted executable and the existing filesystem and network restrictions. The original experiment scorer remains preserved with its frozen protocol; historical results are unchanged.
+
 Test counts establish tested software behavior, not model intelligence. The new standalone Rust build has its own binary digest and is never substituted into historical benchmark receipts. [Native validation](native/validation.json) and [benchmark evidence](benchmarks/README.md) preserve that distinction.
 
 ### Broader GPU comparison

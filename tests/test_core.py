@@ -1,6 +1,9 @@
 import json
 from pathlib import Path
 
+import pytest
+
+from ruflo_model import scoring
 from ruflo_model.common import ROOT, digest, read_jsonl
 from ruflo_model.data import call, tool_case
 from ruflo_model.scoring import score_code, score_tool
@@ -35,6 +38,23 @@ def test_code_executes_assertions():
     assert not score_code(case, "import os\ndef f(x): return x+1")[0]
 
 
+def test_framework_interpreter_does_not_allow_an_escaping_bundle(tmp_path, monkeypatch):
+    runtime = tmp_path / "framework"
+    runtime.mkdir()
+    launcher = runtime / "python"
+    launcher.write_text("fixture launcher")
+    target = tmp_path / "unrelated-executable"
+    target.write_text("outside the trusted runtime")
+    bundled = runtime / "Resources/Python.app/Contents/MacOS/Python"
+    bundled.parent.mkdir(parents=True)
+    bundled.symlink_to(target)
+    monkeypatch.setattr(scoring.sys, "executable", str(launcher))
+    monkeypatch.setattr(scoring.sys, "base_prefix", str(runtime))
+    monkeypatch.setattr(scoring.sysconfig, "get_config_var", lambda _: "Python")
+    with pytest.raises(ValueError, match="escapes"):
+        scoring.sandbox_interpreter()
+
+
 def test_os_sandbox_blocks_dynamic_file_and_network_access(tmp_path):
     sentinel = tmp_path / "sentinel"
     sentinel.write_text("not a secret")
@@ -54,6 +74,27 @@ def test_os_sandbox_blocks_dynamic_file_and_network_access(tmp_path):
     return False
 '''
     assert score_code({"tests": "assert blocked()"}, network)[0]
+
+
+def test_os_sandbox_blocks_writes_and_child_processes(tmp_path):
+    destination = tmp_path / "must-not-exist"
+    writing = f'''def blocked():
+    try:
+        eval("open({str(destination)!r}, 'w')")
+    except PermissionError:
+        return True
+    return False
+'''
+    assert score_code({"tests": "assert blocked()"}, writing)[0]
+    assert not destination.exists()
+    process = '''def blocked():
+    try:
+        eval("__import__('subprocess').run(['/usr/bin/true'], check=True)")
+    except (PermissionError, BlockingIOError):
+        return True
+    return False
+'''
+    assert score_code({"tests": "assert blocked()"}, process)[0]
 
 
 def test_promotion_rejects_regressions():

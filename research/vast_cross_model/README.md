@@ -26,6 +26,8 @@ The first cloud runtime attempt is preserved under `archive/unused-runtime-attem
 
 ## Public reproduction scope
 
+The historical scorer is preserved exactly at [frozen/ruflo_model/scoring.py](frozen/ruflo_model/scoring.py). The unchanged protocol still records its original relative location and digest; [the explicit source map](frozen/source-map.json) records this single relocation. `scripts/check_repository.py` verifies all eight frozen implementation files and frozen inputs. The current root scorer separately fixes macOS framework Python launcher compatibility. Historical source verification does not execute that corrected scorer, and these saved results were not regenerated with it. A future experiment using the corrected scorer needs a new freeze.
+
 This directory preserves the frozen research implementation, case corpus, protocol, model revisions, licenses and correction history. It does not include the original provider controller, cloud account configuration, private lifecycle receipts, complete worker filesystem or compiled historical native executable. The 1,851 rows above describe the planned experiment, not a completed result in this source directory. See [the bundled benchmark evidence](../../benchmarks/README.md) for the completed local experiments.
 
 The [standalone native engine](../../native/README.md) is the portable entry point for tensor inspection, patching, rollback and RVF verification. Its source is traced to the same audited implementation, but its smaller dependency graph and newly compiled executable have distinct digests. Do not substitute its digest into a historical receipt.

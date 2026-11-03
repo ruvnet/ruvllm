@@ -6,6 +6,7 @@ import re
 import resource
 import subprocess
 import sys
+import sysconfig
 import tempfile
 
 import jsonschema
@@ -42,6 +43,25 @@ def extract_code(text):
     return blocks[0] if blocks else text.strip()
 
 
+def sandbox_interpreter():
+    """Select one interpreter, avoiding the macOS framework launcher reexec.
+
+    Framework bin/python is a launcher for Resources/Python.app. Running the
+    bundle executable directly preserves the single process-exec permission.
+    The current installation is trusted; no candidate supplied path is used.
+    """
+    executable = Path(sys.executable).resolve(strict=True)
+    if sysconfig.get_config_var("PYTHONFRAMEWORK"):
+        base = Path(sys.base_prefix).resolve(strict=True)
+        bundled = base / "Resources/Python.app/Contents/MacOS/Python"
+        if bundled.is_file():
+            bundled = bundled.resolve(strict=True)
+            if not bundled.is_relative_to(base):
+                raise ValueError("Framework interpreter escapes its runtime root")
+            executable = bundled
+    return executable
+
+
 def score_code(case, text):
     """Run in a macOS Seatbelt sandbox with no network, secrets, or filesystem writes.
 
@@ -66,6 +86,10 @@ def score_code(case, text):
             return False, "unsupported introspection"
     if sys.platform != "darwin" or not Path("/usr/bin/sandbox-exec").exists():
         return False, "sandbox unavailable"
+    try:
+        interpreter = sandbox_interpreter()
+    except (OSError, ValueError):
+        return False, "sandbox interpreter unavailable"
     with tempfile.TemporaryDirectory(prefix="ruflo-eval-") as temp:
         path = Path(temp).resolve() / "candidate.py"
         path.write_text(code + "\n\n" + case["tests"] + "\n")
@@ -74,15 +98,15 @@ def score_code(case, text):
         # including network and process creation by Python, remains denied.
         profile = f'''(version 1)
 (deny default)
-(allow process-exec (literal "{Path(sys.executable).resolve()}"))
+(allow process-exec (literal {json.dumps(str(interpreter))}))
 (allow sysctl-read)
 (allow file-read-metadata)
 (allow file-read*
  (require-all (require-not (subpath "/Users"))
               (require-not (subpath "/private"))
               (require-not (subpath "/Volumes")))
- (subpath "{base}") (subpath "{Path(sys.prefix).resolve()}")
- (subpath "{Path(temp).resolve()}"))
+ (subpath {json.dumps(str(base))}) (subpath {json.dumps(str(Path(sys.prefix).resolve()))})
+ (subpath {json.dumps(str(Path(temp).resolve()))}))
 '''
         def limits():
             resource.setrlimit(resource.RLIMIT_CPU, (2, 2))
@@ -90,7 +114,7 @@ def score_code(case, text):
             resource.setrlimit(resource.RLIMIT_NOFILE, (64, 64))
             resource.setrlimit(resource.RLIMIT_NPROC, (0, 0))
         try:
-            result = subprocess.run(["/usr/bin/sandbox-exec", "-p", profile, sys.executable,
+            result = subprocess.run(["/usr/bin/sandbox-exec", "-p", profile, str(interpreter),
                                      "-I", "-S", "-B", str(path)],
                                     cwd=temp, env={"PATH": "/usr/bin:/bin", "PYTHONHASHSEED": "0"},
                                     stdout=subprocess.DEVNULL, stderr=subprocess.PIPE,

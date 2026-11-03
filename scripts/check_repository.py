@@ -115,6 +115,23 @@ def verify_svg():
     return len(assets)
 
 
+def verify_frozen_implementation():
+    base = ROOT / 'research/vast_cross_model'
+    protocol = load(base / 'protocol.json')
+    require(sha(base / 'protocol.json') == 'cf83995f29b5c3f7c28871d87d1295839bd94452dec0b8c352b990ba52a26cb6',
+            'Historical experiment protocol differs')
+    mapping = load(base / 'frozen/source-map.json')
+    require(mapping['paths'] == {'../../ruflo_model/scoring.py': 'frozen/ruflo_model/scoring.py'},
+            'Unexpected historical source relocation')
+    for name, expected in protocol['implementation_sha256'].items():
+        path = safe_file(base, mapping['paths'].get(name, name))
+        require(sha(path) == expected, f'Frozen implementation differs: {name}')
+    for name, expected in protocol['input_sha256'].items():
+        require(sha(safe_file(base, name)) == expected, f'Frozen input differs: {name}')
+    return {'implementation_files': len(protocol['implementation_sha256']),
+            'input_files': len(protocol['input_sha256']), 'historical_scorer_preserved': True}
+
+
 def verify_links():
     documents = [ROOT / 'README.md', ROOT / 'SECURITY.md', ROOT / 'native/README.md',
                  ROOT / 'weights/coding-4b/README.md', ROOT / 'benchmarks/README.md',
@@ -139,6 +156,7 @@ def verify_links():
 def main():
     try:
         report = {'adapter': verify_adapter(), 'source_export': verify_source_export(),
+                  'frozen_experiment': verify_frozen_implementation(),
                   'animated_svgs': verify_svg(), 'local_links': verify_links(),
                   'scope': 'Bundled integrity and portable documentation; no inference or source authentication',
                   'verified': True}

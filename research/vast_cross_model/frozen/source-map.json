@@ -1,0 +1,7 @@
+{
+  "schema": "ruvllm.frozen-source-relocation.v1",
+  "paths": {
+    "../../ruflo_model/scoring.py": "frozen/ruflo_model/scoring.py"
+  },
+  "reason": "Preserve the exact historical scorer while the public root scorer gains macOS framework interpreter portability. This relocation does not alter or reexecute historical results."
+}
