@@ -1,0 +1,26 @@
+{
+  "schema": "ruvllm-gpu-loop/v1",
+  "stateRoot": "/absolute/private/gpu-loop-state",
+  "intervalSeconds": 60,
+  "maxAttempts": 2,
+  "budgetUsd": 0,
+  "jobs": [
+    {
+      "id": "qwen35-4b-paired-evaluation",
+      "provider": "vast.ai",
+      "model": {
+        "repo": "Qwen/Qwen3.5-4B",
+        "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a"
+      },
+      "task": "evaluate",
+      "secretRef": "ruos.vast.primary",
+      "resource": { "instanceId": "REPLACE_WITH_EXISTING_INSTANCE_ID" },
+      "maxCostUsd": 1,
+      "timeoutSeconds": 1800,
+      "experiment": {
+        "configPath": "/absolute/private/operator-profile/runtime.json",
+        "planPath": "/absolute/experiment-inputs/plan.json"
+      }
+    }
+  ]
+}

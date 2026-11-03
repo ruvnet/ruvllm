@@ -43,7 +43,17 @@ This documents protocol compatibility; no installed Ruflo or Claude client accep
 
 ## Contract and limits
 
-`experiment_run` accepts exactly `{"planPath":"/absolute/input/plan.json"}`. The operator config is read only from `RUVLLM_EXPERIMENT_CONFIG`; tools cannot replace it. The engine checks path scope, SHA256 pins, candidate bounds and replay/output rules. The MCP bridge limits requests to 64 KiB, results to 1 MiB and its serialized queue to 16 requests. There is no arbitrary command, provider execution or activation tool. A missing runtime refuses execution while discovery still works.
+`experiment_run` accepts exactly `{"planPath":"/absolute/input/plan.json"}`. The operator config is read only from `RUVLLM_EXPERIMENT_CONFIG`; tools cannot replace it. The engine checks path scope, SHA256 pins, candidate bounds and replay/output rules. The MCP bridge limits requests to 64 KiB, results to 1 MiB and its serialized queue to 16 requests. There is no arbitrary command or activation tool. A missing runtime refuses execution while discovery still works.
+
+Version 0.2 adds `gpu_loop_status` and `gpu_loop_tick`, each accepting `{}` only.
+The operator sets `RUVLLM_GPU_LOOP_CONFIG`, `RUVLLM_GPU_HOST_MODULE` and
+`RUVLLM_GPU_HOST_SHA256`; the bundled file adapter also reads
+`RUVLLM_GPU_SPOOL_ROOT`. A tick may submit GPU work through the pinned host
+adapter within the configured budget. It never returns ruOS secret values. The
+host owns actual Vast.ai operations and provider-side cost/deadline enforcement.
+The `/ruflo-metaharness:gpu-loop` command can be called by a host loop schedule.
+See the [GPU loop runbook](../../integrations/metaharness/GPU-LOOP.md). These
+interfaces have local contract tests; live ruOS/Vast E2E was intentionally not run.
 
 The runner actually patches checkpoints, creates restoration outputs, checks original/restored digests and packages native RVF evidence. A fixture proves those mechanical contracts using synthetic evaluations. External evaluation files remain caller-supplied claims; hashes establish binding, not evaluator independence. The plugin does not run inference or verify a model has improved. The `experiment-reviewer` agent documents the review boundary.
 

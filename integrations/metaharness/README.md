@@ -106,6 +106,13 @@ model cannot override the operator configuration. The same stdio server can be
 registered in a Ruflo project's MCP configuration. Portable wire tests exercise
 the real engine; installed Claude/Ruflo client acceptance is separate.
 
+## Scheduled GPU work
+
+For scheduled GPU work, use the [durable GPU loop](GPU-LOOP.md). It supports
+host-owned ruOS secret references, Vast job descriptors, persisted reservations,
+deadline-aware polling and confirmed cleanup. Local contract tests require no
+live provider. The bundled file handoff keeps requests pending for a trusted host.
+
 ## Weight-EFT data and plans
 
 The data-only adapter CLI reads JSON stdin, with a 16 MiB bound:

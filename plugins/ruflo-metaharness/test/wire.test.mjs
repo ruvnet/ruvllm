@@ -48,7 +48,7 @@ test('MCP discovery works; unconfigured, arbitrary-command and activation reques
   const init = await client.rpc('initialize', { protocolVersion: '2025-06-18', capabilities: {}, clientInfo: { name: 'test', version: '1' } });
   assert.equal(init.result.serverInfo.name, 'ruflo-metaharness');
   const listed = await client.rpc('tools/list', {});
-  assert.deepEqual(listed.result.tools.map(v => v.name), ['experiment_run']);
+  assert.deepEqual(listed.result.tools.map(v => v.name), ['experiment_run', 'gpu_loop_status', 'gpu_loop_tick']);
   assert.equal(listed.result.tools[0].inputSchema.additionalProperties, false);
   const unconfigured = await client.rpc('tools/call', { name: 'experiment_run', arguments: { planPath: '/tmp/plan.json' } });
   assert.equal(JSON.parse(unconfigured.result.content[0].text).code, 'NOT_CONFIGURED');

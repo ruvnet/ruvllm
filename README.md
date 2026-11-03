@@ -201,6 +201,9 @@ The fixture runs real native edits and restoration with synthetic outcomes.
 For operator-approved inputs, use `bash scripts/install-metaharness.sh --help`
 and the [Claude Code/Ruflo module](plugins/ruflo-metaharness/README.md).
 The installer prepares a private project-local runtime profile and Claude launcher.
+The [scheduled GPU loop](integrations/metaharness/GPU-LOOP.md) adds durable
+host-adapter job scheduling with ruOS secret references, cost reservations,
+deadlines and confirmed cleanup; live ruOS/Vast.ai E2E remains unrun.
 See [ADRs 012–014](docs/adr/ADR-012-metaharness-bounded-experiment-runner.md) and
 the [CPU benchmark](docs/benchmarks/metaharness-cpu.md) for architecture and evidence.
 
