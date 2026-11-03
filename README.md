@@ -204,6 +204,9 @@ The installer prepares a private project-local runtime profile and Claude launch
 The [scheduled GPU loop](integrations/metaharness/GPU-LOOP.md) adds durable
 host-adapter job scheduling with ruOS secret references, cost reservations,
 deadlines and confirmed cleanup; live ruOS/Vast.ai E2E remains unrun.
+The [paired model measurement](experiments/model-improvement/README.md) freezes
+192 tool tasks and 64 arithmetic tasks and supplies a CUDA worker plus strict
+paired scoring for the included 4B adapter. Fresh GPU results remain pending.
 See [ADRs 012–014](docs/adr/ADR-012-metaharness-bounded-experiment-runner.md) and
 the [CPU benchmark](docs/benchmarks/metaharness-cpu.md) for architecture and evidence.
 

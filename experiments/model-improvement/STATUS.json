@@ -1,0 +1,18 @@
+{
+  "schema": "ruvllm-model-measurement-status/v1",
+  "status": "frozen-awaiting-gpu-executor",
+  "run_id": "qwen35-4b-adapter-confirmation-v1",
+  "protocol_sha256": "5390036b525dbff44eaf5af8636b3c180e69dc2a1ecf2941b9b341d9605b7af2",
+  "case_count": 256,
+  "tool_cases": 192,
+  "math_cases": 64,
+  "exact_message_overlaps_found": 0,
+  "corpus_messages_checked": 686,
+  "fresh_inference_runs": 0,
+  "improvement_result": null,
+  "local_measurement_contract_tests_passed": 25,
+  "existing_integration_tests_passed": 60,
+  "live_gpu_e2e_verified": false,
+  "production_activation": false,
+  "blocker": "No GPU executor or ruOS/Vast host binding is exposed in this session."
+}

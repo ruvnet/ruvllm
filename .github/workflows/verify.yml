@@ -56,6 +56,8 @@ jobs:
           npm test --prefix integrations/metaharness
           node --test plugins/ruflo-metaharness/test/*.test.mjs
           node integrations/metaharness/bench/run.mjs --iterations 3 --warmup 1 --candidates 2
+      - name: Test paired model measurement contracts without GPU inference
+        run: python -m unittest discover -s experiments/model-improvement/tests -v
 
   python-and-sandbox:
     runs-on: macos-14
