@@ -1,0 +1,33 @@
+{
+  "schema": "ruvllm.cloud-publication.v1",
+  "protocol_sha256": "cf83995f29b5c3f7c28871d87d1295839bd94452dec0b8c352b990ba52a26cb6",
+  "archive": {
+    "filename": "ruvllm-cloud-evidence-20261103.tar.gz",
+    "bytes": 38962746,
+    "sha256": "337d1b0ab3f9efd94baf14e30078b73e112c54a0203aec6c3d62ed91f9d48603",
+    "top_directory": "ruvllm-cloud-evidence-20261103"
+  },
+  "scientific_bundle_manifest_sha256": "a2796619c185da4b175642d089a89f3716c0d1467e6296712a9bc28688a2df63",
+  "files": {
+    "summary.json": {
+      "bytes": 12156,
+      "sha256": "b72944fde3d2d4dadfeba2d966e25a59fc0eee688f7c40ce9b401eec983f3cc7"
+    },
+    "scored.json": {
+      "bytes": 466587,
+      "sha256": "7f31130d47c30f48b0bfae3e74749cff26c258407eac83412b93dd214c19b84b"
+    },
+    "REPORT.md": {
+      "bytes": 1870,
+      "sha256": "75ac8e156d9d93e0c3183ec745d172626a7e24a2164a5f87bf214f433e287808"
+    },
+    "timing.json": {
+      "bytes": 68605,
+      "sha256": "936cb135b4a5cb9dffd7976459c08a5e709eb10919e2d904b8de631ef2f215de"
+    },
+    "closeout.json": {
+      "bytes": 4225,
+      "sha256": "0dcda14e5b7b803760b27496b2464072d09f36f7121323e41ab11dcf299b3ad1"
+    }
+  }
+}

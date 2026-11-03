@@ -1,0 +1,342 @@
+{
+  "arms": {
+    "qwen035-08b-base-direct": {
+      "binding": {
+        "arm": "qwen035-08b-base-direct",
+        "model_manifest_sha256": "203db59aeed30772b7a9a7eba8ffa25c0f5d3faaf43ee18adfbd3c7bd5d5ed69",
+        "model_sha256": "a9cd1fc7d9bfc993f4baf8400b17c10eeea6c0d740e68acf6a75e4c562f95029",
+        "protocol_sha256": "cf83995f29b5c3f7c28871d87d1295839bd94452dec0b8c352b990ba52a26cb6",
+        "runtime_sha256": "43193ec066fe767e2119b0b3d1ffbfb1b7c39d950fb35184bae19f8e15bd6d56",
+        "variant": "qwen035-08b-base"
+      },
+      "generation_seconds": 1191.275920426473,
+      "load_seconds": 16.213707027956843,
+      "panels": {
+        "humaneval164": {
+          "answer_correct": 50,
+          "completed": 155,
+          "count": 164,
+          "delivered_accuracy": 0.3048780487804878,
+          "delivered_correct": 50,
+          "output_tokens": 53375,
+          "truncated": 9
+        },
+        "math128": {
+          "answer_correct": 114,
+          "completed": 123,
+          "count": 128,
+          "delivered_accuracy": 0.890625,
+          "delivered_correct": 114,
+          "output_tokens": 108970,
+          "truncated": 5
+        },
+        "tools27": {
+          "answer_correct": 15,
+          "completed": 27,
+          "count": 27,
+          "delivered_accuracy": 0.5555555555555556,
+          "delivered_correct": 15,
+          "output_tokens": 1274,
+          "truncated": 0
+        }
+      },
+      "responses_sha256": "1e8cd1777bdd8706ccc9c6c7d3837b164669af4b41b267c5b4b711d7c6ce2f79"
+    },
+    "qwen035-08b-base-thinking": {
+      "binding": {
+        "arm": "qwen035-08b-base-thinking",
+        "model_manifest_sha256": "203db59aeed30772b7a9a7eba8ffa25c0f5d3faaf43ee18adfbd3c7bd5d5ed69",
+        "model_sha256": "a9cd1fc7d9bfc993f4baf8400b17c10eeea6c0d740e68acf6a75e4c562f95029",
+        "protocol_sha256": "cf83995f29b5c3f7c28871d87d1295839bd94452dec0b8c352b990ba52a26cb6",
+        "runtime_sha256": "43193ec066fe767e2119b0b3d1ffbfb1b7c39d950fb35184bae19f8e15bd6d56",
+        "variant": "qwen035-08b-base"
+      },
+      "generation_seconds": 2356.3476915061474,
+      "load_seconds": 14.021522004157305,
+      "panels": {
+        "math128": {
+          "answer_correct": 36,
+          "completed": 0,
+          "count": 128,
+          "delivered_accuracy": 0.0,
+          "delivered_correct": 0,
+          "output_tokens": 1048576,
+          "truncated": 128
+        }
+      },
+      "responses_sha256": "d0b8a332089dac86e010162cbd8b574531b610e14f1f2ff35d3340430d51ebf4"
+    },
+    "qwen035-08b-edited-direct": {
+      "binding": {
+        "arm": "qwen035-08b-edited-direct",
+        "model_manifest_sha256": "d0a198579ca5074679211f00ecf721edbe01036ab587c8d7876906cc78b5c17f",
+        "model_sha256": "dc9eacc6235f14c95855bf59a7277979e8712b1416d26ac26690d975ba6cdffd",
+        "protocol_sha256": "cf83995f29b5c3f7c28871d87d1295839bd94452dec0b8c352b990ba52a26cb6",
+        "runtime_sha256": "43193ec066fe767e2119b0b3d1ffbfb1b7c39d950fb35184bae19f8e15bd6d56",
+        "variant": "qwen035-08b-edited"
+      },
+      "generation_seconds": 967.3021919000894,
+      "load_seconds": 14.763745281845331,
+      "panels": {
+        "humaneval164": {
+          "answer_correct": 49,
+          "completed": 154,
+          "count": 164,
+          "delivered_accuracy": 0.29878048780487804,
+          "delivered_correct": 49,
+          "output_tokens": 52992,
+          "truncated": 10
+        },
+        "math128": {
+          "answer_correct": 113,
+          "completed": 127,
+          "count": 128,
+          "delivered_accuracy": 0.8828125,
+          "delivered_correct": 113,
+          "output_tokens": 88646,
+          "truncated": 1
+        },
+        "tools27": {
+          "answer_correct": 11,
+          "completed": 27,
+          "count": 27,
+          "delivered_accuracy": 0.4074074074074074,
+          "delivered_correct": 11,
+          "output_tokens": 1281,
+          "truncated": 0
+        }
+      },
+      "responses_sha256": "92c3997d9210532b9f9e133874697e90518bd9d87ab7ef099709ebae17bf4cc8"
+    },
+    "qwen035-08b-edited-thinking": {
+      "binding": {
+        "arm": "qwen035-08b-edited-thinking",
+        "model_manifest_sha256": "d0a198579ca5074679211f00ecf721edbe01036ab587c8d7876906cc78b5c17f",
+        "model_sha256": "dc9eacc6235f14c95855bf59a7277979e8712b1416d26ac26690d975ba6cdffd",
+        "protocol_sha256": "cf83995f29b5c3f7c28871d87d1295839bd94452dec0b8c352b990ba52a26cb6",
+        "runtime_sha256": "43193ec066fe767e2119b0b3d1ffbfb1b7c39d950fb35184bae19f8e15bd6d56",
+        "variant": "qwen035-08b-edited"
+      },
+      "generation_seconds": 2369.9814988039434,
+      "load_seconds": 15.293727478012443,
+      "panels": {
+        "math128": {
+          "answer_correct": 56,
+          "completed": 29,
+          "count": 128,
+          "delivered_accuracy": 0.2265625,
+          "delivered_correct": 29,
+          "output_tokens": 903435,
+          "truncated": 99
+        }
+      },
+      "responses_sha256": "e0288f37ddfef3cdf9cc0cc1ebc496fe797ea230785047171dae71df3677beb6"
+    },
+    "qwen035-4b-base-direct": {
+      "binding": {
+        "arm": "qwen035-4b-base-direct",
+        "model_manifest_sha256": "a99160b98d62d8a25305c35d50eae76b4fc399782fee77e350528168d7a9f6b1",
+        "model_sha256": "0c3129c0a669beca441f07bfa7bb9e11c7d9ee626419e40195a95de7461feee7",
+        "protocol_sha256": "cf83995f29b5c3f7c28871d87d1295839bd94452dec0b8c352b990ba52a26cb6",
+        "runtime_sha256": "43193ec066fe767e2119b0b3d1ffbfb1b7c39d950fb35184bae19f8e15bd6d56",
+        "variant": "qwen035-4b-base"
+      },
+      "generation_seconds": 619.3887953925878,
+      "load_seconds": 96.04480045102537,
+      "panels": {
+        "humaneval164": {
+          "answer_correct": 133,
+          "completed": 161,
+          "count": 164,
+          "delivered_accuracy": 0.8109756097560976,
+          "delivered_correct": 133,
+          "output_tokens": 42222,
+          "truncated": 3
+        },
+        "math128": {
+          "answer_correct": 127,
+          "completed": 128,
+          "count": 128,
+          "delivered_accuracy": 0.9921875,
+          "delivered_correct": 127,
+          "output_tokens": 64579,
+          "truncated": 0
+        },
+        "tools27": {
+          "answer_correct": 24,
+          "completed": 27,
+          "count": 27,
+          "delivered_accuracy": 0.8888888888888888,
+          "delivered_correct": 24,
+          "output_tokens": 1446,
+          "truncated": 0
+        }
+      },
+      "responses_sha256": "f878fdead50cea4d8fecb021e6fddd86f00aee26a3d005fc7d3018b67f25cbc3"
+    },
+    "qwen035-4b-lora-direct": {
+      "binding": {
+        "arm": "qwen035-4b-lora-direct",
+        "model_manifest_sha256": "95a72739cd625aaac22f10916e96d2811342f2811a35c30e44a77fde69c7c20c",
+        "model_sha256": "717296435055ce96c9748c5854fa5238f6d3536dd97bdeb02811b9167f336a45",
+        "protocol_sha256": "cf83995f29b5c3f7c28871d87d1295839bd94452dec0b8c352b990ba52a26cb6",
+        "runtime_sha256": "43193ec066fe767e2119b0b3d1ffbfb1b7c39d950fb35184bae19f8e15bd6d56",
+        "variant": "qwen035-4b-lora"
+      },
+      "generation_seconds": 567.1647965852171,
+      "load_seconds": 15.52379292063415,
+      "panels": {
+        "humaneval164": {
+          "answer_correct": 135,
+          "completed": 161,
+          "count": 164,
+          "delivered_accuracy": 0.823170731707317,
+          "delivered_correct": 135,
+          "output_tokens": 41430,
+          "truncated": 3
+        },
+        "math128": {
+          "answer_correct": 127,
+          "completed": 128,
+          "count": 128,
+          "delivered_accuracy": 0.9921875,
+          "delivered_correct": 127,
+          "output_tokens": 63906,
+          "truncated": 0
+        },
+        "tools27": {
+          "answer_correct": 27,
+          "completed": 27,
+          "count": 27,
+          "delivered_accuracy": 1.0,
+          "delivered_correct": 27,
+          "output_tokens": 1381,
+          "truncated": 0
+        }
+      },
+      "responses_sha256": "03008190978d314d656dc88730911e0be8860114ff485c15199aecd6ad6857b0"
+    },
+    "qwen3-coder-30b-direct": {
+      "binding": {
+        "arm": "qwen3-coder-30b-direct",
+        "model_manifest_sha256": "bb20b3cc4d77016fe120512d6293e4915b1c4c22ceef8ebbf873d6f2c1eae722",
+        "model_sha256": "8040b7cf308b3b42d8444ef02450425d250aea5b61eac63e9ead803f417ef87c",
+        "protocol_sha256": "cf83995f29b5c3f7c28871d87d1295839bd94452dec0b8c352b990ba52a26cb6",
+        "runtime_sha256": "43193ec066fe767e2119b0b3d1ffbfb1b7c39d950fb35184bae19f8e15bd6d56",
+        "variant": "qwen3-coder-30b"
+      },
+      "generation_seconds": 567.6091684065759,
+      "load_seconds": 25.81661405786872,
+      "panels": {
+        "humaneval164": {
+          "answer_correct": 151,
+          "completed": 162,
+          "count": 164,
+          "delivered_accuracy": 0.9207317073170732,
+          "delivered_correct": 151,
+          "output_tokens": 38084,
+          "truncated": 2
+        },
+        "math128": {
+          "answer_correct": 127,
+          "completed": 128,
+          "count": 128,
+          "delivered_accuracy": 0.9921875,
+          "delivered_correct": 127,
+          "output_tokens": 38957,
+          "truncated": 0
+        },
+        "tools27": {
+          "answer_correct": 12,
+          "completed": 27,
+          "count": 27,
+          "delivered_accuracy": 0.4444444444444444,
+          "delivered_correct": 12,
+          "output_tokens": 1648,
+          "truncated": 0
+        }
+      },
+      "responses_sha256": "222471ea001568f05dad15551a98d77f37c9ecc391af536f42f889c0a43284ee"
+    }
+  },
+  "generations": 1851,
+  "limitations": [
+    "HumanEval pretraining contamination unknown; repeated public benchmark",
+    "27 tool fixtures are synthetic and too small for production qualification",
+    "math corpus is original procedural arithmetic, not MATH500 or advanced reasoning",
+    "greedy fixed chat protocol is not an official leaderboard score",
+    "one GPU and seed; batch throughput is not individual request latency",
+    "prior local 16 case weight repair gate failed; cloud run is diagnostic replication"
+  ],
+  "paired": {
+    "qwen035-08b-edited-direct": {
+      "humaneval164": {
+        "exact_mcnemar_two_sided_p": 1.0,
+        "exploratory": true,
+        "gains": 6,
+        "multiple_testing_adjusted": false,
+        "net": -1,
+        "regressions": 7
+      },
+      "math128": {
+        "exact_mcnemar_two_sided_p": 1.0,
+        "exploratory": true,
+        "gains": 7,
+        "multiple_testing_adjusted": false,
+        "net": -1,
+        "regressions": 8
+      },
+      "tools27": {
+        "exact_mcnemar_two_sided_p": 0.125,
+        "exploratory": true,
+        "gains": 0,
+        "multiple_testing_adjusted": false,
+        "net": -4,
+        "regressions": 4
+      }
+    },
+    "qwen035-08b-edited-thinking": {
+      "math128": {
+        "exact_mcnemar_two_sided_p": 3.725290298461914e-09,
+        "exploratory": true,
+        "gains": 29,
+        "multiple_testing_adjusted": false,
+        "net": 29,
+        "regressions": 0
+      }
+    },
+    "qwen035-4b-lora-direct": {
+      "humaneval164": {
+        "exact_mcnemar_two_sided_p": 0.7744140625,
+        "exploratory": true,
+        "gains": 7,
+        "multiple_testing_adjusted": false,
+        "net": 2,
+        "regressions": 5
+      },
+      "math128": {
+        "exact_mcnemar_two_sided_p": 1.0,
+        "exploratory": true,
+        "gains": 0,
+        "multiple_testing_adjusted": false,
+        "net": 0,
+        "regressions": 0
+      },
+      "tools27": {
+        "exact_mcnemar_two_sided_p": 0.25,
+        "exploratory": true,
+        "gains": 3,
+        "multiple_testing_adjusted": false,
+        "net": 3,
+        "regressions": 0
+      }
+    }
+  },
+  "production_qualified": false,
+  "protocol_sha256": "cf83995f29b5c3f7c28871d87d1295839bd94452dec0b8c352b990ba52a26cb6",
+  "sandbox_scorer_sha256": "e462267be43484accd153f2d1f126977b2394a26505a4cd2153489ff46ec3055",
+  "schema": "ruflo.vast-cross-model-results.v1",
+  "scorer_sha256": "4bfd12082fb8fc9cf65c069d9ed28be9979553c834d2afc4664ec352c279da6a",
+  "selection_use": false,
+  "sota_verified": false
+}

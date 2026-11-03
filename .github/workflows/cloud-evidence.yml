@@ -1,0 +1,37 @@
+name: Verify cloud evidence release
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  completed-cloud-evidence:
+    if: github.event_name == 'workflow_dispatch' || github.event.release.tag_name == 'cloud-evidence-20261103'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Install the trusted timing helper dependency
+        run: python -m pip install jsonschema==4.26.0
+      - name: Download the published immutable evidence archive
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          gh release download cloud-evidence-20261103
+          --repo "$GITHUB_REPOSITORY"
+          --pattern ruvllm-cloud-evidence-20261103.tar.gz
+          --dir "$RUNNER_TEMP/cloud-evidence"
+      - name: Verify data without executing archive or generated code
+        run: >-
+          python -B scripts/verify_cloud_publication.py
+          --publication research/vast_cross_model/results/cross-model-20261103/publication.json
+          --archive "$RUNNER_TEMP/cloud-evidence/ruvllm-cloud-evidence-20261103.tar.gz"

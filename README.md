@@ -83,9 +83,23 @@ Test counts establish tested software behavior, not model intelligence. The new 
 
 ### Broader GPU comparison
 
-A separate frozen Vast experiment compares five BF16 artifacts from three models across two Qwen families: original and edited Qwen3.5 0.8B, original and adapted Qwen3.5 4B, and unchanged Qwen3 Coder 30B A3B. Five direct arms plus two 0.8B thinking arms produce 1,851 planned responses across 164 coding tasks, 27 tool cases and 128 procedural math problems.
+A frozen Vast experiment completed **1,851 responses** across seven arms on one A100 SXM4 80GB. It compared five BF16 artifacts from three models across two Qwen families. All values below require a correct answer that finished delivery under the fixed token budget.
 
-**Cloud accuracy results are pending.** The protocol and public source are included under [research/vast_cross_model](research/vast_cross_model/README.md). Partial throughput observations are not substituted for a completed quality report. Final raw responses, independent scores and cleanup evidence will be added after verification. GPU and Apple measurements remain separate experiments.
+| Direct mode artifact | HumanEval | Tool fixtures | Procedural math |
+| :--- | ---: | ---: | ---: |
+| Qwen3.5 0.8B original | 50 / 164 | 15 / 27 | 114 / 128 |
+| Qwen3.5 0.8B edited | 49 / 164 | 11 / 27 | 113 / 128 |
+| Qwen3.5 4B original | 133 / 164 | 24 / 27 | 127 / 128 |
+| Qwen3.5 4B with LoRA | 135 / 164 | 27 / 27 | 127 / 128 |
+| Qwen3 Coder 30B A3B original | 151 / 164 | 12 / 27 | 127 / 128 |
+
+The **4B adapter passed three additional tool fixtures** and two additional HumanEval tasks overall. HumanEval contained 7 gains and 5 regressions, with exact paired p = 0.774; tool fixtures had 3 gains and no regressions, p = 0.25. These small gains remain inconclusive. The unchanged Coder 30B led HumanEval. Its lower score on this small synthetic tool panel does not establish general tool superiority for the adapter.
+
+The **0.8B edit partially repaired stalled thinking**: delivered math answers rose from 0 / 128 to 29 / 128, while truncations fell from 128 to 99. However, the strongest unedited 0.8B profile already delivered 114 / 128 with thinking disabled. Edited direct mode lost one math case, one code case and four tool cases. This supports a specific completion repair, not stronger general reasoning.
+
+The 4B adapter used 1.41% fewer output tokens and 8.41% less aggregate inference API time in this sequential run. These batch measurements are not individual request latency or a repeatable speed guarantee. The 0.8B thinking edit used fewer tokens but took 0.58% longer. GPU BF16 and Apple MLX 4 bit results remain separate experiments.
+
+Read the [full cloud report](research/vast_cross_model/results/cross-model-20261103/README.md), [frozen protocol](research/vast_cross_model/README.md) and [complete evidence release](https://github.com/ruvnet/ruvllm/releases/tag/cloud-evidence-20261103). The release contains all raw responses, original scoring source, model bindings, patch and rollback evidence. A separate [600 call grading stability audit](research/vast_cross_model/results/cross-model-20261103/grading-stability/README.md) found no verdict changes across 20 selected outputs; primary scores were preserved. No state of the art or production qualification claim follows from these results.
 
 ## Quick start
 
@@ -101,6 +115,20 @@ python3 scripts/check_repository.py
 ```
 
 The benchmark verifier recomputes saved outcome totals and paired comparisons, and independently grades the saved 0.8B math text. Rechecking saved HumanEval verdicts does not rerun their generated programs. The full original code evaluation used a restricted macOS Seatbelt sandbox.
+
+To verify the separate cloud publication, install its small verifier dependency and download the 38,962,746 byte release archive:
+
+```sh
+python3 -m venv .verify-venv
+.verify-venv/bin/python -m pip install jsonschema==4.26.0
+gh release download cloud-evidence-20261103 --repo ruvnet/ruvllm \
+  --pattern ruvllm-cloud-evidence-20261103.tar.gz --dir cloud-download
+.verify-venv/bin/python scripts/verify_cloud_publication.py \
+  --publication research/vast_cross_model/results/cross-model-20261103/publication.json \
+  --archive cloud-download/ruvllm-cloud-evidence-20261103.tar.gz
+```
+
+This verifies 438 archived files, 1,851 response bindings, score aggregates, paired comparisons, timing and the cleanup projection. It runs no archived executable or generated code. It checks consistency of the saved HumanEval verdicts rather than rerunning their programs. Pin a trusted repository commit; a replacement archive and replacement verifier can agree with each other.
 
 ### Run the native lifecycle on a small CPU fixture
 
@@ -193,17 +221,17 @@ The plugin rejects unknown arguments, out of scope paths, symlinks and unapprove
 | `benchmarks/` | Completed public evidence, original responses and verification instructions |
 | `data/` | Original synthetic traces, frozen splits and HumanEval provenance |
 | `plugins/ruflo-neural-evolution/` | Scoped native tool integration for Claude Code |
-| `research/vast_cross_model/` | Frozen broader GPU comparison protocol and runner source |
+| `research/vast_cross_model/` | Frozen GPU protocol, runner, completed comparison and release verifier manifest |
 | `docs/` | Architecture decision, protocol and animated diagrams |
 | `provenance/` | Source export hashes and publication amendments |
 
 ## Reproducibility, cost and limitations
 
-The completed coding pilot used two cloud jobs with an estimated compute upper cost of $0.63 and $4.46 in conservative reservations. That estimate excludes local hardware and is not a reconciled invoice. The broader Vast comparison has a separate $30 reservation within the original $200 total compute authorization. Neither figure is a general training price guarantee.
+The completed coding pilot used two cloud jobs with an estimated compute upper cost of $0.63 and $4.46 in conservative reservations. The separate Vast comparison ran for about 2 hours 58 minutes, with a **$3.75 elapsed GPU and storage quote estimate**. Transfer charges, GCP guard charges and the final invoice remain unreconciled. Its $30 reservation brought total conservative reservations to $34.46 within the original $200 authorization; reservations are not charges. The rental and all temporary guard resources were verified absent. The [closeout receipt](research/vast_cross_model/results/cross-model-20261103/closeout.json) records these boundaries. Local hardware cost is excluded; these figures are not general training price guarantees.
 
 The original research loop source preserves finite iteration, time and budget controls. Training commands can incur paid compute and require the caller's provider account and configured inputs. Verifying this repository and running the native CPU fixture require neither credentials nor paid resources. Private runtime directories, provider account configuration, signing keys, SSH material and model caches are excluded from publication.
 
-The original `ruflo_model.report`, `ruflo_model.package`, `verify.py` and `verify_release.py` helpers expect a completed research run and its local training, server, integration and budget receipts. Those private runtime inputs are not part of this export. For the included public results, use `scripts/verify_benchmarks.py`; it works from a fresh clone.
+The original `ruflo_model.report`, `ruflo_model.package`, `verify.py` and `verify_release.py` helpers expect a completed research run and its local training, server, integration and budget receipts. Those private runtime inputs are not part of this export. Use `scripts/verify_benchmarks.py` for the local pilot and `scripts/verify_cloud_publication.py` with the release archive for the completed GPU experiment.
 
 The largest uncertainty is generalization. Small synthetic tool families and short Python functions do not establish reliability on real repositories. The next useful quality test is a frozen set of fresh repository repair tasks, protected instruction following checks, multiple seeds and matched serving precision. Improvements to the optimizer itself would require a separate experiment showing better subsequent discoveries at equal compute. That recursive result has not been demonstrated.
 
@@ -213,4 +241,4 @@ Unsigned manifests establish consistency when their expected digest or Git commi
 
 The Python research and adapter material use [Apache 2.0](LICENSE). The extracted native engine retains its [MIT license](native/LICENSE); RVF components retain their own notices. HumanEval is MIT licensed. Published intervention data retain CC BY 4.0 attribution. Model checkpoints retain their upstream licenses and are not included here. See [NOTICE](NOTICE), [native third party notices](native/THIRD_PARTY_NOTICES.md), and [research attribution](research/vast_cross_model/THIRD_PARTY_NOTICES.md).
 
-**Acceptance:** the benchmark and repository verifiers pass, all 17 focused native tests pass, and the CPU smoke test reports equal source and restored SHA256 values with `production_activation: false`.
+**Acceptance:** the local verifier reports 462 saved generations, the cloud verifier validates the 1,851 response publication, all 17 focused native tests pass, and the CPU smoke test reports equal source and restored SHA256 values with `production_activation: false`.

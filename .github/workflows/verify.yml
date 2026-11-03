@@ -61,4 +61,4 @@ jobs:
       - name: Install gateway and test dependencies
         run: python -m pip install -e '.[gateway,test]' huggingface_hub==1.33.0
       - name: Test gateway, policy and operating system sandbox
-        run: python -m pytest tests/test_core.py tests/test_budget.py tests/test_integration.py tests/test_gateway.py tests/test_cloud_identity.py
+        run: python -m pytest tests/test_core.py tests/test_budget.py tests/test_integration.py tests/test_gateway.py tests/test_cloud_identity.py tests/test_cloud_publication.py

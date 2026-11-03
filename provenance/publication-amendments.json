@@ -17,8 +17,8 @@
     {
       "path": "research/vast_cross_model/README.md",
       "source_sha256": "bde8a2f37e1d725f34eabbf15256bcd995dc0eabb1679daed1ea174d8be5deb2",
-      "publication_sha256": "dfd84cb2423976d76d1a7ef7219316b9f87425b4ad5e19441f115431fa07930d",
-      "reason": "Identify the frozen historical workflow and the inputs and orchestration omitted from the portable public export."
+      "publication_sha256": "626203fb4b9899a2b29baf5b7e8740f673275fac18a2aa722be0d154eb1a4c97",
+      "reason": "Identify the preserved historical workflow, completed cloud results, and distinction between the source checkout and full evidence release."
     },
     {
       "path": "research/vast_cross_model/THIRD_PARTY_NOTICES.md",
