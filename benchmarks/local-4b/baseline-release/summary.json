@@ -1,0 +1,20 @@
+{
+  "accuracy": 0.8285714285714286,
+  "completed_at": "2026-11-03T04:52:07.205945+00:00",
+  "elapsed_seconds": 70.865,
+  "groups": {
+    "code": {
+      "passed": 4,
+      "total": 8
+    },
+    "tool": {
+      "passed": 25,
+      "total": 27
+    }
+  },
+  "output_tokens": 2484,
+  "passed": 29,
+  "response_sha256": "cbf622cf5a3dcf768b07d15b4cf38f579ae27ffe30633eff158aad0679e1f7eb",
+  "total": 35,
+  "truncated": 0
+}

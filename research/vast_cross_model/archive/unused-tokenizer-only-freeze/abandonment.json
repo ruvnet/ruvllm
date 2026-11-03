@@ -1,0 +1,6 @@
+{
+  "status": "unused_before_any_generation",
+  "source_commit": "10b334b",
+  "protocol_sha256": "fe3a3deefb75a67e711f7451cc863d012e7579eff5107b90baec693889f97460",
+  "reason": "Unscored preflight using original0d50 protocol actually stopped before LLM construction because Qwen3.5 tokenizer im_end EOS248046 was absent from stop set. This tokenizer-return-only repair was never uploaded or executed. Final correction must also include observed im_end and endoftext IDs."
+}

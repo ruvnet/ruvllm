@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/workspace/ruflo-code-model/research/vast_cross_model/worker.py", line 129, in <module>
+    run(args.work,args.arm,args.deadline,args.preflight)
+  File "/workspace/ruflo-code-model/research/vast_cross_model/worker.py", line 58, in run
+    if tokenizer.eos_token_id not in eos_ids: raise ValueError("Tokenizer EOS differs from frozen stop set")
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Tokenizer EOS differs from frozen stop set

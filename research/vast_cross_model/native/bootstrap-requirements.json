@@ -1,0 +1,38 @@
+{
+  "components": {
+    "cargo": {
+      "sha256": "e1be5f5ff7f7f80ca506fb65770b759edbdc6d303781ed71c5de8ec8a8394779",
+      "url": "https://static.rust-lang.org/dist/2026-07-16/cargo-1.97.1-x86_64-unknown-linux-gnu.tar.xz"
+    },
+    "rust-std": {
+      "sha256": "1c1e704ae80126b7de34f72ea2825f7fd01736dec20732faed47374b95282fba",
+      "url": "https://static.rust-lang.org/dist/2026-07-16/rust-std-1.97.1-x86_64-unknown-linux-gnu.tar.xz"
+    },
+    "rustc": {
+      "sha256": "9819d0a32d56bd339585319c80260e332779f5541fd66838ab7e016d6c814819",
+      "url": "https://static.rust-lang.org/dist/2026-07-16/rustc-1.97.1-x86_64-unknown-linux-gnu.tar.xz"
+    }
+  },
+  "default_prefix": "/workspace/rust",
+  "focused_tests_expected": 17,
+  "manifest_date": "2026-07-16",
+  "manifest_sha256": "03569b1886ceb5c05276b50c8431ab111de944cd6140fe1fa7d821dd8e0f29cf",
+  "manifest_url": "https://static.rust-lang.org/dist/channel-rust-1.97.1.toml",
+  "production_authorized": false,
+  "required_programs": [
+    "cc",
+    "c++",
+    "ar",
+    "pkg-config"
+  ],
+  "rust_version": "1.97.1",
+  "schema": "ruvllm-linux-native-bootstrap-requirements/v1",
+  "source_archive_sha256": "f5d093c47c68501ccd76b477e2dd8133fc868cd37dbc2dd9dbfda8ff82b66caf",
+  "source_manifest_sha256": "731b39197b09c1f606b2dd53ecb3f888e51573e47e576fe8513c2dd45cf2af40",
+  "target": "x86_64-unknown-linux-gnu",
+  "ubuntu_packages_if_missing": [
+    "build-essential",
+    "pkg-config",
+    "ca-certificates"
+  ]
+}

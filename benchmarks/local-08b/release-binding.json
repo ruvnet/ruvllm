@@ -1,0 +1,8 @@
+{
+  "candidate_sha256": "bd5c223dc7d0ed48a6857f798a94da6ec46c40b9ff4e7bc31872dba10f943ae5",
+  "created_utc": "2026-11-03T05:46:07.409896+00:00",
+  "governance_binding_sha256": "0249a64d60f2e18db404c57cb0762af5c78a5bcb155941aac8e11819d5039bce",
+  "native_receipt_sha256": "a6043a880cce88c68da500a70c7a1621f613eb9717a923a46c6505489e6b8681",
+  "plan_sha256": "6e0ed9d8ce7febb1ffc582d6fb3703f14d0e73a90a7b8a7ee3d1e4f9f4f57e5d",
+  "selection_sha256": "a5ca41ce0a51573d0f56215878bd2c8e4be1640ded7de21b948085a39a360b71"
+}

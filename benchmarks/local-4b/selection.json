@@ -1,0 +1,125 @@
+{
+  "baseline": {
+    "accuracy": 0.8571428571428571,
+    "completed_at": "2026-11-03T04:25:50.407272+00:00",
+    "elapsed_seconds": 68.209,
+    "groups": {
+      "code": {
+        "passed": 6,
+        "total": 8
+      },
+      "tool": {
+        "passed": 24,
+        "total": 27
+      }
+    },
+    "output_tokens": 2258,
+    "passed": 30,
+    "response_sha256": "119503fbd7881ad3f4c877c51dec5221021428a2f101296217bfc6ca946538e3",
+    "total": 35,
+    "truncated": 0
+  },
+  "release_used_for_selection": false,
+  "selected": {
+    "accuracy": 0.9428571428571428,
+    "completed_at": "2026-11-03T04:49:39.193477+00:00",
+    "elapsed_seconds": 71.557,
+    "groups": {
+      "code": {
+        "passed": 6,
+        "total": 8
+      },
+      "tool": {
+        "passed": 27,
+        "total": 27
+      }
+    },
+    "output_tokens": 2166,
+    "passed": 33,
+    "response_sha256": "05264870c739f8e4799fe9ee761c558e98c7c595e0752012ae5c6ad83060a2de",
+    "total": 35,
+    "truncated": 0
+  },
+  "selected_adapter": "./runtime/pilot-v2/step-064",
+  "selected_at": "2026-11-03T04:50:54.857199+00:00",
+  "trials": [
+    {
+      "accepted": false,
+      "adapter_sha256": "faf24d3b403aca02469f46eb51452a0b9527d78dc085b916ae573698100ee6a7",
+      "name": "step-032",
+      "reason": "more truncations",
+      "summary": {
+        "accuracy": 0.8857142857142857,
+        "completed_at": "2026-11-03T04:48:25.091984+00:00",
+        "elapsed_seconds": 82.04299999999999,
+        "groups": {
+          "code": {
+            "passed": 6,
+            "total": 8
+          },
+          "tool": {
+            "passed": 25,
+            "total": 27
+          }
+        },
+        "output_tokens": 2891,
+        "passed": 31,
+        "response_sha256": "feda24155aa69112846faef31c394768d47c52abf54a87380bb61a3430b09d26",
+        "total": 35,
+        "truncated": 1
+      }
+    },
+    {
+      "accepted": true,
+      "adapter_sha256": "52e5adefc83cc77357158ab4d4ea667287b3eaef5f87611b40e7a3397fabb0a4",
+      "name": "step-064",
+      "reason": "additional correct answers without group regression",
+      "summary": {
+        "accuracy": 0.9428571428571428,
+        "completed_at": "2026-11-03T04:49:39.193477+00:00",
+        "elapsed_seconds": 71.557,
+        "groups": {
+          "code": {
+            "passed": 6,
+            "total": 8
+          },
+          "tool": {
+            "passed": 27,
+            "total": 27
+          }
+        },
+        "output_tokens": 2166,
+        "passed": 33,
+        "response_sha256": "05264870c739f8e4799fe9ee761c558e98c7c595e0752012ae5c6ad83060a2de",
+        "total": 35,
+        "truncated": 0
+      }
+    },
+    {
+      "accepted": false,
+      "adapter_sha256": "a4587a3a23015bf34de2fb50cd84cc86498389e555ff3e488c33228eca25fccf",
+      "name": "step-096",
+      "reason": "no qualifying improvement",
+      "summary": {
+        "accuracy": 0.9428571428571428,
+        "completed_at": "2026-11-03T04:50:53.562171+00:00",
+        "elapsed_seconds": 71.368,
+        "groups": {
+          "code": {
+            "passed": 6,
+            "total": 8
+          },
+          "tool": {
+            "passed": 27,
+            "total": 27
+          }
+        },
+        "output_tokens": 2166,
+        "passed": 33,
+        "response_sha256": "e69c2c732e6f8e90f34f329c33c3d1e989babe5cdcba69053749fbdd3ce91512",
+        "total": 35,
+        "truncated": 0
+      }
+    }
+  ]
+}

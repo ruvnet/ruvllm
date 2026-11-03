@@ -1,0 +1,16 @@
+{
+  "accuracy": 0.75,
+  "completed_at": "2026-11-03T04:47:01.669754+00:00",
+  "elapsed_seconds": 547.506,
+  "groups": {
+    "code": {
+      "passed": 123,
+      "total": 164
+    }
+  },
+  "output_tokens": 38940,
+  "passed": 123,
+  "response_sha256": "02ad260d0d32d7a14284a4450dec3f00591e5fea8faf3b9bfb71cd158365df13",
+  "total": 164,
+  "truncated": 7
+}

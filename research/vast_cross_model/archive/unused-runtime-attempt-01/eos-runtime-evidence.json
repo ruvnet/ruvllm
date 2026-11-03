@@ -1,0 +1,58 @@
+{
+  "transformers": "5.12.1",
+  "models": {
+    "qwen035-08b-base": {
+      "tokenizer_class": "Qwen2Tokenizer",
+      "tokenizer_eos_id": 248046,
+      "tokenizer_eos_token": "<|im_end|>",
+      "model_config_eos_id": 248044,
+      "generation_config": null,
+      "special_tokens": {
+        "<|im_end|>": 248046,
+        "<|endoftext|>": 248044
+      },
+      "config_sha256": "b90b86f35c8e6925ef74ee04d0e758f0a845c83a42089ad82bbaa948de9b4204",
+      "tokenizer_config_sha256": "49e2b6e395f959f077f1e992b338919c0d4a9732fc6e613995e06557f843500c"
+    },
+    "qwen035-4b-base": {
+      "tokenizer_class": "Qwen2Tokenizer",
+      "tokenizer_eos_id": 248046,
+      "tokenizer_eos_token": "<|im_end|>",
+      "model_config_eos_id": 248044,
+      "generation_config": null,
+      "special_tokens": {
+        "<|im_end|>": 248046,
+        "<|endoftext|>": 248044
+      },
+      "config_sha256": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670",
+      "tokenizer_config_sha256": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8"
+    },
+    "qwen3-coder-30b": {
+      "tokenizer_class": "Qwen2Tokenizer",
+      "tokenizer_eos_id": 151645,
+      "tokenizer_eos_token": "<|im_end|>",
+      "model_config_eos_id": 151645,
+      "generation_config": {
+        "pad_token_id": 151643,
+        "do_sample": true,
+        "eos_token_id": [
+          151645,
+          151643
+        ],
+        "repetition_penalty": 1.05,
+        "temperature": 0.7,
+        "top_p": 0.8,
+        "top_k": 20
+      },
+      "special_tokens": {
+        "<|im_end|>": 151645,
+        "<|endoftext|>": 151643
+      },
+      "config_sha256": "e2c8d8eea39471785cd93379d8b48241ad7dcda299013155dd02526e34a0de62",
+      "tokenizer_config_sha256": "60f6e8cb15c98dd07300a3cc465ea662de245d2095e4245616af21b2324db3fc"
+    }
+  },
+  "failure_log_sha256": "0f37ffbda42e40eae89e9f086518f8facee7fd337bdf1290fc91807bdadbc249",
+  "scored_outputs_present": false,
+  "failure_before_llm_construction": true
+}

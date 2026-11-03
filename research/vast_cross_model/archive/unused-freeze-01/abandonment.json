@@ -1,0 +1,5 @@
+{
+  "status": "abandoned_before_any_gpu_generation",
+  "source_commit": "a204f74",
+  "reason": "Pin complete official EOS set for Coder30B: generation_config=vllm ignores its secondary endoftext stop. Corpus, cases, budgets and score definitions unchanged."
+}

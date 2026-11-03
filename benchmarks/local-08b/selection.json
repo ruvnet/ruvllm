@@ -1,0 +1,39 @@
+{
+  "created_utc": "2026-11-03T05:42:21.846705+00:00",
+  "development_baseline": {
+    "delivered_correct": 6,
+    "n": 8,
+    "output_tokens": 5092
+  },
+  "plan_sha256": "6e0ed9d8ce7febb1ffc582d6fb3703f14d0e73a90a7b8a7ee3d1e4f9f4f57e5d",
+  "ranked": [
+    {
+      "alpha": 1.0,
+      "answer_correct": 8,
+      "candidate": "alpha-100",
+      "completed": 8,
+      "delivered_correct": 8,
+      "max_peak_memory_gb": 1.663253214,
+      "n": 8,
+      "output_tokens": 4618,
+      "repetitive_end": 0,
+      "truncated": 0,
+      "wall_seconds": 39.01443546125665
+    },
+    {
+      "alpha": 0.5,
+      "answer_correct": 6,
+      "candidate": "alpha-050",
+      "completed": 6,
+      "delivered_correct": 6,
+      "max_peak_memory_gb": 1.663253214,
+      "n": 8,
+      "output_tokens": 7362,
+      "repetitive_end": 0,
+      "truncated": 2,
+      "wall_seconds": 69.19687341386452
+    }
+  ],
+  "release_seen": false,
+  "selected": "alpha-100"
+}

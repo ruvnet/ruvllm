@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+<title id="title">Local benchmark: fewer tokens, lower delivered correctness</title>
+<desc id="desc">Qwen3.5 0.8B BF16 MLX on Apple M4 Pro, direct mode, 16 frozen synthetic math questions. Baseline delivered 13 correct completed answers; the edited model delivered 12. Completion rose from 13 to 14. Output tokens fell from 13,458 to 10,713, a 20.4 percent decrease. The quality gate failed. This small local experiment is not MATH 500, a coding benchmark, or evidence of general superiority.</desc>
+<defs>
+  <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#081725"/><stop offset="1" stop-color="#050b13"/></linearGradient>
+  <linearGradient id="accent" x2="1" y2="0"><stop stop-color="#65ead4"/><stop offset="1" stop-color="#75aaff"/></linearGradient>
+  <radialGradient id="aura"><stop stop-color="#3bbbd0" stop-opacity=".14"/><stop offset="1" stop-color="#3bbbd0" stop-opacity="0"/></radialGradient>
+  <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#476079" opacity=".22"/></pattern>
+  <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 6 3 0 6" fill="none" stroke="#53748d" stroke-width="1.2"/></marker>
+</defs>
+<style>
+  text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill:#edf6ff; }
+  .mono { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace; }
+  .muted { fill:#9aafc2; } .subtle { fill:#6f8aa1; } .mint { fill:#71e8cd; } .amber { fill:#f5c77b; }
+  .flow { animation: flow 8s linear infinite; } .pulse { animation: pulse 5s ease-in-out infinite; }
+  @keyframes flow { to { stroke-dashoffset:-96; } }
+  @keyframes pulse { 0%,100% { opacity:.48; } 50% { opacity:1; } }
+  @media (prefers-reduced-motion: reduce) { .flow,.pulse,.cell { animation:none !important; } }
+</style>
+<rect width="1200" height="750" rx="24" fill="url(#bg)"/>
+<rect x="1" y="1" width="1198" height="748" rx="23" fill="none" stroke="#263d50"/>
+<rect x="1" y="1" width="1198" height="748" rx="23" fill="url(#dots)"/>
+
+<text x="48" y="55" font-size="13" letter-spacing="2.2" class="mono mint">BENCHMARK / COMPLETED LOCAL EXPERIMENT</text>
+<text x="48" y="103" font-size="38" font-weight="650" letter-spacing="-1">Measure the tradeoff.</text>
+<text x="48" y="140" font-size="17" class="muted">Qwen3.5 0.8B · BF16 MLX · Apple M4 Pro · 16 frozen math questions · direct mode</text>
+<rect x="48" y="170" width="1104" height="66" rx="12" fill="#25241e" stroke="#74613b"/>
+<circle cx="74" cy="203" r="5" fill="#f5c77b" class="pulse"/>
+<text x="91" y="211" font-size="22" font-weight="600" class="amber">Quality gate: failed</text>
+<text x="382" y="209" font-size="17" class="muted">Fewer tokens did not preserve delivered correctness.</text>
+<rect x="48" y="262" width="726" height="352" rx="15" fill="#0b1926" stroke="#2d465a"/>
+<text x="70" y="295" font-size="12" letter-spacing="1.5" class="mono subtle">PAIRED OUTCOMES / 16 QUESTIONS</text>
+<rect x="452" y="282" width="12" height="12" rx="3" fill="#70d9d5"/><text x="472" y="293" font-size="12" class="muted">Baseline</text>
+<rect x="578" y="282" width="12" height="12" rx="3" fill="#b9a3ef"/><text x="598" y="293" font-size="12" class="muted">Published edit</text>
+<g stroke="#263d50" stroke-width="1"><path d="M253 335v228m116-228v228m116-228v228m116-228v228m116-228v228"/></g>
+<g font-size="11" class="mono subtle" text-anchor="middle"><text x="253" y="582">0</text><text x="369" y="582">4</text><text x="485" y="582">8</text><text x="601" y="582">12</text><text x="717" y="582">16</text></g>
+<text x="70" y="373" font-size="18" font-weight="550">Delivered correct</text><text x="70" y="396" font-size="13" class="muted">Correct + completed</text>
+<rect x="253" y="345" width="377" height="25" rx="5" fill="#70d9d5"/><rect x="253" y="380" width="348" height="25" rx="5" fill="#b9a3ef"/>
+<text x="639" y="364" font-size="14" class="mono">13/16</text><text x="611" y="399" font-size="14" class="mono">12/16</text>
+<text x="70" y="486" font-size="18" font-weight="550">Completed</text><text x="70" y="509" font-size="13" class="muted">Reached end of answer</text>
+<rect x="253" y="458" width="377" height="25" rx="5" fill="#70d9d5"/><rect x="253" y="493" width="406" height="25" rx="5" fill="#b9a3ef"/>
+<text x="639" y="477" font-size="14" class="mono">13/16</text><text x="669" y="512" font-size="14" class="mono">14/16</text>
+<path d="M253 424h464" stroke="#335569" stroke-width="1.5" stroke-dasharray="3 21" class="flow"/>
+<rect x="797" y="262" width="355" height="352" rx="15" fill="#0b202a" stroke="#2f5560"/>
+<text x="820" y="295" font-size="12" letter-spacing="1.5" class="mono mint">OUTPUT TOKEN TRADEOFF</text>
+<text x="820" y="361" font-size="53" font-weight="650" letter-spacing="-2">20.4<tspan font-size="34">%</tspan></text>
+<text x="820" y="397" font-size="23" font-weight="550" class="mint">fewer output tokens</text>
+<path d="M820 425h309" stroke="#2b4b59"/>
+<text x="820" y="462" font-size="15" class="muted">Baseline</text><text x="1128" y="462" text-anchor="end" font-size="24" class="mono">13,458</text>
+<text x="820" y="503" font-size="15" class="muted">Edited</text><text x="1128" y="503" text-anchor="end" font-size="24" class="mono">10,713</text>
+<text x="820" y="553" font-size="14" class="muted">2 paired gains · 3 regressions</text>
+<text x="820" y="582" font-size="14" class="muted">No production activation</text>
+<text x="49" y="651" font-size="15" class="muted">Published intervention · 130,188 changed BF16 values · 2 allowed tensors · 2,048 token cap</text>
+<text x="49" y="680" font-size="14" class="subtle">One seeded sample per question. Synthetic arithmetic families overlap development. Generalization is unproven.</text>
+<path d="M49 701h1103" stroke="#263d50"/>
+<text x="49" y="727" font-size="11" class="mono subtle">SOURCE: RESEARCH/WEIGHT_EVOLUTION/RESULTS/REPORT.MD</text>
+<text x="1152" y="727" text-anchor="end" font-size="11" class="mono subtle">NOT MATH 500 · NOT A CODING BENCHMARK</text>
+
+</svg>

@@ -1,0 +1,24 @@
+{
+  "operation": "registered_final_patch",
+  "wall_seconds": 6.691888042259961,
+  "binary_sha256": "4a799f3eb18f6f169ec947438a7f4cf244421a483ef637095f5ac64cfaec78c0",
+  "native_source_commit": "f5c3444968ede44e43744460192198962ae94da2",
+  "preexisting_signed_plan_sha256": "474184a47763d75568a3394223b8e61d50120e11f7cf8174186d1377618f6673",
+  "receipt": {
+    "activation_authorized": false,
+    "candidate_sha256": "bd5c223dc7d0ed48a6857f798a94da6ec46c40b9ff4e7bc31872dba10f943ae5",
+    "changed_values": 130188,
+    "l2": 2.239452248713159,
+    "max_abs_delta": 0.21484375,
+    "output": "/Users/cohen/Projects/ruflo-code-model/runtime/weight-evolution/alpha-100/model.safetensors-00001-of-00001.safetensors",
+    "patch_sha256": "c77336ccbabbbde998bf5341c61afef922cd78f08b1bb2364b177e3bb52ef786",
+    "policy_sha256": "9745cf81af36ea7f6c41bd923163d23ea19c8e08c5ce182bfc84e8e84c1b50b4",
+    "relative_l2": 0.0939560725413235,
+    "schema": "ruvllm.weight_receipt.v1",
+    "source_l2": 23.835098553403338,
+    "source_sha256": "04b1c301231dd422b8860db31311ab2721511346a32cb1e079c4c4e5f1fe4696",
+    "write_runs": 121057
+  },
+  "development_artifact_preserved": "runtime/weight-evolution/development-artifact-alpha-100",
+  "binary_unchanged_after_application": true
+}

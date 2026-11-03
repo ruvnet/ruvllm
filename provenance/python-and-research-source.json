@@ -1,0 +1,1695 @@
+{
+  "schema": "ruvllm.source-export.v1",
+  "source_commit": "293fe10264b5384863c1ed59cb14d94eeb98f670",
+  "files": [
+    {
+      "path": ".gitignore",
+      "source_sha256": "350fc516dec86e160b438f7b492583c7c004fa0cb2e1cea365d351e01b46eea9"
+    },
+    {
+      "path": "LICENSE",
+      "source_sha256": "a4e33927bbebe7770848714617df236e5dee77c238935631d4d8422143a32bea"
+    },
+    {
+      "path": "NOTICE",
+      "source_sha256": "eb987c1019c76d0efbf0b7bf4fa3d3f7299ecb9adb0dd89ce552ca8536603a07"
+    },
+    {
+      "path": "configs/ccr-package-lock.json",
+      "source_sha256": "d4e3e0bd8eed4b9a9fee6802d7a543a2e4c357aa56694fe32e408433bec2957a"
+    },
+    {
+      "path": "configs/ccr-package.json",
+      "source_sha256": "b60f51732202162915f8bc24fc651ec7d94e1f7a0e278206359b57bb9a1142f9"
+    },
+    {
+      "path": "configs/experiment.json",
+      "source_sha256": "454f2b470dc6c1061633e2f95a82bde6d1ec7c1f76e148020a5a422280af8f6f"
+    },
+    {
+      "path": "configs/train.yaml",
+      "source_sha256": "7dc53fb413e9561e3d1502b20c635c1f5e45a6cfcefbe24525de9323756b563f"
+    },
+    {
+      "path": "data/README.md",
+      "source_sha256": "2976897c27d88566e52759ee5b7f075cddec2a961b1acdd1cde2fc6f688737f7"
+    },
+    {
+      "path": "data/dev.jsonl",
+      "source_sha256": "a68646d9baf216153189378a1c62f40e0b34d1b39f32ca14022fb3c8249eedf7"
+    },
+    {
+      "path": "data/external/HumanEval.LICENSE",
+      "source_sha256": "bcba3de214851cce46ed5af42d6698044616eeace887c3231bc7a20474ab639e"
+    },
+    {
+      "path": "data/external/HumanEval.jsonl.gz",
+      "source_sha256": "b796127e635a67f93fb35c04f4cb03cf06f38c8072ee7cee8833d7bee06979ef"
+    },
+    {
+      "path": "data/external/humaneval.jsonl",
+      "source_sha256": "ac29ee86a5b00d64c800f023fb5458929c6300ae3f4053e831fa6749c5c55f52"
+    },
+    {
+      "path": "data/external/manifest.json",
+      "source_sha256": "5028c6fa57b620f37551dfbe030d218f5e6d575d1486b105da515f1ba6400830"
+    },
+    {
+      "path": "data/manifest.json",
+      "source_sha256": "0082e80818dd5bb12c6580c75b3f83c7f2bc8921d9168980181a00dcf2bed618"
+    },
+    {
+      "path": "data/release.jsonl",
+      "source_sha256": "215a681dd561c6ad1f17622990ef52e7cc1ad460ebcb9502661504e40263a83b"
+    },
+    {
+      "path": "data/training/train.jsonl",
+      "source_sha256": "4da776de0cc7de1e1d8434b6c6bba7094fc152e6f1fc1747b3ef8da76427a2d1"
+    },
+    {
+      "path": "data/training/valid.jsonl",
+      "source_sha256": "df286740a2386407db27ff527d644bb9d17febcc217269ef73ad20fe4dafe2a0"
+    },
+    {
+      "path": "model_pin.json",
+      "source_sha256": "30b411f7733e596dc65fb6e8ad355f5b46831cba5284218128165e04c21306d4"
+    },
+    {
+      "path": "plugins/ruflo-neural-evolution/.claude-plugin/plugin.json",
+      "source_sha256": "909e62261381d1977d36863c06da29097de3b298572b8944ad27a956fc909e48"
+    },
+    {
+      "path": "plugins/ruflo-neural-evolution/.mcp.json",
+      "source_sha256": "5e890a0c98477ae11ed16e8fddbb03acc7a668a9c3fa33e3f94270ca07184861"
+    },
+    {
+      "path": "plugins/ruflo-neural-evolution/README.md",
+      "source_sha256": "38fa339be312ae36032fefbba6ea601bb0602342603fb6dcd1d6c19b0d0bbe57"
+    },
+    {
+      "path": "plugins/ruflo-neural-evolution/agents/neural-reviewer.md",
+      "source_sha256": "e69047150876368975d6dab4a364d819c63b4eec9282836a81c9cc11c97bbb7e"
+    },
+    {
+      "path": "plugins/ruflo-neural-evolution/commands/neural-inspect.md",
+      "source_sha256": "5a5f3d3a6ede97f9b7b7d4a8eb0c39b3e3ff7a8560186b16a17ed0ff68d5b28d"
+    },
+    {
+      "path": "plugins/ruflo-neural-evolution/docs/adrs/0001-ruflo-neural-evolution-contract.md",
+      "source_sha256": "54c6faf191d5648734966aa7054ffb4bf037e8984cee65ebd09ce36687d3acb2"
+    },
+    {
+      "path": "plugins/ruflo-neural-evolution/scripts/accept-claude.py",
+      "source_sha256": "cc307fa5f1dc19f216f57d6da29baa67cad2498a6c1fe1a213a5b37ed6cdb08c"
+    },
+    {
+      "path": "plugins/ruflo-neural-evolution/scripts/server.mjs",
+      "source_sha256": "c3a40072bd8b29944712be97ec42408cc2857bf0ad72d37a5266470c839699eb"
+    },
+    {
+      "path": "plugins/ruflo-neural-evolution/scripts/smoke.sh",
+      "source_sha256": "3e99ee1f045df7086d4dea853fb5f4da7788be4892a7f6d032d64b76a10ab522"
+    },
+    {
+      "path": "plugins/ruflo-neural-evolution/scripts/structure.mjs",
+      "source_sha256": "56f43c3505faa165100b6df950a1b150f507277f3b4d04ea848b5d9378b4a9e6"
+    },
+    {
+      "path": "plugins/ruflo-neural-evolution/skills/neural-experiment/SKILL.md",
+      "source_sha256": "f2bab6bf68ff856e9c9e39e9b1c3b1a90c648e0e944af5080e561130dbef1e98"
+    },
+    {
+      "path": "plugins/ruflo-neural-evolution/test/native-wire.test.mjs",
+      "source_sha256": "a6c9d3a9d35c8977f022bcadcb1233c36843f0f7df195d7569531b8d6d060c6d"
+    },
+    {
+      "path": "pyproject.toml",
+      "source_sha256": "06d13587994aac5ad87f0276f757fb67e1745a9073a468cd38acaae5a7f0fb44"
+    },
+    {
+      "path": "quantization.json",
+      "source_sha256": "fd4a8625dc7eec1d11a0dd07198e2e516f3cc3ec851102c9842ca75933a1b560"
+    },
+    {
+      "path": "requirements.lock",
+      "source_sha256": "3f51be8f405f2896784d93b71499ef41ae917e1c040d9ed2bbff65cc7f816b74"
+    },
+    {
+      "path": "research/vast_cross_model/README.md",
+      "source_sha256": "bde8a2f37e1d725f34eabbf15256bcd995dc0eabb1679daed1ea174d8be5deb2"
+    },
+    {
+      "path": "research/vast_cross_model/THIRD_PARTY_NOTICES.md",
+      "source_sha256": "f93f3a5669e6a3b2f7310a452bf8454a0006a58eafc2f0cdd589830824887b12"
+    },
+    {
+      "path": "research/vast_cross_model/analysis/README.md",
+      "source_sha256": "44b1eec9f5a6a5e2703415162dcf07bbc39109d08492b3723e56c75d9028df35"
+    },
+    {
+      "path": "research/vast_cross_model/analysis/test_timing.py",
+      "source_sha256": "0c772068932862f679ceeeac0cdfdf52f2074c14d4a12aa90614d52499e55f07"
+    },
+    {
+      "path": "research/vast_cross_model/analysis/timing.py",
+      "source_sha256": "f30edee2f09ac2df2be916565c70a0d30e0bbed3693b2f312f4b0d0218332bcc"
+    },
+    {
+      "path": "research/vast_cross_model/archive/unused-freeze-01/abandonment.json",
+      "source_sha256": "877c4bb314d8005fc65acaad2e6346a0e8a210e474a3a55f34a945db12eea5a5"
+    },
+    {
+      "path": "research/vast_cross_model/archive/unused-freeze-01/freeze.json",
+      "source_sha256": "eec0d3c3e5fe51156315a44c897f7da56f306eac34ab499ac9b7d411cb9dae4e"
+    },
+    {
+      "path": "research/vast_cross_model/archive/unused-freeze-01/protocol.json",
+      "source_sha256": "4b64b75a10f8c1e630c2a12598415fc34dd4b350f81c25c2401380f6535e56ab"
+    },
+    {
+      "path": "research/vast_cross_model/archive/unused-runtime-attempt-01/abandonment.json",
+      "source_sha256": "7244b5340c005b7c48c4af6359135e9a5371839e2e28b980b53ac45d59ab5657"
+    },
+    {
+      "path": "research/vast_cross_model/archive/unused-runtime-attempt-01/eos-runtime-evidence.json",
+      "source_sha256": "89861d231c706106a9679ff3faec8d597fc2bf7dc5be1b44d81c4ed8420bbafa"
+    },
+    {
+      "path": "research/vast_cross_model/archive/unused-runtime-attempt-01/freeze.json",
+      "source_sha256": "b1894da52cb52f5f76b83f75a40cf8d9a8cc91672dbece85c68c8908848135b1"
+    },
+    {
+      "path": "research/vast_cross_model/archive/unused-runtime-attempt-01/preflight-failure.log",
+      "source_sha256": "0f37ffbda42e40eae89e9f086518f8facee7fd337bdf1290fc91807bdadbc249"
+    },
+    {
+      "path": "research/vast_cross_model/archive/unused-runtime-attempt-01/prepare.py",
+      "source_sha256": "71fa54013735f9e9d0bf9b01d69d4975a11201777ed021fd616fdf7e06a8dc3f"
+    },
+    {
+      "path": "research/vast_cross_model/archive/unused-runtime-attempt-01/protocol.json",
+      "source_sha256": "0d50a9f15a515771f84a0f73ca99329251aefbd8c4607f6112df7c5bfd637eb8"
+    },
+    {
+      "path": "research/vast_cross_model/archive/unused-runtime-attempt-01/test_protocol.py",
+      "source_sha256": "4117714f12edf6f07ae88f9e4c4f36b82737696e1e4ca602830509f9fb6a2069"
+    },
+    {
+      "path": "research/vast_cross_model/archive/unused-runtime-attempt-01/tokenizer-signature.json",
+      "source_sha256": "37212025cf883553f66322b0355bfec0b649f906780652a39b97a1c54c8843d4"
+    },
+    {
+      "path": "research/vast_cross_model/archive/unused-runtime-attempt-01/worker.py",
+      "source_sha256": "0324b0db09d5eded442c8df805022b53f490027ab37076edbfb3c7ef6968dcbc"
+    },
+    {
+      "path": "research/vast_cross_model/archive/unused-tokenizer-only-freeze/abandonment.json",
+      "source_sha256": "f2ebff0bd8a77398d39849d6d7f07a3278f4dea61429ca95d245be3238db2168"
+    },
+    {
+      "path": "research/vast_cross_model/archive/unused-tokenizer-only-freeze/freeze.json",
+      "source_sha256": "7154bf98e0a7aaec55c675fe4f024715b2093a89d3d2dca3b44b5147e6c22abd"
+    },
+    {
+      "path": "research/vast_cross_model/archive/unused-tokenizer-only-freeze/prepare.py",
+      "source_sha256": "71fa54013735f9e9d0bf9b01d69d4975a11201777ed021fd616fdf7e06a8dc3f"
+    },
+    {
+      "path": "research/vast_cross_model/archive/unused-tokenizer-only-freeze/protocol.json",
+      "source_sha256": "fe3a3deefb75a67e711f7451cc863d012e7579eff5107b90baec693889f97460"
+    },
+    {
+      "path": "research/vast_cross_model/archive/unused-tokenizer-only-freeze/test_protocol.py",
+      "source_sha256": "36e972e026353ab3783fa3212ec858e99a1c10855f458183d2ea3bff7c5881cc"
+    },
+    {
+      "path": "research/vast_cross_model/archive/unused-tokenizer-only-freeze/worker.py",
+      "source_sha256": "2eb145ab726453751088640a2b46ebd7dfea408e7ce7e9960b05985792e1f8b0"
+    },
+    {
+      "path": "research/vast_cross_model/assets.json",
+      "source_sha256": "8922a9c9be15e40c069a5fb61122bfe79c7a9d834a372151865b1be8d2f48054"
+    },
+    {
+      "path": "research/vast_cross_model/cases.json",
+      "source_sha256": "21a3d32d8e43e35f94fe18ec64e2faa2a4f3fc4d5f5c624625938950e6e44c2a"
+    },
+    {
+      "path": "research/vast_cross_model/common.py",
+      "source_sha256": "a94b9fc7e2d1a3a84fe3ed737fae46c54bc8a220603bf9697ab100a54250c66b"
+    },
+    {
+      "path": "research/vast_cross_model/freeze.json",
+      "source_sha256": "da50e058f8c9ec115a7fd8a3f5aece4b92e0104b8abbd002478fe27bc3d9735b"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/HumanEval.LICENSE",
+      "source_sha256": "bcba3de214851cce46ed5af42d6698044616eeace887c3231bc7a20474ab639e"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/LICENSE-research.txt",
+      "source_sha256": "395f7febedfda6b5498ca36cfe3344d3986659ce4385dd8b03d2d75604250a8e"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/models/provenance.json",
+      "source_sha256": "529d30b4f1e853ab8fcbb4a88d79752c16f87ea11e1469463d6c35c2f4b86e11"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/models/qwen035-08b-base.LICENSE",
+      "source_sha256": "bbedc3fda3305820b977265f01b8619d87570a6739de3a5582c3464840f1e57a"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/models/qwen035-4b-base.LICENSE",
+      "source_sha256": "bbedc3fda3305820b977265f01b8619d87570a6739de3a5582c3464840f1e57a"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/models/qwen3-coder-30b.LICENSE",
+      "source_sha256": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/aho-corasick-1.1.4/COPYING",
+      "source_sha256": "01c266bced4a434da0051174d6bee16a4c82cf634e2679b6155d40d75012390f"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/aho-corasick-1.1.4/LICENSE-MIT",
+      "source_sha256": "0f96a83840e146e43c0ec96a22ec1f392e0680e6c1226e6f3ba87e0740af850f"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/allocator-api2-0.2.21/LICENSE-APACHE",
+      "source_sha256": "20fe7b00e904ed690e3b9fd6073784d3fc428141dbd10b81c01fd143d0797f58"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/allocator-api2-0.2.21/LICENSE-MIT",
+      "source_sha256": "36516aefdc84c5d5a1e7485425913a22dbda69eb1930c5e84d6ae4972b5194b9"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/anndists-0.1.5/Cargo.toml",
+      "source_sha256": "9f6198eda94782ec6420d0ec27d8d8bed18a0f8f7b4a2d3253d02f5032ace549"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/anndists-0.1.5/LICENSE-APACHE",
+      "source_sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/anndists-0.1.5/README.md",
+      "source_sha256": "bf65985ba152a4343da920014792661c59667cf82a454417842a727e5e8fb197"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/anstream-1.0.0/LICENSE-APACHE",
+      "source_sha256": "c6596eb7be8581c18be736c846fb9173b69eccf6ef94c5135893ec56bd92ba08"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/anstream-1.0.0/LICENSE-MIT",
+      "source_sha256": "6efb0476a1cc085077ed49357026d8c173bf33017278ef440f222fb9cbcb66e6"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/anstyle-1.0.14/LICENSE-APACHE",
+      "source_sha256": "c6596eb7be8581c18be736c846fb9173b69eccf6ef94c5135893ec56bd92ba08"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/anstyle-1.0.14/LICENSE-MIT",
+      "source_sha256": "6efb0476a1cc085077ed49357026d8c173bf33017278ef440f222fb9cbcb66e6"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/anstyle-parse-1.0.0/LICENSE-APACHE",
+      "source_sha256": "c6596eb7be8581c18be736c846fb9173b69eccf6ef94c5135893ec56bd92ba08"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/anstyle-parse-1.0.0/LICENSE-MIT",
+      "source_sha256": "6efb0476a1cc085077ed49357026d8c173bf33017278ef440f222fb9cbcb66e6"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/anstyle-query-1.1.5/LICENSE-APACHE",
+      "source_sha256": "c6596eb7be8581c18be736c846fb9173b69eccf6ef94c5135893ec56bd92ba08"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/anstyle-query-1.1.5/LICENSE-MIT",
+      "source_sha256": "6efb0476a1cc085077ed49357026d8c173bf33017278ef440f222fb9cbcb66e6"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/anyhow-1.0.104/LICENSE-APACHE",
+      "source_sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/anyhow-1.0.104/LICENSE-MIT",
+      "source_sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/async-trait-0.1.89/LICENSE-APACHE",
+      "source_sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/async-trait-0.1.89/LICENSE-MIT",
+      "source_sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/autocfg-1.5.1/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/autocfg-1.5.1/LICENSE-MIT",
+      "source_sha256": "27995d58ad5c1145c1a8cd86244ce844886958a35eb2b78c6b772748669999ac"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/bincode-1.3.3/LICENSE.md",
+      "source_sha256": "237710d4c9dd8eb7fead2c9c433be493a878f547d1093812feff43d18abe5896"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/bincode-2.0.1/LICENSE.md",
+      "source_sha256": "90d7e062634054e6866d3c81e6a2b3058a840e6af733e98e80bdfe1a7dec6912"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/bincode_derive-2.0.1/LICENSE.md",
+      "source_sha256": "90d7e062634054e6866d3c81e6a2b3058a840e6af733e98e80bdfe1a7dec6912"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/bitflags-1.3.2/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/bitflags-1.3.2/LICENSE-MIT",
+      "source_sha256": "6485b8ed310d3f0340bf1ad1f47645069ce4069dcc6bb46c7d5c6faf41de1fdb"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/bitflags-2.13.0/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/bitflags-2.13.0/LICENSE-MIT",
+      "source_sha256": "6485b8ed310d3f0340bf1ad1f47645069ce4069dcc6bb46c7d5c6faf41de1fdb"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/block-buffer-0.10.4/LICENSE-APACHE",
+      "source_sha256": "a9040321c3712d8fd0b09cf52b17445de04a23a10165049ae187cd39e5c86be5"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/block-buffer-0.10.4/LICENSE-MIT",
+      "source_sha256": "d5c22aa3118d240e877ad41c5d9fa232f9c77d757d4aac0c2f943afc0a95e0ef"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/bytecheck-0.8.2/LICENSE",
+      "source_sha256": "744ba853c063f56a8d79385406413e5e3600adbc6aae359c74022701fb55a42a"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/bytecheck_derive-0.8.2/LICENSE",
+      "source_sha256": "fd8fd6dd623c97a311881bac2621022a29d2bdf31caa784f029d965dfa9491b6"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/byteorder-1.5.0/COPYING",
+      "source_sha256": "01c266bced4a434da0051174d6bee16a4c82cf634e2679b6155d40d75012390f"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/byteorder-1.5.0/LICENSE-MIT",
+      "source_sha256": "0f96a83840e146e43c0ec96a22ec1f392e0680e6c1226e6f3ba87e0740af850f"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/bytes-1.12.0/LICENSE",
+      "source_sha256": "45f522cacecb1023856e46df79ca625dfc550c94910078bd8aec6e02880b3d42"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/cc-1.2.65/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/cc-1.2.65/LICENSE-MIT",
+      "source_sha256": "378f5840b258e2779c39418f3f2d7b2ba96f1c7917dd6be0713f88305dbda397"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/cfg-if-1.0.4/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/cfg-if-1.0.4/LICENSE-MIT",
+      "source_sha256": "378f5840b258e2779c39418f3f2d7b2ba96f1c7917dd6be0713f88305dbda397"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/chrono-0.4.45/LICENSE.txt",
+      "source_sha256": "946c9835d8034d24404f8cfec5f4654cee5dad17e944afc3d06d742cf2882831"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/colorchoice-1.0.5/LICENSE-APACHE",
+      "source_sha256": "c6596eb7be8581c18be736c846fb9173b69eccf6ef94c5135893ec56bd92ba08"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/colorchoice-1.0.5/LICENSE-MIT",
+      "source_sha256": "6efb0476a1cc085077ed49357026d8c173bf33017278ef440f222fb9cbcb66e6"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/combine-4.6.7/LICENSE",
+      "source_sha256": "9bbc1b3dc4674a9ebb12c2a62f54fe3c08672539717f8d05828f684b6cc419a3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/cpu-time-1.0.0/LICENSE-APACHE",
+      "source_sha256": "c6596eb7be8581c18be736c846fb9173b69eccf6ef94c5135893ec56bd92ba08"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/cpu-time-1.0.0/LICENSE-MIT",
+      "source_sha256": "0d62ac2960a4d93b7513d8cb79c44e33e42311b70aba404724ca20e0b883de4b"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/cpufeatures-0.2.17/LICENSE-APACHE",
+      "source_sha256": "a9040321c3712d8fd0b09cf52b17445de04a23a10165049ae187cd39e5c86be5"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/cpufeatures-0.2.17/LICENSE-MIT",
+      "source_sha256": "ae9baa7beea910273c2f384c2a6b721fb7bd02bda3436074a1072e4ee689f985"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/crc32c-0.6.8/Cargo.toml",
+      "source_sha256": "ffe61d0e558aff076c6be396c1a1cd46bcaa9b56a0f0e9d609767fcdc7eb1d6d"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/crc32c-0.6.8/LICENSE-APACHE",
+      "source_sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/crc32c-0.6.8/README.md",
+      "source_sha256": "cdacc34974a954ea9ddb5da1a2ad19bcefaead7dfa9df6fd9421671ea5d19300"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/crossbeam-0.8.4/LICENSE-APACHE",
+      "source_sha256": "6f712474a3e3be1386d2d0c29449850ea788da64d35cff0fc8799acf741e9ecd"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/crossbeam-0.8.4/LICENSE-MIT",
+      "source_sha256": "5734ed989dfca1f625b40281ee9f4530f91b2411ec01cb748223e7eb87e201ab"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/crossbeam-channel-0.5.15/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/crossbeam-channel-0.5.15/LICENSE-MIT",
+      "source_sha256": "5734ed989dfca1f625b40281ee9f4530f91b2411ec01cb748223e7eb87e201ab"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/crossbeam-channel-0.5.15/LICENSE-THIRD-PARTY",
+      "source_sha256": "b16db96b93b1d7cf7bea533f572091ec6bca3234fbe0a83038be772ff391a44c"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/crossbeam-deque-0.8.6/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/crossbeam-deque-0.8.6/LICENSE-MIT",
+      "source_sha256": "5734ed989dfca1f625b40281ee9f4530f91b2411ec01cb748223e7eb87e201ab"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/crossbeam-epoch-0.9.20/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/crossbeam-epoch-0.9.20/LICENSE-MIT",
+      "source_sha256": "5734ed989dfca1f625b40281ee9f4530f91b2411ec01cb748223e7eb87e201ab"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/crossbeam-queue-0.3.12/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/crossbeam-queue-0.3.12/LICENSE-MIT",
+      "source_sha256": "5734ed989dfca1f625b40281ee9f4530f91b2411ec01cb748223e7eb87e201ab"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/crossbeam-utils-0.8.21/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/crossbeam-utils-0.8.21/LICENSE-MIT",
+      "source_sha256": "5734ed989dfca1f625b40281ee9f4530f91b2411ec01cb748223e7eb87e201ab"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/crypto-common-0.1.7/LICENSE-APACHE",
+      "source_sha256": "a9040321c3712d8fd0b09cf52b17445de04a23a10165049ae187cd39e5c86be5"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/crypto-common-0.1.7/LICENSE-MIT",
+      "source_sha256": "3521672491a3479422d5fe1aca6645dd2984090f85da6e5205abfb18fb7a6897"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/curve25519-dalek-4.1.3/LICENSE",
+      "source_sha256": "cca0bd3c4fcdba74145ef9d49c62337e2c9fbf9368288f11d0547f1b0273219f"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/curve25519-dalek-derive-0.1.1/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/curve25519-dalek-derive-0.1.1/LICENSE-MIT",
+      "source_sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/dashmap-6.2.1/LICENSE",
+      "source_sha256": "16692e8cee4aa06e3913787497eba2d47c42002014136f5da67be6ee640e28a3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/dependency-licenses.txt",
+      "source_sha256": "958716da61f4a0d8a410a0804d171d951e26e6f0afd48051b30ce3776f44e5bc"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/digest-0.10.7/LICENSE-APACHE",
+      "source_sha256": "a9040321c3712d8fd0b09cf52b17445de04a23a10165049ae187cd39e5c86be5"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/digest-0.10.7/LICENSE-MIT",
+      "source_sha256": "9e0dfd2dd4173a530e238cb6adb37aa78c34c6bc7444e0e10c1ab5d8881f63ba"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/dirs-5.0.1/LICENSE-APACHE",
+      "source_sha256": "d3174ad63e721d4c9dccb8ad4320848992d314369bc46319720b5802c9153fe9"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/dirs-5.0.1/LICENSE-MIT",
+      "source_sha256": "6a2e0ade09a7d5f816f11566fee2b151b32235a7fad52b41d49cce96f833c1a9"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/dirs-sys-0.4.1/LICENSE-APACHE",
+      "source_sha256": "d3174ad63e721d4c9dccb8ad4320848992d314369bc46319720b5802c9153fe9"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/dirs-sys-0.4.1/LICENSE-MIT",
+      "source_sha256": "6a2e0ade09a7d5f816f11566fee2b151b32235a7fad52b41d49cce96f833c1a9"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/ed25519-2.2.3/LICENSE-APACHE",
+      "source_sha256": "78779d420019e6b4630376af8e86b6b335ee8a2f89ede6e0411e0469a326aaa4"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/ed25519-2.2.3/LICENSE-MIT",
+      "source_sha256": "b3470648aff02beb36d7a53240fc9260ed80ed93bd43bace6b67d7ef7336ee33"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/ed25519-dalek-2.2.0/LICENSE",
+      "source_sha256": "7a313964a6e050794d2ad57f4863c11f6bbe055c0ae6ce2cf3b9fc45150bada3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/either-1.16.0/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/either-1.16.0/LICENSE-MIT",
+      "source_sha256": "7576269ea71f767b99297934c0b2367532690f8c4badc695edf8e04ab6a1e545"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/enum-as-inner-0.6.1/LICENSE-APACHE",
+      "source_sha256": "c6596eb7be8581c18be736c846fb9173b69eccf6ef94c5135893ec56bd92ba08"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/enum-as-inner-0.6.1/LICENSE-MIT",
+      "source_sha256": "10d73bf26900fa6dd6f2613bb962b7bd8fa1e66618fcf0f9f899aa071a4ee200"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/enum-as-inner-0.6.1/copyright.txt",
+      "source_sha256": "b54db71f7d0b1f62c8c1b6b297347b81f7c217b4ce7e58223a20d2275535cd17"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/env_filter-1.0.1/LICENSE-APACHE",
+      "source_sha256": "c6596eb7be8581c18be736c846fb9173b69eccf6ef94c5135893ec56bd92ba08"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/env_filter-1.0.1/LICENSE-MIT",
+      "source_sha256": "6efb0476a1cc085077ed49357026d8c173bf33017278ef440f222fb9cbcb66e6"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/env_logger-0.11.10/LICENSE-APACHE",
+      "source_sha256": "c6596eb7be8581c18be736c846fb9173b69eccf6ef94c5135893ec56bd92ba08"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/env_logger-0.11.10/LICENSE-MIT",
+      "source_sha256": "6efb0476a1cc085077ed49357026d8c173bf33017278ef440f222fb9cbcb66e6"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/equivalent-1.0.2/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/equivalent-1.0.2/LICENSE-MIT",
+      "source_sha256": "7365cc8878a1d7ce155a58c4ca09c3d7a6be413efa5334a80ea842912b669349"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/find-msvc-tools-0.1.9/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/find-msvc-tools-0.1.9/LICENSE-MIT",
+      "source_sha256": "378f5840b258e2779c39418f3f2d7b2ba96f1c7917dd6be0713f88305dbda397"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/foldhash-0.1.5/LICENSE",
+      "source_sha256": "b1181a40b2a7b25cf66fd01481713bc1005df082c53ef73e851e55071b102744"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/foldhash-0.2.0/LICENSE",
+      "source_sha256": "b1181a40b2a7b25cf66fd01481713bc1005df082c53ef73e851e55071b102744"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/futures-core-0.3.32/LICENSE-APACHE",
+      "source_sha256": "275c491d6d1160553c32fd6127061d7f9606c3ea25abfad6ca3f6ed088785427"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/futures-core-0.3.32/LICENSE-MIT",
+      "source_sha256": "6652c868f35dfe5e8ef636810a4e576b9d663f3a17fb0f5613ad73583e1b88fd"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/generic-array-0.14.7/LICENSE",
+      "source_sha256": "c09aae9d3c77b531f56351a9947bc7446511d6b025b3255312d3e3442a9a7583"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/getrandom-0.2.17/LICENSE-APACHE",
+      "source_sha256": "aaff376532ea30a0cd5330b9502ad4a4c8bf769c539c87ffe78819d188a18ebf"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/getrandom-0.2.17/LICENSE-MIT",
+      "source_sha256": "42fa16951ce7f24b5a467a40e5b449a1d41e662f97ca779864f053f39e097737"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/getrandom-0.4.3/LICENSE-APACHE",
+      "source_sha256": "aaff376532ea30a0cd5330b9502ad4a4c8bf769c539c87ffe78819d188a18ebf"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/getrandom-0.4.3/LICENSE-MIT",
+      "source_sha256": "523a42c25d245dde9c015f882cec7f4555aad883382a6cf19b4b7d9b2cd5419b"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/half-2.7.1/LICENSE-APACHE",
+      "source_sha256": "a6cba85bc92e0cff7a450b1d873c0eaa2e9fc96bf472df0247a26bec77bf3ff9"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/half-2.7.1/LICENSE-MIT",
+      "source_sha256": "508a77d2e7b51d98adeed32648ad124b7b30241a8e70b2e72c99f92d8e5874d1"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/hashbrown-0.14.5/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/hashbrown-0.14.5/LICENSE-MIT",
+      "source_sha256": "ff8f68cb076caf8cefe7a6430d4ac086ce6af2ca8ce2c4e5a2004d4552ef52a2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/hashbrown-0.15.5/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/hashbrown-0.15.5/LICENSE-MIT",
+      "source_sha256": "ff8f68cb076caf8cefe7a6430d4ac086ce6af2ca8ce2c4e5a2004d4552ef52a2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/hashbrown-0.16.1/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/hashbrown-0.16.1/LICENSE-MIT",
+      "source_sha256": "ff8f68cb076caf8cefe7a6430d4ac086ce6af2ca8ce2c4e5a2004d4552ef52a2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/hashbrown-0.17.1/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/hashbrown-0.17.1/LICENSE-MIT",
+      "source_sha256": "ff8f68cb076caf8cefe7a6430d4ac086ce6af2ca8ce2c4e5a2004d4552ef52a2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/heck-0.5.0/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/heck-0.5.0/LICENSE-MIT",
+      "source_sha256": "7b63ecd5f1902af1b63729947373683c32745c16a10e8e6292e2e2dcd7e90ae0"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/hnsw_rs-0.3.3/LICENSE-APACHE",
+      "source_sha256": "620439771d9f7c4f5a473f0e53f13cf297e8f2816fac145958557c716cd47459"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/hnsw_rs-0.3.3/LICENSE-MIT",
+      "source_sha256": "a5bcf861c02020f2986b2e82d675aa99ed588e1ae0317aae252321ca06f2df47"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/iana-time-zone-0.1.65/LICENSE-APACHE",
+      "source_sha256": "696759d65dfe558ff7d9f031c76db19ec5c0767470fb67c4e8d990820d1e99c9"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/iana-time-zone-0.1.65/LICENSE-MIT",
+      "source_sha256": "da28ccc6b158fc2d8cccc74e99794b1cff1d29bd7bbeb019442fcf0c04c6cad9"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/index.json",
+      "source_sha256": "ac45ce36ccf9da5ac4efc7125143294a45730442c72c595e4d38edbe18cd82d4"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/indexmap-2.12.1/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/indexmap-2.12.1/LICENSE-MIT",
+      "source_sha256": "ecc269ef87fd38a1d98e30bfac9ba964a9dbd9315c3770fed98d4d7cb5882055"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/is_terminal_polyfill-1.70.2/LICENSE-APACHE",
+      "source_sha256": "c6596eb7be8581c18be736c846fb9173b69eccf6ef94c5135893ec56bd92ba08"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/is_terminal_polyfill-1.70.2/LICENSE-MIT",
+      "source_sha256": "6efb0476a1cc085077ed49357026d8c173bf33017278ef440f222fb9cbcb66e6"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/itoa-1.0.18/LICENSE-APACHE",
+      "source_sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/itoa-1.0.18/LICENSE-MIT",
+      "source_sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/jiff-0.2.29/COPYING",
+      "source_sha256": "01c266bced4a434da0051174d6bee16a4c82cf634e2679b6155d40d75012390f"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/jiff-0.2.29/LICENSE-MIT",
+      "source_sha256": "0f96a83840e146e43c0ec96a22ec1f392e0680e6c1226e6f3ba87e0740af850f"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/keccak-0.1.6/LICENSE-APACHE",
+      "source_sha256": "a9040321c3712d8fd0b09cf52b17445de04a23a10165049ae187cd39e5c86be5"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/keccak-0.1.6/LICENSE-MIT",
+      "source_sha256": "bdebaf9156a298f8fdab56dd26cb5144673de522d80f4c0d88e0039145f147f9"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/lazy_static-1.5.0/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/lazy_static-1.5.0/LICENSE-MIT",
+      "source_sha256": "0621878e61f0d0fda054bcbe02df75192c28bde1ecc8289cbd86aeba2dd72720"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/libc-0.2.186/LICENSE-APACHE",
+      "source_sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/libc-0.2.186/LICENSE-MIT",
+      "source_sha256": "123a331b5dbf04c30097fa43b8f858bc85df671fe776de498d01f3d6b7c1f69e"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/libm-0.2.16/LICENSE.txt",
+      "source_sha256": "3823dda7cf046602f4b4e77ec8e227863dc4736037cc85bb33d9f19febe16bb7"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/lock_api-0.4.14/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/lock_api-0.4.14/LICENSE-MIT",
+      "source_sha256": "c9a75f18b9ab2927829a208fc6aa2cf4e63b8420887ba29cdb265d6619ae82d5"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/log-0.4.33/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/log-0.4.33/LICENSE-MIT",
+      "source_sha256": "6485b8ed310d3f0340bf1ad1f47645069ce4069dcc6bb46c7d5c6faf41de1fdb"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/matrixmultiply-0.3.10/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/matrixmultiply-0.3.10/LICENSE-MIT",
+      "source_sha256": "792d075c7bad6dac258a44e799eb64cbf465e24d9932d27669be08c5ec957e27"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/md5-0.7.0/LICENSE.md",
+      "source_sha256": "c9759868ce3cef7bf419e389a0bc4408d48d0880fee20cdf640bcb027aca4bb6"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/memchr-2.8.2/COPYING",
+      "source_sha256": "01c266bced4a434da0051174d6bee16a4c82cf634e2679b6155d40d75012390f"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/memchr-2.8.2/LICENSE-MIT",
+      "source_sha256": "0f96a83840e146e43c0ec96a22ec1f392e0680e6c1226e6f3ba87e0740af850f"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/memmap2-0.9.11/LICENSE-APACHE",
+      "source_sha256": "04ea4849dba9dcae07113850c6f1b1a69052c625210639914eee352023f750ad"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/memmap2-0.9.11/LICENSE-MIT",
+      "source_sha256": "0d25d03b5ab49576178ad0cae7a2648d12c17ad0452fe49c07e55e4b59aa5257"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/memoffset-0.7.1/LICENSE",
+      "source_sha256": "3234ac55816264ee7b6c7ee27efd61cf0a1fe775806870e3d9b4c41ea73c5cb1"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/mmap-rs-0.6.1/LICENSE-APACHE",
+      "source_sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/mmap-rs-0.6.1/LICENSE-MIT",
+      "source_sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/munge-0.4.7/LICENSE",
+      "source_sha256": "b9c981ef9c76c0188c3ea22dca3c54744ad228071229cde4ff532543e1146a88"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/munge_macro-0.4.7/LICENSE",
+      "source_sha256": "b9c981ef9c76c0188c3ea22dca3c54744ad228071229cde4ff532543e1146a88"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/ndarray-0.16.1/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/ndarray-0.16.1/LICENSE-MIT",
+      "source_sha256": "1fd6747d2c8e80f9fa766f57c5888864774621deb85cc2838ccaed727db32d45"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/nix-0.26.4/LICENSE",
+      "source_sha256": "66e3ee1fa7f909ad3c612d556f2a0cdabcd809ad6e66f3b0605015ac64841b70"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/num-complex-0.4.6/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/num-complex-0.4.6/LICENSE-MIT",
+      "source_sha256": "6485b8ed310d3f0340bf1ad1f47645069ce4069dcc6bb46c7d5c6faf41de1fdb"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/num-integer-0.1.46/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/num-integer-0.1.46/LICENSE-MIT",
+      "source_sha256": "6485b8ed310d3f0340bf1ad1f47645069ce4069dcc6bb46c7d5c6faf41de1fdb"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/num-traits-0.2.19/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/num-traits-0.2.19/LICENSE-MIT",
+      "source_sha256": "6485b8ed310d3f0340bf1ad1f47645069ce4069dcc6bb46c7d5c6faf41de1fdb"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/num_cpus-1.17.0/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/num_cpus-1.17.0/LICENSE-MIT",
+      "source_sha256": "391a5396cec6230bfabd4ef4eb2350eb895bc5efce377a2218f5702ed020d3e3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/once_cell-1.21.4/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/once_cell-1.21.4/LICENSE-MIT",
+      "source_sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/option-ext-0.2.0/LICENSE.txt",
+      "source_sha256": "66a3107d5ad6a058aab753eaac2047ccb2ed0e39465dd0fe5844da3e300d5172"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/parking_lot-0.12.5/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/parking_lot-0.12.5/LICENSE-MIT",
+      "source_sha256": "c9a75f18b9ab2927829a208fc6aa2cf4e63b8420887ba29cdb265d6619ae82d5"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/parking_lot_core-0.9.12/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/parking_lot_core-0.9.12/LICENSE-MIT",
+      "source_sha256": "c9a75f18b9ab2927829a208fc6aa2cf4e63b8420887ba29cdb265d6619ae82d5"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/pin-project-lite-0.2.17/LICENSE-APACHE",
+      "source_sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/pin-project-lite-0.2.17/LICENSE-MIT",
+      "source_sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/pin-utils-0.1.0/LICENSE-APACHE",
+      "source_sha256": "a4db788775cb25f2da419a7ccd3f1f89c3d2cfa8748fb25257596b88183b4c77"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/pin-utils-0.1.0/LICENSE-MIT",
+      "source_sha256": "28802412d2bfbafe432b305634413b41a984d30fba0df41d30aa2c8a2077c5b1"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/ppv-lite86-0.2.21/LICENSE-APACHE",
+      "source_sha256": "0218327e7a480793ffdd4eb792379a9709e5c135c7ba267f709d6f6d4d70af0a"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/ppv-lite86-0.2.21/LICENSE-MIT",
+      "source_sha256": "4cada0bd02ea3692eee6f16400d86c6508bbd3bafb2b65fed0419f36d4f83e8f"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/proc-macro2-1.0.106/LICENSE-APACHE",
+      "source_sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/proc-macro2-1.0.106/LICENSE-MIT",
+      "source_sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/provenance.json",
+      "source_sha256": "5c78ae29dac2d9fb80790af0b53fe7db70bd7ec358b32130e56dad9ef58e87f3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/ptr_meta-0.3.1/LICENSE",
+      "source_sha256": "635111a955495b5d8d34b8052f69656e8e45f6437f9266329077b9aad5fbe8d3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/ptr_meta_derive-0.3.1/LICENSE",
+      "source_sha256": "635111a955495b5d8d34b8052f69656e8e45f6437f9266329077b9aad5fbe8d3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/quote-1.0.46/LICENSE-APACHE",
+      "source_sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/quote-1.0.46/LICENSE-MIT",
+      "source_sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/rancor-0.1.1/LICENSE",
+      "source_sha256": "e26fc4190084f5bf7ee5bdab1304ff4bcaa8e201fd7b0ff69370f89057feb901"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/rand-0.8.6/COPYRIGHT",
+      "source_sha256": "90eb64f0279b0d9432accfa6023ff803bc4965212383697eee27a0f426d5f8d5"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/rand-0.8.6/LICENSE-APACHE",
+      "source_sha256": "35242e7a83f69875e6edeff02291e688c97caafe2f8902e4e19b49d3e78b4cab"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/rand-0.8.6/LICENSE-MIT",
+      "source_sha256": "209fbbe0ad52d9235e37badf9cadfe4dbdc87203179c0899e738b39ade42177b"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/rand_chacha-0.3.1/COPYRIGHT",
+      "source_sha256": "90eb64f0279b0d9432accfa6023ff803bc4965212383697eee27a0f426d5f8d5"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/rand_chacha-0.3.1/LICENSE-APACHE",
+      "source_sha256": "aaff376532ea30a0cd5330b9502ad4a4c8bf769c539c87ffe78819d188a18ebf"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/rand_chacha-0.3.1/LICENSE-MIT",
+      "source_sha256": "209fbbe0ad52d9235e37badf9cadfe4dbdc87203179c0899e738b39ade42177b"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/rand_core-0.6.4/COPYRIGHT",
+      "source_sha256": "90eb64f0279b0d9432accfa6023ff803bc4965212383697eee27a0f426d5f8d5"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/rand_core-0.6.4/LICENSE-APACHE",
+      "source_sha256": "6df43f6f4b5d4587f3d8d71e45532c688fd168afa5fe89d571cb32fa09c4ef51"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/rand_core-0.6.4/LICENSE-MIT",
+      "source_sha256": "209fbbe0ad52d9235e37badf9cadfe4dbdc87203179c0899e738b39ade42177b"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/rand_distr-0.4.3/COPYRIGHT",
+      "source_sha256": "90eb64f0279b0d9432accfa6023ff803bc4965212383697eee27a0f426d5f8d5"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/rand_distr-0.4.3/LICENSE-APACHE",
+      "source_sha256": "6df43f6f4b5d4587f3d8d71e45532c688fd168afa5fe89d571cb32fa09c4ef51"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/rand_distr-0.4.3/LICENSE-MIT",
+      "source_sha256": "a771e4354f6b3ad4c92da1a5c9a239b6c291527db869632ecea4f20e24ca1135"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/rawpointer-0.2.1/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/rawpointer-0.2.1/LICENSE-MIT",
+      "source_sha256": "7576269ea71f767b99297934c0b2367532690f8c4badc695edf8e04ab6a1e545"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/rayon-1.12.0/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/rayon-1.12.0/LICENSE-MIT",
+      "source_sha256": "0621878e61f0d0fda054bcbe02df75192c28bde1ecc8289cbd86aeba2dd72720"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/rayon-core-1.13.0/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/rayon-core-1.13.0/LICENSE-MIT",
+      "source_sha256": "0621878e61f0d0fda054bcbe02df75192c28bde1ecc8289cbd86aeba2dd72720"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/redb-2.6.3/LICENSE-APACHE",
+      "source_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/redb-2.6.3/LICENSE-MIT",
+      "source_sha256": "9dc47584f810f4a0f88197b590bf428b154dc5a7f87237c06a39720241e0461f"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/regex-1.12.4/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/regex-1.12.4/LICENSE-MIT",
+      "source_sha256": "6485b8ed310d3f0340bf1ad1f47645069ce4069dcc6bb46c7d5c6faf41de1fdb"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/regex-automata-0.4.14/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/regex-automata-0.4.14/LICENSE-MIT",
+      "source_sha256": "6485b8ed310d3f0340bf1ad1f47645069ce4069dcc6bb46c7d5c6faf41de1fdb"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/regex-syntax-0.8.11/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/regex-syntax-0.8.11/LICENSE-MIT",
+      "source_sha256": "6485b8ed310d3f0340bf1ad1f47645069ce4069dcc6bb46c7d5c6faf41de1fdb"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/rend-0.5.3/LICENSE",
+      "source_sha256": "635111a955495b5d8d34b8052f69656e8e45f6437f9266329077b9aad5fbe8d3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/rkyv-0.8.18/LICENSE",
+      "source_sha256": "635111a955495b5d8d34b8052f69656e8e45f6437f9266329077b9aad5fbe8d3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/rkyv_derive-0.8.18/LICENSE",
+      "source_sha256": "635111a955495b5d8d34b8052f69656e8e45f6437f9266329077b9aad5fbe8d3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/rustc_version-0.4.1/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/rustc_version-0.4.1/LICENSE-MIT",
+      "source_sha256": "c9a75f18b9ab2927829a208fc6aa2cf4e63b8420887ba29cdb265d6619ae82d5"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/ruvector-core-2.3.0/LICENSE",
+      "source_sha256": "50fefb93560af4421369c99c93cc214cd835b3181ab7f16323f9e6f2ded870e3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/ruvector-sona-0.2.1/LICENSE-APACHE",
+      "source_sha256": "5c2acfb17fd4e29e22db6085fd573b81e5617ab4dcf1646fca0bdcf80202faba"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/ruvector-sona-0.2.1/LICENSE-MIT",
+      "source_sha256": "0fb26513b4385b2b13a48d1fecdffb6d5caeab4e4d3efccac04e2940087e55f4"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/ruvector-turboquant-2.3.0/LICENSE",
+      "source_sha256": "50fefb93560af4421369c99c93cc214cd835b3181ab7f16323f9e6f2ded870e3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/ruvllm-2.3.0/LICENSE",
+      "source_sha256": "50fefb93560af4421369c99c93cc214cd835b3181ab7f16323f9e6f2ded870e3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/rvf-crypto-0.2.0/LICENSE",
+      "source_sha256": "50fefb93560af4421369c99c93cc214cd835b3181ab7f16323f9e6f2ded870e3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/rvf-forge-core-2.3.0/LICENSE",
+      "source_sha256": "50fefb93560af4421369c99c93cc214cd835b3181ab7f16323f9e6f2ded870e3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/rvf-types-0.2.1/LICENSE",
+      "source_sha256": "50fefb93560af4421369c99c93cc214cd835b3181ab7f16323f9e6f2ded870e3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/rvf-wire-0.1.0/LICENSE",
+      "source_sha256": "50fefb93560af4421369c99c93cc214cd835b3181ab7f16323f9e6f2ded870e3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/safetensors-0.7.0/LICENSE",
+      "source_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/same-file-1.0.6/COPYING",
+      "source_sha256": "01c266bced4a434da0051174d6bee16a4c82cf634e2679b6155d40d75012390f"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/same-file-1.0.6/LICENSE-MIT",
+      "source_sha256": "cb3c929a05e6cbc9de9ab06a4c57eeb60ca8c724bef6c138c87d3a577e27aa14"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/scopeguard-1.2.0/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/scopeguard-1.2.0/LICENSE-MIT",
+      "source_sha256": "fb77f0a9c53e473abe5103c8632ef9f0f2874d4fb3f17cb2d8c661aab9cee9d7"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/semver-1.0.28/LICENSE-APACHE",
+      "source_sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/semver-1.0.28/LICENSE-MIT",
+      "source_sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/serde-1.0.228/LICENSE-APACHE",
+      "source_sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/serde-1.0.228/LICENSE-MIT",
+      "source_sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/serde_core-1.0.228/LICENSE-APACHE",
+      "source_sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/serde_core-1.0.228/LICENSE-MIT",
+      "source_sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/serde_derive-1.0.228/LICENSE-APACHE",
+      "source_sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/serde_derive-1.0.228/LICENSE-MIT",
+      "source_sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/serde_json-1.0.150/LICENSE-APACHE",
+      "source_sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/serde_json-1.0.150/LICENSE-MIT",
+      "source_sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/sha2-0.10.9/LICENSE-APACHE",
+      "source_sha256": "a9040321c3712d8fd0b09cf52b17445de04a23a10165049ae187cd39e5c86be5"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/sha2-0.10.9/LICENSE-MIT",
+      "source_sha256": "b4eb00df6e2a4d22518fcaa6a2b4646f249b3a3c9814509b22bd2091f1392ff1"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/sha3-0.10.9/LICENSE-APACHE",
+      "source_sha256": "a9040321c3712d8fd0b09cf52b17445de04a23a10165049ae187cd39e5c86be5"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/sha3-0.10.9/LICENSE-MIT",
+      "source_sha256": "f18f6229547ab07f0b7b3e1f83acad8bb436f5f4c95a8a98b44f876caa00f04e"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/shlex-2.0.1/LICENSE-APACHE",
+      "source_sha256": "553fffcd9b1cb158bc3e9edc35da85ca5c3b3d7d2e61c883ebcfa8a65814b583"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/shlex-2.0.1/LICENSE-MIT",
+      "source_sha256": "4455bf75a91154108304cb283e0fea9948c14f13e20d60887cf2552449dea3b1"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/signature-2.2.0/LICENSE-APACHE",
+      "source_sha256": "a9040321c3712d8fd0b09cf52b17445de04a23a10165049ae187cd39e5c86be5"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/signature-2.2.0/LICENSE-MIT",
+      "source_sha256": "b3470648aff02beb36d7a53240fc9260ed80ed93bd43bace6b67d7ef7336ee33"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/simdutf8-0.1.5/LICENSE-Apache",
+      "source_sha256": "0cec06e0e55fbc3dc5cee4fca9b607f66cb8f4e4dbcf3b3c013594dd156732e9"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/simdutf8-0.1.5/LICENSE-MIT",
+      "source_sha256": "1847e0e0698142ed4347c1441a9fa81c8fbddd44b1d8bbcd5e3647f991759d7f"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/simsimd-5.9.11/Cargo.toml",
+      "source_sha256": "6837d4e3512be7b3a47d6cc4be186dd7db681287da075153612cd149f05900fb"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/simsimd-5.9.11/LICENSE-APACHE",
+      "source_sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/simsimd-5.9.11/README.md",
+      "source_sha256": "d21fa37c1b60517f0be2dffce765eaf7108b594703c82c2ddd64f67a6913b250"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/smallvec-1.15.2/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/smallvec-1.15.2/LICENSE-MIT",
+      "source_sha256": "0b28172679e0009b655da42797c03fd163a3379d5cfa67ba1f1655e974a2a1a9"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/subtle-2.6.1/LICENSE",
+      "source_sha256": "d1fc1bc0d155df60b2e7705b6b2ae02a05c96f948e1cec6e2fb86360b09f346b"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/syn-2.0.118/LICENSE-APACHE",
+      "source_sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/syn-2.0.118/LICENSE-MIT",
+      "source_sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/syn-3.0.3/LICENSE-APACHE",
+      "source_sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/syn-3.0.3/LICENSE-MIT",
+      "source_sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/sysctl-0.5.5/LICENSE-MIT",
+      "source_sha256": "53c2dcd4a0105784749459719bc59d759bb8dbb28939fd742645ac543416b556"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/thiserror-1.0.69/LICENSE-APACHE",
+      "source_sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/thiserror-1.0.69/LICENSE-MIT",
+      "source_sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/thiserror-2.0.18/LICENSE-APACHE",
+      "source_sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/thiserror-2.0.18/LICENSE-MIT",
+      "source_sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/thiserror-impl-1.0.69/LICENSE-APACHE",
+      "source_sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/thiserror-impl-1.0.69/LICENSE-MIT",
+      "source_sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/thiserror-impl-2.0.18/LICENSE-APACHE",
+      "source_sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/thiserror-impl-2.0.18/LICENSE-MIT",
+      "source_sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/tinyvec-1.11.0/LICENSE-APACHE.md",
+      "source_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/tinyvec-1.11.0/LICENSE-MIT.md",
+      "source_sha256": "fd80a26fbb3f644af1fa994134446702932968519797227e07a1368dea80f0bc"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/tinyvec-1.11.0/LICENSE-ZLIB.md",
+      "source_sha256": "84b34dd7608f7fb9b17bd588a6bf392bf7de504e2716f024a77d89f1b145a151"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/tinyvec_macros-0.1.1/LICENSE-APACHE.md",
+      "source_sha256": "4f44572785f35152c1fd2eadf565b7e079c0f300b4324f0af653419f9d76b735"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/tinyvec_macros-0.1.1/LICENSE-MIT.md",
+      "source_sha256": "1dd8eca0f83669e75fa119e34fb9e1be9d16e3e9b6368962b8019db6e8ae5f7b"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/tinyvec_macros-0.1.1/LICENSE-ZLIB.md",
+      "source_sha256": "41ace205715d9f19a3214218cc1c01d57c533e02cd0fef7c8e51a49a7fce5ac5"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/tokio-1.52.3/LICENSE",
+      "source_sha256": "253cd04c6714889df2d32f3f64d669179a1c95c76ac43c40882c52eb06bc3552"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/tokio-macros-2.7.0/LICENSE",
+      "source_sha256": "0b83dc40cba89b9922bb84b0a9c7d2768ce37c1d7e138b7424fd4549915778c9"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/tokio-stream-0.1.18/LICENSE",
+      "source_sha256": "253cd04c6714889df2d32f3f64d669179a1c95c76ac43c40882c52eb06bc3552"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/tracing-0.1.44/LICENSE",
+      "source_sha256": "898b1ae9821e98daf8964c8d6c7f61641f5f5aa78ad500020771c0939ee0dea1"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/tracing-attributes-0.1.31/LICENSE",
+      "source_sha256": "898b1ae9821e98daf8964c8d6c7f61641f5f5aa78ad500020771c0939ee0dea1"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/tracing-core-0.1.36/LICENSE",
+      "source_sha256": "898b1ae9821e98daf8964c8d6c7f61641f5f5aa78ad500020771c0939ee0dea1"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/typenum-1.20.1/LICENSE",
+      "source_sha256": "db11fec9946737df39ca3898d9cd8c10ec6f6c3a884a6802b0ad0b81b4e8f23a"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/typenum-1.20.1/LICENSE-APACHE",
+      "source_sha256": "516b24e051bf5630880ebbd55c40a25ce9552ebaf8970a53e8976eb70e522406"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/typenum-1.20.1/LICENSE-MIT",
+      "source_sha256": "a825bd853ab71619a4923d7b4311221427848070ff44d990da39b0b274c1683f"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/unicode-ident-1.0.24/LICENSE-APACHE",
+      "source_sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/unicode-ident-1.0.24/LICENSE-MIT",
+      "source_sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/unicode-ident-1.0.24/LICENSE-UNICODE",
+      "source_sha256": "f7db81051789b729fea528a63ec4c938fdcb93d9d61d97dc8cc2e9df6d47f2a1"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/unicode-normalization-0.1.25/COPYRIGHT",
+      "source_sha256": "23860c2a7b5d96b21569afedf033469bab9fe14a1b24a35068b8641c578ce24d"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/unicode-normalization-0.1.25/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/unicode-normalization-0.1.25/LICENSE-MIT",
+      "source_sha256": "7b63ecd5f1902af1b63729947373683c32745c16a10e8e6292e2e2dcd7e90ae0"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/unty-0.0.4/LICENSE-APACHE",
+      "source_sha256": "fa84f04c495f2533ba036606acc8644b50077752f17bc2e943235459dda1c12c"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/unty-0.0.4/LICENSE-MIT",
+      "source_sha256": "ac1e6e437cd571f6b450abd33dc055cf26dfb0fe2a72952c3ef6ae3844549c12"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/utf8parse-0.2.2/LICENSE-APACHE",
+      "source_sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/utf8parse-0.2.2/LICENSE-MIT",
+      "source_sha256": "e4c9b06fa850cb9b540a5e400e9f6394cf15efcf4098144de477d1d3dae10150"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/uuid-1.23.3/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/uuid-1.23.3/LICENSE-MIT",
+      "source_sha256": "436bc5a105d8e57dcd8778730f3754f7bf39c14d2f530e4cde4bd2d17a83ec3d"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/version_check-0.9.5/LICENSE-APACHE",
+      "source_sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/version_check-0.9.5/LICENSE-MIT",
+      "source_sha256": "b7e650f3fce5c53249d1cdc608b54df156a97edd636cf9d23498d0cfe7aec63e"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/virtue-0.0.18/LICENSE.md",
+      "source_sha256": "ddcbb6914b62d5bebc3cb58ebe8d2738ffa9a48555469bbcbe65159979b878cf"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/walkdir-2.5.0/COPYING",
+      "source_sha256": "01c266bced4a434da0051174d6bee16a4c82cf634e2679b6155d40d75012390f"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/walkdir-2.5.0/LICENSE-MIT",
+      "source_sha256": "0f96a83840e146e43c0ec96a22ec1f392e0680e6c1226e6f3ba87e0740af850f"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/xxhash-rust-0.8.15/LICENSE",
+      "source_sha256": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/zerocopy-0.8.52/LICENSE-APACHE",
+      "source_sha256": "9d185ac6703c4b0453974c0d85e9eee43e6941009296bb1f5eb0b54e2329e9f3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/zerocopy-0.8.52/LICENSE-BSD",
+      "source_sha256": "83c1763356e822adde0a2cae748d938a73fdc263849ccff6b27776dff213bd32"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/zerocopy-0.8.52/LICENSE-MIT",
+      "source_sha256": "1a2f5c12ddc934d58956aa5dbdd3255fe55fd957633ab7d0d39e4f0daa73f7df"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/zerocopy-derive-0.8.52/LICENSE-APACHE",
+      "source_sha256": "9d185ac6703c4b0453974c0d85e9eee43e6941009296bb1f5eb0b54e2329e9f3"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/zerocopy-derive-0.8.52/LICENSE-BSD",
+      "source_sha256": "83c1763356e822adde0a2cae748d938a73fdc263849ccff6b27776dff213bd32"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/zerocopy-derive-0.8.52/LICENSE-MIT",
+      "source_sha256": "1a2f5c12ddc934d58956aa5dbdd3255fe55fd957633ab7d0d39e4f0daa73f7df"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/zeroize-1.9.0/LICENSE-APACHE",
+      "source_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/zeroize-1.9.0/LICENSE-MIT",
+      "source_sha256": "8c7516d4b27b1e495be5e38b612298b63de48d05f49cdac94f70f3cd70f8864b"
+    },
+    {
+      "path": "research/vast_cross_model/licenses/native-dependencies/zmij-1.0.21/LICENSE-MIT",
+      "source_sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    {
+      "path": "research/vast_cross_model/models.json",
+      "source_sha256": "c0754b60592fe6cbd28b53edbaa3624025f89f00e8aa15440bda03734323390a"
+    },
+    {
+      "path": "research/vast_cross_model/models_prepare.py",
+      "source_sha256": "d82f39950faa52a6b467e0497c36c2266f8dcfd80685b1a80eff3ec8b2ff22a7"
+    },
+    {
+      "path": "research/vast_cross_model/native/README.md",
+      "source_sha256": "0eeb5712b84eaada34b7aaecfda0c8570032a95489af52bdc9207a98085eba60"
+    },
+    {
+      "path": "research/vast_cross_model/native/bootstrap-requirements.json",
+      "source_sha256": "37ddb481023ffd0614367fda31ae75d6e1d07592dd7a34086e2f349590640ac9"
+    },
+    {
+      "path": "research/vast_cross_model/native/preparation-tests.log",
+      "source_sha256": "0bd75045471efe40434373380cf79080f66cb6a441f3974d60436e12266061de"
+    },
+    {
+      "path": "research/vast_cross_model/native/preparation-validation.json",
+      "source_sha256": "1a5bf8afec8144d927413a3486454c256c696163890abb1df11267f045bccd57"
+    },
+    {
+      "path": "research/vast_cross_model/native/prepare.py",
+      "source_sha256": "94c6725be9109e0d83439ec46bde0f0a64b07e48e68b9fd58904bd8c1b9b48ec"
+    },
+    {
+      "path": "research/vast_cross_model/native/test_prepare.py",
+      "source_sha256": "86137bc3c8e7d09728227a7290b4d100c45dec9112f4a73c99aeb2d590f30929"
+    },
+    {
+      "path": "research/vast_cross_model/prepare.py",
+      "source_sha256": "dc276555c678ac20ccdccb82564754f95b1f398a877a3f9ee97da677f9afb43f"
+    },
+    {
+      "path": "research/vast_cross_model/prompts.json",
+      "source_sha256": "b14f7c00c40dee6ad37b5e26f327f47364eaf3efbc30d4e9763dada70636f58c"
+    },
+    {
+      "path": "research/vast_cross_model/protocol.json",
+      "source_sha256": "cf83995f29b5c3f7c28871d87d1295839bd94452dec0b8c352b990ba52a26cb6"
+    },
+    {
+      "path": "research/vast_cross_model/run_all.py",
+      "source_sha256": "cb0c915368547c8bf6613307aa60da736e631fa2b49da447d4883dfc013d9079"
+    },
+    {
+      "path": "research/vast_cross_model/score.py",
+      "source_sha256": "4bfd12082fb8fc9cf65c069d9ed28be9979553c834d2afc4664ec352c279da6a"
+    },
+    {
+      "path": "research/vast_cross_model/test_protocol.py",
+      "source_sha256": "36e972e026353ab3783fa3212ec858e99a1c10855f458183d2ea3bff7c5881cc"
+    },
+    {
+      "path": "research/vast_cross_model/validation/local-scorer-readiness.json",
+      "source_sha256": "41fd51a1853d39423855a773d384e9d0a23f3ca70b30845d01310fb448667402"
+    },
+    {
+      "path": "research/vast_cross_model/worker.py",
+      "source_sha256": "2eb145ab726453751088640a2b46ebd7dfea408e7ce7e9960b05985792e1f8b0"
+    },
+    {
+      "path": "ruflo_model/__init__.py",
+      "source_sha256": "b313f03eb828bb3e190bca246c443f092655c0b4a883491037eae6d885148093"
+    },
+    {
+      "path": "ruflo_model/backend.py",
+      "source_sha256": "3d73db15e7695c4c88c3aa0ddde974462aebe7a4f7d103cf4e4791646c68755b"
+    },
+    {
+      "path": "ruflo_model/cli.py",
+      "source_sha256": "4b8ae292fc8ad519c7c50a9a90d08f8986df359f23c2c527f3c61e468f42d86e"
+    },
+    {
+      "path": "ruflo_model/cloud.py",
+      "source_sha256": "a977af7e0341744f823f534f727cfe88471a22d92ccd6dba66ac42d21cbd99ad"
+    },
+    {
+      "path": "ruflo_model/cloud_train.py",
+      "source_sha256": "1a7e797e57ab333f260eeba56522524e9d5df6a1b46d2884e5d42811e6e075b9"
+    },
+    {
+      "path": "ruflo_model/common.py",
+      "source_sha256": "2b50bd719636c9750f1d0578a01db9a87ded99304e500e79c55e806cf5b377fd"
+    },
+    {
+      "path": "ruflo_model/data.py",
+      "source_sha256": "a69d38f1b5e62e1796da8532a37ac3534dce9343c2d44976e8d2e8193e18610d"
+    },
+    {
+      "path": "ruflo_model/evaluate.py",
+      "source_sha256": "e3346929753062137a6828d9a7d3efda20ec389ae724952de058a1e55cac63a6"
+    },
+    {
+      "path": "ruflo_model/gateway.py",
+      "source_sha256": "ab22884dc677506c121267246ef49e2c7bde04556f25d3ca562b3ede82607dc2"
+    },
+    {
+      "path": "ruflo_model/integration.py",
+      "source_sha256": "01d185b93c2a4170ef15fcfd872f8ede48b6b0f10c1d2f4a67a1bfd2e67672a8"
+    },
+    {
+      "path": "ruflo_model/loop.py",
+      "source_sha256": "0d43dbec923e64d1c131b88606e51446c15a826973e4cb992ab03e8653b507fd"
+    },
+    {
+      "path": "ruflo_model/package.py",
+      "source_sha256": "ce8579bbaf8ae6aa722b70a5b7d7ddc847dec55af8c60adbadfbbf5857791802"
+    },
+    {
+      "path": "ruflo_model/preflight.py",
+      "source_sha256": "bea31d42c0fd8da175b75afa3c51992ba204d568d3591891fd8f1ef75baa4d73"
+    },
+    {
+      "path": "ruflo_model/prepare.py",
+      "source_sha256": "93864f8472e11c4950a7eb4c4e1bd05a7b17bbf42e8d744cf66fe06f3142735e"
+    },
+    {
+      "path": "ruflo_model/report.py",
+      "source_sha256": "aa331cdb0481d9889f295a833049eb167624ea6306c8863217813f8fc2fcf512"
+    },
+    {
+      "path": "ruflo_model/scoring.py",
+      "source_sha256": "e462267be43484accd153f2d1f126977b2394a26505a4cd2153489ff46ec3055"
+    },
+    {
+      "path": "ruflo_model/selection.py",
+      "source_sha256": "58e0a8d3ee9b6607fd1255607d6dc8405652faffadadab30f0cd21978d607ecb"
+    },
+    {
+      "path": "ruflo_model/strict_tools.py",
+      "source_sha256": "aac9f9bf48c0e74484844bff7c1025f76c40b2b291550b0bba60355dfb734313"
+    },
+    {
+      "path": "scripts/accept_coding.py",
+      "source_sha256": "a19201514fd3f5db360325c06e933ca922514a2b6570e4d38bae4412e49c432a"
+    },
+    {
+      "path": "scripts/accept_router.py",
+      "source_sha256": "089b6ec73850a06865a967ca1bf132fbf5dbad90a2d717027bb524cff71bd698"
+    },
+    {
+      "path": "scripts/cloud_benchmark.py",
+      "source_sha256": "34564e4879b704411d550e6538f16c72fc712a0f1553083f066274021f726a41"
+    },
+    {
+      "path": "scripts/cloud_train.py",
+      "source_sha256": "c9d827e467e4f3c986d29f16dde30326911a5068c4f015f904d4404ba51765d8"
+    },
+    {
+      "path": "scripts/release_eval.py",
+      "source_sha256": "52cece75edf6d75d2067375fde375878910ebca0e0d1e6a4decd26261628ef7a"
+    },
+    {
+      "path": "scripts/router_ccr.py",
+      "source_sha256": "446379672699af7e9e90504a07d5dc679f21bc957a501732d3f9acf4e1e0a205"
+    },
+    {
+      "path": "scripts/serve.py",
+      "source_sha256": "a16eb9ade17274246d1dfeff9d3a74eaf910ab250d0c2ae3557483dfefbb43b1"
+    },
+    {
+      "path": "tests/test_backend.py",
+      "source_sha256": "63abfe7c35d396a3c0031349cca2da2d847fdbb1c8c78f384f88e944c98f0f0c"
+    },
+    {
+      "path": "tests/test_budget.py",
+      "source_sha256": "fe3a77467a73212d6df4a909fa1d596530621031c725032f58f9f99c15ee4352"
+    },
+    {
+      "path": "tests/test_conversion.py",
+      "source_sha256": "55102400827e9be06b1c586e896e5a170ff27732d0a4e37565d58e092eb2242e"
+    },
+    {
+      "path": "tests/test_core.py",
+      "source_sha256": "88282d900fb34379e7cf19dc22e4a9f1a996f39d92f10458387f761162e4c0b9"
+    },
+    {
+      "path": "tests/test_gateway.py",
+      "source_sha256": "d86a89ca5860ed752aae1398fd4aa1f6c8e0d55f184369aeb804ccc85a253f7c"
+    },
+    {
+      "path": "tests/test_integration.py",
+      "source_sha256": "16f5572dc33d6af1c20d981b6451385f2b3b332ee2e8c28283e1199b77787424"
+    },
+    {
+      "path": "verify.py",
+      "source_sha256": "e20be1394a83edb004d94f6b3597d3d075416dafd3e0875a4536e256d02a51a1"
+    },
+    {
+      "path": "verify_release.py",
+      "source_sha256": "70d6073f20b1eb6a773a97786e871b743c018a5297583a945b2454c0e4ef5141"
+    }
+  ],
+  "note": "Clean selected file snapshot without development history, runtime directories or account control files. Portable publication amendments are separately listed."
+}

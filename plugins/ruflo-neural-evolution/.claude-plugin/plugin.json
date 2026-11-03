@@ -1,0 +1,8 @@
+{
+  "name": "ruflo-neural-evolution",
+  "description": "Inspect, apply, validate and package bounded native neural weight experiments without activation authority.",
+  "version": "0.1.0",
+  "author": { "name": "rUv", "url": "https://github.com/ruvnet" },
+  "license": "Apache-2.0",
+  "keywords": ["ruflo", "ruvllm", "neural", "weights", "governance", "rvf"]
+}

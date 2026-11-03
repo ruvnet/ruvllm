@@ -1,0 +1,17 @@
+{
+  "name": "ruflo-code-4b-pilot-v2",
+  "model": "models/base-4bit",
+  "train_config": "configs/train.yaml",
+  "training_backend": "cloud",
+  "seed": 20261102,
+  "max_iterations": 4,
+  "wall_timeout_seconds": 14400,
+  "stage_timeout_seconds": 3600,
+  "stop_after_nonimprovements": 2,
+  "cloud_budget_usd": 200,
+  "automatic_publication": false,
+  "release_selection": "dev only",
+  "candidate_steps": [32, 64, 96],
+  "promotion": {"minimum_additional_passes": 1, "allow_latency_tiebreak": true, "max_token_ratio_on_tie": 0.90, "code_regressions": 0, "tool_regressions": 0},
+  "sota_claim_permitted": false
+}

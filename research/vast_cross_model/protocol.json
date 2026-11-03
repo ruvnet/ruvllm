@@ -1,0 +1,178 @@
+{
+  "arms": [
+    {
+      "id": "qwen035-08b-base-direct",
+      "panels": [
+        "humaneval164",
+        "tools27",
+        "math128"
+      ],
+      "thinking": false,
+      "variant": "qwen035-08b-base"
+    },
+    {
+      "id": "qwen035-08b-edited-direct",
+      "panels": [
+        "humaneval164",
+        "tools27",
+        "math128"
+      ],
+      "thinking": false,
+      "variant": "qwen035-08b-edited"
+    },
+    {
+      "id": "qwen035-4b-base-direct",
+      "panels": [
+        "humaneval164",
+        "tools27",
+        "math128"
+      ],
+      "thinking": false,
+      "variant": "qwen035-4b-base"
+    },
+    {
+      "id": "qwen035-4b-lora-direct",
+      "panels": [
+        "humaneval164",
+        "tools27",
+        "math128"
+      ],
+      "thinking": false,
+      "variant": "qwen035-4b-lora"
+    },
+    {
+      "id": "qwen3-coder-30b-direct",
+      "panels": [
+        "humaneval164",
+        "tools27",
+        "math128"
+      ],
+      "thinking": false,
+      "variant": "qwen3-coder-30b"
+    },
+    {
+      "id": "qwen035-08b-base-thinking",
+      "panels": [
+        "math128"
+      ],
+      "thinking": true,
+      "variant": "qwen035-08b-base"
+    },
+    {
+      "id": "qwen035-08b-edited-thinking",
+      "panels": [
+        "math128"
+      ],
+      "thinking": true,
+      "variant": "qwen035-08b-edited"
+    }
+  ],
+  "batch_size": 8,
+  "comparisons": [
+    [
+      "qwen035-08b-base-direct",
+      "qwen035-08b-edited-direct"
+    ],
+    [
+      "qwen035-08b-base-thinking",
+      "qwen035-08b-edited-thinking"
+    ],
+    [
+      "qwen035-4b-base-direct",
+      "qwen035-4b-lora-direct"
+    ]
+  ],
+  "container_image": "docker.io/vllm/vllm-openai@sha256:4ac9b7c6dabc3ec762c0edef4e9245abe98373844da91cc53ee42e5c58280c5b",
+  "created_at": "2026-11-03T06:47:16.743224+00:00",
+  "engine": {
+    "dtype": "bfloat16",
+    "enable_prefix_caching": false,
+    "enforce_eager": true,
+    "gpu_memory_utilization": 0.9,
+    "limit_mm_per_prompt": {
+      "image": 0,
+      "video": 0
+    },
+    "max_model_len": 12288,
+    "max_num_batched_tokens": 8192,
+    "max_num_seqs": 8,
+    "tensor_parallel_size": 1
+  },
+  "eos_token_ids": {
+    "qwen035-08b-base": [
+      248046,
+      248044
+    ],
+    "qwen035-08b-edited": [
+      248046,
+      248044
+    ],
+    "qwen035-4b-base": [
+      248046,
+      248044
+    ],
+    "qwen035-4b-lora": [
+      248046,
+      248044
+    ],
+    "qwen3-coder-30b": [
+      151645,
+      151643
+    ]
+  },
+  "implementation_sha256": {
+    "../../ruflo_model/scoring.py": "e462267be43484accd153f2d1f126977b2394a26505a4cd2153489ff46ec3055",
+    "common.py": "a94b9fc7e2d1a3a84fe3ed737fae46c54bc8a220603bf9697ab100a54250c66b",
+    "models_prepare.py": "d82f39950faa52a6b467e0497c36c2266f8dcfd80685b1a80eff3ec8b2ff22a7",
+    "prepare.py": "dc276555c678ac20ccdccb82564754f95b1f398a877a3f9ee97da677f9afb43f",
+    "run_all.py": "cb0c915368547c8bf6613307aa60da736e631fa2b49da447d4883dfc013d9079",
+    "score.py": "4bfd12082fb8fc9cf65c069d9ed28be9979553c834d2afc4664ec352c279da6a",
+    "test_protocol.py": "36e972e026353ab3783fa3212ec858e99a1c10855f458183d2ea3bff7c5881cc",
+    "worker.py": "2eb145ab726453751088640a2b46ebd7dfea408e7ce7e9960b05985792e1f8b0"
+  },
+  "input_sha256": {
+    "assets.json": "8922a9c9be15e40c069a5fb61122bfe79c7a9d834a372151865b1be8d2f48054",
+    "cases.json": "21a3d32d8e43e35f94fe18ec64e2faa2a4f3fc4d5f5c624625938950e6e44c2a",
+    "models.json": "c0754b60592fe6cbd28b53edbaa3624025f89f00e8aa15440bda03734323390a",
+    "prompts.json": "b14f7c00c40dee6ad37b5e26f327f47364eaf3efbc30d4e9763dada70636f58c"
+  },
+  "limitations": [
+    "HumanEval pretraining contamination unknown; repeated public benchmark",
+    "27 tool fixtures are synthetic and too small for production qualification",
+    "math corpus is original procedural arithmetic, not MATH500 or advanced reasoning",
+    "greedy fixed chat protocol is not an official leaderboard score",
+    "one GPU and seed; batch throughput is not individual request latency",
+    "prior local 16 case weight repair gate failed; cloud run is diagnostic replication"
+  ],
+  "maximum_output_tokens": 9295872,
+  "maximum_wall_seconds": 20700,
+  "metrics": [
+    "answer_or_test_correct",
+    "completed",
+    "delivered_correct",
+    "output_tokens",
+    "batch_wall_seconds"
+  ],
+  "panel_max_tokens": {
+    "humaneval164": 2048,
+    "math128": 8192,
+    "tools27": 2048
+  },
+  "precision": "BF16 all variants; FP32 LoRA merge then BF16 rounding",
+  "purpose": "frozen diagnostic comparison; no selection, training, promotion, or SOTA claim",
+  "reference": "qwen3-coder-30b-direct is a separate larger model, never a patch target",
+  "repetition_penalty": 1,
+  "runtime_versions": {
+    "torch": "2.11.0",
+    "transformers": "5.12.1",
+    "vllm": "0.21.0"
+  },
+  "schema": "ruflo.vast-cross-model.v1",
+  "scoring": "local frozen strict tool schema and macOS sandbox; integer exact boxed answer; no model judge",
+  "seed": 2026110307,
+  "strongest_unedited_profile": "thinking disabled from prior dev; all 0.8B math profiles disclosed",
+  "temperature": 0,
+  "top_k": -1,
+  "top_p": 1,
+  "total_generations": 1851
+}

@@ -1,0 +1,51 @@
+[package]
+name = "ruvllm-weight-evolution"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.87"
+license = "MIT"
+description = "Bounded offline neural weight edits with exact rollback and RVF evidence"
+publish = false
+autoexamples = false
+
+[lib]
+name = "ruvllm"
+path = "src/lib.rs"
+
+[[bin]]
+name = "weight_evolution"
+path = "examples/weight_evolution.rs"
+
+[dependencies]
+half = "=2.7.1"
+libc = "=0.2.186"
+memmap2 = "=0.9.11"
+rvf-forge-core = { path = "vendor/rvf-forge-core" }
+safetensors = "=0.7.0"
+serde = { workspace = true }
+serde_json = { workspace = true }
+sha2 = "=0.10.9"
+uuid = { version = "=1.23.3", features = ["v4"] }
+
+[dev-dependencies]
+tempfile = "=3.27.0"
+
+[workspace]
+resolver = "2"
+members = [".", "vendor/rvf-forge-core", "vendor/rvf/rvf-types", "vendor/rvf/rvf-wire", "vendor/rvf/rvf-crypto"]
+
+[workspace.package]
+version = "2.3.0"
+edition = "2021"
+rust-version = "1.77"
+license = "MIT"
+authors = ["Ruvector Team"]
+repository = "https://github.com/ruvnet/ruvector"
+
+[workspace.dependencies]
+serde = { version = "=1.0.228", features = ["derive"] }
+serde_json = "=1.0.150"
+thiserror = "=2.0.18"
+
+[workspace.lints.clippy]
+unused_unit = "allow"

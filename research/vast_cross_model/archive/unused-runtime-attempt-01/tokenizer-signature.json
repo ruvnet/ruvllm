@@ -1,0 +1,7 @@
+{
+  "transformers": "5.12.1",
+  "method": "PreTrainedTokenizerBase.apply_chat_template",
+  "signature": "(self, conversation: 'list[dict[str, str]] | list[list[dict[str, str]]]', tools: 'list[dict | Callable] | None' = None, documents: 'list[dict[str, str]] | None' = None, chat_template: 'str | None' = None, add_generation_prompt: 'bool' = False, continue_final_message: 'bool | str' = False, tokenize: 'bool' = True, padding: 'bool | str | PaddingStrategy' = False, truncation: 'bool' = False, max_length: 'int | None' = None, return_tensors: 'str | TensorType | None' = None, return_dict: 'bool' = True, return_assistant_tokens_mask: 'bool' = False, tokenizer_kwargs: 'dict[str, Any] | None' = None, **kwargs) -> 'str | list[int] | list[str] | list[list[int]] | BatchEncoding'",
+  "return_dict_default": true,
+  "implementation_sha256": "e1cb409b5552cad82fa37f369603e9a6458c2af2a6075fb3608999f7f9d40c02"
+}

@@ -1,0 +1,148 @@
+{
+  "candidates": [
+    {
+      "alpha": 0.5,
+      "changed_values": 129352,
+      "id": "alpha-050",
+      "l2": 1.1197443381311165,
+      "max_abs_delta": 0.107421875,
+      "patch_sha256": "4e6e7c3f78a5c2afc2198206139a47ae730f33cf99ba3df6d52beacc605e3c21",
+      "policy": {
+        "allowed_tensors": [
+          "model.language_model.layers.15.mlp.down_proj.weight",
+          "model.language_model.layers.19.mlp.down_proj.weight"
+        ],
+        "max_abs_delta": 0.108497,
+        "max_changed_values": 130188,
+        "max_l2": 1.131,
+        "max_relative_l2": 0.047449,
+        "protected": []
+      },
+      "policy_sha256": "8085b409717079cedfa6472b6e706152eebff5526f135334ab7cf767aa4f6070",
+      "relative_l2": 0.04697880042837745,
+      "request_sha256": "d84006b8d70194037bc9f266df51781a53f6400cc5ed21bd4b48d7cea2a2956a",
+      "source_l2": 23.83509855340489,
+      "tensor_sha256": {
+        "model.language_model.layers.15.mlp.down_proj.weight": "cd0ce6c62a01c0cc71303f1cef4ce946e3675a33cebda0c76fd52230a88ba656",
+        "model.language_model.layers.19.mlp.down_proj.weight": "15b84085122d578f85a077c2f148bd76fdbcf7182e6ea7643615a83c4b054038"
+      }
+    },
+    {
+      "alpha": 1.0,
+      "changed_values": 130188,
+      "id": "alpha-100",
+      "l2": 2.2394522487123596,
+      "max_abs_delta": 0.21484375,
+      "patch_sha256": "c77336ccbabbbde998bf5341c61afef922cd78f08b1bb2364b177e3bb52ef786",
+      "policy": {
+        "allowed_tensors": [
+          "model.language_model.layers.15.mlp.down_proj.weight",
+          "model.language_model.layers.19.mlp.down_proj.weight"
+        ],
+        "max_abs_delta": 0.216993,
+        "max_changed_values": 130188,
+        "max_l2": 2.262,
+        "max_relative_l2": 0.094896,
+        "protected": []
+      },
+      "policy_sha256": "9745cf81af36ea7f6c41bd923163d23ea19c8e08c5ce182bfc84e8e84c1b50b4",
+      "relative_l2": 0.09395607254128385,
+      "request_sha256": "9672802144cbed5dd6d00b6e96ee473a024bb77d16170dfa5e6df5fe6735bc07",
+      "source_l2": 23.83509855340489,
+      "tensor_sha256": {
+        "model.language_model.layers.15.mlp.down_proj.weight": "82e2d733ea64feaeb4af93a1e065641d3df98b494a8b7576ef2f52e90fe2ee53",
+        "model.language_model.layers.19.mlp.down_proj.weight": "8ef3c61bc36af113ad58e89dbb0a4a14dcba5a45cb750c15ab515c82ddd12eb2"
+      }
+    }
+  ],
+  "claim": "source guided finite alpha sweep; no independent edit discovery or recursive improvement",
+  "created_utc": "2026-11-03T05:36:02.888080+00:00",
+  "execution_sha256": {
+    "protocol": "b8d1af883e510580399bcbaf7640f8f6e355827f2f9641dc8a40d3970d67c1d3",
+    "runtime": "017e3f2d932571df5073bc068de4a22f03703585f6f9a823567cf41b1e919c40",
+    "toolchain": "20c56d92e2c5d398b8eb678934d5292ba245e067a69f9fcf4eef1c2c4f908815",
+    "topology": "8a4071f62e070e719a1d41d3711c8b2cc007171c8cd29d461ba58fd60329b2e0"
+  },
+  "input_sha256": {
+    "development_baseline": "7770b21ad00f65e01196196febe6824eeddec6c6721dc1b007c52b9ab1483c04",
+    "development_cases": "eaea8c65789ceaeccbf59d7ec71c776c9a00b5f37cc065f267f4de21e1bd4a0e",
+    "metadata": {
+      "LICENSE": "bbedc3fda3305820b977265f01b8619d87570a6739de3a5582c3464840f1e57a",
+      "README.md": "87a163af54f32fa608a0f8d3ac67945c53dd2b4a7c96740b3d7fdc28e8458864",
+      "chat_template.jinja": "273d8e0e683b885071fb17e08d71e5f2a5ddfb5309756181681de4f5a1822d80",
+      "config.json": "b90b86f35c8e6925ef74ee04d0e758f0a845c83a42089ad82bbaa948de9b4204",
+      "merges.txt": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d",
+      "model.safetensors.index.json": "d8a08838a613b025eb7952ed9db11696213e57e76a375661ef5c12f9dd5dcf4e",
+      "preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+      "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+      "tokenizer_config.json": "49e2b6e395f959f077f1e992b338919c0d4a9732fc6e613995e06557f843500c",
+      "video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+      "vocab.json": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+    },
+    "prior_generations": "3eb0a44498390f441a9a7fa20fcba587345ce78fd3f027619c24baf31ec90c3b",
+    "prior_protocol": "145be98110c0bf412fa0722dd1e73073812279598312751e580864d96eec8f6a",
+    "release_cases": "d830c55b87895d7af1541b775afea78bce39fbf368a8262a60827e920a6894f2",
+    "runner": "033466c3daa6a749bfc32034acccfc6bd71a1f001344d932d3ba8ae451da8b9f"
+  },
+  "limitations": [
+    "16 fresh synthetic math questions share template families with development",
+    "one seeded sample per question per arm; low statistical power",
+    "MLX and 2048 tokens differ from published vLLM and 32768 token evaluation",
+    "baseline profile chosen from prior development; release does not select profiles or candidates",
+    "no coding, tool use, cross model, general reasoning, or RSI claim"
+  ],
+  "model": {
+    "id": "Qwen/Qwen3.5-0.8B",
+    "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+    "source_sha256": "04b1c301231dd422b8860db31311ab2721511346a32cb1e079c4c4e5f1fe4696"
+  },
+  "protocol": {
+    "baseline_selected_from_prior_development": "direct",
+    "candidate_selection": [
+      "highest delivered_correct",
+      "lowest output_tokens",
+      "smallest alpha"
+    ],
+    "cloud_spend_usd": 0,
+    "development_seed_start": 20261102,
+    "eos_token_ids": [
+      248044,
+      248046
+    ],
+    "fresh_kv_each_generation": true,
+    "max_new_tokens": 2048,
+    "max_wall_seconds": 3600,
+    "presence_penalty": 1.5,
+    "presence_scope": "generated tokens only",
+    "promotion_rule": "selected_direct delivered_correct strictly exceeds base_direct; selected_direct completion does not regress; all mechanical audits pass",
+    "release_arms": [
+      "base_direct",
+      "base_thinking",
+      "selected_direct",
+      "selected_thinking"
+    ],
+    "release_seed_start": 2026110301,
+    "suffix": " Please reason step by step, and put your final answer, as an integer with no units, within \\boxed{}.",
+    "temperature": 0.6,
+    "top_k": 20,
+    "top_p": 0.95
+  },
+  "runtime": {
+    "dtype": "bfloat16",
+    "packages": {
+      "mlx": "0.32.4",
+      "mlx-lm": "0.31.3",
+      "numpy": "2.5.4",
+      "safetensors": "0.7.0",
+      "tokenizers": "0.22.2",
+      "transformers": "5.12.1"
+    },
+    "platform": "macOS-26.1-arm64-arm-64bit",
+    "quantized": false
+  },
+  "schema": "ruvllm.weight_evolution_experiment.v1",
+  "source": {
+    "commit": "4d09ba6d6a7e891dd8063974dfe81b3d78e3494f",
+    "patch_npz_sha256": "e92a92aafd1f1068b4fd94aa0fbe081ba3ddea2047ee7bcac7161d861be299e7"
+  }
+}

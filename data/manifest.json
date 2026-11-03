@@ -1,0 +1,17 @@
+{
+  "files": {
+    "dev.jsonl": "a68646d9baf216153189378a1c62f40e0b34d1b39f32ca14022fb3c8249eedf7",
+    "release.jsonl": "215a681dd561c6ad1f17622990ef52e7cc1ad460ebcb9502661504e40263a83b",
+    "training/train.jsonl": "4da776de0cc7de1e1d8434b6c6bba7094fc152e6f1fc1747b3ef8da76427a2d1",
+    "training/valid.jsonl": "df286740a2386407db27ff527d644bb9d17febcc217269ef73ad20fe4dafe2a0"
+  },
+  "license": "Apache-2.0",
+  "limitations": "Small synthetic local suite. Shared tool schemas and template families. Not SWE-bench, not evidence of SOTA.",
+  "private_data": false,
+  "release_rule": "Release is evaluated only after candidate selection; never train on it or use it to select a new candidate.",
+  "seed": 20261102,
+  "selection_split": "dev",
+  "source": "original synthetic templates in ruflo_model/data.py",
+  "teacher_model": null,
+  "version": 1
+}

@@ -1,0 +1,83 @@
+{
+  "behavioral_gate_passed": false,
+  "paired": {
+    "direct": {
+      "gains": [
+        "we-release-04",
+        "we-release-15"
+      ],
+      "regressions": [
+        "we-release-01",
+        "we-release-03",
+        "we-release-09"
+      ],
+      "two_sided_exact_mcnemar_p": 1.0
+    },
+    "thinking": {
+      "gains": [
+        "we-release-01",
+        "we-release-12"
+      ],
+      "regressions": [],
+      "two_sided_exact_mcnemar_p": 0.5
+    }
+  },
+  "plan_sha256": "6e0ed9d8ce7febb1ffc582d6fb3703f14d0e73a90a7b8a7ee3d1e4f9f4f57e5d",
+  "production_authorized": false,
+  "protocol_limitations": [
+    "16 fresh synthetic math questions share template families with development",
+    "one seeded sample per question per arm; low statistical power",
+    "MLX and 2048 tokens differ from published vLLM and 32768 token evaluation",
+    "baseline profile chosen from prior development; release does not select profiles or candidates",
+    "no coding, tool use, cross model, general reasoning, or RSI claim"
+  ],
+  "recursive_self_improvement_verified": false,
+  "sota_verified": false,
+  "summary": {
+    "base_direct": {
+      "answer_correct": 13,
+      "completed": 13,
+      "delivered_correct": 13,
+      "max_peak_memory_gb": 3.163047502,
+      "n": 16,
+      "output_tokens": 13458,
+      "repetitive_end": 0,
+      "truncated": 3,
+      "wall_seconds": 113.54788200138137
+    },
+    "base_thinking": {
+      "answer_correct": 3,
+      "completed": 1,
+      "delivered_correct": 1,
+      "max_peak_memory_gb": 3.163047502,
+      "n": 16,
+      "output_tokens": 32295,
+      "repetitive_end": 0,
+      "truncated": 15,
+      "wall_seconds": 269.95479054376483
+    },
+    "selected_direct": {
+      "answer_correct": 12,
+      "completed": 14,
+      "delivered_correct": 12,
+      "max_peak_memory_gb": 3.163047502,
+      "n": 16,
+      "output_tokens": 10713,
+      "repetitive_end": 0,
+      "truncated": 2,
+      "wall_seconds": 90.52959683397785
+    },
+    "selected_thinking": {
+      "answer_correct": 5,
+      "completed": 3,
+      "delivered_correct": 3,
+      "max_peak_memory_gb": 3.163047502,
+      "n": 16,
+      "output_tokens": 31167,
+      "repetitive_end": 0,
+      "truncated": 13,
+      "wall_seconds": 260.5305305016227
+    }
+  },
+  "verified": true
+}

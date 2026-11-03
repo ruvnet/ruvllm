@@ -1,0 +1,23 @@
+model: models/base-4bit
+train: true
+data: data/training
+fine_tune_type: lora
+seed: 20261102
+num_layers: 16
+batch_size: 1
+iters: 96
+val_batches: 4
+learning_rate: 0.00005
+steps_per_report: 4
+steps_per_eval: 32
+save_every: 32
+adapter_path: adapters/training
+max_seq_length: 1152
+grad_checkpoint: true
+grad_accumulation_steps: 2
+mask_prompt: true
+lora_parameters:
+  rank: 8
+  dropout: 0.0
+  scale: 16.0
+  keys: [mlp.down_proj]

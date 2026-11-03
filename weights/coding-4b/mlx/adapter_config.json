@@ -1,0 +1,12 @@
+{
+  "fine_tune_type": "lora",
+  "lora_parameters": {
+    "dropout": 0.0,
+    "keys": [
+      "mlp.down_proj"
+    ],
+    "rank": 8,
+    "scale": 2.0
+  },
+  "num_layers": 16
+}

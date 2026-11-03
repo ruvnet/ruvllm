@@ -1,0 +1,41 @@
+{
+  "models": [
+    {
+      "bytes": 11544,
+      "key": "qwen035-08b-base",
+      "license": "Apache-2.0",
+      "model": "Qwen/Qwen3.5-0.8B",
+      "modified": false,
+      "path": "qwen035-08b-base.LICENSE",
+      "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+      "sha256": "bbedc3fda3305820b977265f01b8619d87570a6739de3a5582c3464840f1e57a",
+      "source_url": "https://huggingface.co/Qwen/Qwen3.5-0.8B/resolve/2fc06364715b967f1860aea9cf38778875588b17/LICENSE"
+    },
+    {
+      "bytes": 11544,
+      "key": "qwen035-4b-base",
+      "license": "Apache-2.0",
+      "model": "Qwen/Qwen3.5-4B",
+      "modified": false,
+      "path": "qwen035-4b-base.LICENSE",
+      "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+      "sha256": "bbedc3fda3305820b977265f01b8619d87570a6739de3a5582c3464840f1e57a",
+      "source_url": "https://huggingface.co/Qwen/Qwen3.5-4B/resolve/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a/LICENSE"
+    },
+    {
+      "bytes": 11343,
+      "key": "qwen3-coder-30b",
+      "license": "Apache-2.0",
+      "model": "Qwen/Qwen3-Coder-30B-A3B-Instruct",
+      "modified": false,
+      "path": "qwen3-coder-30b.LICENSE",
+      "revision": "b2cff646eb4bb1d68355c01b18ae02e7cf42d120",
+      "sha256": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-Coder-30B-A3B-Instruct/resolve/b2cff646eb4bb1d68355c01b18ae02e7cf42d120/LICENSE"
+    }
+  ],
+  "retrieval": "Anonymous HTTPS from the official model repositories at the pinned revisions",
+  "schema": "ruflo-model-license-notices/v1",
+  "scope": "These files describe the upstream model checkpoints only; no combined binary or dependency license is asserted",
+  "source_models_manifest_sha256": "c0754b60592fe6cbd28b53edbaa3624025f89f00e8aa15440bda03734323390a"
+}

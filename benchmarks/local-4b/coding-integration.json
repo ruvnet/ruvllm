@@ -1,0 +1,29 @@
+{
+  "adapter_sha256": "52e5adefc83cc77357158ab4d4ea667287b3eaef5f87611b40e7a3397fabb0a4",
+  "after_sha256": "5c2ba7c9e9abf3267312f78f25c6b30e23b671055ddd60f3877cab27448d93fe",
+  "backend_binding_verified": true,
+  "bash_tests_completed": true,
+  "before_sha256": "4054d93b357e1359616722171ef8564a20ef0493f167effd28c5e56243dd116e",
+  "claude_version": "2.1.316 (Claude Code)",
+  "completed_tool_names": [
+    "Bash",
+    "Edit",
+    "Read"
+  ],
+  "exit_code": 0,
+  "fixture_only": true,
+  "independent_tests_passed": true,
+  "matched_adapter_tensors": 32,
+  "passed": true,
+  "permission_bypass": false,
+  "router_version": "3.1.3",
+  "seconds": 20.826,
+  "test_reason": "passed",
+  "timestamp": "2026-11-03T05:23:57.392012+00:00",
+  "tool_names": [
+    "Read",
+    "Read",
+    "Edit",
+    "Bash"
+  ]
+}

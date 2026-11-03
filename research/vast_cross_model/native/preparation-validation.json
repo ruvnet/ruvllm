@@ -1,0 +1,120 @@
+{
+  "bootstrap_requirements_sha256": "37ddb481023ffd0614367fda31ae75d6e1d07592dd7a34086e2f349590640ac9",
+  "cargo_metadata": {
+    "argv": [
+      "cargo",
+      "metadata",
+      "--no-deps",
+      "--locked",
+      "--offline",
+      "--format-version",
+      "1"
+    ],
+    "exit_code": 0,
+    "stderr_sha256": "887c22d5157ad120f94281f79f688fe78b70040b45ff97e94f1054dddfdbed1c",
+    "workspace_packages": 219
+  },
+  "commands": [
+    {
+      "argv": [
+        "bash",
+        "-n",
+        "scripts/vast_native_prepare.sh"
+      ],
+      "exit_code": 0,
+      "name": "bash-syntax",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds": 0.004093457944691181
+    },
+    {
+      "argv": [
+        "/Users/cohen/Projects/ruflo-code-model/.venv/bin/python",
+        "-m",
+        "py_compile",
+        "research/vast_cross_model/native/prepare.py",
+        "research/vast_cross_model/native/test_prepare.py"
+      ],
+      "exit_code": 0,
+      "name": "python-syntax",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds": 0.022376083303242922
+    },
+    {
+      "argv": [
+        "/Users/cohen/Projects/ruflo-code-model/.venv/bin/python",
+        "-m",
+        "unittest",
+        "research/vast_cross_model/native/test_prepare.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "name": "preparation-tests",
+      "output_sha256": "0bd75045471efe40434373380cf79080f66cb6a441f3974d60436e12266061de",
+      "seconds": 0.053189917001873255
+    }
+  ],
+  "host_platform": "macOS-26.1-arm64-arm-64bit",
+  "implementation_files": {
+    "research/vast_cross_model/native/README.md": "0eeb5712b84eaada34b7aaecfda0c8570032a95489af52bdc9207a98085eba60",
+    "research/vast_cross_model/native/bootstrap-requirements.json": "37ddb481023ffd0614367fda31ae75d6e1d07592dd7a34086e2f349590640ac9",
+    "research/vast_cross_model/native/prepare.py": "94c6725be9109e0d83439ec46bde0f0a64b07e48e68b9fd58904bd8c1b9b48ec",
+    "research/vast_cross_model/native/test_prepare.py": "86137bc3c8e7d09728227a7290b4d100c45dec9112f4a73c99aeb2d590f30929",
+    "scripts/vast_native_prepare.sh": "939ffb029f6e3e64a0571046dd89f75e5ad1f253ff1b67c1045669e74dce0d1f"
+  },
+  "linux_bootstrap_verified": false,
+  "linux_build_verified": false,
+  "native_unit_tests_run_on_linux": false,
+  "paid_calls": 0,
+  "preparation_tests_passed": 9,
+  "recorded_at": "2026-11-03T06:18:51.582692+00:00",
+  "schema": "ruvllm-linux-native-preparation-validation/v1",
+  "source_archive_sha256": "f5d093c47c68501ccd76b477e2dd8133fc868cd37dbc2dd9dbfda8ff82b66caf",
+  "source_extraction": {
+    "archive_sha256": "f5d093c47c68501ccd76b477e2dd8133fc868cd37dbc2dd9dbfda8ff82b66caf",
+    "manifest_sha256": "731b39197b09c1f606b2dd53ecb3f888e51573e47e576fe8513c2dd45cf2af40",
+    "schema": "ruvllm-linux-native-source-verification/v1",
+    "source_commit": "f5c3444968ede44e43744460192198962ae94da2",
+    "source_tree": "f0a37eeeaf7c515ca6724057536e308112d4ea75",
+    "verified_bytes": 95258554,
+    "verified_files": 4930
+  },
+  "source_recheck": {
+    "manifest_sha256": "731b39197b09c1f606b2dd53ecb3f888e51573e47e576fe8513c2dd45cf2af40",
+    "source_commit": "f5c3444968ede44e43744460192198962ae94da2",
+    "source_tree": "f0a37eeeaf7c515ca6724057536e308112d4ea75",
+    "verified_bytes": 95258554,
+    "verified_files": 4930
+  },
+  "toolchain_archives": [
+    {
+      "archive_bytes": 81050916,
+      "component": "rustc",
+      "entries": 70,
+      "installed": false,
+      "seconds": 14.187616459093988,
+      "sha256": "9819d0a32d56bd339585319c80260e332779f5541fd66838ab7e016d6c814819",
+      "uncompressed_bytes": 407607879,
+      "unsupported_entries": []
+    },
+    {
+      "archive_bytes": 30108400,
+      "component": "rust-std",
+      "entries": 81,
+      "installed": false,
+      "seconds": 6.892797625157982,
+      "sha256": "1c1e704ae80126b7de34f72ea2825f7fd01736dec20732faed47374b95282fba",
+      "uncompressed_bytes": 169023487,
+      "unsupported_entries": []
+    },
+    {
+      "archive_bytes": 11150208,
+      "component": "cargo",
+      "entries": 68,
+      "extraction_verified": true,
+      "installed": false,
+      "installer_sha256": "6a9caa4cf6b65286aae8c796481f11784f6f805752664592c6fb994c3a5f1f32",
+      "sha256": "e1be5f5ff7f7f80ca506fb65770b759edbdc6d303781ed71c5de8ec8a8394779",
+      "unsupported_entries": []
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ruflo-code-model"
+version = "0.1.0"
+description = "Measured tool use specialization for models behind Claude Code routers"
+requires-python = ">=3.12"
+license = "Apache-2.0"
+dependencies = ["httpx==0.28.1", "jsonschema==4.26.0", "pyyaml==6.0.3"]
+
+[project.optional-dependencies]
+apple = ["mlx-lm==0.31.3", "safetensors==0.7.0"]
+gateway = ["fastapi==0.162.0", "uvicorn==0.54.0"]
+test = ["pytest==9.2.0"]
+
+[project.scripts]
+ruflo-model = "ruflo_model.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["ruflo_model*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

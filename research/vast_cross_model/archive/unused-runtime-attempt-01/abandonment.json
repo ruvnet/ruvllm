@@ -1,0 +1,12 @@
+{
+  "status": "abandoned_before_scored_generation",
+  "protocol_sha256": "0d50a9f15a515771f84a0f73ca99329251aefbd8c4607f6112df7c5bfd637eb8",
+  "source_commit": "7c22327",
+  "reason": "Transformers5.12.1 apply_chat_template defaults return_dict=True. Worker expected a flat token ID list. Add explicit return_dict=False and validate the token ID contract. No cases, arms, token budgets, EOS sets, or selection changed.",
+  "last_observed_remote_state": {
+    "checked_at": "2026-11-03T06:42:47.599995+00:00",
+    "scored_arms": 0,
+    "preflight_states": 0
+  },
+  "remote_failure_log": "Root preserves original pipeline and unscored preflight failure; no remote worker mutation in this correction."
+}

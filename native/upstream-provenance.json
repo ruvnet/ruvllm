@@ -1,0 +1,581 @@
+{
+  "files": [
+    {
+      "bytes": 1060,
+      "modified": false,
+      "path": "LICENSE",
+      "sha256": "50fefb93560af4421369c99c93cc214cd835b3181ab7f16323f9e6f2ded870e3",
+      "source_path": "LICENSE"
+    },
+    {
+      "bytes": 1081,
+      "modified": false,
+      "path": "examples/weight_evolution.rs",
+      "sha256": "ea427c75ba0ae594388e98e8cf7bca8f28f4876e0016b286289fbdedc7270a61",
+      "source_path": "crates/ruvllm/examples/weight_evolution.rs"
+    },
+    {
+      "bytes": 33309,
+      "modified": false,
+      "path": "src/weight_evolution.rs",
+      "sha256": "d7ba18a2865dc37ca8edf03133443d8360c5939f68116c638294b8b5817145b7",
+      "source_path": "crates/ruvllm/src/weight_evolution.rs"
+    },
+    {
+      "bytes": 14833,
+      "modified": false,
+      "path": "src/weight_evolution/tests.rs",
+      "sha256": "e1bead5f1e1efcb6bb19b149b1db8abcc3218b2a37cd490ed09aeb9a43d52478",
+      "source_path": "crates/ruvllm/src/weight_evolution/tests.rs"
+    },
+    {
+      "bytes": 1169,
+      "modified": false,
+      "path": "vendor/rvf-forge-core/Cargo.toml",
+      "sha256": "8ef5e02d88398e61c6f9a671b22a3b9c80c9df300b33c6dbcfd813266e34bb53",
+      "source_path": "crates/rvf-forge-core/Cargo.toml"
+    },
+    {
+      "bytes": 15963,
+      "modified": false,
+      "path": "vendor/rvf-forge-core/src/author/mod.rs",
+      "sha256": "59776f6da3b4dea5dea05ee80e55d61cb3f6ecf8a511762e7f23292821163076",
+      "source_path": "crates/rvf-forge-core/src/author/mod.rs"
+    },
+    {
+      "bytes": 9148,
+      "modified": false,
+      "path": "vendor/rvf-forge-core/src/author/root_manifest.rs",
+      "sha256": "cc2b6ef21b2c19181a6a864dc88f89f6f8568ac47d7e7932ae405205fcd7884e",
+      "source_path": "crates/rvf-forge-core/src/author/root_manifest.rs"
+    },
+    {
+      "bytes": 3094,
+      "modified": false,
+      "path": "vendor/rvf-forge-core/src/author/segment.rs",
+      "sha256": "cc696d82ea31a1098f8118f34b3884f78dafef679f016818162f3ae9ca854496",
+      "source_path": "crates/rvf-forge-core/src/author/segment.rs"
+    },
+    {
+      "bytes": 5529,
+      "modified": false,
+      "path": "vendor/rvf-forge-core/src/bin/rvforge-rvf-check.rs",
+      "sha256": "73c9ef0404ecca6e4b6e8d4f41ca6155021cc354b1aec02f13fa7df41183b233",
+      "source_path": "crates/rvf-forge-core/src/bin/rvforge-rvf-check.rs"
+    },
+    {
+      "bytes": 8090,
+      "modified": false,
+      "path": "vendor/rvf-forge-core/src/canonical.rs",
+      "sha256": "6d26c1e1daaa129b5a3db061c7b39d9e7a0e8bbd5fecd41ad740061a6a57e371",
+      "source_path": "crates/rvf-forge-core/src/canonical.rs"
+    },
+    {
+      "bytes": 9136,
+      "modified": false,
+      "path": "vendor/rvf-forge-core/src/capability.rs",
+      "sha256": "08c5405131541e5451dee76b58548c6b05858428228501fcc47e2ababb7acbce",
+      "source_path": "crates/rvf-forge-core/src/capability.rs"
+    },
+    {
+      "bytes": 15516,
+      "modified": false,
+      "path": "vendor/rvf-forge-core/src/checksums.rs",
+      "sha256": "beadb04f2a1a396211543c1a16a444cc328f0a0f61dd887bb058e197b75288b7",
+      "source_path": "crates/rvf-forge-core/src/checksums.rs"
+    },
+    {
+      "bytes": 16737,
+      "modified": false,
+      "path": "vendor/rvf-forge-core/src/container.rs",
+      "sha256": "9e229aad2ce5b65cc35d72667d59c5875cb0fa314035d1cb5bb2b663715e9c5d",
+      "source_path": "crates/rvf-forge-core/src/container.rs"
+    },
+    {
+      "bytes": 6616,
+      "modified": false,
+      "path": "vendor/rvf-forge-core/src/error.rs",
+      "sha256": "f68fb1f7e3dc1f06db5428e9f360b939dda02b36e8c05d4661b1bcb746157976",
+      "source_path": "crates/rvf-forge-core/src/error.rs"
+    },
+    {
+      "bytes": 13993,
+      "modified": false,
+      "path": "vendor/rvf-forge-core/src/inspect.rs",
+      "sha256": "ff386211c8e85cb3d99f18ec26cf05791d5054c699b24714902ce5824e1d97d0",
+      "source_path": "crates/rvf-forge-core/src/inspect.rs"
+    },
+    {
+      "bytes": 7104,
+      "modified": false,
+      "path": "vendor/rvf-forge-core/src/lib.rs",
+      "sha256": "e7f9282e40638573583334903a44565697c242339f78b0be2c920618b95f23bb",
+      "source_path": "crates/rvf-forge-core/src/lib.rs"
+    },
+    {
+      "bytes": 17268,
+      "modified": false,
+      "path": "vendor/rvf-forge-core/src/manifest.rs",
+      "sha256": "d12f98f3b3a2570201fad39d91df6c54f78a08a396cc44908e17c65de375b61a",
+      "source_path": "crates/rvf-forge-core/src/manifest.rs"
+    },
+    {
+      "bytes": 13137,
+      "modified": false,
+      "path": "vendor/rvf-forge-core/src/provenance.rs",
+      "sha256": "34ea340b1ae7d8e880f4ddf1097e6fcbdce1a8924d88e18383eff7d5f9af6fff",
+      "source_path": "crates/rvf-forge-core/src/provenance.rs"
+    },
+    {
+      "bytes": 8881,
+      "modified": false,
+      "path": "vendor/rvf-forge-core/src/target.rs",
+      "sha256": "538c947b94cfa350e116f3c1e2894082411fa431d41a25594425e7528e29866d",
+      "source_path": "crates/rvf-forge-core/src/target.rs"
+    },
+    {
+      "bytes": 4758,
+      "modified": false,
+      "path": "vendor/rvf-forge-core/src/testkit.rs",
+      "sha256": "508e2d38c2ff1d1de905ac13afe828c2f240257bfe68e4d10fd1bcd46b2e2280",
+      "source_path": "crates/rvf-forge-core/src/testkit.rs"
+    },
+    {
+      "bytes": 5937,
+      "modified": false,
+      "path": "vendor/rvf-forge-core/src/verify/checks.rs",
+      "sha256": "235248afc9ec5df23d7d46d903ca7ababe11bd998dfd283e0b68c1a32301d4dd",
+      "source_path": "crates/rvf-forge-core/src/verify/checks.rs"
+    },
+    {
+      "bytes": 15391,
+      "modified": false,
+      "path": "vendor/rvf-forge-core/src/verify/mod.rs",
+      "sha256": "1957f2cabc3be7b66b7e298108ed246bedbd1c915952102734d0d9a45b9c3a07",
+      "source_path": "crates/rvf-forge-core/src/verify/mod.rs"
+    },
+    {
+      "bytes": 13331,
+      "modified": false,
+      "path": "vendor/rvf-forge-core/tests/pipeline.rs",
+      "sha256": "4baad4abb4a547056a08259d97df0355a4b9fb7c19ea8447c8c77a672c5a2f35",
+      "source_path": "crates/rvf-forge-core/tests/pipeline.rs"
+    },
+    {
+      "bytes": 765,
+      "modified": false,
+      "path": "vendor/rvf/rvf-crypto/Cargo.toml",
+      "sha256": "2fd14a427472c6f2d25a382de453da87b9e536c53f0503cab3b66f2c14e01dbc",
+      "source_path": "crates/rvf/rvf-crypto/Cargo.toml"
+    },
+    {
+      "bytes": 4213,
+      "modified": false,
+      "path": "vendor/rvf/rvf-crypto/README.md",
+      "sha256": "6a80e40ab0d59608d4a6961ae6f4bc666ce02845d5e6d92f323fc5185a165ff4",
+      "source_path": "crates/rvf/rvf-crypto/README.md"
+    },
+    {
+      "bytes": 30983,
+      "modified": false,
+      "path": "vendor/rvf/rvf-crypto/src/attestation.rs",
+      "sha256": "29f459b79804ded88201ec53d32ebc5a2cf8a848fa677975a6cbf8c91b015022",
+      "source_path": "crates/rvf/rvf-crypto/src/attestation.rs"
+    },
+    {
+      "bytes": 3796,
+      "modified": false,
+      "path": "vendor/rvf/rvf-crypto/src/footer.rs",
+      "sha256": "f109bf01bc4b1d8521bacfc33b572732d18dda9ef625d73ffdb09e8fa8a10f2d",
+      "source_path": "crates/rvf/rvf-crypto/src/footer.rs"
+    },
+    {
+      "bytes": 2672,
+      "modified": false,
+      "path": "vendor/rvf/rvf-crypto/src/hash.rs",
+      "sha256": "edb841732f05c9042737cf90b0fdebcfbd76a294279a3a7cd49f06b089d5eccf",
+      "source_path": "crates/rvf/rvf-crypto/src/hash.rs"
+    },
+    {
+      "bytes": 1193,
+      "modified": false,
+      "path": "vendor/rvf/rvf-crypto/src/lib.rs",
+      "sha256": "bbbfea83ea4c0c3970a663b8d88b22afe50bdca598e09569716e7c53751b6995",
+      "source_path": "crates/rvf/rvf-crypto/src/lib.rs"
+    },
+    {
+      "bytes": 9059,
+      "modified": false,
+      "path": "vendor/rvf/rvf-crypto/src/lineage.rs",
+      "sha256": "1ceff7897dedd44da09ce27d79d52a2b180f80bd3f80508e189e73bcc0c8e1a9",
+      "source_path": "crates/rvf/rvf-crypto/src/lineage.rs"
+    },
+    {
+      "bytes": 6514,
+      "modified": false,
+      "path": "vendor/rvf/rvf-crypto/src/sign.rs",
+      "sha256": "a73df45175a1c20df5e11ffc6a9e9fa4f82cf052d033305ad3b6a38bcb95cf02",
+      "source_path": "crates/rvf/rvf-crypto/src/sign.rs"
+    },
+    {
+      "bytes": 6153,
+      "modified": false,
+      "path": "vendor/rvf/rvf-crypto/src/witness.rs",
+      "sha256": "d7009f762643347cf8a5597bea7a6b09276e3a552f89ea23f6c6b4e88fe58337",
+      "source_path": "crates/rvf/rvf-crypto/src/witness.rs"
+    },
+    {
+      "bytes": 831,
+      "modified": false,
+      "path": "vendor/rvf/rvf-types/Cargo.toml",
+      "sha256": "8fb8c0742abfff3fad142eba9543a0fdef56ea7569bf869ac5dc2af401e60b1a",
+      "source_path": "crates/rvf/rvf-types/Cargo.toml"
+    },
+    {
+      "bytes": 11359,
+      "modified": false,
+      "path": "vendor/rvf/rvf-types/README.md",
+      "sha256": "510ee385211c46cebc0bd02df268a224c8b656221506c3a4153e644c7ccbdf80",
+      "source_path": "crates/rvf/rvf-types/README.md"
+    },
+    {
+      "bytes": 32972,
+      "modified": false,
+      "path": "vendor/rvf/rvf-types/src/agi_container.rs",
+      "sha256": "15966b80a6d7374226043c32d9ca86ab09ca732ee8815eeec813ce433b851a2d",
+      "source_path": "crates/rvf/rvf-types/src/agi_container.rs"
+    },
+    {
+      "bytes": 9270,
+      "modified": false,
+      "path": "vendor/rvf/rvf-types/src/attestation.rs",
+      "sha256": "45de683855c578950910e627347b1639774676effc1033897ce8912b75dfbc99",
+      "source_path": "crates/rvf/rvf-types/src/attestation.rs"
+    },
+    {
+      "bytes": 1475,
+      "modified": false,
+      "path": "vendor/rvf/rvf-types/src/checksum.rs",
+      "sha256": "5792d8cb6e19c0cb691434b3ffd2d32118d67390423a75753da365b9ca6ff2d3",
+      "source_path": "crates/rvf/rvf-types/src/checksum.rs"
+    },
+    {
+      "bytes": 1184,
+      "modified": false,
+      "path": "vendor/rvf/rvf-types/src/compression.rs",
+      "sha256": "b0e69bf7ea352a2895dd94fa0f0fe56a2b288f285f826527b6f2c73bbcc76444",
+      "source_path": "crates/rvf/rvf-types/src/compression.rs"
+    },
+    {
+      "bytes": 3937,
+      "modified": false,
+      "path": "vendor/rvf/rvf-types/src/constants.rs",
+      "sha256": "08036a4ce5658d22824519ee3a61ff7864fa7d0ac63c118b37236adf0ea4688e",
+      "source_path": "crates/rvf/rvf-types/src/constants.rs"
+    },
+    {
+      "bytes": 8429,
+      "modified": false,
+      "path": "vendor/rvf/rvf-types/src/cow_map.rs",
+      "sha256": "bbaf7e8aa87ce112c2999bad728074c9dc898c029364ec6a4e906e03365dd178",
+      "source_path": "crates/rvf/rvf-types/src/cow_map.rs"
+    },
+    {
+      "bytes": 7177,
+      "modified": false,
+      "path": "vendor/rvf/rvf-types/src/dashboard.rs",
+      "sha256": "c74a2d435ea5ed2a3372be234cfb6bfb3141cf480fc6dfce6a0980487ebe7868",
+      "source_path": "crates/rvf/rvf-types/src/dashboard.rs"
+    },
+    {
+      "bytes": 2440,
+      "modified": false,
+      "path": "vendor/rvf/rvf-types/src/data_type.rs",
+      "sha256": "c67f55b94d09f0a3af304e0634dea808c1b744b51a33fe5a3d3edaeeb3e36fd0",
+      "source_path": "crates/rvf/rvf-types/src/data_type.rs"
+    },
+    {
+      "bytes": 7066,
+      "modified": false,
+      "path": "vendor/rvf/rvf-types/src/delta.rs",
+      "sha256": "43fb7f1d73c05676a8c1e5f0183f76039e9806a60399691a7c0cab7ed3f05f8c",
+      "source_path": "crates/rvf/rvf-types/src/delta.rs"
+    },
+    {
+      "bytes": 11608,
+      "modified": false,
+      "path": "vendor/rvf/rvf-types/src/ebpf.rs",
+      "sha256": "0e7ba3dc91b9b2aad62719a851c6fc3d25aca5e23819bc928c84e56a0e3963b6",
+      "source_path": "crates/rvf/rvf-types/src/ebpf.rs"
+    },
+    {
+      "bytes": 8200,
+      "modified": false,
+      "path": "vendor/rvf/rvf-types/src/ed25519.rs",
+      "sha256": "cda3a13680cc21466c36260625398cd3cfaf1e1489085e110ce15f195de7c5e9",
+      "source_path": "crates/rvf/rvf-types/src/ed25519.rs"
+    },
+    {
+      "bytes": 17920,
+      "modified": false,
+      "path": "vendor/rvf/rvf-types/src/error.rs",
+      "sha256": "37e93c4cd9431cc920cef501315a7fb77173372361dbd32760d355aaefb49581",
+      "source_path": "crates/rvf/rvf-types/src/error.rs"
+    },
+    {
+      "bytes": 2480,
+      "modified": false,
+      "path": "vendor/rvf/rvf-types/src/filter.rs",
+      "sha256": "6e36a2402ad06389c2301bb787deacfca1b746e2c6fac5be8d5c0f3067793999",
+      "source_path": "crates/rvf/rvf-types/src/filter.rs"
+    },
+    {
+      "bytes": 4114,
+      "modified": false,
+      "path": "vendor/rvf/rvf-types/src/flags.rs",
+      "sha256": "0278c64e3b3169e3cae00987ddab51618953db9fefb49b51474bf51b4db68d56",
+      "source_path": "crates/rvf/rvf-types/src/flags.rs"
+    },
+    {
+      "bytes": 19320,
+      "modified": false,
+      "path": "vendor/rvf/rvf-types/src/kernel.rs",
+      "sha256": "b394de8736f0cc001b9c288319a54cdfd2eb96956c41b3be732f364c63beb635",
+      "source_path": "crates/rvf/rvf-types/src/kernel.rs"
+    },
+    {
+      "bytes": 6876,
+      "modified": false,
+      "path": "vendor/rvf/rvf-types/src/kernel_binding.rs",
+      "sha256": "098475049cc87f60da05f63a54663ff04f9f7829efe43654d0577e5862723f82",
+      "source_path": "crates/rvf/rvf-types/src/kernel_binding.rs"
+    },
+    {
+      "bytes": 5102,
+      "modified": false,
+      "path": "vendor/rvf/rvf-types/src/lib.rs",
+      "sha256": "78c5422f7234edc6a781d356ec3429d192c2946d9afe1133f90300788076b410",
+      "source_path": "crates/rvf/rvf-types/src/lib.rs"
+    },
+    {
+      "bytes": 10638,
+      "modified": false,
+      "path": "vendor/rvf/rvf-types/src/lineage.rs",
+      "sha256": "8d61043348b8861f1beeabadb97d9bb1687e9efcfe130b1b374822014f16b0c4",
+      "source_path": "crates/rvf/rvf-types/src/lineage.rs"
+    },
+    {
+      "bytes": 11867,
+      "modified": false,
+      "path": "vendor/rvf/rvf-types/src/manifest.rs",
+      "sha256": "32e25c398b2548a8e4d76646ebc4cacf09c8704bb13ab0c5c6da5337eff66763",
+      "source_path": "crates/rvf/rvf-types/src/manifest.rs"
+    },
+    {
+      "bytes": 10348,
+      "modified": false,
+      "path": "vendor/rvf/rvf-types/src/membership.rs",
+      "sha256": "570a151e3013990a581c2fb9f66d2b039ad8b8454ce5430469d4ca9f5ce912b6",
+      "source_path": "crates/rvf/rvf-types/src/membership.rs"
+    },
+    {
+      "bytes": 21921,
+      "modified": false,
+      "path": "vendor/rvf/rvf-types/src/metadata.rs",
+      "sha256": "9583ac4967209cd15440049f9cea3ce8741a799fd888b34bb9513f1a48410bb9",
+      "source_path": "crates/rvf/rvf-types/src/metadata.rs"
+    },
+    {
+      "bytes": 5793,
+      "modified": false,
+      "path": "vendor/rvf/rvf-types/src/profile.rs",
+      "sha256": "29339034882138a57f22bb93a01f9d2b2b6142c039876e0dd5515a542ea12c89",
+      "source_path": "crates/rvf/rvf-types/src/profile.rs"
+    },
+    {
+      "bytes": 13043,
+      "modified": false,
+      "path": "vendor/rvf/rvf-types/src/qr_seed.rs",
+      "sha256": "c72f20bb833ca1019a3e3d667535b8c70917208169f6bfa561c50ca5342624e2",
+      "source_path": "crates/rvf/rvf-types/src/qr_seed.rs"
+    },
+    {
+      "bytes": 14203,
+      "modified": false,
+      "path": "vendor/rvf/rvf-types/src/quality.rs",
+      "sha256": "0163c68f3e66c7169dba0ad7e02ebb86bf244a05c3252cfa5c5414856962244f",
+      "source_path": "crates/rvf/rvf-types/src/quality.rs"
+    },
+    {
+      "bytes": 1472,
+      "modified": false,
+      "path": "vendor/rvf/rvf-types/src/quant_type.rs",
+      "sha256": "638eb0f1378f10179a22bf5802843bef2af7b916681c43405ca2dad77753f2e5",
+      "source_path": "crates/rvf/rvf-types/src/quant_type.rs"
+    },
+    {
+      "bytes": 6919,
+      "modified": false,
+      "path": "vendor/rvf/rvf-types/src/refcount.rs",
+      "sha256": "4884422990d260cb8f32365c081721306b01341a44a6674aa76283eb6cf4f861",
+      "source_path": "crates/rvf/rvf-types/src/refcount.rs"
+    },
+    {
+      "bytes": 14473,
+      "modified": false,
+      "path": "vendor/rvf/rvf-types/src/security.rs",
+      "sha256": "8c90b27f88a33e5a344221261783c3dfb3c96b48a52adae60e10c641895e18ef",
+      "source_path": "crates/rvf/rvf-types/src/security.rs"
+    },
+    {
+      "bytes": 4990,
+      "modified": false,
+      "path": "vendor/rvf/rvf-types/src/segment.rs",
+      "sha256": "7598c819d9c05db314164ac150528395d1ef5652583287ebcdfa61f1278c938d",
+      "source_path": "crates/rvf/rvf-types/src/segment.rs"
+    },
+    {
+      "bytes": 7214,
+      "modified": false,
+      "path": "vendor/rvf/rvf-types/src/segment_type.rs",
+      "sha256": "c9c4d6410871f5e57e7c0cadc1ff8a89aed6fd75917b2f0f003898ee90f4fd61",
+      "source_path": "crates/rvf/rvf-types/src/segment_type.rs"
+    },
+    {
+      "bytes": 10938,
+      "modified": false,
+      "path": "vendor/rvf/rvf-types/src/sha256.rs",
+      "sha256": "be58dc8636fe7b55867c6aee8acd55ee451066eb9dbe46e6875f7433dcb513bf",
+      "source_path": "crates/rvf/rvf-types/src/sha256.rs"
+    },
+    {
+      "bytes": 3730,
+      "modified": false,
+      "path": "vendor/rvf/rvf-types/src/signature.rs",
+      "sha256": "fd32b6372fa4ac5f8537912ce95bf82bdbfc632ac56eadf0be51d23bea3666e5",
+      "source_path": "crates/rvf/rvf-types/src/signature.rs"
+    },
+    {
+      "bytes": 16111,
+      "modified": false,
+      "path": "vendor/rvf/rvf-types/src/wasm_bootstrap.rs",
+      "sha256": "2a267d51932cfc88d96d42f46012a67efdf62ceaaf025e317eccea417d27bbc3",
+      "source_path": "crates/rvf/rvf-types/src/wasm_bootstrap.rs"
+    },
+    {
+      "bytes": 17379,
+      "modified": false,
+      "path": "vendor/rvf/rvf-types/src/witness.rs",
+      "sha256": "9d88f2f923623864b5e36aee644fd9ede40654e75c1040532ec10082f5deba3e",
+      "source_path": "crates/rvf/rvf-types/src/witness.rs"
+    },
+    {
+      "bytes": 708,
+      "modified": false,
+      "path": "vendor/rvf/rvf-wire/Cargo.toml",
+      "sha256": "f570743a2e98fadb7718dedf6022a3d4057edd7a467b7ede3487649762f6a46e",
+      "source_path": "crates/rvf/rvf-wire/Cargo.toml"
+    },
+    {
+      "bytes": 611,
+      "modified": false,
+      "path": "vendor/rvf/rvf-wire/README.md",
+      "sha256": "cb3c7080edd87e4f2f1ac944801935a32c7cbbd20bf68a5123fa218771e5d524",
+      "source_path": "crates/rvf/rvf-wire/README.md"
+    },
+    {
+      "bytes": 3919,
+      "modified": false,
+      "path": "vendor/rvf/rvf-wire/src/delta.rs",
+      "sha256": "291e59e3498d77fd830a0ed6441777e215c83eb80403f820b08211c3b74f31de",
+      "source_path": "crates/rvf/rvf-wire/src/delta.rs"
+    },
+    {
+      "bytes": 8393,
+      "modified": false,
+      "path": "vendor/rvf/rvf-wire/src/hash.rs",
+      "sha256": "8e40ae30003a387db9f92ccac39da7dccc6b4d9792ed825362bef62619bc1b69",
+      "source_path": "crates/rvf/rvf-wire/src/hash.rs"
+    },
+    {
+      "bytes": 7260,
+      "modified": false,
+      "path": "vendor/rvf/rvf-wire/src/hot_seg_codec.rs",
+      "sha256": "933f2b256768fe970763e77ddbb7d3fca5ab1d0c371029a7d36da277a4aa5021",
+      "source_path": "crates/rvf/rvf-wire/src/hot_seg_codec.rs"
+    },
+    {
+      "bytes": 9397,
+      "modified": false,
+      "path": "vendor/rvf/rvf-wire/src/index_seg_codec.rs",
+      "sha256": "460aa0d046ed8dde023d388e6e20ad20c15732ece1183d655520d509d0635238",
+      "source_path": "crates/rvf/rvf-wire/src/index_seg_codec.rs"
+    },
+    {
+      "bytes": 608,
+      "modified": false,
+      "path": "vendor/rvf/rvf-wire/src/lib.rs",
+      "sha256": "0ee8d74d721a775cfcab6f8156da5d1ed4d1e36ba197e264b83c3eefd957078e",
+      "source_path": "crates/rvf/rvf-wire/src/lib.rs"
+    },
+    {
+      "bytes": 10571,
+      "modified": false,
+      "path": "vendor/rvf/rvf-wire/src/manifest_codec.rs",
+      "sha256": "40069a4b35fd0b0c10e291324f9f81fa1083a9ba4632d4a4d95966a10354f02e",
+      "source_path": "crates/rvf/rvf-wire/src/manifest_codec.rs"
+    },
+    {
+      "bytes": 6309,
+      "modified": false,
+      "path": "vendor/rvf/rvf-wire/src/reader.rs",
+      "sha256": "a307f3a26fb9103421d37e399ef5a855a54b3c8ac5f28ecc00c2d0a99e7e0bb9",
+      "source_path": "crates/rvf/rvf-wire/src/reader.rs"
+    },
+    {
+      "bytes": 6641,
+      "modified": false,
+      "path": "vendor/rvf/rvf-wire/src/tail_scan.rs",
+      "sha256": "058aa4bbeb20814ce26d8b340168ee48f004694f8921bd88424aeb05ff18865a",
+      "source_path": "crates/rvf/rvf-wire/src/tail_scan.rs"
+    },
+    {
+      "bytes": 4076,
+      "modified": false,
+      "path": "vendor/rvf/rvf-wire/src/varint.rs",
+      "sha256": "938108f9a65c7ff0ab1677e1cedf2f39720798b2dbafa0ad32069108038b02bc",
+      "source_path": "crates/rvf/rvf-wire/src/varint.rs"
+    },
+    {
+      "bytes": 8933,
+      "modified": false,
+      "path": "vendor/rvf/rvf-wire/src/vec_seg_codec.rs",
+      "sha256": "6e99a0f8f340649934948c932d16fe123be79a52e8243ea0f0c64fab4070b4db",
+      "source_path": "crates/rvf/rvf-wire/src/vec_seg_codec.rs"
+    },
+    {
+      "bytes": 5622,
+      "modified": false,
+      "path": "vendor/rvf/rvf-wire/src/writer.rs",
+      "sha256": "dce98dfcaf9e4c3a8c4e0cfeae541463d8d2deb36b5fa93b8a657f1996f2c6cc",
+      "source_path": "crates/rvf/rvf-wire/src/writer.rs"
+    },
+    {
+      "bytes": 5474,
+      "modified": false,
+      "path": "vendor/rvf/rvf-wire/tests/wire_contract_golden.rs",
+      "sha256": "d51675c2124091af1d67530feebfd48b56475fe990395a18d6c5b6e03f88360b",
+      "source_path": "crates/rvf/rvf-wire/tests/wire_contract_golden.rs"
+    }
+  ],
+  "packaging_changes": [
+    "Minimal standalone Cargo workspace and library wrapper; original module, tests, CLI and four RVF crates are byte identical.",
+    "Cargo.lock is resolved for the extraction from the historical lock and checked separately."
+  ],
+  "schema": "ruvllm-native-source-extraction/v1",
+  "scope": "Offline Safetensors weight editing and RVF integrity; no inference runtime or production activation authority.",
+  "source_base_commit": "6a879a726b0d1d63e70a1ddb656263d8e6bab8a0",
+  "source_cargo_lock_sha256": "b71800785fb31011e78456605437433b44b5c960d7f1b36d1e420ecd6e3c0bb3",
+  "source_commit": "f5c3444968ede44e43744460192198962ae94da2",
+  "source_repository": "https://github.com/ruvnet/ruvector"
+}

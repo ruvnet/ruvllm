@@ -1,0 +1,329 @@
+{
+  "derived_report": {
+    "copied_fields": [
+      "release_paired",
+      "external_paired"
+    ],
+    "output_path": "local-4b/paired-verdicts.json",
+    "source_path": "results/report.json",
+    "source_sha256": "9f8cdc4d31a8efc8f708179a296b62e025cf8fd9b34622655f77d465127f7613"
+  },
+  "files": {
+    "README.md": {
+      "bytes": 7171,
+      "sha256": "24470af9ef59ab1cbce9d31b49141bb24888db208e05dc39dc13cc7b28153e08"
+    },
+    "local-08b/LICENSE-research.txt": {
+      "bytes": 1819,
+      "origin": {
+        "path": "research/weight_evolution/sources/LICENSE-research.txt",
+        "project": "ruflo-code-model",
+        "sha256": "395f7febedfda6b5498ca36cfe3344d3986659ce4385dd8b03d2d75604250a8e"
+      },
+      "sha256": "395f7febedfda6b5498ca36cfe3344d3986659ce4385dd8b03d2d75604250a8e"
+    },
+    "local-08b/cases.json": {
+      "bytes": 2304,
+      "origin": {
+        "path": "research/weight_evolution/cases.json",
+        "project": "ruflo-code-model",
+        "sha256": "d830c55b87895d7af1541b775afea78bce39fbf368a8262a60827e920a6894f2"
+      },
+      "sha256": "d830c55b87895d7af1541b775afea78bce39fbf368a8262a60827e920a6894f2"
+    },
+    "local-08b/native-release-alpha-100.json": {
+      "bytes": 1268,
+      "origin": {
+        "path": "research/weight_evolution/results/native-release-alpha-100.json",
+        "project": "ruflo-code-model",
+        "sha256": "24b24252e4cbc7933e3195ef1b19c794ebfeb17fcb9bfcfc1640abd309f27075"
+      },
+      "sha256": "24b24252e4cbc7933e3195ef1b19c794ebfeb17fcb9bfcfc1640abd309f27075"
+    },
+    "local-08b/plan.json": {
+      "bytes": 6647,
+      "origin": {
+        "path": "research/weight_evolution/results/plan.json",
+        "project": "ruflo-code-model",
+        "sha256": "6e0ed9d8ce7febb1ffc582d6fb3703f14d0e73a90a7b8a7ee3d1e4f9f4f57e5d"
+      },
+      "sha256": "6e0ed9d8ce7febb1ffc582d6fb3703f14d0e73a90a7b8a7ee3d1e4f9f4f57e5d"
+    },
+    "local-08b/plan.sha256.json": {
+      "bytes": 83,
+      "origin": {
+        "path": "research/weight_evolution/results/plan.sha256.json",
+        "project": "ruflo-code-model",
+        "sha256": "a69e9b56b13cc6a88595ef55e83d8808ec4a48de92dda97d635b158d0ccdbbbe"
+      },
+      "sha256": "a69e9b56b13cc6a88595ef55e83d8808ec4a48de92dda97d635b158d0ccdbbbe"
+    },
+    "local-08b/protocol.json": {
+      "bytes": 1384,
+      "origin": {
+        "path": "research/weight_evolution/results/protocol.json",
+        "project": "ruflo-code-model",
+        "sha256": "b8d1af883e510580399bcbaf7640f8f6e355827f2f9641dc8a40d3970d67c1d3"
+      },
+      "sha256": "b8d1af883e510580399bcbaf7640f8f6e355827f2f9641dc8a40d3970d67c1d3"
+    },
+    "local-08b/release-binding.json": {
+      "bytes": 515,
+      "origin": {
+        "path": "research/weight_evolution/results/release-binding.json",
+        "project": "ruflo-code-model",
+        "sha256": "b383ca6dd05be41791ee091133fb6ce42515527358b6fe70b4602ede3c918772"
+      },
+      "sha256": "b383ca6dd05be41791ee091133fb6ce42515527358b6fe70b4602ede3c918772"
+    },
+    "local-08b/release-generations.jsonl": {
+      "bytes": 795048,
+      "origin": {
+        "path": "research/weight_evolution/results/release-generations.jsonl",
+        "project": "ruflo-code-model",
+        "sha256": "bed4854053bb618e026df0fecee679b8e87ff886f931b13e6af947860ade113e"
+      },
+      "sha256": "bed4854053bb618e026df0fecee679b8e87ff886f931b13e6af947860ade113e"
+    },
+    "local-08b/release-summary.json": {
+      "bytes": 1065,
+      "origin": {
+        "path": "research/weight_evolution/results/release-summary.json",
+        "project": "ruflo-code-model",
+        "sha256": "a5b74045b760be0f2fe080de3b7c8e35edb2a7d176d005e1d29bf29e4bc9c44a"
+      },
+      "sha256": "a5b74045b760be0f2fe080de3b7c8e35edb2a7d176d005e1d29bf29e4bc9c44a"
+    },
+    "local-08b/rollback-verification.json": {
+      "bytes": 413,
+      "origin": {
+        "path": "research/weight_evolution/artifacts/rollback-verification.json",
+        "project": "ruflo-code-model",
+        "sha256": "9b300d46f99a4929ab59731391d9b1258024b7beaa39c0c436af8c0cb61fb48e"
+      },
+      "sha256": "9b300d46f99a4929ab59731391d9b1258024b7beaa39c0c436af8c0cb61fb48e"
+    },
+    "local-08b/runtime.json": {
+      "bytes": 197,
+      "origin": {
+        "path": "research/weight_evolution/results/runtime.json",
+        "project": "ruflo-code-model",
+        "sha256": "017e3f2d932571df5073bc068de4a22f03703585f6f9a823567cf41b1e919c40"
+      },
+      "sha256": "017e3f2d932571df5073bc068de4a22f03703585f6f9a823567cf41b1e919c40"
+    },
+    "local-08b/selection.json": {
+      "bytes": 944,
+      "origin": {
+        "path": "research/weight_evolution/results/selection.json",
+        "project": "ruflo-code-model",
+        "sha256": "a5ca41ce0a51573d0f56215878bd2c8e4be1640ded7de21b948085a39a360b71"
+      },
+      "sha256": "a5ca41ce0a51573d0f56215878bd2c8e4be1640ded7de21b948085a39a360b71"
+    },
+    "local-08b/toolchain.json": {
+      "bytes": 286,
+      "origin": {
+        "path": "research/weight_evolution/results/toolchain.json",
+        "project": "ruflo-code-model",
+        "sha256": "20c56d92e2c5d398b8eb678934d5292ba245e067a69f9fcf4eef1c2c4f908815"
+      },
+      "sha256": "20c56d92e2c5d398b8eb678934d5292ba245e067a69f9fcf4eef1c2c4f908815"
+    },
+    "local-08b/topology.json": {
+      "bytes": 258,
+      "origin": {
+        "path": "research/weight_evolution/results/topology.json",
+        "project": "ruflo-code-model",
+        "sha256": "8a4071f62e070e719a1d41d3711c8b2cc007171c8cd29d461ba58fd60329b2e0"
+      },
+      "sha256": "8a4071f62e070e719a1d41d3711c8b2cc007171c8cd29d461ba58fd60329b2e0"
+    },
+    "local-08b/verification.json": {
+      "bytes": 2284,
+      "origin": {
+        "path": "research/weight_evolution/results/verification.json",
+        "project": "ruflo-code-model",
+        "sha256": "4438a5a61e7ea39765ac3b1cf1f02d29dbd50444988c8485035276f27cdfd79b"
+      },
+      "sha256": "4438a5a61e7ea39765ac3b1cf1f02d29dbd50444988c8485035276f27cdfd79b"
+    },
+    "local-4b/HumanEval.LICENSE": {
+      "bytes": 1083,
+      "origin": {
+        "path": "data/external/HumanEval.LICENSE",
+        "project": "ruflo-code-model",
+        "sha256": "bcba3de214851cce46ed5af42d6698044616eeace887c3231bc7a20474ab639e"
+      },
+      "sha256": "bcba3de214851cce46ed5af42d6698044616eeace887c3231bc7a20474ab639e"
+    },
+    "local-4b/baseline-humaneval/protocol.json": {
+      "bytes": 721,
+      "origin": {
+        "path": "dist/ruflo-code-4b-0.1.0-preview/evidence/baseline-humaneval/protocol.json",
+        "project": "ruflo-code-model",
+        "sha256": "eab889cef900a7e8ca64c844e38e973876abd69d40df2494b634677155bbb329"
+      },
+      "sha256": "eab889cef900a7e8ca64c844e38e973876abd69d40df2494b634677155bbb329"
+    },
+    "local-4b/baseline-humaneval/responses.jsonl": {
+      "bytes": 181098,
+      "origin": {
+        "path": "dist/ruflo-code-4b-0.1.0-preview/evidence/baseline-humaneval/responses.jsonl",
+        "project": "ruflo-code-model",
+        "sha256": "02ad260d0d32d7a14284a4450dec3f00591e5fea8faf3b9bfb71cd158365df13"
+      },
+      "sha256": "02ad260d0d32d7a14284a4450dec3f00591e5fea8faf3b9bfb71cd158365df13"
+    },
+    "local-4b/baseline-humaneval/summary.json": {
+      "bytes": 352,
+      "origin": {
+        "path": "dist/ruflo-code-4b-0.1.0-preview/evidence/baseline-humaneval/summary.json",
+        "project": "ruflo-code-model",
+        "sha256": "213c071da2bf12f92f821c892fc2a3de9c2f8a7af6b544e7f841d25a03923c93"
+      },
+      "sha256": "213c071da2bf12f92f821c892fc2a3de9c2f8a7af6b544e7f841d25a03923c93"
+    },
+    "local-4b/baseline-release/protocol.json": {
+      "bytes": 720,
+      "origin": {
+        "path": "dist/ruflo-code-4b-0.1.0-preview/evidence/baseline-release/protocol.json",
+        "project": "ruflo-code-model",
+        "sha256": "fa5bf94eca349a16b5100fd684d6f8275687d3768c8a9b1872b0e402b9b18dd4"
+      },
+      "sha256": "fa5bf94eca349a16b5100fd684d6f8275687d3768c8a9b1872b0e402b9b18dd4"
+    },
+    "local-4b/baseline-release/responses.jsonl": {
+      "bytes": 22106,
+      "origin": {
+        "path": "dist/ruflo-code-4b-0.1.0-preview/evidence/baseline-release/responses.jsonl",
+        "project": "ruflo-code-model",
+        "sha256": "cbf622cf5a3dcf768b07d15b4cf38f579ae27ffe30633eff158aad0679e1f7eb"
+      },
+      "sha256": "cbf622cf5a3dcf768b07d15b4cf38f579ae27ffe30633eff158aad0679e1f7eb"
+    },
+    "local-4b/baseline-release/summary.json": {
+      "bytes": 417,
+      "origin": {
+        "path": "dist/ruflo-code-4b-0.1.0-preview/evidence/baseline-release/summary.json",
+        "project": "ruflo-code-model",
+        "sha256": "174e7555e12381d9d69fc302c9bb6a5391cd21d14b1cdb4ae434f95feac99b9b"
+      },
+      "sha256": "174e7555e12381d9d69fc302c9bb6a5391cd21d14b1cdb4ae434f95feac99b9b"
+    },
+    "local-4b/coding-integration.json": {
+      "bytes": 802,
+      "origin": {
+        "path": "dist/ruflo-code-4b-0.1.0-preview/evidence/coding-integration.json",
+        "project": "ruflo-code-model",
+        "sha256": "e57e2bcfc3a9305e7f71893d119ab29e80e80c65926994a4a95c2fdb46246a3c"
+      },
+      "sha256": "e57e2bcfc3a9305e7f71893d119ab29e80e80c65926994a4a95c2fdb46246a3c"
+    },
+    "local-4b/humaneval-cases.jsonl": {
+      "bytes": 236402,
+      "origin": {
+        "path": "data/external/humaneval.jsonl",
+        "project": "ruflo-code-model",
+        "sha256": "ac29ee86a5b00d64c800f023fb5458929c6300ae3f4053e831fa6749c5c55f52"
+      },
+      "sha256": "ac29ee86a5b00d64c800f023fb5458929c6300ae3f4053e831fa6749c5c55f52"
+    },
+    "local-4b/humaneval-provenance.json": {
+      "bytes": 498,
+      "origin": {
+        "path": "data/external/manifest.json",
+        "project": "ruflo-code-model",
+        "sha256": "5028c6fa57b620f37551dfbe030d218f5e6d575d1486b105da515f1ba6400830"
+      },
+      "sha256": "5028c6fa57b620f37551dfbe030d218f5e6d575d1486b105da515f1ba6400830"
+    },
+    "local-4b/paired-verdicts.json": {
+      "bytes": 1050,
+      "sha256": "9faa74e86a1a57bb70544f5de5892acb8d9692d230f67c346fb78fc66ba802f2"
+    },
+    "local-4b/release-cases.jsonl": {
+      "bytes": 82511,
+      "origin": {
+        "path": "data/release.jsonl",
+        "project": "ruflo-code-model",
+        "sha256": "215a681dd561c6ad1f17622990ef52e7cc1ad460ebcb9502661504e40263a83b"
+      },
+      "sha256": "215a681dd561c6ad1f17622990ef52e7cc1ad460ebcb9502661504e40263a83b"
+    },
+    "local-4b/selected-humaneval/protocol.json": {
+      "bytes": 808,
+      "origin": {
+        "path": "dist/ruflo-code-4b-0.1.0-preview/evidence/selected-humaneval/protocol.json",
+        "project": "ruflo-code-model",
+        "sha256": "24c1d4efbb2f7c91d56d6e028e8a4d7cc12f68e1d2841bf395f3f8981c746cc4"
+      },
+      "sha256": "24c1d4efbb2f7c91d56d6e028e8a4d7cc12f68e1d2841bf395f3f8981c746cc4"
+    },
+    "local-4b/selected-humaneval/responses.jsonl": {
+      "bytes": 175971,
+      "origin": {
+        "path": "dist/ruflo-code-4b-0.1.0-preview/evidence/selected-humaneval/responses.jsonl",
+        "project": "ruflo-code-model",
+        "sha256": "ddcd7578d48f5e68efe93e50267b6f142e270d61d71493f2ecbbb2b8f673d048"
+      },
+      "sha256": "ddcd7578d48f5e68efe93e50267b6f142e270d61d71493f2ecbbb2b8f673d048"
+    },
+    "local-4b/selected-humaneval/summary.json": {
+      "bytes": 365,
+      "origin": {
+        "path": "dist/ruflo-code-4b-0.1.0-preview/evidence/selected-humaneval/summary.json",
+        "project": "ruflo-code-model",
+        "sha256": "773a93c5ac112ecd98f9d01c9d4cbff3aebe993853ffabed72abdfa243f9ff9c"
+      },
+      "sha256": "773a93c5ac112ecd98f9d01c9d4cbff3aebe993853ffabed72abdfa243f9ff9c"
+    },
+    "local-4b/selected-release/protocol.json": {
+      "bytes": 807,
+      "origin": {
+        "path": "dist/ruflo-code-4b-0.1.0-preview/evidence/selected-release/protocol.json",
+        "project": "ruflo-code-model",
+        "sha256": "ae60b3ab14e21fd96a6465faa2a91cbcaf1ba1cbf6c7789ac5c93133affaa62d"
+      },
+      "sha256": "ae60b3ab14e21fd96a6465faa2a91cbcaf1ba1cbf6c7789ac5c93133affaa62d"
+    },
+    "local-4b/selected-release/responses.jsonl": {
+      "bytes": 22000,
+      "origin": {
+        "path": "dist/ruflo-code-4b-0.1.0-preview/evidence/selected-release/responses.jsonl",
+        "project": "ruflo-code-model",
+        "sha256": "77cb0c7eea56e9924dc526b4ca603862f9465e9d66d980aa4f19de74f1cf83da"
+      },
+      "sha256": "77cb0c7eea56e9924dc526b4ca603862f9465e9d66d980aa4f19de74f1cf83da"
+    },
+    "local-4b/selected-release/summary.json": {
+      "bytes": 417,
+      "origin": {
+        "path": "dist/ruflo-code-4b-0.1.0-preview/evidence/selected-release/summary.json",
+        "project": "ruflo-code-model",
+        "sha256": "48dee5e24bc0ef1e80a3471f4d68055980f7334e618d3bfb103611b05d06d894"
+      },
+      "sha256": "48dee5e24bc0ef1e80a3471f4d68055980f7334e618d3bfb103611b05d06d894"
+    },
+    "local-4b/selection.json": {
+      "bytes": 3380,
+      "origin": {
+        "path": "dist/ruflo-code-4b-0.1.0-preview/evidence/selection.json",
+        "project": "ruflo-code-model",
+        "sha256": "2e1ba8f70e17d6c8da44a56a9ec63db90ad9839083c37d8f8c6af0c760632ba2"
+      },
+      "sha256": "2e1ba8f70e17d6c8da44a56a9ec63db90ad9839083c37d8f8c6af0c760632ba2"
+    },
+    "tests/test_verify_benchmarks.py": {
+      "bytes": 6650,
+      "sha256": "3c72add1ab1466935b78d128aedc2ba522e2794f26a13cde74a50ec2c9bbe875"
+    }
+  },
+  "production_authorized": false,
+  "recursive_self_improvement_verified": false,
+  "schema": "ruvllm.local-benchmarks.v1",
+  "sota_verified": false,
+  "source_commit": "293fe10264b5384863c1ed59cb14d94eeb98f670",
+  "trust": "Exact copied evidence bytes and unsigned source hashes; verify an independent trusted commit or manifest digest",
+  "verifier_sha256": "54fe795fbc72026437f063ec669ef6aa8bb945e2a131cc1b56e777b1411dc8e3"
+}

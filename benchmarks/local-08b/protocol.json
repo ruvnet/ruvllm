@@ -1,0 +1,37 @@
+{
+  "development_cases_sha256": "eaea8c65789ceaeccbf59d7ec71c776c9a00b5f37cc065f267f4de21e1bd4a0e",
+  "grading": "integer boxed answer; answer_correct independent from completed and delivered_correct",
+  "protocol": {
+    "baseline_selected_from_prior_development": "direct",
+    "candidate_selection": [
+      "highest delivered_correct",
+      "lowest output_tokens",
+      "smallest alpha"
+    ],
+    "cloud_spend_usd": 0,
+    "development_seed_start": 20261102,
+    "eos_token_ids": [
+      248044,
+      248046
+    ],
+    "fresh_kv_each_generation": true,
+    "max_new_tokens": 2048,
+    "max_wall_seconds": 3600,
+    "presence_penalty": 1.5,
+    "presence_scope": "generated tokens only",
+    "promotion_rule": "selected_direct delivered_correct strictly exceeds base_direct; selected_direct completion does not regress; all mechanical audits pass",
+    "release_arms": [
+      "base_direct",
+      "base_thinking",
+      "selected_direct",
+      "selected_thinking"
+    ],
+    "release_seed_start": 2026110301,
+    "suffix": " Please reason step by step, and put your final answer, as an integer with no units, within \\boxed{}.",
+    "temperature": 0.6,
+    "top_k": 20,
+    "top_p": 0.95
+  },
+  "release_cases_sha256": "d830c55b87895d7af1541b775afea78bce39fbf368a8262a60827e920a6894f2",
+  "runner_sha256": "033466c3daa6a749bfc32034acccfc6bd71a1f001344d932d3ba8ae451da8b9f"
+}

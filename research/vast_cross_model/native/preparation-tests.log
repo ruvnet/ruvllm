@@ -1,0 +1,14 @@
+test_child_environment_excludes_provider_credentials (research.vast_cross_model.native.test_prepare.PreparationTests.test_child_environment_excludes_provider_credentials) ... ok
+test_exact_focused_test_counts (research.vast_cross_model.native.test_prepare.PreparationTests.test_exact_focused_test_counts) ... ok
+test_link_archive_rejected (research.vast_cross_model.native.test_prepare.PreparationTests.test_link_archive_rejected) ... ok
+test_mismatched_download_rejected_before_network (research.vast_cross_model.native.test_prepare.PreparationTests.test_mismatched_download_rejected_before_network) ... ok
+test_nonlinux_refused (research.vast_cross_model.native.test_prepare.PreparationTests.test_nonlinux_refused) ... ok
+test_official_requirement_digest (research.vast_cross_model.native.test_prepare.PreparationTests.test_official_requirement_digest) ... ok
+test_parent_traversal_rejected (research.vast_cross_model.native.test_prepare.PreparationTests.test_parent_traversal_rejected) ... ok
+test_regular_component_extraction (research.vast_cross_model.native.test_prepare.PreparationTests.test_regular_component_extraction) ... ok
+test_source_mutation_and_unlisted_file_rejected (research.vast_cross_model.native.test_prepare.PreparationTests.test_source_mutation_and_unlisted_file_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.006s
+
+OK

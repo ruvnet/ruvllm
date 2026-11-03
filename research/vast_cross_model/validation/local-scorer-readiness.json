@@ -1,0 +1,13 @@
+{
+  "cases": 164,
+  "failures": [],
+  "kind": "canonical_reference_scorer_preflight_not_model_results",
+  "original_humaneval_sha256": "b796127e635a67f93fb35c04f4cb03cf06f38c8072ee7cee8833d7bee06979ef",
+  "passed": 164,
+  "platform": "macOS-26.1-arm64-arm-64bit",
+  "protocol_sha256": "0d50a9f15a515771f84a0f73ca99329251aefbd8c4607f6112df7c5bfd637eb8",
+  "python": "3.12.13",
+  "sandbox_scorer_sha256": "e462267be43484accd153f2d1f126977b2394a26505a4cd2153489ff46ec3055",
+  "scorer_sha256": "4bfd12082fb8fc9cf65c069d9ed28be9979553c834d2afc4664ec352c279da6a",
+  "seconds": 2.74901783419773
+}

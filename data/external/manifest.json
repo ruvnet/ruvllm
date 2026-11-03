@@ -1,0 +1,11 @@
+{
+  "cases": 164,
+  "license": "MIT",
+  "original_sha256": "b796127e635a67f93fb35c04f4cb03cf06f38c8072ee7cee8833d7bee06979ef",
+  "pretraining_contamination": "unknown",
+  "protocol": "greedy chat prompt, max 768 output tokens, Python 3.12 sandbox, original tests; not official leaderboard protocol",
+  "revision": "b9453e8f1865df0a0057a1383767caa400acfbcf",
+  "selection_use": false,
+  "sha256": "ac29ee86a5b00d64c800f023fb5458929c6300ae3f4053e831fa6749c5c55f52",
+  "source": "openai/human-eval"
+}

@@ -1,0 +1,17 @@
+{
+  "distributed": false,
+  "network_inference": false,
+  "stage_order": [
+    "tokenize",
+    "prefill",
+    "decode",
+    "grade"
+  ],
+  "workers": [
+    {
+      "device": "Apple M4 Pro",
+      "memory_gib": 48,
+      "workerId": "local-m4pro"
+    }
+  ]
+}

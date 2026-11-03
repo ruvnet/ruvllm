@@ -1,0 +1,12 @@
+{
+  "packages": {
+    "mlx": "0.32.4",
+    "mlx-lm": "0.31.3",
+    "numpy": "2.5.4",
+    "safetensors": "0.7.0",
+    "tokenizers": "0.22.2",
+    "transformers": "5.12.1"
+  },
+  "python": "3.12.13",
+  "runner_sha256": "033466c3daa6a749bfc32034acccfc6bd71a1f001344d932d3ba8ae451da8b9f"
+}

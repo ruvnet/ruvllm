@@ -1,0 +1,41 @@
+{
+  "external_paired": {
+    "exact_mcnemar_p": 0.38331031799316406,
+    "improved_ids": [
+      "HumanEval/55",
+      "HumanEval/57",
+      "HumanEval/64",
+      "HumanEval/74",
+      "HumanEval/75",
+      "HumanEval/77",
+      "HumanEval/93",
+      "HumanEval/116",
+      "HumanEval/118",
+      "HumanEval/122",
+      "HumanEval/155",
+      "HumanEval/160",
+      "HumanEval/161"
+    ],
+    "note": "This paired test covers this suite only. Task correlation and pretraining contamination limit broader conclusions",
+    "regressed_ids": [
+      "HumanEval/24",
+      "HumanEval/37",
+      "HumanEval/39",
+      "HumanEval/67",
+      "HumanEval/109",
+      "HumanEval/110",
+      "HumanEval/144",
+      "HumanEval/159"
+    ]
+  },
+  "release_paired": {
+    "exact_mcnemar_p": 0.25,
+    "improved_ids": [
+      "release-tool-003",
+      "release-tool-012",
+      "release-code-window"
+    ],
+    "note": "This paired test covers this suite only. Task correlation and pretraining contamination limit broader conclusions",
+    "regressed_ids": []
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "cargo_features": [
+    "async-runtime",
+    "weight-evolution"
+  ],
+  "default_features": false,
+  "dependency_kinds": [
+    "normal",
+    "build"
+  ],
+  "dependency_tree_sha256": "958716da61f4a0d8a410a0804d171d951e26e6f0afd48051b30ce3776f44e5bc",
+  "generator_sha256": "438c913823faf34303dbee52c336bbbf3e0e127f49a70d22b72dc3bf69f2af88",
+  "index_sha256": "ac45ce36ccf9da5ac4efc7125143294a45730442c72c595e4d38edbe18cd82d4",
+  "native_cargo_lock_sha256": "b71800785fb31011e78456605437433b44b5c960d7f1b36d1e420ecd6e3c0bb3",
+  "native_source_commit": "f5c3444968ede44e43744460192198962ae94da2",
+  "notice_files_copied_without_modification": true,
+  "package_count": 167,
+  "registry_archives_verified_against_frozen_cargo_lock": true,
+  "schema": "ruflo-native-dependency-notices/v1",
+  "scope": "Cargo normal and build dependencies for this feature closure; not the container, Python runtime or system libraries",
+  "source_dependency_tree_sha256": "d9f24d409e2b04fc8437c3e3330c427a231d0dcf402c20bbdd6a5389d89feae5",
+  "target": "x86_64-unknown-linux-gnu",
+  "tree_sanitization": "Absolute native checkout root replaced with source/ruvector",
+  "upstream_omitted_license_files_with_explicit_standard_apache_fallback": [
+    "anndists-0.1.5",
+    "crc32c-0.6.8",
+    "simsimd-5.9.11"
+  ]
+}

@@ -1,0 +1,18 @@
+[
+  {"id":"we-release-01","question":"What is 23 multiplied by 47?","answer":1081},
+  {"id":"we-release-02","question":"A rectangle has perimeter 62 centimeters and width 12 centimeters. What is its area in square centimeters?","answer":228},
+  {"id":"we-release-03","question":"A 240 dollar jacket is discounted by 15 percent, and then that discounted price is reduced by 25 percent. What is the final price in dollars?","answer":153},
+  {"id":"we-release-04","question":"What is the sum of the first twelve positive multiples of 9?","answer":702},
+  {"id":"we-release-05","question":"A jar contains 21 purple beads and 14 white beads. A bead is chosen uniformly at random. What is the probability of a purple bead, as a whole number percentage?","answer":60},
+  {"id":"we-release-06","question":"An arithmetic sequence begins 5, 11, 17, 23. What is its twenty-fifth term?","answer":149},
+  {"id":"we-release-07","question":"If x + y = 23 and 4x + 3y = 82, what is x?","answer":13},
+  {"id":"we-release-08","question":"What is the remainder when 3 raised to the power 40 is divided by 17?","answer":16},
+  {"id":"we-release-09","question":"What is the greatest common divisor of 252 and 198?","answer":18},
+  {"id":"we-release-10","question":"The five numbers 12, 18, 24, 30, and x have arithmetic mean 24. What is x?","answer":36},
+  {"id":"we-release-11","question":"A bank balance starts at 1000 dollars and grows by 10 percent each year, with no deposits or withdrawals. What is the balance after two years in dollars?","answer":1210},
+  {"id":"we-release-12","question":"What is the total surface area in square centimeters of a cube with edge length 7 centimeters?","answer":294},
+  {"id":"we-release-13","question":"How many different unordered pairs can be chosen from nine distinct people?","answer":36},
+  {"id":"we-release-14","question":"Two buses depart together at noon. One departs every 18 minutes and the other every 24 minutes. After how many minutes will they next depart together?","answer":72},
+  {"id":"we-release-15","question":"Four pens and three notebooks cost 41 dollars. Two pens and one notebook cost 15 dollars. What does one notebook cost in dollars?","answer":11},
+  {"id":"we-release-16","question":"What is three quarters of 168 plus two thirds of 90?","answer":186}
+]

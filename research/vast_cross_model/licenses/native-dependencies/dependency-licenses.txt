@@ -1,0 +1,343 @@
+ruvllm v2.3.0 (source/ruvector/crates/ruvllm)|MIT
+anyhow v1.0.104|MIT OR Apache-2.0
+async-trait v0.1.89 (proc-macro)|MIT OR Apache-2.0
+proc-macro2 v1.0.106|MIT OR Apache-2.0
+unicode-ident v1.0.24|(MIT OR Apache-2.0) AND Unicode-3.0
+quote v1.0.46|MIT OR Apache-2.0
+proc-macro2 v1.0.106|MIT OR Apache-2.0 (*)
+syn v2.0.118|MIT OR Apache-2.0
+proc-macro2 v1.0.106|MIT OR Apache-2.0 (*)
+quote v1.0.46|MIT OR Apache-2.0 (*)
+unicode-ident v1.0.24|(MIT OR Apache-2.0) AND Unicode-3.0
+bincode v2.0.1|MIT
+bincode_derive v2.0.1 (proc-macro)|MIT
+virtue v0.0.18|MIT
+serde v1.0.228|MIT OR Apache-2.0
+serde_core v1.0.228|MIT OR Apache-2.0
+serde_derive v1.0.228 (proc-macro)|MIT OR Apache-2.0
+proc-macro2 v1.0.106|MIT OR Apache-2.0 (*)
+quote v1.0.46|MIT OR Apache-2.0 (*)
+syn v2.0.118|MIT OR Apache-2.0 (*)
+unty v0.0.4|MIT OR Apache-2.0
+chrono v0.4.45|MIT OR Apache-2.0
+iana-time-zone v0.1.65|MIT OR Apache-2.0
+num-traits v0.2.19|MIT OR Apache-2.0
+libm v0.2.16|MIT
+autocfg v1.5.1|Apache-2.0 OR MIT
+serde v1.0.228|MIT OR Apache-2.0 (*)
+dashmap v6.2.1|MIT
+cfg-if v1.0.4|MIT OR Apache-2.0
+crossbeam-utils v0.8.21|MIT OR Apache-2.0
+hashbrown v0.14.5|MIT OR Apache-2.0
+lock_api v0.4.14|MIT OR Apache-2.0
+scopeguard v1.2.0|MIT OR Apache-2.0
+once_cell v1.21.4|MIT OR Apache-2.0
+parking_lot_core v0.9.12|MIT OR Apache-2.0
+cfg-if v1.0.4|MIT OR Apache-2.0
+libc v0.2.186|MIT OR Apache-2.0
+smallvec v1.15.2|MIT OR Apache-2.0
+dirs v5.0.1|MIT OR Apache-2.0
+dirs-sys v0.4.1|MIT OR Apache-2.0
+libc v0.2.186|MIT OR Apache-2.0
+option-ext v0.2.0|MPL-2.0
+futures-core v0.3.32|MIT OR Apache-2.0
+half v2.7.1|MIT OR Apache-2.0
+cfg-if v1.0.4|MIT OR Apache-2.0
+zerocopy v0.8.52|BSD-2-Clause OR Apache-2.0 OR MIT
+zerocopy-derive v0.8.52 (proc-macro)|BSD-2-Clause OR Apache-2.0 OR MIT
+proc-macro2 v1.0.106|MIT OR Apache-2.0 (*)
+quote v1.0.46|MIT OR Apache-2.0 (*)
+syn v2.0.118|MIT OR Apache-2.0 (*)
+libc v0.2.186|MIT OR Apache-2.0
+md5 v0.7.0|Apache-2.0/MIT
+memmap2 v0.9.11|MIT OR Apache-2.0
+libc v0.2.186|MIT OR Apache-2.0
+ndarray v0.16.1|MIT OR Apache-2.0
+matrixmultiply v0.3.10|MIT/Apache-2.0
+rawpointer v0.2.1|MIT/Apache-2.0
+autocfg v1.5.1|Apache-2.0 OR MIT
+num-complex v0.4.6|MIT OR Apache-2.0
+num-traits v0.2.19|MIT OR Apache-2.0 (*)
+num-integer v0.1.46|MIT OR Apache-2.0
+num-traits v0.2.19|MIT OR Apache-2.0 (*)
+num-traits v0.2.19|MIT OR Apache-2.0 (*)
+rawpointer v0.2.1|MIT/Apache-2.0
+serde v1.0.228|MIT OR Apache-2.0 (*)
+once_cell v1.21.4|MIT OR Apache-2.0
+parking_lot v0.12.5|MIT OR Apache-2.0
+lock_api v0.4.14|MIT OR Apache-2.0 (*)
+parking_lot_core v0.9.12|MIT OR Apache-2.0 (*)
+rand v0.8.6|MIT OR Apache-2.0
+libc v0.2.186|MIT OR Apache-2.0
+rand_chacha v0.3.1|MIT OR Apache-2.0
+ppv-lite86 v0.2.21|MIT OR Apache-2.0
+zerocopy v0.8.52|BSD-2-Clause OR Apache-2.0 OR MIT (*)
+rand_core v0.6.4|MIT OR Apache-2.0
+getrandom v0.2.17|MIT OR Apache-2.0
+cfg-if v1.0.4|MIT OR Apache-2.0
+libc v0.2.186|MIT OR Apache-2.0
+rand_core v0.6.4|MIT OR Apache-2.0 (*)
+regex v1.12.4|MIT OR Apache-2.0
+aho-corasick v1.1.4|Unlicense OR MIT
+memchr v2.8.2|Unlicense OR MIT
+memchr v2.8.2|Unlicense OR MIT
+regex-automata v0.4.14|MIT OR Apache-2.0
+aho-corasick v1.1.4|Unlicense OR MIT (*)
+memchr v2.8.2|Unlicense OR MIT
+regex-syntax v0.8.11|MIT OR Apache-2.0
+regex-syntax v0.8.11|MIT OR Apache-2.0
+ruvector-core v2.3.0 (source/ruvector/crates/ruvector-core)|MIT
+anyhow v1.0.104|MIT OR Apache-2.0
+bincode v2.0.1|MIT (*)
+chrono v0.4.45|MIT OR Apache-2.0 (*)
+crossbeam v0.8.4|MIT OR Apache-2.0
+crossbeam-channel v0.5.15|MIT OR Apache-2.0
+crossbeam-utils v0.8.21|MIT OR Apache-2.0
+crossbeam-deque v0.8.6|MIT OR Apache-2.0
+crossbeam-epoch v0.9.20|MIT OR Apache-2.0
+crossbeam-utils v0.8.21|MIT OR Apache-2.0
+crossbeam-utils v0.8.21|MIT OR Apache-2.0
+crossbeam-epoch v0.9.20|MIT OR Apache-2.0 (*)
+crossbeam-queue v0.3.12|MIT OR Apache-2.0
+crossbeam-utils v0.8.21|MIT OR Apache-2.0
+crossbeam-utils v0.8.21|MIT OR Apache-2.0
+dashmap v6.2.1|MIT (*)
+hnsw_rs v0.3.3 (source/ruvector/patches/hnsw_rs)|MIT/Apache-2.0
+anndists v0.1.5|MIT/Apache-2.0
+anyhow v1.0.104|MIT OR Apache-2.0
+cfg-if v1.0.4|MIT OR Apache-2.0
+cpu-time v1.0.0|MIT/Apache-2.0
+libc v0.2.186|MIT OR Apache-2.0
+env_logger v0.11.10|MIT OR Apache-2.0
+anstream v1.0.0|MIT OR Apache-2.0
+anstyle v1.0.14|MIT OR Apache-2.0
+anstyle-parse v1.0.0|MIT OR Apache-2.0
+utf8parse v0.2.2|Apache-2.0 OR MIT
+anstyle-query v1.1.5|MIT OR Apache-2.0
+colorchoice v1.0.5|MIT OR Apache-2.0
+is_terminal_polyfill v1.70.2|MIT OR Apache-2.0
+utf8parse v0.2.2|Apache-2.0 OR MIT
+anstyle v1.0.14|MIT OR Apache-2.0
+env_filter v1.0.1|MIT OR Apache-2.0
+log v0.4.33|MIT OR Apache-2.0
+regex v1.12.4|MIT OR Apache-2.0 (*)
+jiff v0.2.29|Unlicense OR MIT
+log v0.4.33|MIT OR Apache-2.0
+lazy_static v1.5.0|MIT OR Apache-2.0
+log v0.4.33|MIT OR Apache-2.0
+num-traits v0.2.19|MIT OR Apache-2.0 (*)
+num_cpus v1.17.0|MIT OR Apache-2.0
+libc v0.2.186|MIT OR Apache-2.0
+rayon v1.12.0|MIT OR Apache-2.0
+either v1.16.0|MIT OR Apache-2.0
+rayon-core v1.13.0|MIT OR Apache-2.0
+crossbeam-deque v0.8.6|MIT OR Apache-2.0 (*)
+crossbeam-utils v0.8.21|MIT OR Apache-2.0
+anyhow v1.0.104|MIT OR Apache-2.0
+bincode v1.3.3|MIT
+serde v1.0.228|MIT OR Apache-2.0 (*)
+cfg-if v1.0.4|MIT OR Apache-2.0
+cpu-time v1.0.0|MIT/Apache-2.0 (*)
+env_logger v0.11.10|MIT OR Apache-2.0 (*)
+hashbrown v0.15.5|MIT OR Apache-2.0
+allocator-api2 v0.2.21|MIT OR Apache-2.0
+equivalent v1.0.2|Apache-2.0 OR MIT
+foldhash v0.1.5|Zlib
+indexmap v2.12.1|Apache-2.0 OR MIT
+equivalent v1.0.2|Apache-2.0 OR MIT
+hashbrown v0.16.1|MIT OR Apache-2.0
+allocator-api2 v0.2.21|MIT OR Apache-2.0
+equivalent v1.0.2|Apache-2.0 OR MIT
+foldhash v0.2.0|Zlib
+serde_core v1.0.228|MIT OR Apache-2.0
+lazy_static v1.5.0|MIT OR Apache-2.0
+log v0.4.33|MIT OR Apache-2.0
+mmap-rs v0.6.1|Apache-2.0 OR MIT
+bitflags v1.3.2|MIT/Apache-2.0
+combine v4.6.7|MIT
+bytes v1.12.0|MIT
+memchr v2.8.2|Unlicense OR MIT
+libc v0.2.186|MIT OR Apache-2.0
+nix v0.26.4|MIT
+bitflags v1.3.2|MIT/Apache-2.0
+cfg-if v1.0.4|MIT OR Apache-2.0
+libc v0.2.186|MIT OR Apache-2.0
+memoffset v0.7.1|MIT
+autocfg v1.5.1|Apache-2.0 OR MIT
+pin-utils v0.1.0|MIT OR Apache-2.0
+sysctl v0.5.5|MIT
+bitflags v2.13.0|MIT OR Apache-2.0
+byteorder v1.5.0|Unlicense OR MIT
+enum-as-inner v0.6.1 (proc-macro)|MIT/Apache-2.0
+heck v0.5.0|MIT OR Apache-2.0
+proc-macro2 v1.0.106|MIT OR Apache-2.0 (*)
+quote v1.0.46|MIT OR Apache-2.0 (*)
+syn v2.0.118|MIT OR Apache-2.0 (*)
+libc v0.2.186|MIT OR Apache-2.0
+thiserror v1.0.69|MIT OR Apache-2.0
+thiserror-impl v1.0.69 (proc-macro)|MIT OR Apache-2.0
+proc-macro2 v1.0.106|MIT OR Apache-2.0 (*)
+quote v1.0.46|MIT OR Apache-2.0 (*)
+syn v2.0.118|MIT OR Apache-2.0 (*)
+walkdir v2.5.0|Unlicense/MIT
+same-file v1.0.6|Unlicense/MIT
+thiserror v1.0.69|MIT OR Apache-2.0 (*)
+num-traits v0.2.19|MIT OR Apache-2.0 (*)
+num_cpus v1.17.0|MIT OR Apache-2.0 (*)
+parking_lot v0.12.5|MIT OR Apache-2.0 (*)
+rand v0.8.6|MIT OR Apache-2.0 (*)
+rayon v1.12.0|MIT OR Apache-2.0 (*)
+serde v1.0.228|MIT OR Apache-2.0 (*)
+memmap2 v0.9.11|MIT OR Apache-2.0 (*)
+ndarray v0.16.1|MIT OR Apache-2.0 (*)
+once_cell v1.21.4|MIT OR Apache-2.0
+parking_lot v0.12.5|MIT OR Apache-2.0 (*)
+rand v0.8.6|MIT OR Apache-2.0 (*)
+rand_distr v0.4.3|MIT OR Apache-2.0
+num-traits v0.2.19|MIT OR Apache-2.0 (*)
+rand v0.8.6|MIT OR Apache-2.0 (*)
+rayon v1.12.0|MIT OR Apache-2.0 (*)
+redb v2.6.3|MIT OR Apache-2.0
+libc v0.2.186|MIT OR Apache-2.0
+rkyv v0.8.18|MIT
+bytecheck v0.8.2|MIT
+bytecheck_derive v0.8.2 (proc-macro)|MIT
+proc-macro2 v1.0.106|MIT OR Apache-2.0 (*)
+quote v1.0.46|MIT OR Apache-2.0 (*)
+syn v2.0.118|MIT OR Apache-2.0 (*)
+ptr_meta v0.3.1|MIT
+ptr_meta_derive v0.3.1 (proc-macro)|MIT
+proc-macro2 v1.0.106|MIT OR Apache-2.0 (*)
+quote v1.0.46|MIT OR Apache-2.0 (*)
+syn v2.0.118|MIT OR Apache-2.0 (*)
+rancor v0.1.1|MIT
+ptr_meta v0.3.1|MIT (*)
+simdutf8 v0.1.5|MIT OR Apache-2.0
+hashbrown v0.17.1|MIT OR Apache-2.0
+munge v0.4.7|MIT
+munge_macro v0.4.7 (proc-macro)|MIT
+proc-macro2 v1.0.106|MIT OR Apache-2.0 (*)
+quote v1.0.46|MIT OR Apache-2.0 (*)
+syn v2.0.118|MIT OR Apache-2.0 (*)
+ptr_meta v0.3.1|MIT (*)
+rancor v0.1.1|MIT (*)
+rend v0.5.3|MIT
+bytecheck v0.8.2|MIT (*)
+rkyv_derive v0.8.18 (proc-macro)|MIT
+proc-macro2 v1.0.106|MIT OR Apache-2.0 (*)
+quote v1.0.46|MIT OR Apache-2.0 (*)
+syn v3.0.3|MIT OR Apache-2.0
+proc-macro2 v1.0.106|MIT OR Apache-2.0 (*)
+quote v1.0.46|MIT OR Apache-2.0 (*)
+unicode-ident v1.0.24|(MIT OR Apache-2.0) AND Unicode-3.0
+ruvector-turboquant v2.3.0 (source/ruvector/crates/ruvector-turboquant)|MIT
+serde v1.0.228|MIT OR Apache-2.0 (*)
+thiserror v2.0.18|MIT OR Apache-2.0
+thiserror-impl v2.0.18 (proc-macro)|MIT OR Apache-2.0
+proc-macro2 v1.0.106|MIT OR Apache-2.0 (*)
+quote v1.0.46|MIT OR Apache-2.0 (*)
+syn v2.0.118|MIT OR Apache-2.0 (*)
+serde v1.0.228|MIT OR Apache-2.0 (*)
+serde_json v1.0.150|MIT OR Apache-2.0
+itoa v1.0.18|MIT OR Apache-2.0
+memchr v2.8.2|Unlicense OR MIT
+serde_core v1.0.228|MIT OR Apache-2.0
+zmij v1.0.21|MIT
+sha2 v0.10.9|MIT OR Apache-2.0
+cfg-if v1.0.4|MIT OR Apache-2.0
+cpufeatures v0.2.17|MIT OR Apache-2.0
+digest v0.10.7|MIT OR Apache-2.0
+block-buffer v0.10.4|MIT OR Apache-2.0
+generic-array v0.14.7|MIT
+typenum v1.20.1|MIT OR Apache-2.0
+version_check v0.9.5|MIT/Apache-2.0
+crypto-common v0.1.7|MIT OR Apache-2.0
+generic-array v0.14.7|MIT (*)
+typenum v1.20.1|MIT OR Apache-2.0
+simsimd v5.9.11|Apache-2.0
+cc v1.2.65|MIT OR Apache-2.0
+find-msvc-tools v0.1.9|MIT OR Apache-2.0
+shlex v2.0.1|MIT OR Apache-2.0
+thiserror v2.0.18|MIT OR Apache-2.0 (*)
+tracing v0.1.44|MIT
+pin-project-lite v0.2.17|Apache-2.0 OR MIT
+tracing-attributes v0.1.31 (proc-macro)|MIT
+proc-macro2 v1.0.106|MIT OR Apache-2.0 (*)
+quote v1.0.46|MIT OR Apache-2.0 (*)
+syn v2.0.118|MIT OR Apache-2.0 (*)
+tracing-core v0.1.36|MIT
+once_cell v1.21.4|MIT OR Apache-2.0
+unicode-normalization v0.1.25|MIT OR Apache-2.0
+tinyvec v1.11.0|Zlib OR Apache-2.0 OR MIT
+tinyvec_macros v0.1.1|MIT OR Apache-2.0 OR Zlib
+uuid v1.23.3|Apache-2.0 OR MIT
+getrandom v0.4.3|MIT OR Apache-2.0
+cfg-if v1.0.4|MIT OR Apache-2.0
+libc v0.2.186|MIT OR Apache-2.0
+serde_core v1.0.228|MIT OR Apache-2.0
+ruvector-sona v0.2.1 (source/ruvector/crates/sona)|MIT OR Apache-2.0
+crossbeam v0.8.4|MIT OR Apache-2.0 (*)
+parking_lot v0.12.5|MIT OR Apache-2.0 (*)
+rand v0.8.6|MIT OR Apache-2.0 (*)
+serde v1.0.228|MIT OR Apache-2.0 (*)
+serde_json v1.0.150|MIT OR Apache-2.0 (*)
+rvf-forge-core v2.3.0 (source/ruvector/crates/rvf-forge-core)|MIT
+ed25519-dalek v2.2.0|BSD-3-Clause
+curve25519-dalek v4.1.3|BSD-3-Clause
+cfg-if v1.0.4|MIT OR Apache-2.0
+cpufeatures v0.2.17|MIT OR Apache-2.0
+curve25519-dalek-derive v0.1.1 (proc-macro)|MIT/Apache-2.0
+proc-macro2 v1.0.106|MIT OR Apache-2.0 (*)
+quote v1.0.46|MIT OR Apache-2.0 (*)
+syn v2.0.118|MIT OR Apache-2.0 (*)
+digest v0.10.7|MIT OR Apache-2.0 (*)
+subtle v2.6.1|BSD-3-Clause
+zeroize v1.9.0|Apache-2.0 OR MIT
+rustc_version v0.4.1|MIT OR Apache-2.0
+semver v1.0.28|MIT OR Apache-2.0
+ed25519 v2.2.3|Apache-2.0 OR MIT
+signature v2.2.0|Apache-2.0 OR MIT
+rand_core v0.6.4|MIT OR Apache-2.0 (*)
+sha2 v0.10.9|MIT OR Apache-2.0 (*)
+subtle v2.6.1|BSD-3-Clause
+zeroize v1.9.0|Apache-2.0 OR MIT
+rvf-crypto v0.2.0 (source/ruvector/crates/rvf/rvf-crypto)|MIT OR Apache-2.0
+ed25519-dalek v2.2.0|BSD-3-Clause (*)
+rvf-types v0.2.1 (source/ruvector/crates/rvf/rvf-types)|MIT OR Apache-2.0
+ed25519-dalek v2.2.0|BSD-3-Clause (*)
+rand_core v0.6.4|MIT OR Apache-2.0 (*)
+sha3 v0.10.9|MIT OR Apache-2.0
+digest v0.10.7|MIT OR Apache-2.0 (*)
+keccak v0.1.6|Apache-2.0 OR MIT
+rvf-types v0.2.1 (source/ruvector/crates/rvf/rvf-types)|MIT OR Apache-2.0 (*)
+rvf-wire v0.1.0 (source/ruvector/crates/rvf/rvf-wire)|MIT OR Apache-2.0
+crc32c v0.6.8|Apache-2.0/MIT
+rustc_version v0.4.1|MIT OR Apache-2.0 (*)
+rvf-types v0.2.1 (source/ruvector/crates/rvf/rvf-types)|MIT OR Apache-2.0 (*)
+sha3 v0.10.9|MIT OR Apache-2.0 (*)
+subtle v2.6.1|BSD-3-Clause
+xxhash-rust v0.8.15|BSL-1.0
+serde v1.0.228|MIT OR Apache-2.0 (*)
+serde_json v1.0.150|MIT OR Apache-2.0 (*)
+thiserror v2.0.18|MIT OR Apache-2.0 (*)
+safetensors v0.7.0|Apache-2.0
+hashbrown v0.16.1|MIT OR Apache-2.0 (*)
+serde v1.0.228|MIT OR Apache-2.0 (*)
+serde_json v1.0.150|MIT OR Apache-2.0 (*)
+serde v1.0.228|MIT OR Apache-2.0 (*)
+serde_json v1.0.150|MIT OR Apache-2.0 (*)
+sha2 v0.10.9|MIT OR Apache-2.0 (*)
+smallvec v1.15.2|MIT OR Apache-2.0
+thiserror v2.0.18|MIT OR Apache-2.0 (*)
+tokio v1.52.3|MIT
+pin-project-lite v0.2.17|Apache-2.0 OR MIT
+tokio-macros v2.7.0 (proc-macro)|MIT
+proc-macro2 v1.0.106|MIT OR Apache-2.0 (*)
+quote v1.0.46|MIT OR Apache-2.0 (*)
+syn v2.0.118|MIT OR Apache-2.0 (*)
+tokio-stream v0.1.18|MIT
+futures-core v0.3.32|MIT OR Apache-2.0
+pin-project-lite v0.2.17|Apache-2.0 OR MIT
+tokio v1.52.3|MIT (*)
+tracing v0.1.44|MIT (*)
+uuid v1.23.3|Apache-2.0 OR MIT (*)

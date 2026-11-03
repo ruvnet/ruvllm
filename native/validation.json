@@ -1,0 +1,68 @@
+{
+  "cli_smoke": {
+    "binary_sha256": "d93235dbca0ed0c55b54476d0a160980a16fc4bb64fddfcb65391f0a47e3dba4",
+    "candidate_sha256": "9c32632e2d037080356c9d9ea3b22345e3732e409343f659d44fdb82f0c0ff3d",
+    "checks": [
+      "inspect",
+      "patch",
+      "overwrite_rejected",
+      "protected_edit_rejected",
+      "byte_exact_rollback",
+      "synthetic_evaluation_contract",
+      "rvf_export",
+      "rvf_verify",
+      "stale_generation_rejected",
+      "unknown_operation_rejected"
+    ],
+    "fixture_only": true,
+    "inference_performed": false,
+    "passed": true,
+    "production_activation": false,
+    "restored_sha256": "b7ebd3ca61fb698e2b82c743c89e81acc772fb2a94156b07040535b4e2d3d667",
+    "rvf_sha256": "9b6958be7082da6ef4937dd5a25a11347ae7862015deae826cfe3aa0042387d8",
+    "schema": "ruvllm-native-cli-smoke/v1",
+    "source_sha256": "b7ebd3ca61fb698e2b82c743c89e81acc772fb2a94156b07040535b4e2d3d667"
+  },
+  "commands": [
+    "cargo test --locked -p ruvllm-weight-evolution --lib",
+    "cargo build --locked --release --bin weight_evolution",
+    "cargo test --locked --workspace",
+    "python3 verify_source.py",
+    "python3 smoke.py"
+  ],
+  "focused_weight_tests": 17,
+  "host": {
+    "architecture": "arm64",
+    "cargo": "cargo 1.97.1 (c980f4866 2026-06-30)",
+    "platform": "macOS",
+    "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14)"
+  },
+  "packaging_inputs_sha256": {
+    "Cargo.lock": "69a66bdf09a8f0435ec893cc607056153963ed8e0fee7ce581e951b0d5008cfe",
+    "Cargo.toml": "c851b0950612889ba3dc5dc31f67f92e73a82dadc90e75e6f16380fbea1326af",
+    "registry-dependencies.json": "cdaa106397a422115e1f79c69dddc27aed40290cba785b269a9726d6d41d9b9b",
+    "rust-toolchain.toml": "3003a09987459e5921dcddde94f8ea929b2d5e66efbbc30160e9d78de7ff010a",
+    "smoke.py": "46b5d94a7916d046be085f999ed50bf2fbfa94d7c6f93b047bcf4ca53bb4e699",
+    "src/lib.rs": "b0cd740fe97cc65e3128eebc6fc552933067911e18ae85c3f289661595febddf",
+    "upstream-provenance.json": "db0415ef8d4e84ca22e960b0fb237ef3b0292ad56477030b10903e727361d47a",
+    "verify_source.py": "d9988b38387c29826291de57b8e168b43479f2600d83d2f14c2495d0cfbd7af7"
+  },
+  "passed": true,
+  "schema": "ruvllm-native-standalone-validation/v1",
+  "scope": "Local CPU fixtures and source integrity on a new standalone build; no model inference, GPU test or production activation.",
+  "source_verification": {
+    "cargo_lock_sha256": "69a66bdf09a8f0435ec893cc607056153963ed8e0fee7ce581e951b0d5008cfe",
+    "copied_source_files": 81,
+    "registry_dependencies": 90,
+    "scope": "Local integrity against bundled provenance; not independent source authentication",
+    "source_commit": "f5c3444968ede44e43744460192198962ae94da2",
+    "verified": true
+  },
+  "timestamp": "2026-11-03T07:40:35.194526+00:00",
+  "workspace_tests_including_docs": {
+    "failed": 0,
+    "ignored": 0,
+    "passed": 508,
+    "result_groups": 14
+  }
+}

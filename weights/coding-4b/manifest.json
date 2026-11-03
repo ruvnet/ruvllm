@@ -1,0 +1,44 @@
+{
+  "schema": "ruvllm.adapter-publication.v1",
+  "base_model": "Qwen/Qwen3.5-4B",
+  "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+  "selected_step": 64,
+  "parameters": 1507328,
+  "sota_verified": false,
+  "production_qualified": false,
+  "source_archive_sha256": "b30a45b0547bb4503bc3114e7f674e7f887cff3e1d6327bfd4187423c3be0d3d",
+  "files": {
+    "adapter_model.safetensors": {
+      "sha256": "729d235e0c70c545ad15d73afd371f36a84fe828328ff366f450dc2f0a69f674",
+      "bytes": 6033952
+    },
+    "adapter_config.json": {
+      "sha256": "694187a0c4fa3aa1b416243597938fea3cb69dcb94e24499890098ad3074c7ed",
+      "bytes": 1374
+    },
+    "mlx/adapters.safetensors": {
+      "sha256": "52e5adefc83cc77357158ab4d4ea667287b3eaef5f87611b40e7a3397fabb0a4",
+      "bytes": 6033165
+    },
+    "mlx/adapter_config.json": {
+      "sha256": "a933a08e1350349ef5b37feb694cef9ffe08ccd66800f6653fdb4e6fd672df2a",
+      "bytes": 174
+    },
+    "model_pin.json": {
+      "sha256": "30b411f7733e596dc65fb6e8ad355f5b46831cba5284218128165e04c21306d4",
+      "bytes": 145
+    },
+    "quantization.json": {
+      "sha256": "fd4a8625dc7eec1d11a0dd07198e2e516f3cc3ec851102c9842ca75933a1b560",
+      "bytes": 970
+    },
+    "LICENSE": {
+      "sha256": "a4e33927bbebe7770848714617df236e5dee77c238935631d4d8422143a32bea",
+      "bytes": 11310
+    },
+    "NOTICE": {
+      "sha256": "eb987c1019c76d0efbf0b7bf4fa3d3f7299ecb9adb0dd89ce552ca8536603a07",
+      "bytes": 517
+    }
+  }
+}

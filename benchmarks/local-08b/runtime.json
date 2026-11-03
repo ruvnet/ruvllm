@@ -1,0 +1,8 @@
+{
+  "dtype": "bfloat16",
+  "engine": "MLX",
+  "fresh_kv_each_generation": true,
+  "generated_tokens_only_presence_penalty": true,
+  "platform": "macOS-26.1-arm64-arm-64bit",
+  "quantized": false
+}

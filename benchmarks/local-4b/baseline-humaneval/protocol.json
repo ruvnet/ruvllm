@@ -1,0 +1,22 @@
+{
+  "adapter": null,
+  "adapter_sha256": null,
+  "cases": 164,
+  "enable_thinking": false,
+  "max_tokens": 768,
+  "mlx": "0.32.4",
+  "model_config_sha256": "8591d683d8d132234766399897415b9427967c05e77c1c169a40de3e81177e62",
+  "model_path": "./models/base-4bit",
+  "model_pin": {
+    "license": "apache-2.0",
+    "path": "models/base",
+    "repo_id": "Qwen/Qwen3.5-4B",
+    "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a"
+  },
+  "platform": "macOS-26.1-arm64-arm-64bit",
+  "scoring": "executable tests and schema plus exact arguments",
+  "seed": 20261102,
+  "started_at": "2026-11-03T04:37:53.253355+00:00",
+  "suite_sha256": "ac29ee86a5b00d64c800f023fb5458929c6300ae3f4053e831fa6749c5c55f52",
+  "temperature": 0
+}

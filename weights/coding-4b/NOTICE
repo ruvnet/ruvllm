@@ -1,0 +1,9 @@
+RuFlo Code Model
+Copyright 2026 rUv and contributors
+
+Original experiment code and synthetic tool traces are licensed under Apache 2.0.
+Base model: Qwen/Qwen3.5-4B, Apache 2.0, owned by the Qwen team.
+HumanEval data in data/external is MIT licensed; see HumanEval.LICENSE.
+MLX LM, Transformers, PEFT, and Claude Code Router retain their respective licenses.
+Claude Code is a separate proprietary client. No Claude model weights or private
+Claude training data are included. This project is not endorsed by Anthropic.

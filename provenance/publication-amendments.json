@@ -1,0 +1,42 @@
+{
+  "schema": "ruvllm.publication-amendments.v1",
+  "source_manifest_sha256": "4a32132caee15d39e1a207b3de1a8ef9853b6844f77f50013782839e536b311b",
+  "changes": [
+    {
+      "path": ".gitignore",
+      "source_sha256": "350fc516dec86e160b438f7b492583c7c004fa0cb2e1cea365d351e01b46eea9",
+      "publication_sha256": "700a226f9a51b095d1fca8cc190908a56da9cdd76f7a657853daead1ef1d30d9",
+      "reason": "Anchor private work directories at repository root so required native RVF and model license sources remain tracked."
+    },
+    {
+      "path": "plugins/ruflo-neural-evolution/README.md",
+      "source_sha256": "38fa339be312ae36032fefbba6ea601bb0602342603fb6dcd1d6c19b0d0bbe57",
+      "publication_sha256": "39dd9ded5ff1a66d2083a9227575d8c35e5d21d890751111894265286154665f",
+      "reason": "Use portable standalone native paths and accurately distinguish historical client evidence from the new build."
+    },
+    {
+      "path": "research/vast_cross_model/README.md",
+      "source_sha256": "bde8a2f37e1d725f34eabbf15256bcd995dc0eabb1679daed1ea174d8be5deb2",
+      "publication_sha256": "69817f9f0a4c11337cd6e39691220111cfa139968403dd3e58d9a5f369099f90",
+      "reason": "Identify the frozen historical workflow and the inputs and orchestration omitted from the portable public export."
+    },
+    {
+      "path": "research/vast_cross_model/THIRD_PARTY_NOTICES.md",
+      "source_sha256": "f93f3a5669e6a3b2f7310a452bf8454a0006a58eafc2f0cdd589830824887b12",
+      "publication_sha256": "b55dcf546e8cd5adb388a93252b00c212fb3911c8a11d468b46355bd85737285",
+      "reason": "Point attribution readers to the included local benchmark evidence."
+    },
+    {
+      "path": "ruflo_model/cloud.py",
+      "source_sha256": "a977af7e0341744f823f534f727cfe88471a22d92ccd6dba66ac42d21cbd99ad",
+      "publication_sha256": "1431a1f201778005e4cd21dc6bec1f89d587d6fbfa3d8144535f7e5824c6ea3c",
+      "reason": "Resolve new jobs from authenticated HF identity and require recorded namespace for existing jobs."
+    },
+    {
+      "path": "ruflo_model/cloud_train.py",
+      "source_sha256": "1a7e797e57ab333f260eeba56522524e9d5df6a1b46d2884e5d42811e6e075b9",
+      "publication_sha256": "ff04a4bf1def9a8037486a33d6fc62265e31f299580f1dad22a8f617ab039ca4",
+      "reason": "Require recorded training namespace, validate bucket ownership and remove historical account fallback."
+    }
+  ]
+}
