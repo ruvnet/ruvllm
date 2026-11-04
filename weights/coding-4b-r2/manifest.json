@@ -5,7 +5,7 @@
   "reference_adapter": "coding-4b",
   "provenance": {
     "training_receipt": "experiments/model-improvement/results/qwen35-4b-train-r2/receipts/verification.json",
-    "checkpoint": "/home/ruvultra/.config/ruvllm-gpu/results/137af9ae-6473-4774-b135-6e02d4f7b950/evidence/out/training-v1/step-064"
+    "checkpoint": "training-v1/step-064"
   },
   "checkpoint_files": {
     "adapter_model.safetensors": "ec64251a41890d9386bab970a84e75cc601a773995479c762ec04fb68c7a62a9",
