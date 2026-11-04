@@ -69,6 +69,18 @@ on the attempt-1 instance to confirm these fixes and measure throughput
 (~15.6 tokens/s with Transformers' torch fallback for the linear-attention
 layers). Its outputs are not part of any result.
 
+## Outcome
+
+The v3 attempt ran on Vast instance 59124550 (RTX 3090, $0.27 accrued) and the
+scheduler recorded `succeeded` with confirmed cleanup. The local re-score matched
+the remote report. Tool accuracy rose from 123/192 to 173/192 (50 gains, 0
+regressions, p = 1.8e-15) and arithmetic stayed at 63/64, so the ADR 016 rule
+keeps the adapter for research use. All gains are in the Grep and test-run
+families plus 2 Glob cases; the 19 remaining failures are Glob path values.
+Evidence is in `experiments/model-improvement/results/qwen35-4b-adapter-confirmation-v3/`.
+Total provider spend for the milestone, including the failed v2 attempt and
+preflight, was about $0.33 of the $5 ceiling.
+
 ## Consequences
 
 The Vast path now works end to end, with receipts for submission, progress,

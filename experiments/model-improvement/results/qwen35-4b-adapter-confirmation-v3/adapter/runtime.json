@@ -1,0 +1,18 @@
+{
+  "adapter_precision": "float32",
+  "backbone_precision": "bf16-with-native-fp32-stability-parameters",
+  "device": "cuda",
+  "fixture": false,
+  "gpu_name": "NVIDIA GeForce RTX 3090",
+  "gpu_total_memory_bytes": 25296044032,
+  "gpu_uuid": "0372b2e3-2862-bd88-568e-9b17b7240ebd",
+  "python_version": "3.12.3",
+  "schema": "ruvllm-measurement-runtime/v1",
+  "torch_cuda_version": "12.8",
+  "versions": {
+    "peft": "0.21.2",
+    "safetensors": "0.7.0",
+    "torch": "2.11.0+cu128",
+    "transformers": "5.12.1"
+  }
+}

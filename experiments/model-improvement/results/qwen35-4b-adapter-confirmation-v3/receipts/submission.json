@@ -1,0 +1,19 @@
+{
+  "schema": "ruvllm-vast-submission/v1",
+  "jobId": "qwen35-4b-paired-v3",
+  "idempotencyKey": "54fdbf1a-afc7-4c69-87b9-668f02cbbc9a",
+  "label": "ruvllm-54fdbf1a-afc7-4c69-87b9-668f02cbbc9a",
+  "instanceId": 59124550,
+  "offerId": 51312369,
+  "gpuName": "RTX 3090",
+  "dphTotal": 0.2185185185185185,
+  "worstCaseUsd": 0.874075,
+  "maxCostUsd": 1.6,
+  "timeoutSeconds": 14400,
+  "image": "pytorch/pytorch@sha256:eee11b3b3872a8c838e35ef48f08b2d5def2080902c7f666831310ca1a0ef2be",
+  "commit": "a6a5855cc18e46f5847e3331913ba3fc37ded720",
+  "bundle": "v3",
+  "hostConfigSha256": "6ca59d7571b657d73e12c98227fed0fcb07a4019d0588cf432af44f6153c462a",
+  "guardArmed": true,
+  "submittedAt": "2026-11-04T15:32:59.137Z"
+}

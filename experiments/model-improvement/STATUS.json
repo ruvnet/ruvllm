@@ -1,18 +1,34 @@
 {
   "schema": "ruvllm-model-measurement-status/v1",
-  "status": "frozen-awaiting-gpu-executor",
-  "run_id": "qwen35-4b-adapter-confirmation-v1",
-  "protocol_sha256": "5390036b525dbff44eaf5af8636b3c180e69dc2a1ecf2941b9b341d9605b7af2",
+  "status": "measured",
+  "run_id": "qwen35-4b-adapter-confirmation-v3",
+  "protocol_sha256": "bff9827e1ec8d77bc036519c562a1fb7240f820e64e9fb721c4ddeb2f772d3bc",
+  "cases_sha256": "bb720e16370b00419f1e7043498bf9b6883206b88f5dabe0dd2fe07e5fde43b1",
   "case_count": 256,
   "tool_cases": 192,
   "math_cases": 64,
-  "exact_message_overlaps_found": 0,
-  "corpus_messages_checked": 686,
-  "fresh_inference_runs": 0,
-  "improvement_result": null,
-  "local_measurement_contract_tests_passed": 25,
-  "existing_integration_tests_passed": 60,
-  "live_gpu_e2e_verified": false,
-  "production_activation": false,
-  "blocker": "No GPU executor or ruOS/Vast host binding is exposed in this session."
+  "retired_freezes": {
+    "qwen35-4b-adapter-confirmation-v1": "Shard-name check rejected the pinned model's real filenames; could never load. No output.",
+    "qwen35-4b-adapter-confirmation-v2": "PEFT low_cpu_mem_usage=True rounded the FP32 adapter to BF16; the worker's adapter check rejected it. Its one attempt failed at package install, before inference. No output."
+  },
+  "fresh_inference_runs": 1,
+  "executor": "Vast.ai RTX 3090 instance 59124550 via integrations/metaharness/src/vast-host-adapter.mjs (ADR 017)",
+  "results": "results/qwen35-4b-adapter-confirmation-v3/",
+  "local_rescore_matches_remote": true,
+  "cleanup_confirmed": true,
+  "cost_usd": 0.269693,
+  "improvement_result": {
+    "research_improvement_confirmed": true,
+    "reasons": [],
+    "decision": "keep",
+    "tool_base_correct": 123,
+    "tool_adapter_correct": 173,
+    "tool_gains": 50,
+    "tool_regressions": 0,
+    "tool_exact_mcnemar_p": 1.7763568394002505e-15,
+    "math_base_correct": 63,
+    "math_adapter_correct": 63
+  },
+  "live_gpu_e2e_verified": true,
+  "production_activation": false
 }

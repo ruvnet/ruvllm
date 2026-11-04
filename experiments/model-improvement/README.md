@@ -6,18 +6,28 @@ It measures whether that adapter improves delivered answers on this panel.
 It does not isolate the effect of MetaHarness, retrain the adapter, or authorize
 model activation. The protocol is described in [ADR 016](../../docs/adr/ADR-016-paired-model-improvement-measurement.md).
 
-**Current status:** the preparation and verification code can run locally. No
-fresh GPU inference or current-run improvement result has been obtained in this
-cloud session. CUDA, an authenticated ruOS executor and a Vast.ai host binding
-are unavailable here. Local fixture tests validate the measurement contract;
-they are not model evaluations. Historical outputs are separate evidence.
+**Current status: measured, keep.** The v3 freeze ran once on a rented Vast.ai
+RTX 3090 through the [Vast host adapter](../../docs/adr/ADR-017-vast-host-adapter-and-live-paired-run.md)
+($0.27). The local re-score of the retrieved raw responses matched the remote
+report byte for byte, and the rental was confirmed destroyed. Tool tasks: base
+123/192, adapter 173/192 (50 gains, 0 regressions, exact McNemar p = 1.8e-15).
+Arithmetic: 63/64 in both arms. The preregistered rule is satisfied
+(`research_improvement_confirmed: true`, no reasons). This is a research
+qualification on a synthetic panel, not production activation.
+Raw outputs, both reports, remote logs, receipts, the
+[failure report](results/qwen35-4b-adapter-confirmation-v3/failure-report.json)
+and a [dashboard](results/qwen35-4b-adapter-confirmation-v3/dashboard.html) are in
+[results/qwen35-4b-adapter-confirmation-v3](results/qwen35-4b-adapter-confirmation-v3/).
+Regenerate the breakdown with `tools/eval-report`, which refuses to write if its
+counts disagree with `report.json`.
 
-The committed [v1 protocol](frozen/v1/protocol.json) and
-[256 cases](frozen/v1/cases.json) are frozen before generation. Protocol SHA256:
-`5390036b525dbff44eaf5af8636b3c180e69dc2a1ecf2941b9b341d9605b7af2`.
-[STATUS.json](STATUS.json) records zero fresh inference runs, 25 passing local
-measurement contract tests and 60 passing integration regression tests. It
-contains no model-improvement result. Do not alter this bundle after generation.
+The committed [v3 protocol](frozen/v3/protocol.json) and
+[256 cases](frozen/v3/cases.json) were frozen before generation. Protocol SHA256:
+`bff9827e1ec8d77bc036519c562a1fb7240f820e64e9fb721c4ddeb2f772d3bc`. The cases are
+byte-identical to v1 and v2. Those freezes are retired without output: v1's
+shard-name check rejected the real model files, and v2 loaded the FP32 adapter
+rounded to BF16 (see [STATUS.json](STATUS.json)). Do not alter a bundle after
+generation.
 
 ## Freeze the panel before inference
 
@@ -82,10 +92,10 @@ After preparing the GPU host, the paired run also has a single host command:
 
 ```bash
 python3 experiments/model-improvement/run-pair.py \
-  --bundle /workspace/ruvllm/experiments/model-improvement/frozen/v1 \
+  --bundle /workspace/ruvllm/experiments/model-improvement/frozen/v3 \
   --model-dir /workspace/models/Qwen3.5-4B-851bf6e \
   --adapter-dir /workspace/ruvllm/weights/coding-4b \
-  --out /workspace/measurement-runs/paired-v1 --deadline-seconds 1800
+  --out /workspace/measurement-runs/paired-v3 --deadline-seconds 5400
 ```
 
 It launches fresh sequential processes for both arms, stops on failure, and runs
