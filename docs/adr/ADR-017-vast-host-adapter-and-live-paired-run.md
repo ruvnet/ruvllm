@@ -110,8 +110,11 @@ Outcome:
 - **v5 (base vs coding-4b-r2).** Tool accuracy reached 192/192 (43 gains,
   0 regressions), but arithmetic fell from 62/64 to 46/64 with 6
   truncations. The verdict is reject, with reasons math_anchor_regressed
-  and completion_regressed. The terse arithmetic targets in the pool taught
-  the adapter to give answers with little or no working shown.
+  and completion_regressed. Two failure modes show. The 11 wrong answers
+  have shortened or absent working, such as `100 \boxed{100}`. The 6
+  truncations are degenerate digit loops (`1000000…` until the 512-token
+  limit). Both appeared after training on terse arithmetic targets, but this
+  run does not isolate the cause.
 - **Comparison between the adapters.** Against coding-4b, coding-4b-r2 has
   16 tool gains and no regressions (p = 3.1e-5), so it does not replace
   coding-4b.
