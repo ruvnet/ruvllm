@@ -152,3 +152,11 @@ test('a training job runs the pinned trainer script and verifies the manifest ag
   assert.match(onstartScript({ repoUrl: 'https://github.com/ruvnet/ruvllm.git', commit: 'b'.repeat(40), armDeadlineSeconds: 5400,
     bundle: 'v4', adapterDir: 'coding-4b-v4' }), /remote-run\.sh b{40} 5400 v4 coding-4b-v4/);
 });
+
+test('a container runtime error on the host fails the attempt instead of waiting for the deadline', async () => {
+  const { adapter } = await setup({ instances: [{ id: 77, dph_total: 0.2, start_date: 1_800_000_000, actual_status: 'loading',
+    status_msg: 'Error response from daemon: unknown or invalid runtime name: nvidia' }] });
+  assert.equal((await adapter.inspect({ job, runId: '77', idempotencyKey: 'key-1' })).status, 'failed');
+  const loading = await setup({ instances: [{ id: 77, dph_total: 0.2, start_date: 1_800_000_000, actual_status: 'loading', status_msg: 'Download complete' }] });
+  assert.equal((await loading.adapter.inspect({ job, runId: '77', idempotencyKey: 'key-1' })).status, 'running');
+});

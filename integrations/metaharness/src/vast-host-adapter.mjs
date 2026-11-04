@@ -218,6 +218,8 @@ export function createVastAdapter({ fetchImpl = globalThis.fetch, run = defaultR
     if (!instance) return { status: 'failed' };
     const costUsd = ceilMicro(instance.dph_total * Math.max(0, now() / 1000 - (instance.start_date ?? now() / 1000)) / 3600);
     if (costUsd > job.maxCostUsd) return { status: 'failed', costUsd };
+    // A host whose container runtime cannot start the image never recovers; fail now instead of at the deadline.
+    if (instance.actual_status !== 'running' && /error response from daemon|oci runtime|invalid runtime/i.test(instance.status_msg ?? '')) return { status: 'failed', costUsd };
     if (instance.actual_status !== 'running' || !instance.ssh_host || !instance.ssh_port) return { status: 'running', costUsd };
     const dir = attemptDir(config, idempotencyKey);
     const probe = await run('ssh', ssh(config, instance, `cat /workspace/run/status.json && echo && { tail -c 400 /workspace/run/${job.task === 'train' ? 'train' : 'run-pair'}.log 2>/dev/null || true; }`), { timeoutMs: 10000 });

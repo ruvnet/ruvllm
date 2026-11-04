@@ -26,3 +26,7 @@ path = "src/bin/sft-bridge.rs"
 [[bin]]
 name = "case-gen"
 path = "src/bin/case-gen.rs"
+
+[[bin]]
+name = "three-way"
+path = "src/bin/three-way.rs"
