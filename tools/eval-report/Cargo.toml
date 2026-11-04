@@ -1,0 +1,32 @@
+[package]
+name = "ruvllm-eval-report"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.80"
+license = "MIT"
+description = "Failure taxonomy and static dashboard for paired ruvLLM measurements"
+publish = false
+
+[[bin]]
+name = "eval-report"
+path = "src/main.rs"
+
+[dependencies]
+regex = "1"
+serde_json = { version = "1", features = ["preserve_order"] }
+sha2 = "0.10"
+flate2 = "1"
+
+[workspace]
+
+[[bin]]
+name = "sft-bridge"
+path = "src/bin/sft-bridge.rs"
+
+[[bin]]
+name = "case-gen"
+path = "src/bin/case-gen.rs"
+
+[[bin]]
+name = "three-way"
+path = "src/bin/three-way.rs"

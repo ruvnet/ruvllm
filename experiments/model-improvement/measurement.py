@@ -63,7 +63,11 @@ def load_bundle(bundle):
     pins = read_json(HERE.parents[1] / 'research/vast_cross_model/models.json')
     expected_weights = next(row for row in pins if row['model'] == protocol['model']['repo_id'])['weights_sha256']
     require(protocol['model']['weight_files'] == expected_weights, 'Model shard pins changed')
-    adapter_root = HERE.parents[1] / 'weights/coding-4b'
+    # Optional pinned adapter directory under weights/; v1-v3 bundles omit it and pin coding-4b.
+    adapter_name = protocol.get('adapter_dir', 'coding-4b')
+    require(isinstance(adapter_name, str) and re.fullmatch(r'[a-z0-9][a-z0-9._-]{0,63}', adapter_name)
+            and '..' not in adapter_name, 'Adapter directory must be one local name under weights/')
+    adapter_root = HERE.parents[1] / 'weights' / adapter_name
     require(protocol['adapter'] == dict(weights_sha256=file_sha(adapter_root / 'adapter_model.safetensors'),
                                        config_sha256=file_sha(adapter_root / 'adapter_config.json')), 'Adapter pin changed')
     require(file_sha(bundle / 'cases.json') == protocol['cases_sha256'], 'Case set changed')

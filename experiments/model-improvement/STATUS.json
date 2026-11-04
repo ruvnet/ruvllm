@@ -1,18 +1,89 @@
 {
   "schema": "ruvllm-model-measurement-status/v1",
-  "status": "frozen-awaiting-gpu-executor",
-  "run_id": "qwen35-4b-adapter-confirmation-v1",
-  "protocol_sha256": "5390036b525dbff44eaf5af8636b3c180e69dc2a1ecf2941b9b341d9605b7af2",
+  "status": "measured",
+  "run_id": "qwen35-4b-adapter-confirmation-v3",
+  "protocol_sha256": "bff9827e1ec8d77bc036519c562a1fb7240f820e64e9fb721c4ddeb2f772d3bc",
+  "cases_sha256": "bb720e16370b00419f1e7043498bf9b6883206b88f5dabe0dd2fe07e5fde43b1",
   "case_count": 256,
   "tool_cases": 192,
   "math_cases": 64,
-  "exact_message_overlaps_found": 0,
-  "corpus_messages_checked": 686,
-  "fresh_inference_runs": 0,
-  "improvement_result": null,
-  "local_measurement_contract_tests_passed": 25,
-  "existing_integration_tests_passed": 60,
-  "live_gpu_e2e_verified": false,
+  "retired_freezes": {
+    "qwen35-4b-adapter-confirmation-v1": "Shard-name check rejected the pinned model's real filenames; could never load. No output.",
+    "qwen35-4b-adapter-confirmation-v2": "PEFT low_cpu_mem_usage=True rounded the FP32 adapter to BF16; the worker's adapter check rejected it. Its one attempt failed at package install, before inference. No output."
+  },
+  "fresh_inference_runs": 3,
+  "executor": "Vast.ai RTX 3090 instance 59124550 via integrations/metaharness/src/vast-host-adapter.mjs (ADR 017)",
+  "results": "results/qwen35-4b-adapter-confirmation-v3/",
+  "local_rescore_matches_remote": true,
+  "cleanup_confirmed": true,
+  "cost_usd": 0.269693,
+  "improvement_result": {
+    "research_improvement_confirmed": true,
+    "reasons": [],
+    "decision": "keep",
+    "tool_base_correct": 123,
+    "tool_adapter_correct": 173,
+    "tool_gains": 50,
+    "tool_regressions": 0,
+    "tool_exact_mcnemar_p": 1.7763568394002505e-15,
+    "math_base_correct": 63,
+    "math_adapter_correct": 63
+  },
+  "live_gpu_e2e_verified": true,
   "production_activation": false,
-  "blocker": "No GPU executor or ruOS/Vast host binding is exposed in this session."
+  "heldout_v4_v5": {
+    "panel_cases_sha256": "0d7c91531b014fa5c999bd38b6b9bd3cb27202e998c1f4f44dfdcd832eb09c2c",
+    "preregistration": "training/pool-v4/preregistration.json",
+    "training": {
+      "adapter": "weights/coding-4b-r2",
+      "results": "results/qwen35-4b-train-r2/",
+      "verified": true,
+      "cost_usd": 0.092034
+    },
+    "v4": {
+      "run_id": "qwen35-4b-heldout-v4-coding-4b",
+      "decision": "keep",
+      "tool": [
+        149,
+        176
+      ],
+      "tool_gains": 40,
+      "tool_regressions": 13,
+      "tool_p": 0.0002685401188191605,
+      "math": [
+        62,
+        64
+      ],
+      "cost_usd": 0.911382
+    },
+    "v5": {
+      "run_id": "qwen35-4b-heldout-v5-coding-4b-r2",
+      "decision": "reject",
+      "reasons": [
+        "math_anchor_regressed",
+        "completion_regressed"
+      ],
+      "tool": [
+        149,
+        192
+      ],
+      "tool_gains": 43,
+      "tool_regressions": 0,
+      "math": [
+        62,
+        46
+      ],
+      "math_regressions": 17,
+      "cost_usd": 0.76441
+    },
+    "three_way": {
+      "results": "results/qwen35-4b-three-way-v4-v5/three-way.json",
+      "r2_vs_coding_4b_tool_gains": 16,
+      "r2_vs_coding_4b_tool_regressions": 0,
+      "p": 3.0517578125e-05,
+      "recommend_replacing_coding_4b": false,
+      "base_arms_identical_texts": 256
+    },
+    "conclusion": "coding-4b is kept on untouched tasks. coding-4b-r2 fixes every tool failure but loses 16 arithmetic answers, so it is rejected and does not replace coding-4b."
+  }
 }

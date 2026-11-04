@@ -1,0 +1,4 @@
+{"schema":"ruvllm-gpu-loop-reconciliation/v1","at":"2026-11-04T18:43:00Z","job":"qwen35-4b-train-r2","instanceId":"59145366","offerId":"51118208",
+ "finding":"Host never started the container: Vast status_msg 'Error response from daemon: unknown or invalid runtime name: nvidia'. No training ran.",
+ "action":"Loop stopped between ticks; instance destroyed via adapter cleanup and confirmed absent (cleanup-59145366.json); guard timer stopped. This state root is retired; the reserved $1.00 stays counted as spent for budget accounting.",
+ "next":"New cycle loop-train-v4b.json / state-train-v4b on a different offer."}

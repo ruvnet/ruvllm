@@ -1,0 +1,22 @@
+{
+  "schema": "ruvllm-vast-submission/v1",
+  "jobId": "qwen35-4b-train-r2",
+  "idempotencyKey": "137af9ae-6473-4774-b135-6e02d4f7b950",
+  "label": "ruvllm-137af9ae-6473-4774-b135-6e02d4f7b950",
+  "instanceId": 59147111,
+  "offerId": 46872546,
+  "gpuName": "RTX 3090",
+  "dphTotal": 0.4600444444444445,
+  "worstCaseUsd": 1.380134,
+  "maxCostUsd": 2,
+  "timeoutSeconds": 10800,
+  "image": "pytorch/pytorch@sha256:eee11b3b3872a8c838e35ef48f08b2d5def2080902c7f666831310ca1a0ef2be",
+  "commit": "a762c42101ca5bc1f7160ae022eb852f8fa97dff",
+  "task": "train",
+  "bundle": "v4",
+  "adapterDir": "coding-4b",
+  "trainPayload": "experiments/model-improvement/training/pool-v4",
+  "hostConfigSha256": "1aeb1741a9e1ef127ef73c5e082fa5e8c616263234ac2dfc07f843b1bb5a4df7",
+  "guardArmed": true,
+  "submittedAt": "2026-11-04T18:47:23.568Z"
+}

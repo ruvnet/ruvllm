@@ -1,0 +1,22 @@
+{
+  "schema": "ruvllm-vast-submission/v1",
+  "jobId": "qwen35-4b-paired-v4",
+  "idempotencyKey": "940e69bd-322c-4049-83a5-218dbcc6917d",
+  "label": "ruvllm-940e69bd-322c-4049-83a5-218dbcc6917d",
+  "instanceId": 59148451,
+  "offerId": 50833955,
+  "gpuName": "RTX 4090",
+  "dphTotal": 0.7385185185185186,
+  "worstCaseUsd": 2.954075,
+  "maxCostUsd": 3.5,
+  "timeoutSeconds": 14400,
+  "image": "pytorch/pytorch@sha256:eee11b3b3872a8c838e35ef48f08b2d5def2080902c7f666831310ca1a0ef2be",
+  "commit": "6e6045aeabb596aac2c9d3edd6efa3dd6788637a",
+  "task": "evaluate",
+  "bundle": "v4",
+  "adapterDir": "coding-4b",
+  "trainPayload": null,
+  "hostConfigSha256": "ccef6965b6af5f2f75aef45307ada73d0036751965117ff59ec8b36ae688e38e",
+  "guardArmed": true,
+  "submittedAt": "2026-11-04T19:02:17.616Z"
+}

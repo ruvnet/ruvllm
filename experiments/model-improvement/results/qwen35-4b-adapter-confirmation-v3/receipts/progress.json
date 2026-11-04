@@ -1,0 +1,12 @@
+{
+  "at": "2026-11-04T16:47:03.684Z",
+  "costUsd": 0.269693,
+  "remote": {
+    "schema": "ruvllm-vast-remote-status/v1",
+    "state": "done",
+    "step": "scored",
+    "commit": "a6a5855cc18e46f5847e3331913ba3fc37ded720",
+    "at": 1793810760
+  },
+  "tail": "earch_improvement_confirmed\": true,\n  \"reasons\": [],\n  \"production_activation\": false,\n  \"limitations\": [\n    \"Synthetic tool and arithmetic distribution; no broad coding generalization\",\n    \"One fixed seed and runtime; caller filesystem and executor remain trusted\"\n  ]\n}\n{\"report_path\": \"/workspace/out/scored/report.json\", \"meaning\": \"Measurement completed; read report for improvement verdict\"}\n"
+}

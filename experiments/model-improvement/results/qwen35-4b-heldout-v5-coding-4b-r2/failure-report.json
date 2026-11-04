@@ -1,0 +1,684 @@
+{
+  "schema": "ruvllm-failure-report/v1",
+  "run_id": "qwen35-4b-heldout-v5-coding-4b-r2",
+  "report_sha256": "9b62129cd1647dd3ec7bff65698edde3f9ca0701989efa115f8505642c4f5342",
+  "decision": {
+    "verdict": "reject",
+    "basis": "Positive point estimate, but the preregistered rule is not satisfied; treat as inconclusive, not as improvement.",
+    "reasons": [
+      "math_anchor_regressed",
+      "completion_regressed"
+    ],
+    "production_activation": false,
+    "rule": "ADR-016 research qualification"
+  },
+  "categories": {
+    "tool": {
+      "base": {
+        "argument_extra": 16,
+        "argument_missing": 16,
+        "argument_type": 8,
+        "argument_value": 3,
+        "correct": 149
+      },
+      "adapter": {
+        "correct": 192
+      }
+    },
+    "math": {
+      "base": {
+        "correct": 62,
+        "truncated": 1,
+        "wrong_answer": 1
+      },
+      "adapter": {
+        "correct": 46,
+        "no_boxed_answer": 1,
+        "truncated": 6,
+        "wrong_answer": 11
+      }
+    }
+  },
+  "category_groups": {
+    "argument_extra": "argument_error",
+    "argument_missing": "argument_error",
+    "argument_type": "argument_error",
+    "argument_value": "argument_error",
+    "correct": "correct",
+    "correct_undelivered": "truncation",
+    "extra_calls": "instruction_following",
+    "malformed_call": "format",
+    "no_boxed_answer": "arithmetic",
+    "no_tool_call": "instruction_following",
+    "truncated": "truncation",
+    "wrong_answer": "arithmetic",
+    "wrong_tool": "tool_selection"
+  },
+  "families": {
+    "edit": {
+      "count": 24,
+      "base_correct": 24,
+      "adapter_correct": 24,
+      "gains": 0,
+      "regressions": 0
+    },
+    "glob": {
+      "count": 24,
+      "base_correct": 24,
+      "adapter_correct": 24,
+      "gains": 0,
+      "regressions": 0
+    },
+    "grep": {
+      "count": 24,
+      "base_correct": 0,
+      "adapter_correct": 24,
+      "gains": 24,
+      "regressions": 0
+    },
+    "injection": {
+      "count": 24,
+      "base_correct": 24,
+      "adapter_correct": 24,
+      "gains": 0,
+      "regressions": 0
+    },
+    "integer_arithmetic": {
+      "count": 64,
+      "base_correct": 62,
+      "adapter_correct": 46,
+      "gains": 1,
+      "regressions": 17
+    },
+    "read": {
+      "count": 24,
+      "base_correct": 24,
+      "adapter_correct": 24,
+      "gains": 0,
+      "regressions": 0
+    },
+    "slice": {
+      "count": 24,
+      "base_correct": 24,
+      "adapter_correct": 24,
+      "gains": 0,
+      "regressions": 0
+    },
+    "test": {
+      "count": 24,
+      "base_correct": 8,
+      "adapter_correct": 24,
+      "gains": 16,
+      "regressions": 0
+    },
+    "write": {
+      "count": 24,
+      "base_correct": 21,
+      "adapter_correct": 24,
+      "gains": 3,
+      "regressions": 0
+    }
+  },
+  "regressions_by_group": {
+    "arithmetic": 11,
+    "truncation": 6
+  },
+  "regressions": [
+    {
+      "id": "heldout-v4-math-02",
+      "family": "integer_arithmetic",
+      "base": "correct",
+      "adapter": "wrong_answer",
+      "detail": null,
+      "adapter_excerpt": "100  \\boxed{100}",
+      "base_excerpt": "To compute the value of the expression $41 - 67 + (7 \\times 4 \\times 3)$, we follow the order of operations (PEMDAS/BODMAS), which dictates that multiplication is performed before addition and subtraction.  **Step 1: Evaluate the expression…"
+    },
+    {
+      "id": "heldout-v4-math-07",
+      "family": "integer_arithmetic",
+      "base": "correct",
+      "adapter": "wrong_answer",
+      "detail": null,
+      "adapter_excerpt": "123  \\boxed{123}",
+      "base_excerpt": "To find the exact integer value of the expression $(71 - 12) \\times (9 + 1) + 142$, we will follow the order of operations (PEMDAS/BODMAS):  1.  **Parentheses**: Evaluate the expressions inside the parentheses first.     *   $71 - 12 = 59$ …"
+    },
+    {
+      "id": "heldout-v4-math-11",
+      "family": "integer_arithmetic",
+      "base": "correct",
+      "adapter": "wrong_answer",
+      "detail": null,
+      "adapter_excerpt": "115 * 6 + 202 = 690 + 202 = 892  \\boxed{892}",
+      "base_excerpt": "To find the exact integer value of the expression $(95 - 16) \\times (5 + 1) + 202$, we will follow the order of operations (PEMDAS/BODMAS):  1.  **Parentheses**: Evaluate the expressions inside the parentheses first.     *   $95 - 16 = 79$ …"
+    },
+    {
+      "id": "heldout-v4-math-21",
+      "family": "integer_arithmetic",
+      "base": "correct",
+      "adapter": "wrong_answer",
+      "detail": null,
+      "adapter_excerpt": "1400 - 155 = 1245  \\boxed{1245}",
+      "base_excerpt": "To compute the value of the expression $(352 + 7) \\times 14 - 155$, we will follow the order of operations (PEMDAS/BODMAS):  1.  **Parentheses**: Calculate the sum inside the parentheses first.     $$352 + 7 = 359$$  2.  **Multiplication**:…"
+    },
+    {
+      "id": "heldout-v4-math-25",
+      "family": "integer_arithmetic",
+      "base": "correct",
+      "adapter": "wrong_answer",
+      "detail": null,
+      "adapter_excerpt": "1005  \\boxed{1005}",
+      "base_excerpt": "To compute the value of the expression $(412 + 3) \\times 6 - 179$, we will follow the order of operations (PEMDAS/BODMAS):  1.  **Parentheses**: Calculate the sum inside the parentheses first.     $$412 + 3 = 415$$  2.  **Multiplication**: …"
+    },
+    {
+      "id": "heldout-v4-math-29",
+      "family": "integer_arithmetic",
+      "base": "correct",
+      "adapter": "truncated",
+      "detail": null,
+      "adapter_excerpt": "100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000…",
+      "base_excerpt": "To compute the value of the expression $(472 + 7) \\times 10 - 203$, we follow the order of operations (PEMDAS/BODMAS):  1.  **Parentheses**: Calculate the sum inside the parentheses first.     $$472 + 7 = 479$$  2.  **Multiplication**: Mult…"
+    },
+    {
+      "id": "heldout-v4-math-33",
+      "family": "integer_arithmetic",
+      "base": "correct",
+      "adapter": "truncated",
+      "detail": null,
+      "adapter_excerpt": "140000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000…",
+      "base_excerpt": "To find the result of the expression $(532 + 3) \\times 14 - 227$, we will follow the order of operations (PEMDAS/BODMAS):  1.  **Parentheses**: Calculate the value inside the parentheses first.     $$532 + 3 = 535$$  2.  **Multiplication**:…"
+    },
+    {
+      "id": "heldout-v4-math-41",
+      "family": "integer_arithmetic",
+      "base": "correct",
+      "adapter": "truncated",
+      "detail": null,
+      "adapter_excerpt": "100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000…",
+      "base_excerpt": "To compute the value of the expression $(652 + 3) \\times 10 - 275$, we follow the order of operations (PEMDAS/BODMAS):  1.  **Parentheses**: Calculate the sum inside the parentheses first.     $$652 + 3 = 655$$  2.  **Multiplication**: Mult…"
+    },
+    {
+      "id": "heldout-v4-math-45",
+      "family": "integer_arithmetic",
+      "base": "correct",
+      "adapter": "truncated",
+      "detail": null,
+      "adapter_excerpt": "140000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000…",
+      "base_excerpt": "To find the result of the expression $(712 + 7) \\times 14 - 299$, we will follow the order of operations (PEMDAS/BODMAS):  1.  **Parentheses**: Calculate the sum inside the parentheses first.     $$712 + 7 = 719$$  2.  **Multiplication**: M…"
+    },
+    {
+      "id": "heldout-v4-math-47",
+      "family": "integer_arithmetic",
+      "base": "correct",
+      "adapter": "wrong_answer",
+      "detail": null,
+      "adapter_excerpt": "16000  \\boxed{16000}",
+      "base_excerpt": "To find the result of the expression $(311 - 16) \\times (9 + 1) + 742$, we will follow the order of operations (PEMDAS/BODMAS):  1.  **Parentheses**: Evaluate the expressions inside the parentheses first.     *   $311 - 16 = 295$     *   $9…"
+    },
+    {
+      "id": "heldout-v4-math-49",
+      "family": "integer_arithmetic",
+      "base": "correct",
+      "adapter": "truncated",
+      "detail": null,
+      "adapter_excerpt": "100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000…",
+      "base_excerpt": "To find the result of the expression $(772 + 3) \\times 6 - 323$, we will follow the order of operations (PEMDAS/BODMAS):  1.  **Parentheses**: Calculate the value inside the parentheses first.     $$772 + 3 = 775$$  2.  **Multiplication**: …"
+    },
+    {
+      "id": "heldout-v4-math-53",
+      "family": "integer_arithmetic",
+      "base": "correct",
+      "adapter": "wrong_answer",
+      "detail": null,
+      "adapter_excerpt": "10000 - 347 = 9653  \\boxed{9653}",
+      "base_excerpt": "To find the result of the expression $(832 + 7) \\times 10 - 347$, we will follow the order of operations (PEMDAS/BODMAS):  1.  **Parentheses**: Calculate the sum inside the parentheses first.     $$832 + 7 = 839$$  2.  **Multiplication**: M…"
+    },
+    {
+      "id": "heldout-v4-math-54",
+      "family": "integer_arithmetic",
+      "base": "correct",
+      "adapter": "wrong_answer",
+      "detail": null,
+      "adapter_excerpt": "11 * 8 * 3 = 264. 353 - 847 + 264 = 70.  \\boxed{70}",
+      "base_excerpt": "To compute the value of the expression $353 - 847 + (11 \\times 8 \\times 3)$, we will follow the order of operations (PEMDAS/BODMAS), which dictates that multiplication is performed before addition and subtraction.  **Step 1: Evaluate the mu…"
+    },
+    {
+      "id": "heldout-v4-math-55",
+      "family": "integer_arithmetic",
+      "base": "correct",
+      "adapter": "wrong_answer",
+      "detail": null,
+      "adapter_excerpt": "1200  \\boxed{1200}",
+      "base_excerpt": "To find the result of the expression $(359 - 12) \\times (9 + 1) + 862$, we will follow the order of operations (PEMDAS/BODMAS):  1.  **Parentheses**: Evaluate the expressions inside the parentheses first.     *   $359 - 12 = 347$     *   $9…"
+    },
+    {
+      "id": "heldout-v4-math-57",
+      "family": "integer_arithmetic",
+      "base": "correct",
+      "adapter": "wrong_answer",
+      "detail": null,
+      "adapter_excerpt": "14000  \\boxed{14000}",
+      "base_excerpt": "To compute the value of the expression $(892 + 3) \\times 14 - 371$, we will follow the order of operations (PEMDAS/BODMAS):  1.  **Parentheses**: Calculate the sum inside the parentheses first.     $$892 + 3 = 895$$  2.  **Multiplication**:…"
+    },
+    {
+      "id": "heldout-v4-math-61",
+      "family": "integer_arithmetic",
+      "base": "correct",
+      "adapter": "no_boxed_answer",
+      "detail": null,
+      "adapter_excerpt": "1000",
+      "base_excerpt": "To compute the value of the expression $(952 + 7) \\times 6 - 395$, we will follow the order of operations (PEMDAS/BODMAS):  1.  **Parentheses**: Calculate the sum inside the parentheses first.     $$952 + 7 = 959$$  2.  **Multiplication**: …"
+    },
+    {
+      "id": "heldout-v4-math-63",
+      "family": "integer_arithmetic",
+      "base": "correct",
+      "adapter": "truncated",
+      "detail": null,
+      "adapter_excerpt": "100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000…",
+      "base_excerpt": "To find the exact integer value of the expression $(407 - 8) \\times (9 + 1) + 982$, we will follow the order of operations (PEMDAS/BODMAS):  1.  **Parentheses**: Evaluate the expressions inside the parentheses first.     *   $407 - 8 = 399$…"
+    }
+  ],
+  "gains": [
+    {
+      "id": "heldout-v4-tool-grep-00",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=path> /workspace/heldout_v4/grep/heron_00/src </parameter> <parameter=pattern> heron_00_handler </parameter> <parameter=output_mode> content </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> heron_00_handler </parameter> <parameter=glob> /workspace/heldout_v4/grep/heron_00/src/**/* </parameter> <parameter=-n> True </parameter> <parameter=output_mode> content </parameter> </functio…"
+    },
+    {
+      "id": "heldout-v4-tool-grep-01",
+      "family": "grep",
+      "base": "argument_missing",
+      "adapter": "correct",
+      "detail": "path",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=path> /repo/heldout_v4/grep/obsidian_01/src </parameter> <parameter=pattern> obsidian_01_handler </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> obsidian_01_handler </parameter> <parameter=glob> /repo/heldout_v4/grep/obsidian_01/src/**/* </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-grep-02",
+      "family": "grep",
+      "base": "argument_missing",
+      "adapter": "correct",
+      "detail": "path",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=path> /workspace/heldout_v4/grep/juniper_02/src </parameter> <parameter=pattern> juniper_02_handler </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> juniper_02_handler </parameter> <parameter=glob> /workspace/heldout_v4/grep/juniper_02/src/**/* </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-grep-03",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=path> /repo/heldout_v4/grep/fjord_03/src </parameter> <parameter=pattern> fjord_03_handler </parameter> <parameter=output_mode> content </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> fjord_03_handler </parameter> <parameter=glob> /repo/heldout_v4/grep/fjord_03/src/**/* </parameter> <parameter=-n> True </parameter> <parameter=output_mode> content </parameter> </function> </…"
+    },
+    {
+      "id": "heldout-v4-tool-grep-04",
+      "family": "grep",
+      "base": "argument_missing",
+      "adapter": "correct",
+      "detail": "path",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=path> /workspace/heldout_v4/grep/marigold_04/src </parameter> <parameter=pattern> marigold_04_handler </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> marigold_04_handler </parameter> <parameter=glob> /workspace/heldout_v4/grep/marigold_04/src/**/* </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-grep-05",
+      "family": "grep",
+      "base": "argument_missing",
+      "adapter": "correct",
+      "detail": "path",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=path> /repo/heldout_v4/grep/zephyr_05/src </parameter> <parameter=pattern> zephyr_05_handler </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> zephyr_05_handler </parameter> <parameter=glob> /repo/heldout_v4/grep/zephyr_05/src/**/* </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-grep-06",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=path> /workspace/heldout_v4/grep/cinder_06/src </parameter> <parameter=pattern> cinder_06_handler </parameter> <parameter=output_mode> content </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> cinder_06_handler </parameter> <parameter=glob> /workspace/heldout_v4/grep/cinder_06/src/**/* </parameter> <parameter=output_mode> content </parameter> <parameter=-n> False </parameter> </func…"
+    },
+    {
+      "id": "heldout-v4-tool-grep-07",
+      "family": "grep",
+      "base": "argument_missing",
+      "adapter": "correct",
+      "detail": "path",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=path> /repo/heldout_v4/grep/lagoon_07/src </parameter> <parameter=pattern> lagoon_07_handler </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> lagoon_07_handler </parameter> <parameter=glob> /repo/heldout_v4/grep/lagoon_07/src/**/* </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-grep-08",
+      "family": "grep",
+      "base": "argument_missing",
+      "adapter": "correct",
+      "detail": "path",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=path> /workspace/heldout_v4/grep/heron_08/src </parameter> <parameter=pattern> heron_08_handler </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> heron_08_handler </parameter> <parameter=glob> /workspace/heldout_v4/grep/heron_08/**/* </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-grep-09",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=path> /repo/heldout_v4/grep/obsidian_09/src </parameter> <parameter=pattern> obsidian_09_handler </parameter> <parameter=output_mode> content </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> obsidian_09_handler </parameter> <parameter=glob> /repo/heldout_v4/grep/obsidian_09/src/**/* </parameter> <parameter=output_mode> content </parameter> <parameter=-n> True </parameter> </functi…"
+    },
+    {
+      "id": "heldout-v4-tool-grep-10",
+      "family": "grep",
+      "base": "argument_missing",
+      "adapter": "correct",
+      "detail": "path",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=path> /workspace/heldout_v4/grep/juniper_10/src </parameter> <parameter=pattern> juniper_10_handler </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> juniper_10_handler </parameter> <parameter=glob> /workspace/heldout_v4/grep/juniper_10/src/**/* </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-grep-11",
+      "family": "grep",
+      "base": "argument_missing",
+      "adapter": "correct",
+      "detail": "path",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=path> /repo/heldout_v4/grep/fjord_11/src </parameter> <parameter=pattern> fjord_11_handler </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> fjord_11_handler </parameter> <parameter=glob> /repo/heldout_v4/grep/fjord_11/src/**/* </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-grep-12",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=path> /workspace/heldout_v4/grep/marigold_12/src </parameter> <parameter=pattern> marigold_12_handler </parameter> <parameter=output_mode> content </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> marigold_12_handler </parameter> <parameter=glob> /workspace/heldout_v4/grep/marigold_12/src/**/* </parameter> <parameter=-n> True </parameter> <parameter=output_mode> content </parameter> </f…"
+    },
+    {
+      "id": "heldout-v4-tool-grep-13",
+      "family": "grep",
+      "base": "argument_missing",
+      "adapter": "correct",
+      "detail": "path",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=path> /repo/heldout_v4/grep/zephyr_13/src </parameter> <parameter=pattern> zephyr_13_handler </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> zephyr_13_handler </parameter> <parameter=glob> /repo/heldout_v4/grep/zephyr_13/src/**/* </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-grep-14",
+      "family": "grep",
+      "base": "argument_missing",
+      "adapter": "correct",
+      "detail": "path",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=path> /workspace/heldout_v4/grep/cinder_14/src </parameter> <parameter=pattern> cinder_14_handler </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> cinder_14_handler </parameter> <parameter=glob> /workspace/heldout_v4/grep/cinder_14/**/* </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-grep-15",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=path> /repo/heldout_v4/grep/lagoon_15/src </parameter> <parameter=pattern> lagoon_15_handler </parameter> <parameter=output_mode> content </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> lagoon_15_handler </parameter> <parameter=glob> /repo/heldout_v4/grep/lagoon_15/src/**/* </parameter> <parameter=output_mode> content </parameter> <parameter=-n> False </parameter> </function>…"
+    },
+    {
+      "id": "heldout-v4-tool-grep-16",
+      "family": "grep",
+      "base": "argument_missing",
+      "adapter": "correct",
+      "detail": "path",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=path> /workspace/heldout_v4/grep/heron_16/src </parameter> <parameter=pattern> heron_16_handler </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> heron_16_handler </parameter> <parameter=glob> /workspace/heldout_v4/grep/heron_16/**/* </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-grep-17",
+      "family": "grep",
+      "base": "argument_missing",
+      "adapter": "correct",
+      "detail": "path",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=path> /repo/heldout_v4/grep/obsidian_17/src </parameter> <parameter=pattern> obsidian_17_handler </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> obsidian_17_handler </parameter> <parameter=glob> /repo/heldout_v4/grep/obsidian_17/src/**/* </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-grep-18",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=path> /workspace/heldout_v4/grep/juniper_18/src </parameter> <parameter=pattern> juniper_18_handler </parameter> <parameter=output_mode> content </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> juniper_18_handler </parameter> <parameter=glob> /workspace/heldout_v4/grep/juniper_18/src/**/* </parameter> <parameter=-n> True </parameter> <parameter=output_mode> content </parameter> </fun…"
+    },
+    {
+      "id": "heldout-v4-tool-grep-19",
+      "family": "grep",
+      "base": "argument_missing",
+      "adapter": "correct",
+      "detail": "path",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=path> /repo/heldout_v4/grep/fjord_19/src </parameter> <parameter=pattern> fjord_19_handler </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> fjord_19_handler </parameter> <parameter=glob> /repo/heldout_v4/grep/fjord_19/src/**/* </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-grep-20",
+      "family": "grep",
+      "base": "argument_missing",
+      "adapter": "correct",
+      "detail": "path",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=path> /workspace/heldout_v4/grep/marigold_20/src </parameter> <parameter=pattern> marigold_20_handler </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> marigold_20_handler </parameter> <parameter=glob> /workspace/heldout_v4/grep/marigold_20/src/**/* </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-grep-21",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=path> /repo/heldout_v4/grep/zephyr_21/src </parameter> <parameter=pattern> zephyr_21_handler </parameter> <parameter=output_mode> content </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> zephyr_21_handler </parameter> <parameter=glob> /repo/heldout_v4/grep/zephyr_21/src/* </parameter> <parameter=-n> True </parameter> <parameter=output_mode> content </parameter> </function> </t…"
+    },
+    {
+      "id": "heldout-v4-tool-grep-22",
+      "family": "grep",
+      "base": "argument_missing",
+      "adapter": "correct",
+      "detail": "path",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=path> /workspace/heldout_v4/grep/cinder_22/src </parameter> <parameter=pattern> cinder_22_handler </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> cinder_22_handler </parameter> <parameter=glob> /workspace/heldout_v4/grep/cinder_22/**/* </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-grep-23",
+      "family": "grep",
+      "base": "argument_missing",
+      "adapter": "correct",
+      "detail": "path",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=path> /repo/heldout_v4/grep/lagoon_23/src </parameter> <parameter=pattern> lagoon_23_handler </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> lagoon_23_handler </parameter> <parameter=glob> /repo/heldout_v4/grep/lagoon_23/src/**/* </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-write-07",
+      "family": "write",
+      "base": "argument_value",
+      "adapter": "correct",
+      "detail": "content",
+      "adapter_excerpt": "<tool_call> <function=Write> <parameter=file_path> /repo/heldout_v4/write/lagoon_07/src/lagoon_07.py </parameter> <parameter=content> class lagoon07Config:     threshold = 67  </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Write> <parameter=file_path> /repo/heldout_v4/write/lagoon_07/src/lagoon_07.py </parameter> <parameter=content> class lagoon07Config:     threshold = 67 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-write-16",
+      "family": "write",
+      "base": "argument_value",
+      "adapter": "correct",
+      "detail": "content",
+      "adapter_excerpt": "<tool_call> <function=Write> <parameter=file_path> /workspace/heldout_v4/write/heron_16/src/heron_16.py </parameter> <parameter=content> class heron16Config:     threshold = 76  </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Write> <parameter=file_path> /workspace/heldout_v4/write/heron_16/src/heron_16.py </parameter> <parameter=content> class heron16Config:     threshold = 76 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-write-23",
+      "family": "write",
+      "base": "argument_value",
+      "adapter": "correct",
+      "detail": "content",
+      "adapter_excerpt": "<tool_call> <function=Write> <parameter=file_path> /repo/heldout_v4/write/lagoon_23/src/lagoon_23.py </parameter> <parameter=content> class lagoon23Config:     threshold = 83  </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Write> <parameter=file_path> /repo/heldout_v4/write/lagoon_23/src/lagoon_23.py </parameter> <parameter=content> class lagoon23Config:     threshold = 83 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-test-01",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> cargo test --manifest-path /repo/heldout_v4/test/obsidian_01/Cargo.toml obsidian_01 </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> cargo test --manifest-path /repo/heldout_v4/test/obsidian_01/Cargo.toml obsidian_01 </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-test-02",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> npm test --prefix /workspace/heldout_v4/test/juniper_02 -- juniper_02.test.js </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> npm test --prefix /workspace/heldout_v4/test/juniper_02 -- juniper_02.test.js </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-test-04",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> cargo test --manifest-path /workspace/heldout_v4/test/marigold_04/Cargo.toml marigold_04 </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> cargo test --manifest-path /workspace/heldout_v4/test/marigold_04/Cargo.toml marigold_04 </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-test-05",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> npm test --prefix /repo/heldout_v4/test/zephyr_05 -- zephyr_05.test.js </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> npm test --prefix /repo/heldout_v4/test/zephyr_05 -- zephyr_05.test.js </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-test-07",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> cargo test --manifest-path /repo/heldout_v4/test/lagoon_07/Cargo.toml lagoon_07 </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> cargo test --manifest-path /repo/heldout_v4/test/lagoon_07/Cargo.toml lagoon_07 </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-test-08",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> npm test --prefix /workspace/heldout_v4/test/heron_08 -- heron_08.test.js </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> npm test --prefix /workspace/heldout_v4/test/heron_08 -- heron_08.test.js </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-test-10",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> cargo test --manifest-path /workspace/heldout_v4/test/juniper_10/Cargo.toml juniper_10 </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> cargo test --manifest-path /workspace/heldout_v4/test/juniper_10/Cargo.toml juniper_10 </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-test-11",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> npm test --prefix /repo/heldout_v4/test/fjord_11 -- fjord_11.test.js </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> npm test --prefix /repo/heldout_v4/test/fjord_11 -- fjord_11.test.js </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-test-13",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> cargo test --manifest-path /repo/heldout_v4/test/zephyr_13/Cargo.toml zephyr_13 </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> cargo test --manifest-path /repo/heldout_v4/test/zephyr_13/Cargo.toml zephyr_13 </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-test-14",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> npm test --prefix /workspace/heldout_v4/test/cinder_14 -- cinder_14.test.js </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> npm test --prefix /workspace/heldout_v4/test/cinder_14 -- cinder_14.test.js </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-test-16",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> cargo test --manifest-path /workspace/heldout_v4/test/heron_16/Cargo.toml heron_16 </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> cargo test --manifest-path /workspace/heldout_v4/test/heron_16/Cargo.toml heron_16 </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-test-17",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> npm test --prefix /repo/heldout_v4/test/obsidian_17 -- obsidian_17.test.js </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> npm test --prefix /repo/heldout_v4/test/obsidian_17 -- obsidian_17.test.js </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-test-19",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> cargo test --manifest-path /repo/heldout_v4/test/fjord_19/Cargo.toml fjord_19 </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> cargo test --manifest-path /repo/heldout_v4/test/fjord_19/Cargo.toml fjord_19 </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-test-20",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> npm test --prefix /workspace/heldout_v4/test/marigold_20 -- marigold_20.test.js </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> npm test --prefix /workspace/heldout_v4/test/marigold_20 -- marigold_20.test.js </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-test-22",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> cargo test --manifest-path /workspace/heldout_v4/test/cinder_22/Cargo.toml cinder_22 </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> cargo test --manifest-path /workspace/heldout_v4/test/cinder_22/Cargo.toml cinder_22 </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-test-23",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> npm test --prefix /repo/heldout_v4/test/lagoon_23 -- lagoon_23.test.js </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> npm test --prefix /repo/heldout_v4/test/lagoon_23 -- lagoon_23.test.js </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-math-20",
+      "family": "integer_arithmetic",
+      "base": "truncated",
+      "adapter": "correct",
+      "detail": null,
+      "adapter_excerpt": "149 * (13 + 6) - 337  1. 13 + 6 = 19 2. 149 * 19 = 2831 3. 2831 - 337 = 2494  \\boxed{2494}",
+      "base_excerpt": "To find the result of the expression $149 \\times (13 + 6) - 337$, we will follow the order of operations (PEMDAS/BODMAS):  1.  **Parentheses**: Calculate the value inside the parentheses first.     $$13 + 6 = 19$$  2.  **Multiplication**: M…"
+    }
+  ],
+  "mean_output_tokens": {
+    "base": 131.10546875,
+    "adapter": 77.64453125
+  },
+  "scope": "Descriptive breakdown of one frozen paired run; only the scorer's primary test supports the decision."
+}

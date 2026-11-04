@@ -1,0 +1,17 @@
+{
+  "adapter_sha256": "729d235e0c70c545ad15d73afd371f36a84fe828328ff366f450dc2f0a69f674",
+  "arm": "base",
+  "generation_count": 256,
+  "inference_performed": true,
+  "metrics": {
+    "elapsed_seconds": 2090.4617979326285,
+    "load_seconds": 18.515927627682686,
+    "peak_gpu_memory_bytes": 9410922496
+  },
+  "model_sha256": "0c3129c0a669beca441f07bfa7bb9e11c7d9ee626419e40195a95de7461feee7",
+  "protocol_sha256": "bff9827e1ec8d77bc036519c562a1fb7240f820e64e9fb721c4ddeb2f772d3bc",
+  "responses_sha256": "30a8247101a5e9c7c4575f2349d7fedda717d9865b56e0f32ae414a4ec759ddc",
+  "run_id": "qwen35-4b-adapter-confirmation-v3",
+  "runtime_sha256": "ecd805d95bf155e29053f3bb9bb8cb202fc413de94f7c89434dd840de00ff7e9",
+  "schema": "ruvllm-measurement-completion/v1"
+}

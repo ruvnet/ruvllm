@@ -141,6 +141,32 @@ source module's chmod is needed after a normal Git checkout because host modules
 are deliberately required to be owner-only. A custom trusted module can replace
 the spool adapter; recalculate and review its pin after any code change.
 
+## Vast.ai host adapter
+
+`src/vast-host-adapter.mjs` is a real provider adapter (see
+[ADR 017](../../docs/adr/ADR-017-vast-host-adapter-and-live-paired-run.md)). Set
+`RUVLLM_VAST_HOST_CONFIG` to an owner-only `ruvllm-vast-host/v1` file:
+
+| Field | Meaning |
+| --- | --- |
+| `apiBase` | `https://console.vast.ai` |
+| `secrets` | `{ "<secretRef>": { "file": "/abs/owner-only/key" } }`; the key is sent only as a Bearer header |
+| `image` | Container image pinned by digest |
+| `repoUrl`, `commit`, `bundle` | Public checkout and exact commit the rental runs; frozen bundle name |
+| `diskGb`, `armDeadlineSeconds` | Rental disk; per-arm worker deadline |
+| `guardGraceSeconds` | Extra time after `timeoutSeconds` before the independent destroy timer fires |
+| `resultsRoot`, `sshKey`, `repoRoot`, `python`, `node` | Absolute local paths for receipts, retrieval and local re-scoring |
+
+Jobs must use `resource.offerId`. Submit refuses the offer when its hourly price
+times `timeoutSeconds` exceeds `maxCostUsd`, labels the rental with the attempt's
+idempotency key, and arms a `systemd-run --user` destroy timer. Inspect reports
+accrued cost, pulls raw outputs when the remote run is done, and re-scores them
+locally; only an identical report counts as verified completion. Cleanup returns
+`released: true` only after the instance is absent from the account listing.
+Receipts (`submission.json`, `progress.json`, `verification.json`,
+`cleanup-ID.json`, `guard-ID.json`) contain no credential. Copy the module to a
+private owner-only path and pin that copy's SHA256, as for any host module.
+
 ## CLI and loop schedule
 
 ```sh

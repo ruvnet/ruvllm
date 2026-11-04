@@ -1,0 +1,88 @@
+{
+  "schema": "ruvllm-three-way/v1",
+  "cases_sha256": "0d7c91531b014fa5c999bd38b6b9bd3cb27202e998c1f4f44dfdcd832eb09c2c",
+  "reference": {
+    "run_id": "qwen35-4b-heldout-v4-coding-4b",
+    "adapter_dir": "coding-4b",
+    "research_improvement_confirmed": true,
+    "reasons": []
+  },
+  "candidate": {
+    "run_id": "qwen35-4b-heldout-v5-coding-4b-r2",
+    "adapter_dir": "coding-4b-r2",
+    "research_improvement_confirmed": false,
+    "reasons": [
+      "math_anchor_regressed",
+      "completion_regressed"
+    ]
+  },
+  "tool_correct": {
+    "base": 149,
+    "reference": 176,
+    "candidate": 192,
+    "of": 192
+  },
+  "math_correct": {
+    "base": 62,
+    "reference": 64,
+    "candidate": 46,
+    "of": 64
+  },
+  "candidate_vs_reference": {
+    "gains": 16,
+    "regressions": 0,
+    "exact_mcnemar_p": 0.000030517578125,
+    "scope": "descriptive, preregistered"
+  },
+  "families": {
+    "edit": {
+      "base": 24,
+      "reference": 24,
+      "candidate": 24
+    },
+    "glob": {
+      "base": 24,
+      "reference": 24,
+      "candidate": 24
+    },
+    "grep": {
+      "base": 0,
+      "reference": 24,
+      "candidate": 24
+    },
+    "injection": {
+      "base": 24,
+      "reference": 24,
+      "candidate": 24
+    },
+    "read": {
+      "base": 24,
+      "reference": 24,
+      "candidate": 24
+    },
+    "slice": {
+      "base": 24,
+      "reference": 24,
+      "candidate": 24
+    },
+    "test": {
+      "base": 8,
+      "reference": 24,
+      "candidate": 24
+    },
+    "write": {
+      "base": 21,
+      "reference": 8,
+      "candidate": 24
+    }
+  },
+  "base_reproducibility": {
+    "identical_texts": 256,
+    "differing_ids": []
+  },
+  "decision": {
+    "candidate_vs_base": "reject",
+    "recommend_replacing_reference": false,
+    "rule": "experiments/model-improvement/training/pool-v4/preregistration.json"
+  }
+}

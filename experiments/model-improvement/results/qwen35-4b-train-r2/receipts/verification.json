@@ -1,0 +1,27 @@
+{
+  "schema": "ruvllm-vast-training-verification/v1",
+  "jobId": "qwen35-4b-train-r2",
+  "payloadBound": true,
+  "manifestEvent": true,
+  "steps": true,
+  "files": true,
+  "validation": [
+    {
+      "step": 0,
+      "loss": 0.09374606608253089
+    },
+    {
+      "step": 32,
+      "loss": 0.04529029419973085
+    },
+    {
+      "step": 64,
+      "loss": 0.014696135747726657
+    },
+    {
+      "step": 96,
+      "loss": 0.004015548429606497
+    }
+  ],
+  "ok": true
+}
