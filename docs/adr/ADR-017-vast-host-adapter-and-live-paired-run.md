@@ -81,6 +81,23 @@ Evidence is in `experiments/model-improvement/results/qwen35-4b-adapter-confirma
 Total provider spend for the milestone, including the failed v2 attempt and
 preflight, was about $0.33 of the $5 ceiling.
 
+## Training extension (v4/v5)
+
+A `train` job runs `vast/remote-train.sh`, which executes `scripts/cloud_train.py`
+unmodified on a committed `RUFLO_TRAIN_GZIP` payload. Inspect accepts it only if
+the trainer's manifest hashes every retrieved file, binds the committed
+payload's `training_sha256`, and matches the `completed` event. The payload
+comes from `tools/eval-report` (`case-gen pool` then `sft-bridge`). Every
+target is checked by the frozen grader, and the payload shares no exact prompt
+with v3, v4 or the coding-4b training data. `case-gen publish` copies step-064
+byte for byte into `weights/coding-4b-r2`, filling only the config fields that
+PEFT leaves unset in training. `measurement.py` gained one optional protocol
+field, `adapter_dir` (default `coding-4b`), so a frozen bundle can pin another
+adapter under `weights/`. Bundles from v1 to v3 omit it. Because they pin the
+previous `measurement.py` hash, re-scoring them needs commit a6a5855's copy.
+Decisions are preregistered in
+`experiments/model-improvement/training/pool-v4/preregistration.json`.
+
 ## Consequences
 
 The Vast path now works end to end, with receipts for submission, progress,

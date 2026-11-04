@@ -2,18 +2,19 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtemp, mkdir, writeFile, readFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
+import { createHash } from 'node:crypto';
 import { join } from 'node:path';
 import { createVastAdapter, onstartScript } from '../src/vast-host-adapter.mjs';
 
 const job = { id: 'paired', secretRef: 'ruos.vast.primary', resource: { offerId: '123' }, maxCostUsd: 1.6, timeoutSeconds: 14400,
   model: { repo: 'Qwen/Qwen3.5-4B', revision: '851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a' } };
 
-async function setup({ dph = 0.2, instances = [], guardCode = 0, remoteState = 'running', reportsMatch = true } = {}) {
+async function setup({ dph = 0.2, instances = [], guardCode = 0, remoteState = 'running', reportsMatch = true, extract, host = {} } = {}) {
   const root = await mkdtemp(join(tmpdir(), 'vast-adapter-'));
   const config = { schema: 'ruvllm-vast-host/v1', apiBase: 'https://vast.test', image: 'pytorch/pytorch@sha256:' + 'a'.repeat(64),
     repoUrl: 'https://github.com/ruvnet/ruvllm.git', commit: 'b'.repeat(40), bundle: 'v2', diskGb: 40, armDeadlineSeconds: 5400,
     guardGraceSeconds: 900, resultsRoot: root, sshKey: '/k', repoRoot: '/repo', python: '/py', node: '/node',
-    secrets: { 'ruos.vast.primary': { file: join(root, 'key') } }, sha256: 'c'.repeat(64) };
+    secrets: { 'ruos.vast.primary': { file: join(root, 'key') } }, sha256: 'c'.repeat(64), ...host };
   await writeFile(join(root, 'key'), 'k'.repeat(32), { mode: 0o600 });
   const calls = [], rows = [...instances];
   const fetchImpl = async (url, init) => {
@@ -31,6 +32,7 @@ async function setup({ dph = 0.2, instances = [], guardCode = 0, remoteState = '
     if (command === 'systemd-run') return { code: guardCode, stdout: '' };
     if (command === 'ssh' && args.at(-1).startsWith('cat ')) return { code: 0, stdout: JSON.stringify({ state: remoteState }) + '\n' };
     if (command === 'ssh') { await writeFile(options.stdoutFile, 'tar'); return { code: 0 }; }
+    if (command === 'tar' && extract) { await extract(args[3]); return { code: 0 }; }
     if (command === 'tar') {
       const out = join(args[3], 'out', 'scored'); await mkdir(out, { recursive: true });
       await writeFile(join(out, 'report.json'), JSON.stringify({ evidence_mode: 'gpu-inference', reasons: reportsMatch ? [] : ['x'] }));
@@ -104,4 +106,49 @@ test('onstart pins the commit and passes no credential', () => {
   const script = onstartScript({ repoUrl: 'https://github.com/ruvnet/ruvllm.git', commit: 'b'.repeat(40), armDeadlineSeconds: 5400, bundle: 'v2' });
   assert.match(script, /checkout --quiet b{40}/);
   assert.doesNotMatch(script, /api[_-]?key|Bearer/i);
+});
+
+const digest = text => createHash('sha256').update(text).digest('hex');
+
+async function trainingEvidence(root, { payloadSha = 'p'.repeat(64), tamper = false } = {}) {
+  const out = join(root, 'out', 'training-v1');
+  const files = {};
+  for (const step of ['step-032', 'step-064', 'step-096']) {
+    await mkdir(join(out, step), { recursive: true });
+    for (const name of ['adapter_model.safetensors', 'adapter_config.json']) {
+      await writeFile(join(out, step, name), step + name);
+      files[`${step}/${name}`] = digest(step + name);
+    }
+  }
+  const manifest = JSON.stringify({ model: 'Qwen/Qwen3.5-4B', revision: job.model.revision, steps: 96, training_sha256: payloadSha, files });
+  await writeFile(join(out, 'manifest.json'), manifest);
+  if (tamper) await writeFile(join(out, 'step-064', 'adapter_model.safetensors'), 'tampered');
+  await mkdir(join(root, 'run'), { recursive: true });
+  await writeFile(join(root, 'run', 'train.log'), [
+    'RUFLO_TRAIN ' + JSON.stringify({ kind: 'validation', data: { step: 64, loss: 0.1 } }),
+    'RUFLO_TRAIN ' + JSON.stringify({ kind: 'completed', data: { steps: 96, manifest_sha256: digest(manifest) } }), ''].join('\n'));
+}
+
+test('a training job runs the pinned trainer script and verifies the manifest against the committed payload', async () => {
+  const trainJob = { ...job, id: 'train', task: 'train' };
+  for (const tamper of [false, true]) {
+    const repo = await mkdtemp(join(tmpdir(), 'vast-repo-'));
+    const payload = 'experiments/model-improvement/training/pool-v4';
+    await mkdir(join(repo, payload), { recursive: true });
+    await writeFile(join(repo, payload, 'bridge.json'), JSON.stringify({ training_sha256: 'p'.repeat(64) }));
+    const { adapter, calls, root } = await setup({ remoteState: 'done', host: { repoRoot: repo, trainPayload: payload },
+      extract: dir => trainingEvidence(dir, { tamper }),
+      instances: [{ id: 77, dph_total: 0.2, start_date: 1_800_000_000, actual_status: 'running', ssh_host: 'h', ssh_port: 1 }] });
+    await mkdir(join(root, 'key-1'));
+    const result = await adapter.inspect({ job: trainJob, runId: '77', idempotencyKey: 'key-1' });
+    assert.equal(result.status, 'completed');
+    assert.equal(result.completion.completionVerified, !tamper);
+    assert.ok(calls.some(([command, remote]) => command === 'ssh' && remote.includes('train.log')));
+  }
+  const script = onstartScript({ repoUrl: 'https://github.com/ruvnet/ruvllm.git', commit: 'b'.repeat(40), armDeadlineSeconds: 7200,
+    bundle: 'v4', trainPayload: 'experiments/model-improvement/training/pool-v4' }, 'train');
+  assert.match(script, /remote-train\.sh b{40} 7200 experiments\/model-improvement\/training\/pool-v4/);
+  assert.throws(() => onstartScript({ commit: 'b'.repeat(40) }, 'train'), { code: 'VAST_HOST_CONFIG_PAYLOAD' });
+  assert.match(onstartScript({ repoUrl: 'https://github.com/ruvnet/ruvllm.git', commit: 'b'.repeat(40), armDeadlineSeconds: 5400,
+    bundle: 'v4', adapterDir: 'coding-4b-v4' }), /remote-run\.sh b{40} 5400 v4 coding-4b-v4/);
 });

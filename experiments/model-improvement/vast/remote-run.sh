@@ -10,6 +10,7 @@ set -Eeuo pipefail
 COMMIT=${1:?commit}
 ARM_DEADLINE=${2:?per-arm deadline seconds}
 BUNDLE_NAME=${3:-v3}
+ADAPTER_DIR=${4:-coding-4b}
 REPO=/workspace/ruvllm
 RUN=/workspace/run
 OUT=/workspace/out
@@ -29,6 +30,7 @@ trap 'status failed "$STEP"' ERR
 step verify-checkout
 test "$(git -C "$REPO" rev-parse HEAD)" = "$COMMIT"
 test -z "$(git -C "$REPO" status --porcelain)"
+[[ $ADAPTER_DIR =~ ^[a-z0-9][a-z0-9._-]{0,63}$ && $ADAPTER_DIR != *..* ]]
 
 step packages
 python3 -m pip install --break-system-packages --no-cache-dir -q torch==2.11.0 transformers==5.12.1 peft==0.21.2 \
@@ -52,7 +54,7 @@ step paired-inference
 cd "$REPO"
 python3 experiments/model-improvement/run-pair.py \
   --bundle "$REPO/experiments/model-improvement/frozen/$BUNDLE_NAME" \
-  --model-dir "$MODEL" --adapter-dir "$REPO/weights/coding-4b" \
+  --model-dir "$MODEL" --adapter-dir "$REPO/weights/$ADAPTER_DIR" \
   --out "$OUT" --deadline-seconds "$ARM_DEADLINE" > "$RUN/run-pair.log" 2>&1
 
 test -f "$OUT/scored/report.json"

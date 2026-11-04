@@ -37,6 +37,8 @@ fn prompt_key(messages: &[Value]) -> String {
 }
 
 fn normalize(mut row: Value, tools: &Value, names: &BTreeSet<String>) -> Result<Value> {
+    // A row may carry an explicit empty tool list (arithmetic); any other value is replaced.
+    let tools = if row["tools"].as_array().is_some_and(Vec::is_empty) { json!([]) } else { tools.clone() };
     let messages = row["messages"].as_array_mut().ok_or("SFT row without messages")?;
     let last = messages.last().ok_or("empty SFT row")?;
     if last["role"] != "assistant" || messages.len() < 2 {
@@ -62,14 +64,31 @@ fn normalize(mut row: Value, tools: &Value, names: &BTreeSet<String>) -> Result<
 
 fn run(args: &[String]) -> Result<()> {
     let flag = |name: &str| args.windows(2).find(|w| w[0] == format!("--{name}")).map(|w| w[1].clone()).ok_or(format!("missing --{name}"));
-    let (sft, holdout, out) = (flag("sft")?, flag("holdout-cases")?, flag("out")?);
+    let every = |name: &str| args.windows(2).filter(|w| w[0] == format!("--{name}")).map(|w| w[1].clone()).collect::<Vec<_>>();
+    let (sft, out) = (flag("sft")?, flag("out")?);
     let valid_every: usize = flag("valid-every").unwrap_or_else(|_| "9".into()).parse().map_err(|_| "--valid-every must be an integer")?;
-    let cases: Vec<Value> = serde_json::from_slice(&fs::read(&holdout).map_err(|e| e.to_string())?).map_err(|e| e.to_string())?;
+    let mut cases: Vec<Value> = Vec::new();
+    for holdout in every("holdout-cases") {
+        let panel: Vec<Value> = serde_json::from_slice(&fs::read(&holdout).map_err(|e| format!("{holdout}: {e}"))?).map_err(|e| e.to_string())?;
+        cases.extend(panel);
+    }
     // Tool schemas come from the frozen panel: training and evaluation share the reviewed tool surface.
-    let tools = cases.iter().find(|c| c["kind"] == "tool").map(|c| c["tools"].clone()).ok_or("holdout has no tool cases")?;
+    let tools = cases.iter().find(|c| c["kind"] == "tool").map(|c| c["tools"].clone()).ok_or("missing --holdout-cases with tool cases")?;
+    if cases.iter().any(|c| c["kind"] == "tool" && c["tools"] != tools) {
+        return Err("held-out panels disagree on the tool schema".into());
+    }
     let names: BTreeSet<String> = tools.as_array().into_iter().flatten().filter_map(|t| t["function"]["name"].as_str().map(String::from)).collect();
     let held_ids: BTreeSet<&str> = cases.iter().filter_map(|c| c["id"].as_str()).collect();
-    let held_prompts: BTreeSet<String> = cases.iter().filter_map(|c| c["messages"].as_array()).map(|m| serde_json::to_string(m).unwrap_or_default()).collect();
+    let mut held_prompts: BTreeSet<String> = cases.iter().filter_map(|c| c["messages"].as_array()).map(|m| serde_json::to_string(m).unwrap_or_default()).collect();
+    // Prompts already used for training (e.g. the data coding-4b was trained on) are excluded too.
+    let mut excluded = 0;
+    for path in every("exclude-sft") {
+        for line in fs::read_to_string(&path).map_err(|e| format!("{path}: {e}"))?.lines().filter(|l| !l.trim().is_empty()) {
+            let row: Value = serde_json::from_str(line).map_err(|e| format!("{path}: {e}"))?;
+            held_prompts.insert(prompt_key(row["messages"].as_array().ok_or("excluded row without messages")?));
+            excluded += 1;
+        }
+    }
     let text = fs::read_to_string(&sft).map_err(|e| e.to_string())?;
     let (mut train, mut valid, mut seen) = (Vec::new(), Vec::new(), BTreeSet::new());
     for (index, line) in text.lines().filter(|l| !l.trim().is_empty()).enumerate() {
@@ -100,7 +119,7 @@ fn run(args: &[String]) -> Result<()> {
     fs::write(out.join("train.jsonl"), &train_jsonl).map_err(|e| e.to_string())?;
     fs::write(out.join("RUFLO_TRAIN_GZIP"), &encoded).map_err(|e| e.to_string())?;
     let receipt = json!({"schema": "ruvllm-sft-bridge/v1", "train_rows": train.len(), "valid_rows": valid.len(),
-        "training_sha256": payload["training_sha256"], "sft_sha256": sha(text.as_bytes()), "holdout_cases": held_ids.len(),
+        "training_sha256": payload["training_sha256"], "sft_sha256": sha(text.as_bytes()), "holdout_cases": held_ids.len(), "excluded_sft_rows": excluded,
         "trainer": "scripts/cloud_train.py (unmodified)", "payload_bytes": encoded.len(), "training_executed": false});
     fs::write(out.join("bridge.json"), serde_json::to_string_pretty(&receipt).expect("json") + "\n").map_err(|e| e.to_string())?;
     println!("{receipt}");
@@ -110,7 +129,7 @@ fn run(args: &[String]) -> Result<()> {
 fn main() {
     if let Err(message) = run(&env::args().skip(1).collect::<Vec<_>>()) {
         eprintln!("sft-bridge: {message}");
-        eprintln!("usage: sft-bridge --sft sft.jsonl --holdout-cases frozen/v3/cases.json --out DIR [--valid-every 9]");
+        eprintln!("usage: sft-bridge --sft sft.jsonl --holdout-cases PANEL.json [--holdout-cases ...] [--exclude-sft used.jsonl ...] --out DIR [--valid-every 9]");
         process::exit(1);
     }
 }

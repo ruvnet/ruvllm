@@ -22,3 +22,7 @@ flate2 = "1"
 [[bin]]
 name = "sft-bridge"
 path = "src/bin/sft-bridge.rs"
+
+[[bin]]
+name = "case-gen"
+path = "src/bin/case-gen.rs"

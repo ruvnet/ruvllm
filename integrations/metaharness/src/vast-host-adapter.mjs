@@ -42,6 +42,8 @@ export async function readHostConfig(path = process.env[HOST_CONFIG_ENV]) {
   need(Number.isInteger(config.armDeadlineSeconds) && config.armDeadlineSeconds >= 60 && config.armDeadlineSeconds <= 43200, 'VAST_HOST_CONFIG_DEADLINE');
   need(Number.isInteger(config.guardGraceSeconds) && config.guardGraceSeconds >= 60 && config.guardGraceSeconds <= 3600, 'VAST_HOST_CONFIG_GUARD');
   need(['resultsRoot', 'sshKey', 'repoRoot', 'python', 'node'].every(key => abs(config[key])), 'VAST_HOST_CONFIG_PATHS');
+  need(config.adapterDir === undefined || (/^[a-z0-9][a-z0-9._-]{0,63}$/.test(config.adapterDir) && !config.adapterDir.includes('..')), 'VAST_HOST_CONFIG_ADAPTER');
+  need(config.trainPayload === undefined || /^experiments\/model-improvement\/training\/[a-z0-9][a-z0-9._-]{0,63}$/.test(config.trainPayload), 'VAST_HOST_CONFIG_PAYLOAD');
   need(config.secrets && typeof config.secrets === 'object' && Object.values(config.secrets).every(entry => abs(entry?.file)), 'VAST_HOST_CONFIG_SECRETS');
   return Object.freeze({ ...config, sha256 });
 }
@@ -82,8 +84,12 @@ async function writePrivate(path, value) {
   await writeFile(path, typeof value === 'string' ? value : JSON.stringify(value, null, 2) + '\n', { mode: 0o600 });
 }
 
-export function onstartScript(config) {
-  const run = `/workspace/ruvllm/experiments/model-improvement/vast/remote-run.sh ${config.commit} ${config.armDeadlineSeconds} ${config.bundle}`;
+export function onstartScript(config, task = 'evaluate') {
+  const scripts = '/workspace/ruvllm/experiments/model-improvement/vast';
+  if (task === 'train') need(config.trainPayload, 'VAST_HOST_CONFIG_PAYLOAD');
+  const run = task === 'train'
+    ? `${scripts}/remote-train.sh ${config.commit} ${config.armDeadlineSeconds} ${config.trainPayload}`
+    : `${scripts}/remote-run.sh ${config.commit} ${config.armDeadlineSeconds} ${config.bundle} ${config.adapterDir ?? 'coding-4b'}`;
   const failed = `grep -q '"failed"' /workspace/run/status.json 2>/dev/null || printf '{"schema":"ruvllm-vast-remote-status/v1","state":"failed","step":"bootstrap"}\\n' > /workspace/run/status.json`;
   return ['#!/bin/bash', 'mkdir -p /workspace/run',
     `nohup bash -c '(export DEBIAN_FRONTEND=noninteractive; (command -v git >/dev/null || (apt-get update -qq && apt-get install -y -qq git >/dev/null)) && git clone --quiet ${config.repoUrl} /workspace/ruvllm && git -C /workspace/ruvllm checkout --quiet ${config.commit} && bash ${run}) >/workspace/run/remote.log 2>&1 || { ${failed.replaceAll("'", "'\\''")}; }' >/dev/null 2>&1 &`, ''].join('\n');
@@ -134,7 +140,7 @@ export function createVastAdapter({ fetchImpl = globalThis.fetch, run = defaultR
     need(worstCaseUsd <= job.maxCostUsd, 'VAST_COST_CEILING');
     await mkdir(attemptDir(config, idempotencyKey), { mode: 0o700 });
     const created = await api(config, key, 'PUT', `/api/v0/asks/${offer.id}/`, { signal, body: { client_id: 'me', image: config.image,
-      env: {}, price: null, disk: config.diskGb, label, onstart: onstartScript(config), runtype: 'ssh', force: false, cancel_unavail: true } });
+      env: {}, price: null, disk: config.diskGb, label, onstart: onstartScript(config, job.task), runtype: 'ssh', force: false, cancel_unavail: true } });
     need(created?.success === true && Number.isSafeInteger(created.new_contract), 'VAST_CREATE_FAILED');
     const instanceId = created.new_contract;
     // Independent of this scheduler: a user timer destroys the rental after
@@ -145,7 +151,7 @@ export function createVastAdapter({ fetchImpl = globalThis.fetch, run = defaultR
     await writePrivate(join(attemptDir(config, idempotencyKey), 'submission.json'), { schema: 'ruvllm-vast-submission/v1',
       jobId: job.id, idempotencyKey, label, instanceId, offerId: offer.id, gpuName: offer.gpu_name, dphTotal: offer.dph_total,
       worstCaseUsd, maxCostUsd: job.maxCostUsd, timeoutSeconds: job.timeoutSeconds, image: config.image, commit: config.commit,
-      bundle: config.bundle, hostConfigSha256: config.sha256, guardArmed: guard.code === 0, submittedAt: new Date(now()).toISOString() });
+      task: job.task, bundle: config.bundle, adapterDir: config.adapterDir ?? 'coding-4b', trainPayload: config.trainPayload ?? null, hostConfigSha256: config.sha256, guardArmed: guard.code === 0, submittedAt: new Date(now()).toISOString() });
     if (guard.code !== 0) {
       await api(config, key, 'DELETE', `/api/v0/instances/${instanceId}/`, { body: {} });
       fail('VAST_GUARD_UNAVAILABLE');
@@ -180,6 +186,32 @@ export function createVastAdapter({ fetchImpl = globalThis.fetch, run = defaultR
     return { ok, reason: ok ? 'verified' : 'report_mismatch' };
   }
 
+  // Training evidence: the trainer's own manifest must hash every retrieved file,
+  // bind the committed payload, and match the completed event in the event log.
+  async function verifyTraining(config, job, dir) {
+    const out = join(dir, 'evidence', 'out', 'training-v1');
+    const sha = async path => createHash('sha256').update(await readFile(path)).digest('hex');
+    const checks = {};
+    try {
+      const bridge = JSON.parse(await readFile(join(config.repoRoot, config.trainPayload, 'bridge.json'), 'utf8'));
+      const manifestBytes = await readFile(join(out, 'manifest.json'));
+      const manifest = JSON.parse(manifestBytes);
+      const events = (await readFile(join(dir, 'evidence', 'run', 'train.log'), 'utf8')).split('\n')
+        .filter(line => line.startsWith('RUFLO_TRAIN ')).map(line => JSON.parse(line.slice(12)));
+      const completed = events.find(event => event.kind === 'completed');
+      checks.payloadBound = manifest.training_sha256 === bridge.training_sha256;
+      checks.manifestEvent = completed?.data?.manifest_sha256 === createHash('sha256').update(manifestBytes).digest('hex');
+      checks.steps = manifest.steps === 96 && manifest.revision === job.model.revision && manifest.model === job.model.repo;
+      const files = Object.entries(manifest.files ?? {});
+      checks.files = files.length >= 6 && (await Promise.all(files.map(async ([name, digest]) =>
+        !name.split('/').includes('..') && await sha(join(out, name)) === digest))).every(Boolean);
+      checks.validation = events.filter(event => event.kind === 'validation').map(event => event.data);
+    } catch (error) { checks.error = error.code ?? error.name; }
+    const ok = Boolean(checks.payloadBound && checks.manifestEvent && checks.steps && checks.files && !checks.error);
+    await writePrivate(join(dir, 'verification.json'), { schema: 'ruvllm-vast-training-verification/v1', jobId: job.id, ...checks, ok });
+    return { ok };
+  }
+
   async function inspect({ job, runId, idempotencyKey, signal }) {
     const started = now(), config = await readConfig(), key = await apiKey(config, job.secretRef);
     const instance = (await instances(config, key, signal)).find(row => String(row.id) === runId);
@@ -188,7 +220,7 @@ export function createVastAdapter({ fetchImpl = globalThis.fetch, run = defaultR
     if (costUsd > job.maxCostUsd) return { status: 'failed', costUsd };
     if (instance.actual_status !== 'running' || !instance.ssh_host || !instance.ssh_port) return { status: 'running', costUsd };
     const dir = attemptDir(config, idempotencyKey);
-    const probe = await run('ssh', ssh(config, instance, 'cat /workspace/run/status.json && echo && { tail -c 400 /workspace/run/run-pair.log 2>/dev/null || true; }'), { timeoutMs: 10000 });
+    const probe = await run('ssh', ssh(config, instance, `cat /workspace/run/status.json && echo && { tail -c 400 /workspace/run/${job.task === 'train' ? 'train' : 'run-pair'}.log 2>/dev/null || true; }`), { timeoutMs: 10000 });
     if (probe.code !== 0) return { status: 'running', costUsd };
     let remote;
     try { remote = JSON.parse(probe.stdout.split('\n')[0]); } catch { return { status: 'running', costUsd }; }
@@ -198,7 +230,7 @@ export function createVastAdapter({ fetchImpl = globalThis.fetch, run = defaultR
     if (remote.state !== 'done') return { status: 'running', costUsd };
     // Retain raw outputs locally before any terminal report; retry next tick on a slow pull.
     if (!await retrieve(config, instance, dir, started)) return { status: 'running', costUsd };
-    const checked = await verify(config, job, dir);
+    const checked = job.task === 'train' ? await verifyTraining(config, job, dir) : await verify(config, job, dir);
     return { status: 'completed', costUsd, completion: { completionVersion: 1, completionVerified: checked.ok, status: checked.ok ? 'ok' : 'error',
       exitCode: checked.ok ? 0 : 1, assertionsVerified: checked.ok, evidenceComplete: checked.ok, truncated: false, jobId: job.id,
       modelRepo: job.model.repo, modelRevision: job.model.revision, runId, idempotencyKey } };
