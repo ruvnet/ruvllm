@@ -1,5 +1,9 @@
 # MetaHarness weight experiments
 
+<p align="center"><img src="https://raw.githubusercontent.com/ruvnet/ruvllm/ruvllm-npm-v4.0.1/docs/assets/gpu-job-loop.svg" alt="The GPU job loop checks a spending ceiling, rents the offer and arms a destroy timer, runs the pinned job, pulls raw outputs, checks them locally, then destroys the rental and confirms it is gone." width="100%"></p>
+
+<p align="center"><img src="https://raw.githubusercontent.com/ruvnet/ruvllm/ruvllm-npm-v4.0.1/docs/assets/heldout-results.svg" alt="Held-out results on 256 untouched tasks: tool passes 149, 176 and 192 of 192 for base, coding-4b and coding-4b-r2; arithmetic 62, 64 and 46 of 64. coding-4b is kept; coding-4b-r2 is rejected." width="100%"></p>
+
 Published on npm as `@ruvector/ruvllm`. Version 4.0.0 replaces the 3.x
 inference runtime from `ruvnet/ruvector` with this package, because ruvllm now
 lives in `ruvnet/ruvllm`. The 3.x API and its CLI subcommands are not part of

@@ -95,7 +95,7 @@ def verify_source_export():
 
 def verify_svg():
     assets = sorted((ROOT / 'docs/assets').glob('*.svg'))
-    require(len(assets) == 3, 'Expected three publication diagrams')
+    require(len(assets) == 5, 'Expected five publication diagrams')
     for path in assets:
         text = path.read_text()
         require('<!DOCTYPE' not in text.upper() and '<!ENTITY' not in text.upper(), 'SVG declarations forbidden')
