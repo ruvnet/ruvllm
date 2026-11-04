@@ -1,5 +1,19 @@
 # MetaHarness weight experiments
 
+Published on npm as `@ruvector/ruvllm`. Version 4.0.0 replaces the 3.x
+inference runtime from `ruvnet/ruvector` with this package, because ruvllm now
+lives in `ruvnet/ruvllm`. The 3.x API and its CLI subcommands are not part of
+4.x; pin `@ruvector/ruvllm@3` to keep using them. The npm package ships the
+JavaScript controller, GPU loop and Vast.ai host adapter. It does not ship the
+native `weight_evolution` binary, model weights or adapters. Build the binary
+from this repository and pass its path with `--binary`.
+
+```sh
+npm install @ruvector/ruvllm
+npx ruvllm --help            # bounded weight-edit experiments
+npx ruvllm-gpu-loop status --config /abs/private/gpu-loop.json
+```
+
 Run multiple bounded RuVLLM edits against one unchanged checkpoint, validate
 supplied evaluations, package RVF evidence, restore every patched checkpoint,
 and rank research-qualified candidates through MetaHarness. This controller
