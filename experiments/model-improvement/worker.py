@@ -46,7 +46,7 @@ def verify_assets(protocol, model_dir, adapter_dir):
     if not isinstance(files, dict) or not files:
         raise ValueError("Pinned model weights are required")
     for name, digest in files.items():
-        if not re.fullmatch(r"model(?:-\d{5}-of-\d{5})?\.safetensors", name):
+        if not re.fullmatch(r"model(?:-\d{5}-of-\d{5}|\.safetensors-\d{5}-of-\d{5})?\.safetensors", name):
             raise ValueError("Only safe model weight filenames are supported")
         checked_file(model_dir, name, digest)
     actual = {p.name for p in model_dir.glob("model*.safetensors")}
