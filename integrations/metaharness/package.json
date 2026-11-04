@@ -1,13 +1,61 @@
 {
-  "name": "@ruvllm/metaharness-integration",
-  "version": "0.1.0",
-  "private": true,
+  "name": "@ruvector/ruvllm",
+  "version": "4.0.0",
   "type": "module",
-  "description": "Bounded native weight experiments with MetaHarness selection and evidence",
-  "engines": { "node": ">=22" },
+  "description": "Bounded RuVLLM weight experiments, a durable GPU job loop with a Vast.ai host adapter, and verified paired measurements",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ruvnet/ruvllm.git",
+    "directory": "integrations/metaharness"
+  },
+  "homepage": "https://github.com/ruvnet/ruvllm/tree/main/integrations/metaharness#readme",
+  "bugs": {
+    "url": "https://github.com/ruvnet/ruvllm/issues"
+  },
+  "keywords": [
+    "ruvllm",
+    "metaharness",
+    "lora",
+    "gpu",
+    "vast.ai",
+    "evaluation",
+    "weight-editing"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "bin": {
+    "ruvllm": "src/cli.mjs",
+    "ruvllm-gpu-loop": "src/gpu-loop-cli.mjs",
+    "ruvllm-adapters": "src/adapters-cli.mjs"
+  },
+  "exports": {
+    ".": "./src/engine.mjs",
+    "./adapters": "./src/adapters.mjs",
+    "./fixture": "./src/fixture.mjs",
+    "./gpu-loop": "./src/gpu-loop.mjs",
+    "./gpu-host": "./src/gpu-host.mjs",
+    "./gpu-spool-adapter": "./src/gpu-spool-adapter.mjs",
+    "./vast-host-adapter": "./src/vast-host-adapter.mjs",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src/",
+    "examples/",
+    "README.md",
+    "GPU-LOOP.md",
+    "LICENSE",
+    "NOTICE"
+  ],
   "scripts": {
     "test": "node --test test/*.test.mjs",
-    "bench": "node bench/run.mjs"
+    "bench": "node bench/run.mjs",
+    "prepack": "cp ../../LICENSE ../../NOTICE .",
+    "postpack": "rm -f LICENSE NOTICE"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "dependencies": {
     "@metaharness/darwin": "0.12.0",
