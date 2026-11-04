@@ -15,5 +15,10 @@ path = "src/main.rs"
 regex = "1"
 serde_json = { version = "1", features = ["preserve_order"] }
 sha2 = "0.10"
+flate2 = "1"
 
 [workspace]
+
+[[bin]]
+name = "sft-bridge"
+path = "src/bin/sft-bridge.rs"
