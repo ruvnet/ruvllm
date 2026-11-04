@@ -113,7 +113,7 @@ export function createVastAdapter({ fetchImpl = globalThis.fetch, run = defaultR
   }
   const attemptDir = (config, key) => join(config.resultsRoot, key);
   const ssh = (config, instance, remote) => ['-i', config.sshKey, '-p', String(instance.ssh_port), '-o', 'BatchMode=yes', '-o', 'ConnectTimeout=8',
-    '-o', 'StrictHostKeyChecking=accept-new', '-o', `UserKnownHostsFile=${join(config.resultsRoot, 'known_hosts')}`, '-o', 'IdentitiesOnly=yes',
+    '-o', 'StrictHostKeyChecking=accept-new', '-o', `UserKnownHostsFile=${join(config.resultsRoot, `known_hosts-${instance.id}`)}`, '-o', 'IdentitiesOnly=yes',
     `root@${instance.ssh_host}`, remote];
 
   async function submit({ job, idempotencyKey, signal }) {
@@ -188,7 +188,7 @@ export function createVastAdapter({ fetchImpl = globalThis.fetch, run = defaultR
     if (costUsd > job.maxCostUsd) return { status: 'failed', costUsd };
     if (instance.actual_status !== 'running' || !instance.ssh_host || !instance.ssh_port) return { status: 'running', costUsd };
     const dir = attemptDir(config, idempotencyKey);
-    const probe = await run('ssh', ssh(config, instance, 'cat /workspace/run/status.json; echo; tail -c 400 /workspace/run/run-pair.log 2>/dev/null'), { timeoutMs: 10000 });
+    const probe = await run('ssh', ssh(config, instance, 'cat /workspace/run/status.json && echo && { tail -c 400 /workspace/run/run-pair.log 2>/dev/null || true; }'), { timeoutMs: 10000 });
     if (probe.code !== 0) return { status: 'running', costUsd };
     let remote;
     try { remote = JSON.parse(probe.stdout.split('\n')[0]); } catch { return { status: 'running', costUsd }; }
