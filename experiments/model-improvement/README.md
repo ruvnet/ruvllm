@@ -165,3 +165,18 @@ convert agent-written JSON or mere process submission into verified completion.
 No paid job, recurring schedule or provider allocation is enabled by these
 commands or the local contract tests. Qualification of this research panel
 does not bypass the existing external activation gates.
+
+## Build the regression dashboard
+
+After retrieving the complete pair, rerun the frozen scorer and group each
+base pass that became an adapter failure by expected tool and observed failure.
+The dashboard keeps case IDs for lookup in the raw outputs. It does not render
+model output or alter the qualification rule.
+
+```sh
+python3 experiments/model-improvement/regression-dashboard.py \
+  --bundle experiments/model-improvement/frozen/v1 \
+  --base /workspace/measurement-runs/paired-v1/base \
+  --adapter /workspace/measurement-runs/paired-v1/adapter \
+  --out /workspace/measurement-runs/paired-v1/dashboard.md
+```
