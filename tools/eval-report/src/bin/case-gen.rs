@@ -386,7 +386,10 @@ fn run(args: &[String]) -> Result<()> {
     };
     match args.first().map(String::as_str) {
         Some("publish") => {
-            let provenance = json!({"training_receipt": flag("training-receipt")?, "checkpoint": flag("checkpoint")?});
+            // Record only the checkpoint's own name (e.g. training-v1/step-064), never an operator path.
+            let checkpoint = flag("checkpoint")?;
+            let label: Vec<&str> = Path::new(&checkpoint).iter().rev().take(2).filter_map(|c| c.to_str()).collect();
+            let provenance = json!({"training_receipt": flag("training-receipt")?, "checkpoint": label.into_iter().rev().collect::<Vec<_>>().join("/")});
             let receipt = publish(Path::new(&flag("checkpoint")?), Path::new(&flag("reference")?), Path::new(&flag("out")?), provenance)?;
             println!("{}", receipt["files"]);
         }
