@@ -1,6 +1,6 @@
 {
   "name": "@ruvector/ruvllm",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "type": "module",
   "description": "Bounded RuVLLM weight experiments, a durable GPU job loop with a Vast.ai host adapter, and verified paired measurements",
   "license": "Apache-2.0",

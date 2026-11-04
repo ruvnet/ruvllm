@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="470" viewBox="0 0 960 470" role="img" aria-labelledby="title desc">
+  <title id="title">One rented GPU, verified from rental to cleanup</title>
+  <desc id="desc">The GPU job loop checks a spending ceiling before renting a Vast.ai offer and arms an independent destroy timer. It runs the frozen measurement or the pinned trainer, then pulls the raw outputs and re-scores or verifies them locally. It destroys the rental and confirms that it is gone. Only a matching local result counts as completion. A moving dot shows the order of the steps; it does not represent live data.</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1">
+      <stop stop-color="#101c35" />
+      <stop offset="1" stop-color="#111827" />
+    </linearGradient>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M1 1 L7 4 L1 7" stroke="#6682a7" fill="none" stroke-width="1.5" />
+    </marker>
+  </defs>
+  <style>text{font-family:ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif}.flow{animation:flow 6s linear infinite}.pulse{animation:pulse 4s ease-in-out infinite}.step{animation:step 12s ease-in-out infinite}.s2{animation-delay:2s}.s3{animation-delay:4s}.s4{animation-delay:6s}.s5{animation-delay:8s}.s6{animation-delay:10s}@keyframes flow{to{stroke-dashoffset:-80}}@keyframes pulse{0%,100%{opacity:.55}50%{opacity:1}}@keyframes step{0%,100%{stroke:#3a5275}8%,16%{stroke:#5eead4}24%{stroke:#3a5275}}@media(prefers-reduced-motion:reduce){.flow,.pulse,.step{animation:none!important}}</style>
+  <rect width="960" height="470" rx="24" fill="url(#bg)" />
+  <rect x="1" y="1" width="958" height="468" rx="23" stroke="#304361" fill="none" />
+  <text x="40" y="54" font-size="34" fill="#f8fafc" font-weight="700">One rented GPU, checked end to end</text>
+  <text x="40" y="90" font-size="21" fill="#bacce4" font-weight="400">ruvllm-gpu-loop · Vast.ai host adapter · no credential leaves the control host</text>
+
+  <rect x="40" y="128" width="268" height="104" rx="16" fill="#15253e" stroke="#3a5275" stroke-width="2" class="step" />
+  <text x="62" y="164" font-size="15" fill="#5eead4" font-weight="700" letter-spacing="1">STEP 1</text>
+  <text x="62" y="192" font-size="23" fill="#f1f5f9" font-weight="650">Check the ceiling</text>
+  <text x="62" y="218" font-size="17" fill="#bacce4">hourly price × timeout ≤ limit</text>
+
+  <rect x="346" y="128" width="268" height="104" rx="16" fill="#15253e" stroke="#3a5275" stroke-width="2" class="step s2" />
+  <text x="368" y="164" font-size="15" fill="#5eead4" font-weight="700" letter-spacing="1">STEP 2</text>
+  <text x="368" y="192" font-size="23" fill="#f1f5f9" font-weight="650">Rent, arm a guard</text>
+  <text x="368" y="218" font-size="17" fill="#bacce4">independent destroy timer</text>
+
+  <rect x="652" y="128" width="268" height="104" rx="16" fill="#15253e" stroke="#3a5275" stroke-width="2" class="step s3" />
+  <text x="674" y="164" font-size="15" fill="#5eead4" font-weight="700" letter-spacing="1">STEP 3</text>
+  <text x="674" y="192" font-size="23" fill="#f1f5f9" font-weight="650">Run the pinned job</text>
+  <text x="674" y="218" font-size="17" fill="#bacce4">frozen pair or pinned trainer</text>
+
+  <rect x="652" y="282" width="268" height="104" rx="16" fill="#15253e" stroke="#3a5275" stroke-width="2" class="step s4" />
+  <text x="674" y="318" font-size="15" fill="#5eead4" font-weight="700" letter-spacing="1">STEP 4</text>
+  <text x="674" y="346" font-size="23" fill="#f1f5f9" font-weight="650">Pull raw outputs</text>
+  <text x="674" y="372" font-size="17" fill="#bacce4">every response and log</text>
+
+  <rect x="346" y="282" width="268" height="104" rx="16" fill="#15253e" stroke="#3a5275" stroke-width="2" class="step s5" />
+  <text x="368" y="318" font-size="15" fill="#5eead4" font-weight="700" letter-spacing="1">STEP 5</text>
+  <text x="368" y="346" font-size="23" fill="#f1f5f9" font-weight="650">Check it locally</text>
+  <text x="368" y="372" font-size="17" fill="#bacce4">re-score must match exactly</text>
+
+  <rect x="40" y="282" width="268" height="104" rx="16" fill="#15253e" stroke="#3a5275" stroke-width="2" class="step s6" />
+  <text x="62" y="318" font-size="15" fill="#5eead4" font-weight="700" letter-spacing="1">STEP 6</text>
+  <text x="62" y="346" font-size="23" fill="#f1f5f9" font-weight="650">Destroy and confirm</text>
+  <text x="62" y="372" font-size="17" fill="#bacce4">absent from the account</text>
+
+  <path d="M310 180 H342" stroke="#6682a7" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="6 6" class="flow" />
+  <path d="M616 180 H648" stroke="#6682a7" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="6 6" class="flow" />
+  <path d="M786 234 V278" stroke="#6682a7" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="6 6" class="flow" />
+  <path d="M650 334 H618" stroke="#6682a7" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="6 6" class="flow" />
+  <path d="M344 334 H312" stroke="#6682a7" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="6 6" class="flow" />
+
+  <circle r="6" fill="#e3fff6" class="pulse">
+    <animateMotion dur="12s" repeatCount="indefinite" path="M174 128 H480 H786 V282 H480 H174" />
+  </circle>
+
+  <text x="40" y="430" font-size="19" fill="#a7f3d0" font-weight="600">Four spending limits: admission budget · worst-case offer price · accrued cost · destroy timer</text>
+</svg>
