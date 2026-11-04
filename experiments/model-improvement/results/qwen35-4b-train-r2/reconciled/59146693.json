@@ -1,0 +1,4 @@
+{"schema":"ruvllm-gpu-loop-reconciliation/v1","at":"2026-11-04T18:48:00Z","job":"qwen35-4b-train-r2","instanceId":"59146693","offerId":"38849859",
+ "finding":"Host never started the container: 'OCI runtime create failed ... failed to inject CDI devices: unresolvable CDI devices'. No training ran.",
+ "action":"Loop stopped between ticks so it could not retry the same offer; instance destroyed via adapter cleanup and confirmed absent; guard stopped. Reserved $1.00 counted as spent.",
+ "next":"New cycle on a verified datacenter offer."}
