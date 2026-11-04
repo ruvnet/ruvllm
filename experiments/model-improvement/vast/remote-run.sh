@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Runs on a rented GPU host from a checkout pinned to an exact commit.
 # It receives no provider credential. It installs the protocol's pinned
-# packages, downloads the public pinned model snapshot, runs both arms with
+# packages (into the image's system Python, which carries torch), downloads the public pinned model snapshot, runs both arms with
 # run-pair.py and leaves raw evidence in /workspace/out for the control host.
 # /workspace/run/status.json is a progress hint only; the control host
 # re-scores the retrieved raw outputs before accepting any result.
@@ -9,7 +9,7 @@ set -Eeuo pipefail
 
 COMMIT=${1:?commit}
 ARM_DEADLINE=${2:?per-arm deadline seconds}
-BUNDLE_NAME=${3:-v2}
+BUNDLE_NAME=${3:-v3}
 REPO=/workspace/ruvllm
 RUN=/workspace/run
 OUT=/workspace/out
@@ -31,7 +31,7 @@ test "$(git -C "$REPO" rev-parse HEAD)" = "$COMMIT"
 test -z "$(git -C "$REPO" status --porcelain)"
 
 step packages
-python3 -m pip install --no-cache-dir -q torch==2.11.0 transformers==5.12.1 peft==0.21.2 \
+python3 -m pip install --break-system-packages --no-cache-dir -q torch==2.11.0 transformers==5.12.1 peft==0.21.2 \
   safetensors==0.7.0 accelerate==1.12.0 huggingface_hub
 python3 -m pip freeze > "$RUN/pip-freeze.txt"
 nvidia-smi --query-gpu=name,uuid,driver_version,memory.total --format=csv,noheader > "$RUN/gpu.txt"

@@ -122,9 +122,11 @@ export function createVastAdapter({ fetchImpl = globalThis.fetch, run = defaultR
     const label = `ruvllm-${idempotencyKey}`;
     const existing = (await instances(config, key, signal)).find(row => row.label === label);
     if (existing) return { runId: String(existing.id) };
-    const offers = (await api(config, key, 'POST', '/api/v0/bundles/', { signal, body: { id: { eq: Number(job.resource.offerId) },
-      rentable: { eq: true }, rented: { eq: false }, type: 'on-demand', allocated_storage: config.diskGb, limit: 2 } }))?.offers ?? [];
-    need(offers.length === 1 && Number.isFinite(offers[0].dph_total) && offers[0].dph_total > 0, 'VAST_OFFER_UNAVAILABLE');
+    // The bundles search ignores `id`; `ask_contract_id` is the offer identity filter.
+    const offers = (await api(config, key, 'POST', '/api/v0/bundles/', { signal, body: { ask_contract_id: { eq: Number(job.resource.offerId) },
+      rentable: { eq: true }, type: 'on-demand', allocated_storage: config.diskGb, limit: 2 } }))?.offers ?? [];
+    need(offers.length === 1 && String(offers[0].id) === job.resource.offerId
+      && Number.isFinite(offers[0].dph_total) && offers[0].dph_total > 0, 'VAST_OFFER_UNAVAILABLE');
     const offer = offers[0];
     // Spending ceiling: the worst case (full timeout at the offer's total hourly
     // price, storage included) must fit the job's reserved ceiling before renting.
