@@ -11,7 +11,7 @@
     "qwen35-4b-adapter-confirmation-v1": "Shard-name check rejected the pinned model's real filenames; could never load. No output.",
     "qwen35-4b-adapter-confirmation-v2": "PEFT low_cpu_mem_usage=True rounded the FP32 adapter to BF16; the worker's adapter check rejected it. Its one attempt failed at package install, before inference. No output."
   },
-  "fresh_inference_runs": 1,
+  "fresh_inference_runs": 3,
   "executor": "Vast.ai RTX 3090 instance 59124550 via integrations/metaharness/src/vast-host-adapter.mjs (ADR 017)",
   "results": "results/qwen35-4b-adapter-confirmation-v3/",
   "local_rescore_matches_remote": true,
@@ -30,5 +30,60 @@
     "math_adapter_correct": 63
   },
   "live_gpu_e2e_verified": true,
-  "production_activation": false
+  "production_activation": false,
+  "heldout_v4_v5": {
+    "panel_cases_sha256": "0d7c91531b014fa5c999bd38b6b9bd3cb27202e998c1f4f44dfdcd832eb09c2c",
+    "preregistration": "training/pool-v4/preregistration.json",
+    "training": {
+      "adapter": "weights/coding-4b-r2",
+      "results": "results/qwen35-4b-train-r2/",
+      "verified": true,
+      "cost_usd": 0.092034
+    },
+    "v4": {
+      "run_id": "qwen35-4b-heldout-v4-coding-4b",
+      "decision": "keep",
+      "tool": [
+        149,
+        176
+      ],
+      "tool_gains": 40,
+      "tool_regressions": 13,
+      "tool_p": 0.0002685401188191605,
+      "math": [
+        62,
+        64
+      ],
+      "cost_usd": 0.911382
+    },
+    "v5": {
+      "run_id": "qwen35-4b-heldout-v5-coding-4b-r2",
+      "decision": "reject",
+      "reasons": [
+        "math_anchor_regressed",
+        "completion_regressed"
+      ],
+      "tool": [
+        149,
+        192
+      ],
+      "tool_gains": 43,
+      "tool_regressions": 0,
+      "math": [
+        62,
+        46
+      ],
+      "math_regressions": 17,
+      "cost_usd": 0.76441
+    },
+    "three_way": {
+      "results": "results/qwen35-4b-three-way-v4-v5/three-way.json",
+      "r2_vs_coding_4b_tool_gains": 16,
+      "r2_vs_coding_4b_tool_regressions": 0,
+      "p": 3.0517578125e-05,
+      "recommend_replacing_coding_4b": false,
+      "base_arms_identical_texts": 256
+    },
+    "conclusion": "coding-4b is kept on untouched tasks. coding-4b-r2 fixes every tool failure but loses 16 arithmetic answers, so it is rejected and does not replace coding-4b."
+  }
 }

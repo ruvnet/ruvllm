@@ -1,0 +1,1 @@
+NVIDIA GeForce RTX 4090, GPU-bb6d2aaf-bb16-481a-caee-f1024127b9f4, 575.57.08, 24564 MiB

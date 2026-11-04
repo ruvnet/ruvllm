@@ -1,0 +1,613 @@
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/723 [00:00<?, ?it/s]Loading weights:   0%|          | 1/723 [00:00<01:19,  9.10it/s]Loading weights:   5%|▍         | 34/723 [00:00<00:03, 183.86it/s]Loading weights:   8%|▊         | 59/723 [00:00<00:03, 204.95it/s]Loading weights:  11%|█         | 81/723 [00:00<00:03, 207.98it/s]Loading weights:  15%|█▍        | 106/723 [00:00<00:02, 216.12it/s]Loading weights:  18%|█▊        | 133/723 [00:00<00:02, 230.61it/s]Loading weights:  22%|██▏       | 157/723 [00:00<00:02, 222.05it/s]Loading weights:  26%|██▌       | 187/723 [00:00<00:02, 238.12it/s]Loading weights:  29%|██▉       | 212/723 [00:00<00:02, 239.43it/s]Loading weights:  33%|███▎      | 240/723 [00:01<00:01, 243.34it/s]Loading weights:  37%|███▋      | 265/723 [00:01<00:01, 238.70it/s]Loading weights:  41%|████      | 293/723 [00:01<00:01, 242.97it/s]Loading weights:  44%|████▍     | 318/723 [00:01<00:01, 236.06it/s]Loading weights:  48%|████▊     | 345/723 [00:01<00:01, 241.58it/s]Loading weights:  51%|█████     | 370/723 [00:01<00:01, 228.03it/s]Loading weights:  55%|█████▌    | 399/723 [00:01<00:01, 242.11it/s]Loading weights:  59%|█████▊    | 424/723 [00:01<00:01, 234.91it/s]Loading weights:  80%|███████▉  | 575/723 [00:01<00:00, 586.13it/s]Loading weights:  99%|█████████▉| 714/723 [00:02<00:00, 806.81it/s]Loading weights: 100%|██████████| 723/723 [00:02<00:00, 348.39it/s]
+{"arm": "base", "completed": 1, "total": 256}
+{"arm": "base", "completed": 2, "total": 256}
+{"arm": "base", "completed": 3, "total": 256}
+{"arm": "base", "completed": 4, "total": 256}
+{"arm": "base", "completed": 5, "total": 256}
+{"arm": "base", "completed": 6, "total": 256}
+{"arm": "base", "completed": 7, "total": 256}
+{"arm": "base", "completed": 8, "total": 256}
+{"arm": "base", "completed": 9, "total": 256}
+{"arm": "base", "completed": 10, "total": 256}
+{"arm": "base", "completed": 11, "total": 256}
+{"arm": "base", "completed": 12, "total": 256}
+{"arm": "base", "completed": 13, "total": 256}
+{"arm": "base", "completed": 14, "total": 256}
+{"arm": "base", "completed": 15, "total": 256}
+{"arm": "base", "completed": 16, "total": 256}
+{"arm": "base", "completed": 17, "total": 256}
+{"arm": "base", "completed": 18, "total": 256}
+{"arm": "base", "completed": 19, "total": 256}
+{"arm": "base", "completed": 20, "total": 256}
+{"arm": "base", "completed": 21, "total": 256}
+{"arm": "base", "completed": 22, "total": 256}
+{"arm": "base", "completed": 23, "total": 256}
+{"arm": "base", "completed": 24, "total": 256}
+{"arm": "base", "completed": 25, "total": 256}
+{"arm": "base", "completed": 26, "total": 256}
+{"arm": "base", "completed": 27, "total": 256}
+{"arm": "base", "completed": 28, "total": 256}
+{"arm": "base", "completed": 29, "total": 256}
+{"arm": "base", "completed": 30, "total": 256}
+{"arm": "base", "completed": 31, "total": 256}
+{"arm": "base", "completed": 32, "total": 256}
+{"arm": "base", "completed": 33, "total": 256}
+{"arm": "base", "completed": 34, "total": 256}
+{"arm": "base", "completed": 35, "total": 256}
+{"arm": "base", "completed": 36, "total": 256}
+{"arm": "base", "completed": 37, "total": 256}
+{"arm": "base", "completed": 38, "total": 256}
+{"arm": "base", "completed": 39, "total": 256}
+{"arm": "base", "completed": 40, "total": 256}
+{"arm": "base", "completed": 41, "total": 256}
+{"arm": "base", "completed": 42, "total": 256}
+{"arm": "base", "completed": 43, "total": 256}
+{"arm": "base", "completed": 44, "total": 256}
+{"arm": "base", "completed": 45, "total": 256}
+{"arm": "base", "completed": 46, "total": 256}
+{"arm": "base", "completed": 47, "total": 256}
+{"arm": "base", "completed": 48, "total": 256}
+{"arm": "base", "completed": 49, "total": 256}
+{"arm": "base", "completed": 50, "total": 256}
+{"arm": "base", "completed": 51, "total": 256}
+{"arm": "base", "completed": 52, "total": 256}
+{"arm": "base", "completed": 53, "total": 256}
+{"arm": "base", "completed": 54, "total": 256}
+{"arm": "base", "completed": 55, "total": 256}
+{"arm": "base", "completed": 56, "total": 256}
+{"arm": "base", "completed": 57, "total": 256}
+{"arm": "base", "completed": 58, "total": 256}
+{"arm": "base", "completed": 59, "total": 256}
+{"arm": "base", "completed": 60, "total": 256}
+{"arm": "base", "completed": 61, "total": 256}
+{"arm": "base", "completed": 62, "total": 256}
+{"arm": "base", "completed": 63, "total": 256}
+{"arm": "base", "completed": 64, "total": 256}
+{"arm": "base", "completed": 65, "total": 256}
+{"arm": "base", "completed": 66, "total": 256}
+{"arm": "base", "completed": 67, "total": 256}
+{"arm": "base", "completed": 68, "total": 256}
+{"arm": "base", "completed": 69, "total": 256}
+{"arm": "base", "completed": 70, "total": 256}
+{"arm": "base", "completed": 71, "total": 256}
+{"arm": "base", "completed": 72, "total": 256}
+{"arm": "base", "completed": 73, "total": 256}
+{"arm": "base", "completed": 74, "total": 256}
+{"arm": "base", "completed": 75, "total": 256}
+{"arm": "base", "completed": 76, "total": 256}
+{"arm": "base", "completed": 77, "total": 256}
+{"arm": "base", "completed": 78, "total": 256}
+{"arm": "base", "completed": 79, "total": 256}
+{"arm": "base", "completed": 80, "total": 256}
+{"arm": "base", "completed": 81, "total": 256}
+{"arm": "base", "completed": 82, "total": 256}
+{"arm": "base", "completed": 83, "total": 256}
+{"arm": "base", "completed": 84, "total": 256}
+{"arm": "base", "completed": 85, "total": 256}
+{"arm": "base", "completed": 86, "total": 256}
+{"arm": "base", "completed": 87, "total": 256}
+{"arm": "base", "completed": 88, "total": 256}
+{"arm": "base", "completed": 89, "total": 256}
+{"arm": "base", "completed": 90, "total": 256}
+{"arm": "base", "completed": 91, "total": 256}
+{"arm": "base", "completed": 92, "total": 256}
+{"arm": "base", "completed": 93, "total": 256}
+{"arm": "base", "completed": 94, "total": 256}
+{"arm": "base", "completed": 95, "total": 256}
+{"arm": "base", "completed": 96, "total": 256}
+{"arm": "base", "completed": 97, "total": 256}
+{"arm": "base", "completed": 98, "total": 256}
+{"arm": "base", "completed": 99, "total": 256}
+{"arm": "base", "completed": 100, "total": 256}
+{"arm": "base", "completed": 101, "total": 256}
+{"arm": "base", "completed": 102, "total": 256}
+{"arm": "base", "completed": 103, "total": 256}
+{"arm": "base", "completed": 104, "total": 256}
+{"arm": "base", "completed": 105, "total": 256}
+{"arm": "base", "completed": 106, "total": 256}
+{"arm": "base", "completed": 107, "total": 256}
+{"arm": "base", "completed": 108, "total": 256}
+{"arm": "base", "completed": 109, "total": 256}
+{"arm": "base", "completed": 110, "total": 256}
+{"arm": "base", "completed": 111, "total": 256}
+{"arm": "base", "completed": 112, "total": 256}
+{"arm": "base", "completed": 113, "total": 256}
+{"arm": "base", "completed": 114, "total": 256}
+{"arm": "base", "completed": 115, "total": 256}
+{"arm": "base", "completed": 116, "total": 256}
+{"arm": "base", "completed": 117, "total": 256}
+{"arm": "base", "completed": 118, "total": 256}
+{"arm": "base", "completed": 119, "total": 256}
+{"arm": "base", "completed": 120, "total": 256}
+{"arm": "base", "completed": 121, "total": 256}
+{"arm": "base", "completed": 122, "total": 256}
+{"arm": "base", "completed": 123, "total": 256}
+{"arm": "base", "completed": 124, "total": 256}
+{"arm": "base", "completed": 125, "total": 256}
+{"arm": "base", "completed": 126, "total": 256}
+{"arm": "base", "completed": 127, "total": 256}
+{"arm": "base", "completed": 128, "total": 256}
+{"arm": "base", "completed": 129, "total": 256}
+{"arm": "base", "completed": 130, "total": 256}
+{"arm": "base", "completed": 131, "total": 256}
+{"arm": "base", "completed": 132, "total": 256}
+{"arm": "base", "completed": 133, "total": 256}
+{"arm": "base", "completed": 134, "total": 256}
+{"arm": "base", "completed": 135, "total": 256}
+{"arm": "base", "completed": 136, "total": 256}
+{"arm": "base", "completed": 137, "total": 256}
+{"arm": "base", "completed": 138, "total": 256}
+{"arm": "base", "completed": 139, "total": 256}
+{"arm": "base", "completed": 140, "total": 256}
+{"arm": "base", "completed": 141, "total": 256}
+{"arm": "base", "completed": 142, "total": 256}
+{"arm": "base", "completed": 143, "total": 256}
+{"arm": "base", "completed": 144, "total": 256}
+{"arm": "base", "completed": 145, "total": 256}
+{"arm": "base", "completed": 146, "total": 256}
+{"arm": "base", "completed": 147, "total": 256}
+{"arm": "base", "completed": 148, "total": 256}
+{"arm": "base", "completed": 149, "total": 256}
+{"arm": "base", "completed": 150, "total": 256}
+{"arm": "base", "completed": 151, "total": 256}
+{"arm": "base", "completed": 152, "total": 256}
+{"arm": "base", "completed": 153, "total": 256}
+{"arm": "base", "completed": 154, "total": 256}
+{"arm": "base", "completed": 155, "total": 256}
+{"arm": "base", "completed": 156, "total": 256}
+{"arm": "base", "completed": 157, "total": 256}
+{"arm": "base", "completed": 158, "total": 256}
+{"arm": "base", "completed": 159, "total": 256}
+{"arm": "base", "completed": 160, "total": 256}
+{"arm": "base", "completed": 161, "total": 256}
+{"arm": "base", "completed": 162, "total": 256}
+{"arm": "base", "completed": 163, "total": 256}
+{"arm": "base", "completed": 164, "total": 256}
+{"arm": "base", "completed": 165, "total": 256}
+{"arm": "base", "completed": 166, "total": 256}
+{"arm": "base", "completed": 167, "total": 256}
+{"arm": "base", "completed": 168, "total": 256}
+{"arm": "base", "completed": 169, "total": 256}
+{"arm": "base", "completed": 170, "total": 256}
+{"arm": "base", "completed": 171, "total": 256}
+{"arm": "base", "completed": 172, "total": 256}
+{"arm": "base", "completed": 173, "total": 256}
+{"arm": "base", "completed": 174, "total": 256}
+{"arm": "base", "completed": 175, "total": 256}
+{"arm": "base", "completed": 176, "total": 256}
+{"arm": "base", "completed": 177, "total": 256}
+{"arm": "base", "completed": 178, "total": 256}
+{"arm": "base", "completed": 179, "total": 256}
+{"arm": "base", "completed": 180, "total": 256}
+{"arm": "base", "completed": 181, "total": 256}
+{"arm": "base", "completed": 182, "total": 256}
+{"arm": "base", "completed": 183, "total": 256}
+{"arm": "base", "completed": 184, "total": 256}
+{"arm": "base", "completed": 185, "total": 256}
+{"arm": "base", "completed": 186, "total": 256}
+{"arm": "base", "completed": 187, "total": 256}
+{"arm": "base", "completed": 188, "total": 256}
+{"arm": "base", "completed": 189, "total": 256}
+{"arm": "base", "completed": 190, "total": 256}
+{"arm": "base", "completed": 191, "total": 256}
+{"arm": "base", "completed": 192, "total": 256}
+{"arm": "base", "completed": 193, "total": 256}
+{"arm": "base", "completed": 194, "total": 256}
+{"arm": "base", "completed": 195, "total": 256}
+{"arm": "base", "completed": 196, "total": 256}
+{"arm": "base", "completed": 197, "total": 256}
+{"arm": "base", "completed": 198, "total": 256}
+{"arm": "base", "completed": 199, "total": 256}
+{"arm": "base", "completed": 200, "total": 256}
+{"arm": "base", "completed": 201, "total": 256}
+{"arm": "base", "completed": 202, "total": 256}
+{"arm": "base", "completed": 203, "total": 256}
+{"arm": "base", "completed": 204, "total": 256}
+{"arm": "base", "completed": 205, "total": 256}
+{"arm": "base", "completed": 206, "total": 256}
+{"arm": "base", "completed": 207, "total": 256}
+{"arm": "base", "completed": 208, "total": 256}
+{"arm": "base", "completed": 209, "total": 256}
+{"arm": "base", "completed": 210, "total": 256}
+{"arm": "base", "completed": 211, "total": 256}
+{"arm": "base", "completed": 212, "total": 256}
+{"arm": "base", "completed": 213, "total": 256}
+{"arm": "base", "completed": 214, "total": 256}
+{"arm": "base", "completed": 215, "total": 256}
+{"arm": "base", "completed": 216, "total": 256}
+{"arm": "base", "completed": 217, "total": 256}
+{"arm": "base", "completed": 218, "total": 256}
+{"arm": "base", "completed": 219, "total": 256}
+{"arm": "base", "completed": 220, "total": 256}
+{"arm": "base", "completed": 221, "total": 256}
+{"arm": "base", "completed": 222, "total": 256}
+{"arm": "base", "completed": 223, "total": 256}
+{"arm": "base", "completed": 224, "total": 256}
+{"arm": "base", "completed": 225, "total": 256}
+{"arm": "base", "completed": 226, "total": 256}
+{"arm": "base", "completed": 227, "total": 256}
+{"arm": "base", "completed": 228, "total": 256}
+{"arm": "base", "completed": 229, "total": 256}
+{"arm": "base", "completed": 230, "total": 256}
+{"arm": "base", "completed": 231, "total": 256}
+{"arm": "base", "completed": 232, "total": 256}
+{"arm": "base", "completed": 233, "total": 256}
+{"arm": "base", "completed": 234, "total": 256}
+{"arm": "base", "completed": 235, "total": 256}
+{"arm": "base", "completed": 236, "total": 256}
+{"arm": "base", "completed": 237, "total": 256}
+{"arm": "base", "completed": 238, "total": 256}
+{"arm": "base", "completed": 239, "total": 256}
+{"arm": "base", "completed": 240, "total": 256}
+{"arm": "base", "completed": 241, "total": 256}
+{"arm": "base", "completed": 242, "total": 256}
+{"arm": "base", "completed": 243, "total": 256}
+{"arm": "base", "completed": 244, "total": 256}
+{"arm": "base", "completed": 245, "total": 256}
+{"arm": "base", "completed": 246, "total": 256}
+{"arm": "base", "completed": 247, "total": 256}
+{"arm": "base", "completed": 248, "total": 256}
+{"arm": "base", "completed": 249, "total": 256}
+{"arm": "base", "completed": 250, "total": 256}
+{"arm": "base", "completed": 251, "total": 256}
+{"arm": "base", "completed": 252, "total": 256}
+{"arm": "base", "completed": 253, "total": 256}
+{"arm": "base", "completed": 254, "total": 256}
+{"arm": "base", "completed": 255, "total": 256}
+{"arm": "base", "completed": 256, "total": 256}
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/723 [00:00<?, ?it/s]Loading weights:   0%|          | 1/723 [00:00<01:16,  9.44it/s]Loading weights:   4%|▍         | 28/723 [00:00<00:04, 153.88it/s]Loading weights:   7%|▋         | 53/723 [00:00<00:03, 190.67it/s]Loading weights:  11%|█         | 80/723 [00:00<00:02, 216.09it/s]Loading weights:  14%|█▍        | 102/723 [00:00<00:02, 213.35it/s]Loading weights:  18%|█▊        | 130/723 [00:00<00:02, 235.08it/s]Loading weights:  21%|██▏       | 154/723 [00:00<00:02, 218.25it/s]Loading weights:  26%|██▌       | 186/723 [00:00<00:02, 241.35it/s]Loading weights:  29%|██▉       | 211/723 [00:00<00:02, 236.16it/s]Loading weights:  33%|███▎      | 238/723 [00:01<00:01, 244.57it/s]Loading weights:  36%|███▋      | 263/723 [00:01<00:01, 232.28it/s]Loading weights:  40%|███▉      | 289/723 [00:01<00:01, 236.94it/s]Loading weights:  44%|████▎     | 316/723 [00:01<00:01, 243.99it/s]Loading weights:  48%|████▊     | 344/723 [00:01<00:01, 243.12it/s]Loading weights:  51%|█████     | 369/723 [00:01<00:01, 237.95it/s]Loading weights:  55%|█████▍    | 397/723 [00:01<00:01, 239.55it/s]Loading weights:  58%|█████▊    | 422/723 [00:01<00:01, 235.15it/s]Loading weights:  76%|███████▋  | 553/723 [00:01<00:00, 532.67it/s]Loading weights:  97%|█████████▋| 704/723 [00:02<00:00, 804.33it/s]Loading weights: 100%|██████████| 723/723 [00:02<00:00, 346.48it/s]
+{"arm": "adapter", "completed": 1, "total": 256}
+{"arm": "adapter", "completed": 2, "total": 256}
+{"arm": "adapter", "completed": 3, "total": 256}
+{"arm": "adapter", "completed": 4, "total": 256}
+{"arm": "adapter", "completed": 5, "total": 256}
+{"arm": "adapter", "completed": 6, "total": 256}
+{"arm": "adapter", "completed": 7, "total": 256}
+{"arm": "adapter", "completed": 8, "total": 256}
+{"arm": "adapter", "completed": 9, "total": 256}
+{"arm": "adapter", "completed": 10, "total": 256}
+{"arm": "adapter", "completed": 11, "total": 256}
+{"arm": "adapter", "completed": 12, "total": 256}
+{"arm": "adapter", "completed": 13, "total": 256}
+{"arm": "adapter", "completed": 14, "total": 256}
+{"arm": "adapter", "completed": 15, "total": 256}
+{"arm": "adapter", "completed": 16, "total": 256}
+{"arm": "adapter", "completed": 17, "total": 256}
+{"arm": "adapter", "completed": 18, "total": 256}
+{"arm": "adapter", "completed": 19, "total": 256}
+{"arm": "adapter", "completed": 20, "total": 256}
+{"arm": "adapter", "completed": 21, "total": 256}
+{"arm": "adapter", "completed": 22, "total": 256}
+{"arm": "adapter", "completed": 23, "total": 256}
+{"arm": "adapter", "completed": 24, "total": 256}
+{"arm": "adapter", "completed": 25, "total": 256}
+{"arm": "adapter", "completed": 26, "total": 256}
+{"arm": "adapter", "completed": 27, "total": 256}
+{"arm": "adapter", "completed": 28, "total": 256}
+{"arm": "adapter", "completed": 29, "total": 256}
+{"arm": "adapter", "completed": 30, "total": 256}
+{"arm": "adapter", "completed": 31, "total": 256}
+{"arm": "adapter", "completed": 32, "total": 256}
+{"arm": "adapter", "completed": 33, "total": 256}
+{"arm": "adapter", "completed": 34, "total": 256}
+{"arm": "adapter", "completed": 35, "total": 256}
+{"arm": "adapter", "completed": 36, "total": 256}
+{"arm": "adapter", "completed": 37, "total": 256}
+{"arm": "adapter", "completed": 38, "total": 256}
+{"arm": "adapter", "completed": 39, "total": 256}
+{"arm": "adapter", "completed": 40, "total": 256}
+{"arm": "adapter", "completed": 41, "total": 256}
+{"arm": "adapter", "completed": 42, "total": 256}
+{"arm": "adapter", "completed": 43, "total": 256}
+{"arm": "adapter", "completed": 44, "total": 256}
+{"arm": "adapter", "completed": 45, "total": 256}
+{"arm": "adapter", "completed": 46, "total": 256}
+{"arm": "adapter", "completed": 47, "total": 256}
+{"arm": "adapter", "completed": 48, "total": 256}
+{"arm": "adapter", "completed": 49, "total": 256}
+{"arm": "adapter", "completed": 50, "total": 256}
+{"arm": "adapter", "completed": 51, "total": 256}
+{"arm": "adapter", "completed": 52, "total": 256}
+{"arm": "adapter", "completed": 53, "total": 256}
+{"arm": "adapter", "completed": 54, "total": 256}
+{"arm": "adapter", "completed": 55, "total": 256}
+{"arm": "adapter", "completed": 56, "total": 256}
+{"arm": "adapter", "completed": 57, "total": 256}
+{"arm": "adapter", "completed": 58, "total": 256}
+{"arm": "adapter", "completed": 59, "total": 256}
+{"arm": "adapter", "completed": 60, "total": 256}
+{"arm": "adapter", "completed": 61, "total": 256}
+{"arm": "adapter", "completed": 62, "total": 256}
+{"arm": "adapter", "completed": 63, "total": 256}
+{"arm": "adapter", "completed": 64, "total": 256}
+{"arm": "adapter", "completed": 65, "total": 256}
+{"arm": "adapter", "completed": 66, "total": 256}
+{"arm": "adapter", "completed": 67, "total": 256}
+{"arm": "adapter", "completed": 68, "total": 256}
+{"arm": "adapter", "completed": 69, "total": 256}
+{"arm": "adapter", "completed": 70, "total": 256}
+{"arm": "adapter", "completed": 71, "total": 256}
+{"arm": "adapter", "completed": 72, "total": 256}
+{"arm": "adapter", "completed": 73, "total": 256}
+{"arm": "adapter", "completed": 74, "total": 256}
+{"arm": "adapter", "completed": 75, "total": 256}
+{"arm": "adapter", "completed": 76, "total": 256}
+{"arm": "adapter", "completed": 77, "total": 256}
+{"arm": "adapter", "completed": 78, "total": 256}
+{"arm": "adapter", "completed": 79, "total": 256}
+{"arm": "adapter", "completed": 80, "total": 256}
+{"arm": "adapter", "completed": 81, "total": 256}
+{"arm": "adapter", "completed": 82, "total": 256}
+{"arm": "adapter", "completed": 83, "total": 256}
+{"arm": "adapter", "completed": 84, "total": 256}
+{"arm": "adapter", "completed": 85, "total": 256}
+{"arm": "adapter", "completed": 86, "total": 256}
+{"arm": "adapter", "completed": 87, "total": 256}
+{"arm": "adapter", "completed": 88, "total": 256}
+{"arm": "adapter", "completed": 89, "total": 256}
+{"arm": "adapter", "completed": 90, "total": 256}
+{"arm": "adapter", "completed": 91, "total": 256}
+{"arm": "adapter", "completed": 92, "total": 256}
+{"arm": "adapter", "completed": 93, "total": 256}
+{"arm": "adapter", "completed": 94, "total": 256}
+{"arm": "adapter", "completed": 95, "total": 256}
+{"arm": "adapter", "completed": 96, "total": 256}
+{"arm": "adapter", "completed": 97, "total": 256}
+{"arm": "adapter", "completed": 98, "total": 256}
+{"arm": "adapter", "completed": 99, "total": 256}
+{"arm": "adapter", "completed": 100, "total": 256}
+{"arm": "adapter", "completed": 101, "total": 256}
+{"arm": "adapter", "completed": 102, "total": 256}
+{"arm": "adapter", "completed": 103, "total": 256}
+{"arm": "adapter", "completed": 104, "total": 256}
+{"arm": "adapter", "completed": 105, "total": 256}
+{"arm": "adapter", "completed": 106, "total": 256}
+{"arm": "adapter", "completed": 107, "total": 256}
+{"arm": "adapter", "completed": 108, "total": 256}
+{"arm": "adapter", "completed": 109, "total": 256}
+{"arm": "adapter", "completed": 110, "total": 256}
+{"arm": "adapter", "completed": 111, "total": 256}
+{"arm": "adapter", "completed": 112, "total": 256}
+{"arm": "adapter", "completed": 113, "total": 256}
+{"arm": "adapter", "completed": 114, "total": 256}
+{"arm": "adapter", "completed": 115, "total": 256}
+{"arm": "adapter", "completed": 116, "total": 256}
+{"arm": "adapter", "completed": 117, "total": 256}
+{"arm": "adapter", "completed": 118, "total": 256}
+{"arm": "adapter", "completed": 119, "total": 256}
+{"arm": "adapter", "completed": 120, "total": 256}
+{"arm": "adapter", "completed": 121, "total": 256}
+{"arm": "adapter", "completed": 122, "total": 256}
+{"arm": "adapter", "completed": 123, "total": 256}
+{"arm": "adapter", "completed": 124, "total": 256}
+{"arm": "adapter", "completed": 125, "total": 256}
+{"arm": "adapter", "completed": 126, "total": 256}
+{"arm": "adapter", "completed": 127, "total": 256}
+{"arm": "adapter", "completed": 128, "total": 256}
+{"arm": "adapter", "completed": 129, "total": 256}
+{"arm": "adapter", "completed": 130, "total": 256}
+{"arm": "adapter", "completed": 131, "total": 256}
+{"arm": "adapter", "completed": 132, "total": 256}
+{"arm": "adapter", "completed": 133, "total": 256}
+{"arm": "adapter", "completed": 134, "total": 256}
+{"arm": "adapter", "completed": 135, "total": 256}
+{"arm": "adapter", "completed": 136, "total": 256}
+{"arm": "adapter", "completed": 137, "total": 256}
+{"arm": "adapter", "completed": 138, "total": 256}
+{"arm": "adapter", "completed": 139, "total": 256}
+{"arm": "adapter", "completed": 140, "total": 256}
+{"arm": "adapter", "completed": 141, "total": 256}
+{"arm": "adapter", "completed": 142, "total": 256}
+{"arm": "adapter", "completed": 143, "total": 256}
+{"arm": "adapter", "completed": 144, "total": 256}
+{"arm": "adapter", "completed": 145, "total": 256}
+{"arm": "adapter", "completed": 146, "total": 256}
+{"arm": "adapter", "completed": 147, "total": 256}
+{"arm": "adapter", "completed": 148, "total": 256}
+{"arm": "adapter", "completed": 149, "total": 256}
+{"arm": "adapter", "completed": 150, "total": 256}
+{"arm": "adapter", "completed": 151, "total": 256}
+{"arm": "adapter", "completed": 152, "total": 256}
+{"arm": "adapter", "completed": 153, "total": 256}
+{"arm": "adapter", "completed": 154, "total": 256}
+{"arm": "adapter", "completed": 155, "total": 256}
+{"arm": "adapter", "completed": 156, "total": 256}
+{"arm": "adapter", "completed": 157, "total": 256}
+{"arm": "adapter", "completed": 158, "total": 256}
+{"arm": "adapter", "completed": 159, "total": 256}
+{"arm": "adapter", "completed": 160, "total": 256}
+{"arm": "adapter", "completed": 161, "total": 256}
+{"arm": "adapter", "completed": 162, "total": 256}
+{"arm": "adapter", "completed": 163, "total": 256}
+{"arm": "adapter", "completed": 164, "total": 256}
+{"arm": "adapter", "completed": 165, "total": 256}
+{"arm": "adapter", "completed": 166, "total": 256}
+{"arm": "adapter", "completed": 167, "total": 256}
+{"arm": "adapter", "completed": 168, "total": 256}
+{"arm": "adapter", "completed": 169, "total": 256}
+{"arm": "adapter", "completed": 170, "total": 256}
+{"arm": "adapter", "completed": 171, "total": 256}
+{"arm": "adapter", "completed": 172, "total": 256}
+{"arm": "adapter", "completed": 173, "total": 256}
+{"arm": "adapter", "completed": 174, "total": 256}
+{"arm": "adapter", "completed": 175, "total": 256}
+{"arm": "adapter", "completed": 176, "total": 256}
+{"arm": "adapter", "completed": 177, "total": 256}
+{"arm": "adapter", "completed": 178, "total": 256}
+{"arm": "adapter", "completed": 179, "total": 256}
+{"arm": "adapter", "completed": 180, "total": 256}
+{"arm": "adapter", "completed": 181, "total": 256}
+{"arm": "adapter", "completed": 182, "total": 256}
+{"arm": "adapter", "completed": 183, "total": 256}
+{"arm": "adapter", "completed": 184, "total": 256}
+{"arm": "adapter", "completed": 185, "total": 256}
+{"arm": "adapter", "completed": 186, "total": 256}
+{"arm": "adapter", "completed": 187, "total": 256}
+{"arm": "adapter", "completed": 188, "total": 256}
+{"arm": "adapter", "completed": 189, "total": 256}
+{"arm": "adapter", "completed": 190, "total": 256}
+{"arm": "adapter", "completed": 191, "total": 256}
+{"arm": "adapter", "completed": 192, "total": 256}
+{"arm": "adapter", "completed": 193, "total": 256}
+{"arm": "adapter", "completed": 194, "total": 256}
+{"arm": "adapter", "completed": 195, "total": 256}
+{"arm": "adapter", "completed": 196, "total": 256}
+{"arm": "adapter", "completed": 197, "total": 256}
+{"arm": "adapter", "completed": 198, "total": 256}
+{"arm": "adapter", "completed": 199, "total": 256}
+{"arm": "adapter", "completed": 200, "total": 256}
+{"arm": "adapter", "completed": 201, "total": 256}
+{"arm": "adapter", "completed": 202, "total": 256}
+{"arm": "adapter", "completed": 203, "total": 256}
+{"arm": "adapter", "completed": 204, "total": 256}
+{"arm": "adapter", "completed": 205, "total": 256}
+{"arm": "adapter", "completed": 206, "total": 256}
+{"arm": "adapter", "completed": 207, "total": 256}
+{"arm": "adapter", "completed": 208, "total": 256}
+{"arm": "adapter", "completed": 209, "total": 256}
+{"arm": "adapter", "completed": 210, "total": 256}
+{"arm": "adapter", "completed": 211, "total": 256}
+{"arm": "adapter", "completed": 212, "total": 256}
+{"arm": "adapter", "completed": 213, "total": 256}
+{"arm": "adapter", "completed": 214, "total": 256}
+{"arm": "adapter", "completed": 215, "total": 256}
+{"arm": "adapter", "completed": 216, "total": 256}
+{"arm": "adapter", "completed": 217, "total": 256}
+{"arm": "adapter", "completed": 218, "total": 256}
+{"arm": "adapter", "completed": 219, "total": 256}
+{"arm": "adapter", "completed": 220, "total": 256}
+{"arm": "adapter", "completed": 221, "total": 256}
+{"arm": "adapter", "completed": 222, "total": 256}
+{"arm": "adapter", "completed": 223, "total": 256}
+{"arm": "adapter", "completed": 224, "total": 256}
+{"arm": "adapter", "completed": 225, "total": 256}
+{"arm": "adapter", "completed": 226, "total": 256}
+{"arm": "adapter", "completed": 227, "total": 256}
+{"arm": "adapter", "completed": 228, "total": 256}
+{"arm": "adapter", "completed": 229, "total": 256}
+{"arm": "adapter", "completed": 230, "total": 256}
+{"arm": "adapter", "completed": 231, "total": 256}
+{"arm": "adapter", "completed": 232, "total": 256}
+{"arm": "adapter", "completed": 233, "total": 256}
+{"arm": "adapter", "completed": 234, "total": 256}
+{"arm": "adapter", "completed": 235, "total": 256}
+{"arm": "adapter", "completed": 236, "total": 256}
+{"arm": "adapter", "completed": 237, "total": 256}
+{"arm": "adapter", "completed": 238, "total": 256}
+{"arm": "adapter", "completed": 239, "total": 256}
+{"arm": "adapter", "completed": 240, "total": 256}
+{"arm": "adapter", "completed": 241, "total": 256}
+{"arm": "adapter", "completed": 242, "total": 256}
+{"arm": "adapter", "completed": 243, "total": 256}
+{"arm": "adapter", "completed": 244, "total": 256}
+{"arm": "adapter", "completed": 245, "total": 256}
+{"arm": "adapter", "completed": 246, "total": 256}
+{"arm": "adapter", "completed": 247, "total": 256}
+{"arm": "adapter", "completed": 248, "total": 256}
+{"arm": "adapter", "completed": 249, "total": 256}
+{"arm": "adapter", "completed": 250, "total": 256}
+{"arm": "adapter", "completed": 251, "total": 256}
+{"arm": "adapter", "completed": 252, "total": 256}
+{"arm": "adapter", "completed": 253, "total": 256}
+{"arm": "adapter", "completed": 254, "total": 256}
+{"arm": "adapter", "completed": 255, "total": 256}
+{"arm": "adapter", "completed": 256, "total": 256}
+{
+  "schema": "ruvllm-paired-model-improvement/v1",
+  "run_id": "qwen35-4b-heldout-v4-coding-4b",
+  "protocol_sha256": "85e1b1ee46a5ab8279088929bc135f988776a45d2e0b5dbac90fbf46ad49dad0",
+  "runtime_sha256": "0685bf8d7f5e1662298621d903547b17b868cc02bd0493d77628aaf9b2b7fef1",
+  "panels": {
+    "tool": {
+      "count": 192,
+      "base_correct": 149,
+      "adapter_correct": 176,
+      "base": {
+        "count": 192,
+        "delivered_correct": 149,
+        "completed": 192,
+        "truncated": 0,
+        "delivered_accuracy": 0.7760416666666666,
+        "completion_rate": 1.0,
+        "output_tokens": 13688,
+        "generation_seconds": 894.6793626882136
+      },
+      "adapter": {
+        "count": 192,
+        "delivered_correct": 176,
+        "completed": 192,
+        "truncated": 0,
+        "delivered_accuracy": 0.9166666666666666,
+        "completion_rate": 1.0,
+        "output_tokens": 13253,
+        "generation_seconds": 919.1202486753464
+      },
+      "delta_percentage_points": 14.0625,
+      "gains": 40,
+      "regressions": 13,
+      "exact_mcnemar_p": 0.0002685401188191605
+    },
+    "math": {
+      "count": 64,
+      "base_correct": 62,
+      "adapter_correct": 64,
+      "base": {
+        "count": 64,
+        "delivered_correct": 62,
+        "completed": 63,
+        "truncated": 1,
+        "delivered_accuracy": 0.96875,
+        "completion_rate": 0.984375,
+        "output_tokens": 19875,
+        "generation_seconds": 1200.1141959391534
+      },
+      "adapter": {
+        "count": 64,
+        "delivered_correct": 64,
+        "completed": 64,
+        "truncated": 0,
+        "delivered_accuracy": 1.0,
+        "completion_rate": 1.0,
+        "output_tokens": 19756,
+        "generation_seconds": 1283.7934750318527
+      },
+      "delta_percentage_points": 3.125,
+      "gains": 2,
+      "regressions": 0,
+      "exact_mcnemar_p": 0.5
+    }
+  },
+  "totals": {
+    "base": {
+      "count": 256,
+      "delivered_correct": 211,
+      "completed": 255,
+      "truncated": 1,
+      "delivered_accuracy": 0.82421875,
+      "completion_rate": 0.99609375,
+      "output_tokens": 33563,
+      "generation_seconds": 2094.793558627367
+    },
+    "adapter": {
+      "count": 256,
+      "delivered_correct": 240,
+      "completed": 256,
+      "truncated": 0,
+      "delivered_accuracy": 0.9375,
+      "completion_rate": 1.0,
+      "output_tokens": 33009,
+      "generation_seconds": 2202.913723707199
+    }
+  },
+  "evidence_mode": "gpu-inference",
+  "research_improvement_confirmed": true,
+  "reasons": [],
+  "production_activation": false,
+  "limitations": [
+    "Synthetic tool and arithmetic distribution; no broad coding generalization",
+    "One fixed seed and runtime; caller filesystem and executor remain trusted"
+  ]
+}
+{"report_path": "/workspace/out/scored/report.json", "meaning": "Measurement completed; read report for improvement verdict"}

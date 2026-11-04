@@ -1,0 +1,17 @@
+{
+  "adapter_sha256": "729d235e0c70c545ad15d73afd371f36a84fe828328ff366f450dc2f0a69f674",
+  "arm": "base",
+  "generation_count": 256,
+  "inference_performed": true,
+  "metrics": {
+    "elapsed_seconds": 2111.6786801330745,
+    "load_seconds": 16.26967705413699,
+    "peak_gpu_memory_bytes": 9411124736
+  },
+  "model_sha256": "0c3129c0a669beca441f07bfa7bb9e11c7d9ee626419e40195a95de7461feee7",
+  "protocol_sha256": "85e1b1ee46a5ab8279088929bc135f988776a45d2e0b5dbac90fbf46ad49dad0",
+  "responses_sha256": "282d459a384aeb24614e11dbc0bcb190c7fcb60ece7ee59d976a85c51e8af4a2",
+  "run_id": "qwen35-4b-heldout-v4-coding-4b",
+  "runtime_sha256": "0685bf8d7f5e1662298621d903547b17b868cc02bd0493d77628aaf9b2b7fef1",
+  "schema": "ruvllm-measurement-completion/v1"
+}

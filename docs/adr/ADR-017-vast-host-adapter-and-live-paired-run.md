@@ -98,6 +98,26 @@ previous `measurement.py` hash, re-scoring them needs commit a6a5855's copy.
 Decisions are preregistered in
 `experiments/model-improvement/training/pool-v4/preregistration.json`.
 
+Outcome:
+- **Training.** Training ran on a verified datacenter RTX 3090 for $0.09.
+  Two cheaper hosts failed to start their containers, and both were
+  destroyed and confirmed absent. Inspect now fails such attempts
+  immediately.
+- **v4 (base vs coding-4b).** Tool accuracy rose from 149/192 to 176/192
+  (40 gains, 13 regressions, all in Write content, p = 2.7e-4), and
+  arithmetic rose from 62/64 to 64/64. This keeps coding-4b on untouched
+  tasks.
+- **v5 (base vs coding-4b-r2).** Tool accuracy reached 192/192 (43 gains,
+  0 regressions), but arithmetic fell from 62/64 to 46/64 with 6
+  truncations. The verdict is reject, with reasons math_anchor_regressed
+  and completion_regressed. The terse arithmetic targets in the pool taught
+  the adapter to give answers with little or no working shown.
+- **Comparison between the adapters.** Against coding-4b, coding-4b-r2 has
+  16 tool gains and no regressions (p = 3.1e-5), so it does not replace
+  coding-4b.
+- **Base reproducibility.** The two base arms ran on different hosts with
+  the same GPU model and produced identical text for all 256 cases.
+
 ## Consequences
 
 The Vast path now works end to end, with receipts for submission, progress,
