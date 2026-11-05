@@ -2,246 +2,152 @@
 
 # RuVLLM
 
-**Change a model. Measure the difference. Keep the original.**
+**Change a model. Prove it. Keep the original.**
 
-RuVLLM is a research toolkit for making small, controlled changes to AI models. You can inspect a model's weights—the numbers it learned during training—edit an approved set of values, and check whether the change helps. The original file stays untouched, and the tools verify that they can restore its exact bytes.
+RuVLLM trains and edits small adapters for open language models, then measures each one against the unchanged base on the same tasks, under a rule written before the results. Every decision to keep or reject an adapter is backed by every raw answer, a paired significance test and a local re-score. The original weights restore byte for byte.
 
-The repository also includes a small coding adapter, Claude Code integrations, experiment scheduling, and published evaluation data. You can try the core editing workflow on your CPU before downloading a model or renting a GPU.
+[**Interactive tour and tutorial →**](https://ruvnet.github.io/ruvllm/) · [npm](https://www.npmjs.com/package/@ruvector/ruvllm) · [Results](#results) · [Compare](#how-it-compares) · [Quick start](#quick-start)
 
-[Try it](#quick-start-no-gpu) · [How it works](#how-it-works) · [Results](#what-have-we-measured) · [Claude Code](#use-it-with-claude-code-or-ruflo) · [GPU evaluation](#measure-a-model-on-a-gpu) · [Guides](#find-your-way-around)
+| | |
+| :--- | :--- |
+| **+50 tool passes, 0 regressions** | `coding-4b` on Qwen3.5 4B: 123 → 173 of 192, exact McNemar p = 1.8 × 10⁻¹⁵ |
+| **Confirmed on untouched tasks** | Fresh held-out panel: 149 → 176 of 192, arithmetic 62 → 64 |
+| **Under $1 per paired evaluation** | 256 tasks × 2 arms on a rented RTX 3090/4090: $0.27–$0.91 |
+| **Reproducible to the byte** | Two independent base runs: 256/256 identical outputs; local re-score matches remote |
 
-## Pick a starting point
+## Why RuVLLM
 
-| I want to… | Start here | What I need |
-| :--- | :--- | :--- |
-| Check the published evidence | [Verify the saved results](#quick-start-no-gpu) | Python 3.12+ |
-| Try a real weight edit and restoration | [Run the CPU demo](#try-a-real-edit-on-a-tiny-file) | Python and Rust 1.97.1 |
-| Run experiments from Claude Code | [Install the experiment plugin](#use-it-with-claude-code-or-ruflo) | Node 22+, Rust, Python and Claude Code |
-| Compare the base model and adapter | [Run the paired GPU evaluation](#measure-a-model-on-a-gpu) | A prepared CUDA GPU host and model weights |
-| Serve the included adapter locally | [Apple Silicon setup](#serve-the-coding-adapter-on-a-mac) | Apple Silicon, Python and model storage |
+| Benefit | How it works |
+| :--- | :--- |
+| 🔒 **Rules locked first** | Tasks, expected answers, generation settings and the keep rule are frozen into a SHA-256-pinned bundle before any model output exists. |
+| ⚖️ **Paired, per-task statistics** | Base and candidate answer identical tasks on the same GPU. Gains and losses are tested with an exact McNemar test, not compared as two averages. |
+| 🔍 **Regressions stay visible** | Results break down by tool family and by case, with a failure taxonomy, so a gain in one place can't hide a loss in another. |
+| ♻️ **Byte-exact restore** | The Rust engine edits a copy inside an explicit policy and proves restoration with matching source and restored hashes. |
+| 💸 **Cheap, capped GPU runs** | Four spending limits, an independent destroy timer and confirmed cleanup on every rental. |
+| 🧰 **Works where you work** | npm CLI, Claude Code plugins over MCP, a Ruflo-compatible server and an OpenAI-compatible local API on Apple Silicon. |
 
-**Where things stand:** CPU editing, exact restoration and local integration tests pass. Historical model evaluations show small, specific adapter gains that remain statistically inconclusive. A new 256-task evaluation is frozen and ready to run; it has **no fresh GPU results yet**. Neither a passing benchmark nor an evidence file automatically deploys a model.
+## Results
 
-## Quick start: no GPU
+<p align="center"><img src="docs/assets/heldout-results.svg" alt="Held-out results on 256 untouched tasks: tool passes 149, 176 and 192 of 192 for base, coding-4b and coding-4b-r2; arithmetic 62, 64 and 46 of 64. coding-4b is kept; coding-4b-r2 is rejected." width="100%"></p>
 
-First, verify the evidence already included in the repository. These commands do not download model weights, call a provider, or execute model-generated programs.
+| Run (Qwen3.5 4B, BF16) | Tool passes | Gains / losses | Arithmetic | Paired p | Decision | GPU cost |
+| :--- | ---: | ---: | ---: | ---: | :--- | ---: |
+| Confirmation · `coding-4b` | 123 → 173 / 192 | 50 / 0 | 63 → 63 | 1.8e-15 | ✅ Keep | $0.27 |
+| Held out · `coding-4b` | 149 → 176 / 192 | 40 / 13 | 62 → 64 | 2.7e-4 | ✅ Keep | $0.91 |
+| Held out · `coding-4b-r2` | 149 → 192 / 192 | 43 / 0 | 62 → 46 | — | ❌ Reject | $0.76 |
 
-```sh
-git clone https://github.com/ruvnet/ruvllm.git
-cd ruvllm
-python3 scripts/verify_benchmarks.py
-python3 scripts/check_repository.py
-```
+The second training round (`coding-4b-r2`, $0.09 to train) fixed every tool failure but lost 16 arithmetic answers. The rule frozen before training says capability anchors must not regress, so it was rejected without debate. That's the workflow doing its job.
 
-Use Python 3.12 or newer. Look for `"verified": true`. The benchmark verifier checks 462 saved generations and recomputes their totals. It does not rerun model inference or HumanEval programs.
+<p align="center"><img src="docs/assets/tool-families.svg" alt="Tool passes per family out of 24 for base, coding-4b and coding-4b-r2: grep 0, 24, 24; test 8, 24, 24; write 21, 8, 24; read, edit, glob, slice and injection 24 for every arm." width="100%"></p>
 
-<details>
-<summary><strong>Optional: verify the full GPU evidence archive</strong></summary>
-
-The separate archive is about 39 MB. These additional checks validate its 438 files and 1,851 response bindings without executing archived code or generated programs. Use a trusted repository commit and keep the expected archive digest from its publication manifest.
-
-```sh
-python3 -m venv .venv
-.venv/bin/python -m pip install jsonschema==4.26.0
-mkdir -p runtime/cloud-evidence
-curl --fail --location \
-  https://github.com/ruvnet/ruvllm/releases/download/cloud-evidence-20261103/ruvllm-cloud-evidence-20261103.tar.gz \
-  --output runtime/cloud-evidence/ruvllm-cloud-evidence-20261103.tar.gz
-.venv/bin/python scripts/verify_cloud_publication.py \
-  --publication research/vast_cross_model/results/cross-model-20261103/publication.json \
-  --archive runtime/cloud-evidence/ruvllm-cloud-evidence-20261103.tar.gz
-```
-
-Saved HumanEval verdicts are checked for consistency; their generated programs are not rerun.
-
-</details>
-
-### Try a real edit on a tiny file
-
-With the pinned Rust 1.97.1 toolchain available, run:
-
-```sh
-cd native
-python3 verify_source.py
-cargo test --locked --workspace
-cargo build --locked --release --bin weight_evolution
-python3 smoke.py
-cd ..
-```
-
-The demo creates a tiny model-weight file, changes one allowed value, rejects forbidden edits, restores the original bytes, and checks the saved evidence. Look for `"passed": true` and matching `source_sha256` / `restored_sha256` values.
-
-This is a real file-editing test with synthetic evaluation scores. It does not demonstrate that a model became smarter. See the [native guide](native/README.md) for editing your own Safetensors files, a weight-file format used by many open models.
+Raw responses, both reports, receipts, failure reports and dashboards for every run are in [experiments/model-improvement/results](experiments/model-improvement/results/). [Measurement status](experiments/model-improvement/STATUS.json) · [Protocol (ADR 016)](docs/adr/ADR-016-paired-model-improvement-measurement.md)
 
 ## How it works
 
 <p align="center"><img src="docs/assets/governed-lifecycle.svg" alt="Freeze the model, tasks and limits; edit a copy; compare answers; verify exact restoration. Deployment requires separate approval." width="100%"></p>
 
-1. **Fix the rules first.** Record the model version, test questions and allowed changes before seeing the results.
-2. **Create a candidate.** Write the edited weights to a new file. A policy limits which values can change and by how much.
-3. **Compare both versions.** Give the original and candidate the same tasks and generation settings. Keep the raw answers, including failures.
-4. **Check the recovery path.** Restore the original into another file and compare every byte. Keep the results and file fingerprints together.
+1. **Freeze.** Pin the model revision, the task panel, the generation settings and the keep rule.
+2. **Change a copy.** Train a LoRA adapter or apply a bounded direct weight edit. The original file is never modified.
+3. **Measure in pairs.** Run base and candidate on identical tasks, keep every raw answer and score them with the frozen scorer.
+4. **Decide and restore.** Apply the preregistered rule, then verify the original restores byte for byte.
 
-The native editor checks weight files and evaluation receipts. A separate inference worker must actually run the model and measure its answers. A receipt is a record of evidence; checking its contents is not the same as generating that evidence independently.
-
-### Two different ways to change a model
-
-| Approach | Plain-language explanation | Included example |
+| Two ways to change a model | What it is | Included |
 | :--- | :--- | :--- |
-| **Direct weight edit** | Change specific numbers in a copy of a model, within explicit limits. | A bounded edit to Qwen3.5 0.8B, with exact restoration. |
-| **LoRA adapter** | Train a small add-on while keeping the base model frozen. | A 1.5-million-parameter coding adapter for Qwen3.5 4B. |
+| **LoRA adapter** | A small add-on trained while the base stays frozen | `coding-4b`: 1.5M parameters for Qwen3.5 4B, in PEFT and MLX formats |
+| **Direct weight edit** | Policy-bounded changes to specific values in a copy | Rust editor with validation, RVF evidence and exact restoration |
 
-These are separate experiments. The editor does not discover useful changes on its own, capture model activations, or automatically protect every capability. [ADR 011](docs/adr/ADR-011-governed-neural-weight-evolution.md) explains the implemented boundaries.
+### Rent GPUs without surprises
 
-## What have we measured?
+<p align="center"><img src="docs/assets/gpu-job-loop.svg" alt="The GPU job loop checks a spending ceiling, rents the offer and arms a destroy timer, runs the pinned job, pulls raw outputs, checks them locally, then destroys the rental and confirms it is gone." width="100%"></p>
 
-### Model quality: small gains for the 4B adapter
+| Limit | What it stops |
+| :--- | :--- |
+| Admission budget | Total spend across the whole job queue |
+| Worst-case offer price | Any offer whose hourly price × timeout exceeds the job's ceiling |
+| Accrued cost | A running job whose accrued cost passes its ceiling |
+| Independent destroy timer | A rental outliving its deadline, even if the control host goes away |
 
-The following **historical GPU results** compare the same Qwen3.5 4B model with and without its included adapter. Both used BF16 (a 16-bit number format) on one A100 80GB GPU. A pass requires a correct answer that finished within the output budget.
+The loop is restart-safe: jobs carry idempotent labels, state is durable, and a job only counts as complete when the local re-score matches. Drive it from the CLI, from Claude Code `/loop`, or from any MCP host. [GPU loop guide](integrations/metaharness/GPU-LOOP.md) · [Vast adapter (ADR 017)](docs/adr/ADR-017-vast-host-adapter-and-live-paired-run.md)
 
-<p align="center"><img src="docs/assets/benchmark-evidence.svg" alt="Historical 4B GPU results: tool passes increased from 24 of 27 to 27 of 27; code passes increased from 133 of 164 to 135 of 164. The gains remain statistically inconclusive." width="100%"></p>
+## How it compares
 
-| Task set | Base model | With adapter | Difference |
-| :--- | ---: | ---: | :--- |
-| Tool-use fixtures | 24 / 27 | 27 / 27 | 3 more passes |
-| HumanEval code tasks | 133 / 164 | 135 / 164 | 2 more passes overall |
-| Procedural arithmetic | 127 / 128 | 127 / 128 | No change |
-
-The code result includes **7 gains and 5 regressions**, with paired p = 0.774. The tool result has 3 gains and no regressions, with p = 0.25. Those comparisons do not provide strong enough statistical evidence to conclude that the adapter reliably improves unseen tasks. The 27 tool fixtures are also a small synthetic panel.
-
-The full cloud experiment produced 1,851 responses across seven configurations. Read the [report](research/vast_cross_model/results/cross-model-20261103/README.md), [protocol](research/vast_cross_model/README.md), and [public evidence archive](https://github.com/ruvnet/ruvllm/releases/tag/cloud-evidence-20261103) for raw outputs, model identities and comparison limits.
-
-### Faster software does not mean a better model
-
-| Measurement | Observed result | What it establishes |
+| Question | Typical ad-hoc fine-tune loop | RuVLLM |
 | :--- | :--- | :--- |
-| Native Rust workspace | 508 tests passed, plus 2 documentation tests | Tested software behavior |
-| CPU experiment orchestration | Median 238.42 ms → 114.58 ms with a reused Node process | 51.94% less orchestration time on a tiny fixture |
-| New model-quality evaluation | 192 tool tasks + 64 arithmetic tasks frozen | A prepared experiment; GPU results are pending |
+| When is the success rule set? | Often after looking at scores | Before generation, SHA-pinned |
+| How are models compared? | Aggregate accuracy from separate runs | Same tasks, same GPU, per-task exact McNemar |
+| Are regressions visible? | Averaged into one number | Per family and per case, with a failure taxonomy |
+| Held-out tasks? | Often reused from development | Fresh panel, checked disjoint from training data |
+| Can someone else re-check? | Usually summary numbers only | Raw outputs plus frozen scorer, re-scored locally |
+| What happens to the original? | Overwritten or untracked | Untouched; byte-exact restore verified |
+| GPU spend control? | Manual, easy to leave running | Four limits, destroy timer, confirmed cleanup |
+| Can a shiny result be rejected? | Rarely in practice | Yes: 192/192 tools rejected for an arithmetic loss |
 
-The orchestration benchmark uses synthetic scores and an 88-byte checkpoint. It does not establish faster large-model inference or better answers. [Benchmark method](docs/benchmarks/metaharness-cpu.md) · [Fresh evaluation status](experiments/model-improvement/STATUS.json)
+## Quick start
 
-<details>
-<summary><strong>More results: the local pilot, the failed weight edit, and historical costs</strong></summary>
+The [interactive tutorial](https://ruvnet.github.io/ruvllm/#tutorial) walks through these steps with expected output.
 
-The Apple M4 Pro pilot used MLX 4-bit inference with and without the selected 4B adapter. These results are separate from the GPU BF16 measurements above.
+| Step | Command | Needs |
+| :--- | :--- | :--- |
+| Install the CLI | `npm install @ruvector/ruvllm` then `npx ruvllm --help` | Node 22+ |
+| Verify the evidence | `python3 scripts/check_repository.py` and `python3 scripts/verify_benchmarks.py` | Python 3.12+ |
+| Edit and restore weights | `cd native && cargo build --locked --release --bin weight_evolution && python3 smoke.py` | Rust 1.97.1 |
+| Re-score a real GPU run | `regression-dashboard.py` on the held-out results (below) | Python 3.12+ |
+| Schedule GPU work | `npx ruvllm-gpu-loop status --config /abs/private/gpu-loop.json` | A Vast.ai key on the control host |
 
-| Local evaluation | Base | With adapter |
-| :--- | ---: | ---: |
-| Synthetic release | 29 / 35 | 32 / 35 |
-| Tool subset of that release | 25 / 27 | 27 / 27 |
-| Code subset of that release | 4 / 8 | 5 / 8 |
-| HumanEval | 123 / 164 | 128 / 164 |
-| HumanEval elapsed time | 547.5 s | 607.4 s |
+```sh
+git clone https://github.com/ruvnet/ruvllm.git && cd ruvllm
+python3 scripts/check_repository.py          # look for "verified": true
 
-HumanEval had 13 gains and 8 regressions, paired p = 0.383. The tool and code subsets overlap the 35-case release. A single Claude Code Read/Edit/Bash repair fixture passed four assertions in 20.8 seconds; that is not a repository-wide coding evaluation. [Local evidence](benchmarks/README.md)
+mkdir -p runtime
+R=experiments/model-improvement
+python3 $R/regression-dashboard.py \
+  --bundle $R/frozen/v4 \
+  --base $R/results/qwen35-4b-heldout-v4-coding-4b/base \
+  --adapter $R/results/qwen35-4b-heldout-v4-coding-4b/adapter \
+  --out runtime/v4-dashboard.md             # Keep for research · 149 → 176
+```
 
-The separate 0.8B direct edit changed 130,188 BF16 values. In the local 16-question direct-mode test, delivered correct answers fell from 13 to 12, despite 20.40% fewer tokens and 20.27% less generation time. Its quality gate failed. In the GPU direct-mode comparison, code fell from 50/164 to 49/164, tools from 15/27 to 11/27, and math from 114/128 to 113/128. Fewer tokens did not establish better answers.
-
-The 0.8B thinking configuration improved from 0/128 to 29/128 delivered math answers, but the unedited direct configuration already delivered 114/128. This supports a narrow completion repair, not stronger general reasoning. The edit reproduces a [published intervention](https://rikiyat.github.io/blog/weight-space-programming/); it is not a newly discovered repair.
-
-The historical Vast comparison had a $3.75 elapsed GPU/storage quote estimate and a $30 reservation. These are not final invoices or price guarantees; transfer and guard charges remain unreconciled. The historical rental and temporary guard resources were verified absent. [Closeout receipt](research/vast_cross_model/results/cross-model-20261103/closeout.json)
-
-</details>
-
-## Use it with Claude Code or Ruflo
-
-The two optional plugins use MCP, the protocol that connects an assistant to local tools:
+### Run bounded experiments from Claude Code or Ruflo
 
 | Plugin | Use it for |
 | :--- | :--- |
-| [Native tools](plugins/ruflo-neural-evolution/README.md) | Inspect, patch, validate, export, restore and verify individual artifacts. |
-| [MetaHarness experiments](plugins/ruflo-metaharness/README.md) | Run several bounded candidates, rank supplied evaluation scores, and advance a GPU job loop. |
-
-The project-local installer builds the native engine and creates a private runtime profile and Claude launcher. You choose the allowed input directories, output directory and approved policy files. It leaves global Claude settings unchanged.
+| [Native tools](plugins/ruflo-neural-evolution/README.md) | Inspect, patch, validate, export, restore and verify individual weight files |
+| [MetaHarness experiments](plugins/ruflo-metaharness/README.md) | Run several bounded candidates, rank them, and advance the GPU job loop |
 
 ```sh
 bash scripts/install-metaharness.sh --help
 ```
 
-Follow the [installer examples](integrations/metaharness/README.md#configure-real-experiment-inputs), then launch Claude using the generated `launch-claude.sh`. The `/ruflo-metaharness:weight-experiment` command runs a reviewed plan. Ruflo and other MCP hosts can register the same local server.
+The installer builds the native engine and creates a private runtime profile and Claude launcher, scoped to the input and output directories you choose. Then `/ruflo-metaharness:weight-experiment` runs a reviewed plan. [Experiment guide](integrations/metaharness/README.md)
 
-**What MetaHarness adds:** Flywheel checks candidate qualification, Darwin ranks development candidates, and Weight-EFT exports filtered training data and training plans. Training plans are explicitly **not executed**. These tools organize experiments; they do not by themselves improve model weights.
-
-For a CPU-only experiment after building the native binary:
-
-```sh
-(cd integrations/metaharness && npm ci --ignore-scripts)
-mkdir -p runtime
-node integrations/metaharness/src/cli.mjs fixture \
-  --dir "$PWD/runtime/metaharness-fixture" \
-  --binary "$PWD/native/target/release/weight_evolution"
-```
-
-Use a new fixture directory for another run. Scores in this demo are synthetic. [Experiment guide](integrations/metaharness/README.md)
-
-## Measure a model on a GPU
-
-The [new paired evaluation](experiments/model-improvement/README.md) compares the pinned 4B base model and included adapter on 256 frozen cases. It checks model files, adapter tensors, physical GPU identity, generation settings and complete outputs before scoring. Generated tools and programs are never executed.
-
-A prepared GPU host can run both versions and score them with one command; see the guide for model preparation and `run-pair.py`. **No fresh results have been collected for this panel.** It evaluates the existing adapter, not a new adapter trained by MetaHarness.
-
-The [GPU loop](integrations/metaharness/GPU-LOOP.md) adds restart-safe scheduling, budget reservations, deadlines and cleanup confirmation. A trusted host resolves ruOS secret references and performs Vast.ai operations. The included file handoff does not contact either service. The example has a zero budget, so submissions are disabled. Live provider execution and Claude `/loop` acceptance remain unverified.
-
-## Serve the coding adapter on a Mac
-
-This serving path requires **Apple Silicon**, Python 3.12+, and roughly 12 GB of download/model storage. The adapter is included; the base weights download separately.
+### Serve the coding adapter on a Mac
 
 ```sh
 python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements.lock
 .venv/bin/python -m pip install -e .
 .venv/bin/python -m ruflo_model.prepare
-.venv/bin/python scripts/serve.py \
-  --model models/base-4bit \
-  --adapter weights/coding-4b/mlx
+.venv/bin/python scripts/serve.py --model models/base-4bit --adapter weights/coding-4b/mlx
 ```
 
-The local OpenAI-compatible API uses `http://127.0.0.1:9100/v1`, model name `ruflo-code-4b`, and the generated key in `runtime/server/api-key`. The server checks all 32 loaded adapter tensors. Keep this backend on a trusted single-user computer.
+This gives you an OpenAI-compatible API at `http://127.0.0.1:9100/v1` (model `ruflo-code-4b`, key in `runtime/server/api-key`) on Apple Silicon, with all 32 adapter tensors checked at load. It works with Claude Code Router as a local single-user backend. [Adapter details](weights/coding-4b/README.md) · [Coding protocol](docs/coding-protocol.md)
 
-The tested profile handles text and tool messages, one request at a time, with a 16,384-token total context limit and at most 8,192 output tokens. Large repositories, longer conversations and concurrent serving are not validated. [Adapter details](weights/coding-4b/README.md) · [Coding protocol](docs/coding-protocol.md)
-
-<details>
-<summary><strong>Optional: configure Claude Code Router</strong></summary>
-
-Configure an OpenAI Chat provider using the local API, model name and generated key above. For the recorded client profile, set `CLAUDE_CODE_MAX_OUTPUT_TOKENS=4096`, `MAX_THINKING_TOKENS=0`, and `CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING=1`.
-
-The historical fixtures used CCR 3.1.3 and Claude Code 2.1.316. That compatibility test does not establish official support for non-Claude models. Client tool permissions remain authoritative.
-
-```sh
-mkdir -p vendor/ccr
-cp configs/ccr-package.json vendor/ccr/package.json
-cp configs/ccr-package-lock.json vendor/ccr/package-lock.json
-npm ci --prefix vendor/ccr
-.venv/bin/python scripts/router_ccr.py start
-.venv/bin/python scripts/accept_router.py --label read-check
-.venv/bin/python scripts/accept_coding.py --label repair-check
-```
-
-</details>
-
-## Find your way around
+## What's in the box
 
 | Directory | What's inside |
 | :--- | :--- |
-| [native/](native/README.md) | Rust editor, locked dependencies and CPU demo |
-| [weights/coding-4b/](weights/coding-4b/README.md) | Adapter files for PyTorch (PEFT) and Apple (MLX), with model version and checksums |
-| [integrations/metaharness/](integrations/metaharness/README.md) | Experiment runner, data adapters and GPU loop |
-| [experiments/model-improvement/](experiments/model-improvement/README.md) | New frozen panel, CUDA worker and paired scorer |
-| [plugins/](plugins/ruflo-metaharness/README.md) | Claude Code and Ruflo integration guides |
-| [benchmarks/](benchmarks/README.md) | Historical local results and verification |
-| [research/vast_cross_model/](research/vast_cross_model/README.md) | Historical GPU comparison and full evidence |
-| [docs/adr/](docs/adr/ADR-011-governed-neural-weight-evolution.md) | Architecture decisions, including experiment and measurement boundaries |
+| [native/](native/README.md) | Rust weight editor, locked dependencies and CPU demo |
+| [weights/coding-4b/](weights/coding-4b/README.md) | The kept adapter for PyTorch (PEFT) and Apple (MLX), with checksums |
+| [experiments/model-improvement/](experiments/model-improvement/README.md) | Frozen panels, CUDA worker, paired scorer and every GPU result |
+| [tools/eval-report/](tools/eval-report/) | Rust failure taxonomy, three-way comparison, SFT pool and panel freezing |
+| [integrations/metaharness/](integrations/metaharness/README.md) | npm package: experiment runner, GPU loop and Vast.ai host adapter |
+| [plugins/](plugins/ruflo-metaharness/README.md) | Claude Code and Ruflo integrations |
+| [research/vast_cross_model/](research/vast_cross_model/README.md) | Earlier cross-model GPU study with its full evidence archive |
+| [docs/adr/](docs/adr/ADR-011-governed-neural-weight-evolution.md) | Architecture decisions |
 
-A **checkpoint** is a saved set of model weights. A **hash** is a file fingerprint used to detect changed bytes. An **RVF artifact** packages edits and evidence. None of these proves model quality or grants deployment permission on its own.
+## Scope
 
-## Reproducibility and limits
-
-Model files, prompts, policies and runtimes have recorded identities. New builds and experiments get new identities; historical receipts are not reused as proof of a new run. The native engine is extracted from RuVector with its original source and tests preserved. [Source provenance](native/upstream-provenance.json)
-
-Verifiers establish consistency with the expected files. Obtain the repository commit or manifest digest from a trusted source: an archive replaced together with its verifier can still agree with itself. The full GPU release also requires its separate archive; the optional download steps appear above. [Publication manifest](research/vast_cross_model/results/cross-model-20261103/publication.json)
-
-Native restoration and software tests do not establish broad capability, safety certification, state-of-the-art performance or recursive self-improvement. The scorer for executing generated code requires macOS Seatbelt and refuses unsupported platforms. The native `evaluate` operation validates receipt contracts; it does not run inference. Core Memory authorization remains an external reference, not a production activation service included here.
+RuVLLM qualifies adapters for research on the panels it measures; production activation is a separate, explicit step. Results are reported for Qwen3.5 4B on tool-use and arithmetic panels. Earlier exploratory studies, including a direct-edit experiment on Qwen3.5 0.8B that the quality gate rejected, are documented with their evidence in [benchmarks/](benchmarks/README.md) and [research/vast_cross_model/](research/vast_cross_model/results/cross-model-20261103/README.md).
 
 ## License and attribution
 

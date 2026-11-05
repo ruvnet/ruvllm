@@ -6,9 +6,12 @@ access. A host adapter owns real provider calls and uses its existing ruOS
 authentication to resolve **secret references**, never export credential values.
 
 This release implements the schedule, durable state, reservations, host loader,
-file handoff and MCP tools. It does not include a live ruOS connector, invent a
-secrets-service endpoint, or claim provider E2E validation. No GPU rental or model
-download is started by installing the package. A zero-budget sample is disarmed.
+file handoff, MCP tools and a live [Vast.ai host adapter](src/vast-host-adapter.mjs)
+([ADR 017](../../docs/adr/ADR-017-vast-host-adapter-and-live-paired-run.md)). That
+adapter has run paired evaluations and a training job end to end on rented GPUs,
+with local re-scoring and confirmed cleanup. It does not include a live ruOS
+connector or invent a secrets-service endpoint. No GPU rental or model download is
+started by installing the package. A zero-budget sample is disarmed.
 
 ## Operator configuration
 

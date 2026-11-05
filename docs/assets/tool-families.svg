@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="600" viewBox="0 0 960 600" role="img" aria-labelledby="title desc">
+  <title id="title">Tool passes by family on the held-out panel</title>
+  <desc id="desc">Passes out of 24 for each of eight tool families on 192 untouched tasks, for the base model, coding-4b and coding-4b-r2. Read, edit, glob, slice and injection: 24 for all three. Write: 21, 8 and 24. Grep: 0, 24 and 24. Test: 8, 24 and 24. Pulses mark the three families where the arms differ; bars stay at their measured sizes.</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1">
+      <stop stop-color="#101c35" />
+      <stop offset="1" stop-color="#111827" />
+    </linearGradient>
+  </defs>
+  <style>text{font-family:ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif}.hi{animation:hi 4s ease-in-out infinite}.grow{transform-box:fill-box;transform-origin:left center;animation:grow 1.6s cubic-bezier(.2,.8,.2,1) both}@keyframes hi{0%,100%{opacity:.35}50%{opacity:.9}}@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}@media(prefers-reduced-motion:reduce){.hi,.grow{animation:none!important}}</style>
+  <rect width="960" height="600" rx="24" fill="url(#bg)" />
+  <rect x="1" y="1" width="958" height="598" rx="23" stroke="#304361" fill="none" />
+  <text x="40" y="54" font-size="34" fill="#f8fafc" font-weight="700">Where the adapter changes behaviour</text>
+  <text x="40" y="90" font-size="21" fill="#bacce4">Passes out of 24 per tool family · 192 untouched tasks · RTX 4090</text>
+  <rect x="40" y="110" width="14" height="14" rx="3" fill="#60a5fa" /><text x="62" y="123" font-size="16" fill="#bacce4">Base</text>
+  <rect x="130" y="110" width="14" height="14" rx="3" fill="#5eead4" /><text x="152" y="123" font-size="16" fill="#bacce4">coding-4b</text>
+  <rect x="262" y="110" width="14" height="14" rx="3" fill="#c4b5fd" /><text x="284" y="123" font-size="16" fill="#bacce4">coding-4b-r2</text>
+  <text x="48" y="168" font-size="20" fill="#bacce4" font-weight="400">read</text>
+  <rect x="210" y="146" width="520" height="9" rx="4" fill="#283950" />
+  <rect x="210" y="146" width="520.00" height="9" rx="4" fill="#60a5fa" class="grow" />
+  <rect x="210" y="158" width="520" height="9" rx="4" fill="#283950" />
+  <rect x="210" y="158" width="520.00" height="9" rx="4" fill="#5eead4" class="grow" />
+  <rect x="210" y="170" width="520" height="9" rx="4" fill="#283950" />
+  <rect x="210" y="170" width="520.00" height="9" rx="4" fill="#c4b5fd" class="grow" />
+  <text x="912" y="168" font-size="19" fill="#8ea3c0" font-weight="600" text-anchor="end">24 · 24 · 24</text>
+  <text x="48" y="218" font-size="20" fill="#bacce4" font-weight="400">edit</text>
+  <rect x="210" y="196" width="520" height="9" rx="4" fill="#283950" />
+  <rect x="210" y="196" width="520.00" height="9" rx="4" fill="#60a5fa" class="grow" />
+  <rect x="210" y="208" width="520" height="9" rx="4" fill="#283950" />
+  <rect x="210" y="208" width="520.00" height="9" rx="4" fill="#5eead4" class="grow" />
+  <rect x="210" y="220" width="520" height="9" rx="4" fill="#283950" />
+  <rect x="210" y="220" width="520.00" height="9" rx="4" fill="#c4b5fd" class="grow" />
+  <text x="912" y="218" font-size="19" fill="#8ea3c0" font-weight="600" text-anchor="end">24 · 24 · 24</text>
+  <rect x="32" y="240" width="896" height="46" rx="10" fill="#1d3352" class="hi" />
+  <text x="48" y="268" font-size="20" fill="#f1f5f9" font-weight="650">write</text>
+  <rect x="210" y="246" width="520" height="9" rx="4" fill="#283950" />
+  <rect x="210" y="246" width="455.00" height="9" rx="4" fill="#60a5fa" class="grow" />
+  <rect x="210" y="258" width="520" height="9" rx="4" fill="#283950" />
+  <rect x="210" y="258" width="173.33" height="9" rx="4" fill="#5eead4" class="grow" />
+  <rect x="210" y="270" width="520" height="9" rx="4" fill="#283950" />
+  <rect x="210" y="270" width="520.00" height="9" rx="4" fill="#c4b5fd" class="grow" />
+  <text x="912" y="268" font-size="19" fill="#f1f5f9" font-weight="600" text-anchor="end">21 · 8 · 24</text>
+  <text x="48" y="318" font-size="20" fill="#bacce4" font-weight="400">glob</text>
+  <rect x="210" y="296" width="520" height="9" rx="4" fill="#283950" />
+  <rect x="210" y="296" width="520.00" height="9" rx="4" fill="#60a5fa" class="grow" />
+  <rect x="210" y="308" width="520" height="9" rx="4" fill="#283950" />
+  <rect x="210" y="308" width="520.00" height="9" rx="4" fill="#5eead4" class="grow" />
+  <rect x="210" y="320" width="520" height="9" rx="4" fill="#283950" />
+  <rect x="210" y="320" width="520.00" height="9" rx="4" fill="#c4b5fd" class="grow" />
+  <text x="912" y="318" font-size="19" fill="#8ea3c0" font-weight="600" text-anchor="end">24 · 24 · 24</text>
+  <rect x="32" y="340" width="896" height="46" rx="10" fill="#1d3352" class="hi" />
+  <text x="48" y="368" font-size="20" fill="#f1f5f9" font-weight="650">grep</text>
+  <rect x="210" y="346" width="520" height="9" rx="4" fill="#283950" />
+  <rect x="210" y="358" width="520" height="9" rx="4" fill="#283950" />
+  <rect x="210" y="358" width="520.00" height="9" rx="4" fill="#5eead4" class="grow" />
+  <rect x="210" y="370" width="520" height="9" rx="4" fill="#283950" />
+  <rect x="210" y="370" width="520.00" height="9" rx="4" fill="#c4b5fd" class="grow" />
+  <text x="912" y="368" font-size="19" fill="#f1f5f9" font-weight="600" text-anchor="end">0 · 24 · 24</text>
+  <rect x="32" y="390" width="896" height="46" rx="10" fill="#1d3352" class="hi" />
+  <text x="48" y="418" font-size="20" fill="#f1f5f9" font-weight="650">test</text>
+  <rect x="210" y="396" width="520" height="9" rx="4" fill="#283950" />
+  <rect x="210" y="396" width="173.33" height="9" rx="4" fill="#60a5fa" class="grow" />
+  <rect x="210" y="408" width="520" height="9" rx="4" fill="#283950" />
+  <rect x="210" y="408" width="520.00" height="9" rx="4" fill="#5eead4" class="grow" />
+  <rect x="210" y="420" width="520" height="9" rx="4" fill="#283950" />
+  <rect x="210" y="420" width="520.00" height="9" rx="4" fill="#c4b5fd" class="grow" />
+  <text x="912" y="418" font-size="19" fill="#f1f5f9" font-weight="600" text-anchor="end">8 · 24 · 24</text>
+  <text x="48" y="468" font-size="20" fill="#bacce4" font-weight="400">slice</text>
+  <rect x="210" y="446" width="520" height="9" rx="4" fill="#283950" />
+  <rect x="210" y="446" width="520.00" height="9" rx="4" fill="#60a5fa" class="grow" />
+  <rect x="210" y="458" width="520" height="9" rx="4" fill="#283950" />
+  <rect x="210" y="458" width="520.00" height="9" rx="4" fill="#5eead4" class="grow" />
+  <rect x="210" y="470" width="520" height="9" rx="4" fill="#283950" />
+  <rect x="210" y="470" width="520.00" height="9" rx="4" fill="#c4b5fd" class="grow" />
+  <text x="912" y="468" font-size="19" fill="#8ea3c0" font-weight="600" text-anchor="end">24 · 24 · 24</text>
+  <text x="48" y="518" font-size="20" fill="#bacce4" font-weight="400">injection</text>
+  <rect x="210" y="496" width="520" height="9" rx="4" fill="#283950" />
+  <rect x="210" y="496" width="520.00" height="9" rx="4" fill="#60a5fa" class="grow" />
+  <rect x="210" y="508" width="520" height="9" rx="4" fill="#283950" />
+  <rect x="210" y="508" width="520.00" height="9" rx="4" fill="#5eead4" class="grow" />
+  <rect x="210" y="520" width="520" height="9" rx="4" fill="#283950" />
+  <rect x="210" y="520" width="520.00" height="9" rx="4" fill="#c4b5fd" class="grow" />
+  <text x="912" y="518" font-size="19" fill="#8ea3c0" font-weight="600" text-anchor="end">24 · 24 · 24</text>
+  <text x="40" y="570" font-size="18" fill="#a7f3d0" font-weight="600">grep 0 → 24 and test 8 → 24 with coding-4b; r2 also repairs write (8 → 24)</text>
+</svg>
