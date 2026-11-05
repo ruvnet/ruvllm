@@ -87,6 +87,23 @@ export async function fileDigest(path) {
   } finally { await file.close(); }
 }
 
+// Digest cache for the pinned native binary: re-hash only when the file's
+// identity or change metadata differs (dev, inode, size, mtime, ctime in ns).
+// Any write to the file updates ctime, which callers cannot set.
+const digestCache = new Map();
+async function verifiedDigest(path) {
+  const info = await lstat(path, { bigint: true });
+  assert(info.isFile(), 'Expected regular file');
+  const identity = [info.dev, info.ino, info.size, info.mtimeNs, info.ctimeNs].join(':');
+  const cached = digestCache.get(path);
+  if (cached?.identity === identity) return cached.digest;
+  const digest = await fileDigest(path);
+  const after = await lstat(path, { bigint: true });
+  if ([after.dev, after.ino, after.size, after.mtimeNs, after.ctimeNs].join(':') === identity) digestCache.set(path, { identity, digest });
+  else digestCache.delete(path);
+  return digest;
+}
+
 async function identicalFiles(a, b) {
   const first = await open(a, constants.O_RDONLY | constants.O_NOFOLLOW), second = await open(b, constants.O_RDONLY | constants.O_NOFOLLOW);
   try {
@@ -118,12 +135,12 @@ async function runtime(configPath) {
   assert(!inside(config.writeRoot, configPath) && !inside(config.writeRoot, config.binaryPath), 'Runtime config and binary must be outside write root');
   const stat = await lstat(configPath); assert((stat.mode & 0o077) === 0, 'Runtime config must be owner-only');
   assert(((await lstat(config.writeRoot)).mode & 0o077) === 0, 'Write root must be private');
-  assert(await fileDigest(config.binaryPath) === config.binarySha256, 'Binary digest mismatch');
+  assert(await verifiedDigest(config.binaryPath) === config.binarySha256, 'Binary digest mismatch');
   return { ...config, configSha256: sha256(bytes) };
 }
 
 async function native(config, request) {
-  assert(await fileDigest(config.binaryPath) === config.binarySha256, 'Binary digest mismatch');
+  assert(await verifiedDigest(config.binaryPath) === config.binarySha256, 'Binary digest mismatch');
   const input = JSON.stringify(request); assert(Buffer.byteLength(input) <= 64 * 1024, 'Native request limit');
   return new Promise((accept, reject) => {
     const environment = Object.fromEntries(['PATH', 'HOME', 'TMPDIR', 'LANG', 'LC_ALL'].filter(k => process.env[k]).map(k => [k, process.env[k]]));

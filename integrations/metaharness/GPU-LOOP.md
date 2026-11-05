@@ -159,12 +159,18 @@ the spool adapter; recalculate and review its pin after any code change.
 | `diskGb`, `armDeadlineSeconds` | Rental disk; per-arm worker deadline |
 | `guardGraceSeconds` | Extra time after `timeoutSeconds` before the independent destroy timer fires |
 | `resultsRoot`, `sshKey`, `repoRoot`, `python`, `node` | Absolute local paths for receipts, retrieval and local re-scoring |
+| `sshKnownHosts` | Absolute path to an owner-managed `known_hosts` file (not group/world-writable) holding the pinned host keys; ssh runs with `StrictHostKeyChecking=yes` and refuses unknown or changed keys |
+| `sshTrustOnFirstUse` | `true` to accept a rental's first host key into a fresh per-instance file (the pre-1.1.0 behaviour). One of `sshKnownHosts` or `sshTrustOnFirstUse: true` is required; the config is rejected (`VAST_HOST_CONFIG_SSH_TRUST`) before anything is rented otherwise |
+| `maxEvidenceBytes`, `maxEvidenceEntries` | Optional caps on the retrieved evidence archive (defaults 2 GiB and 20000 entries) |
 
 Jobs must use `resource.offerId`. Submit refuses the offer when its hourly price
 times `timeoutSeconds` exceeds `maxCostUsd`, labels the rental with the attempt's
 idempotency key, and arms a `systemd-run --user` destroy timer. Inspect reports
 accrued cost, pulls raw outputs when the remote run is done, and re-scores them
-locally; only an identical report counts as verified completion. Cleanup returns
+locally. The pull stops at `maxEvidenceBytes`, and every tar header is checked
+before extraction: only regular files and directories, only relative paths under
+`out/` or `run/` with no `..`, within the entry and size caps. A rejected archive
+is never extracted, fails the attempt and is recorded in `evidence-rejected.json`; only an identical report counts as verified completion. Cleanup returns
 `released: true` only after the instance is absent from the account listing.
 Receipts (`submission.json`, `progress.json`, `verification.json`,
 `cleanup-ID.json`, `guard-ID.json`) contain no credential. Copy the module to a
