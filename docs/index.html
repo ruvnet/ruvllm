@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RuVLLM — change a model, prove it, keep the original</title>
+<meta name="description" content="RuVLLM trains and edits small language-model adapters, measures them against the unchanged base on preregistered paired tasks, and keeps the original byte for byte. An illustrated tour and tutorial.">
+<meta property="og:title" content="RuVLLM">
+<meta property="og:description" content="Change a model. Prove it. Keep the original.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23101c35'/%3E%3Cpath d='M8 21l6-6 4 4 7-9' stroke='%235eead4' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<div class="progress" aria-hidden="true"><span id="progress"></span></div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#101c35"/><path d="M8 21l6-6 4 4 7-9" stroke="#5eead4" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>RuVLLM</a>
+    <nav aria-label="Sections">
+      <a href="#story">Story</a><a href="#results">Results</a><a href="#compare">Compare</a><a href="#tutorial">Tutorial</a><a href="https://github.com/ruvnet/ruvllm">GitHub</a>
+    </nav>
+    <button class="theme" id="theme" type="button" aria-label="Toggle colour theme">Theme</button>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="hero-grid" id="hero-grid" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="eyebrow">Open-source model improvement lab</span>
+    <h1>Change a model. <em>Prove it.</em> Keep the original.</h1>
+    <p class="lede">RuVLLM trains and edits small adapters for open models, then measures each one against the unchanged base on the same tasks, under a rule written before the results. You get a keep or reject decision backed by every raw answer, and the original weights restore byte for byte.</p>
+    <div class="cta">
+      <a class="btn primary" href="#tutorial">Start the tutorial</a>
+      <a class="btn" href="#story">Scroll the story ↓</a>
+      <a class="btn" href="https://www.npmjs.com/package/@ruvector/ruvllm">npm i @ruvector/ruvllm</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><b class="num" data-count="50">+50</b><span>tool passes, 0 regressions (Qwen3.5 4B)</span></div>
+      <div class="stat"><b class="num">p&nbsp;=&nbsp;1.8e-15</b><span>exact paired McNemar test</span></div>
+      <div class="stat"><b class="num">$0.27</b><span>GPU cost of that 256-task paired run</span></div>
+      <div class="stat"><b class="num">256/256</b><span>base outputs identical across reruns</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="story wrap" id="story">
+  <div class="story-head">
+    <span class="eyebrow">The story</span>
+    <h2>One adapter, one rented GPU, one honest verdict</h2>
+    <p class="lede">Follow a real run from frozen rules to confirmed cleanup. Every number below comes from committed result files in the repository.</p>
+  </div>
+  <div class="scrolly">
+    <div class="steps">
+      <div class="step" data-scene="0"><div class="card">
+        <span class="chip">01 · FREEZE</span><h3>Write the rules before the results</h3>
+        <p>RuVLLM freezes the tasks, expected answers, generation settings and the keep rule into a bundle pinned by SHA-256. <strong>192 tool-use tasks and 64 arithmetic tasks</strong>, checked against every training prompt for overlap. Nothing can be tuned after the answers come in.</p>
+      </div></div>
+      <div class="step" data-scene="1"><div class="card">
+        <span class="chip">02 · RENT</span><h3>Rent a GPU inside four spending limits</h3>
+        <p>The GPU loop checks an admission budget, the offer's worst-case price, accrued cost, and arms an <strong>independent destroy timer</strong> before the job starts. Credentials stay on the control host; the rental only ever sees the pinned job.</p>
+      </div></div>
+      <div class="step" data-scene="2"><div class="card">
+        <span class="chip">03 · RUN</span><h3>Run both arms on identical tasks</h3>
+        <p>The unchanged base and the adapter answer the same 256 tasks with the same settings on the same physical GPU. The worker checks model files, adapter tensors and GPU identity first, and <strong>keeps every raw response</strong>, including failures and truncations.</p>
+      </div></div>
+      <div class="step" data-scene="3"><div class="card">
+        <span class="chip">04 · VERIFY</span><h3>Re-score locally before believing anything</h3>
+        <p>The raw outputs come home and the frozen scorer runs again on your machine. A job only counts as complete when the <strong>local report matches the remote one byte for byte</strong>. Generated tool calls and programs are never executed.</p>
+      </div></div>
+      <div class="step" data-scene="4"><div class="card">
+        <span class="chip">05 · VERDICT</span><h3>123 → 173 tool passes, zero regressions</h3>
+        <p>On the confirmation panel the <code>coding-4b</code> adapter for Qwen3.5 4B gained <strong>50 tasks and lost none</strong>. Exact McNemar p = 1.8 × 10⁻¹⁵. Arithmetic held at 63/64 in both arms. Decision under the frozen rule: <strong>keep</strong>.</p>
+      </div></div>
+      <div class="step" data-scene="5"><div class="card">
+        <span class="chip">06 · HELD OUT</span><h3>Fresh, untouched tasks: 149 → 176</h3>
+        <p>A brand-new panel, never seen during development, confirms it: <strong>40 gains, 13 regressions, p = 2.7 × 10⁻⁴</strong>, arithmetic 62 → 64. The regressions are all one kind (Write arguments), and RuVLLM shows them case by case instead of averaging them away.</p>
+      </div></div>
+      <div class="step" data-scene="6"><div class="card">
+        <span class="chip">07 · REJECT</span><h3>A better-looking adapter, rejected</h3>
+        <p>A second training round scored a perfect <strong>192/192</strong> on tools. It also dropped arithmetic from 62 to <strong>46/64</strong>. The rule fixed before training said capability anchors must not regress, so it was rejected automatically. That is the point: the scoreboard can't be argued with after the fact.</p>
+      </div></div>
+      <div class="step" data-scene="7"><div class="card">
+        <span class="chip">08 · CLEAN UP</span><h3>Destroyed, confirmed, accounted for</h3>
+        <p>Each rental is destroyed and confirmed absent from the account before the job is marked done. One training run and three 256-task paired evaluations cost <strong>$2.04</strong> of recorded GPU time in total.</p>
+      </div></div>
+    </div>
+
+    <div class="stage" aria-hidden="true">
+      <svg viewBox="0 0 600 560" id="stage">
+        <rect class="st-bg" x="1" y="1" width="598" height="558" rx="22"/>
+
+        <g class="scene" data-scene="0">
+          <rect class="st-panel" x="150" y="96" width="300" height="368" rx="16"/>
+          <text class="st-text st-fg" x="178" y="140" font-size="20" font-weight="700">protocol.json</text>
+          <rect class="st-track" x="178" y="164" width="244" height="10" rx="5"/><rect class="st-track" x="178" y="186" width="200" height="10" rx="5"/>
+          <text class="st-text st-muted" x="178" y="232" font-size="16">192 tool tasks</text><text class="st-text st-muted" x="178" y="258" font-size="16">64 arithmetic anchors</text>
+          <text class="st-text st-muted" x="178" y="284" font-size="16">greedy decoding · 512 tokens</text><text class="st-text st-muted" x="178" y="310" font-size="16">keep rule: p &lt; 0.05, no anchor loss</text>
+          <text class="st-mono st-teal" x="178" y="352" font-size="13">sha256 bff9827e…d3bc</text>
+          <g class="pulse"><rect class="st-teal" x="262" y="386" width="76" height="56" rx="10"/><path d="M280 386v-14a20 20 0 0 1 40 0v14" stroke="var(--teal)" stroke-width="7" fill="none"/></g>
+          <text class="st-text st-faint" x="300" y="512" font-size="15" text-anchor="middle">frozen before any model output exists</text>
+        </g>
+
+        <g class="scene" data-scene="1">
+          <rect class="st-panel" x="70" y="80" width="460" height="150" rx="16"/>
+          <text class="st-text st-fg" x="98" y="120" font-size="20" font-weight="700">RTX 4090 · Vast.ai</text>
+          <text class="st-mono st-muted" x="98" y="150" font-size="14">label ruvllm-940e69bd-… · idempotent</text>
+          <circle cx="458" cy="155" r="48" class="st-track"/><circle cx="458" cy="155" r="48" fill="none" stroke="var(--teal)" stroke-width="8" class="ring" transform="rotate(-90 458 155)"/>
+          <text class="st-text st-fg" x="458" y="152" font-size="15" text-anchor="middle" font-weight="600">destroy</text><text class="st-text st-muted" x="458" y="172" font-size="13" text-anchor="middle">timer armed</text>
+          <g class="st-text" font-size="16">
+            <rect class="st-panel" x="70" y="256" width="460" height="52" rx="12"/><text class="st-fg" x="98" y="288">Admission budget</text><text class="st-teal tick" x="500" y="289" text-anchor="end" font-weight="700">✓</text>
+            <rect class="st-panel" x="70" y="318" width="460" height="52" rx="12"/><text class="st-fg" x="98" y="350">Worst-case offer price</text><text class="st-teal tick" x="500" y="351" text-anchor="end" font-weight="700" style="transition-delay:.3s">✓</text>
+            <rect class="st-panel" x="70" y="380" width="460" height="52" rx="12"/><text class="st-fg" x="98" y="412">Accrued cost ceiling</text><text class="st-teal tick" x="500" y="413" text-anchor="end" font-weight="700" style="transition-delay:.6s">✓</text>
+            <rect class="st-panel" x="70" y="442" width="460" height="52" rx="12"/><text class="st-fg" x="98" y="474">Independent destroy timer</text><text class="st-teal tick" x="500" y="475" text-anchor="end" font-weight="700" style="transition-delay:.9s">✓</text>
+          </g>
+        </g>
+
+        <g class="scene" data-scene="2">
+          <text class="st-text st-fg" x="60" y="110" font-size="18" font-weight="700">Base · Qwen3.5 4B</text>
+          <g id="lane-base"></g>
+          <text class="st-text st-fg" x="60" y="300" font-size="18" font-weight="700">Base + coding-4b adapter</text>
+          <g id="lane-adpt"></g>
+          <text class="st-text st-faint" x="300" y="512" font-size="15" text-anchor="middle">256 tasks per arm · same GPU · same settings · every answer kept</text>
+        </g>
+
+        <g class="scene" data-scene="3">
+          <rect class="st-panel" x="50" y="120" width="220" height="190" rx="16"/><text class="st-text st-fg" x="74" y="160" font-size="18" font-weight="700">Remote report</text>
+          <text class="st-mono st-muted" x="74" y="196" font-size="13">tool 123 → 173</text><text class="st-mono st-muted" x="74" y="220" font-size="13">math 63 → 63</text><text class="st-mono st-teal" x="74" y="270" font-size="13">9ce87cda…bf37</text>
+          <rect class="st-panel" x="330" y="120" width="220" height="190" rx="16"/><text class="st-text st-fg" x="354" y="160" font-size="18" font-weight="700">Local re-score</text>
+          <text class="st-mono st-muted" x="354" y="196" font-size="13">tool 123 → 173</text><text class="st-mono st-muted" x="354" y="220" font-size="13">math 63 → 63</text><text class="st-mono st-teal" x="354" y="270" font-size="13">9ce87cda…bf37</text>
+          <path d="M272 215h56" class="st-line-teal flow" stroke-width="3"/>
+          <circle cx="300" cy="400" r="46" class="st-teal tick"/><path d="M280 400l14 14 26-28" stroke="var(--teal-ink)" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round" class="tick"/>
+          <text class="st-text st-faint" x="300" y="490" font-size="15" text-anchor="middle">match → complete · mismatch → not complete</text>
+        </g>
+
+        <g class="scene" data-scene="4">
+          <text class="st-text st-muted" x="92" y="96" font-size="16">Confirmation panel · 192 tool tasks</text>
+          <text class="st-text st-fg" x="92" y="140" font-size="40" font-weight="700">123 → 173</text>
+          <g id="grid-v3"></g>
+          <g class="st-text" font-size="14"><circle cx="100" cy="510" r="7" class="dot pass"/><text class="st-muted" x="114" y="515">both pass 123</text>
+          <circle cx="250" cy="510" r="7" class="dot gain"/><text class="st-muted" x="264" y="515">gained 50</text>
+          <circle cx="370" cy="510" r="7" class="dot"/><text class="st-muted" x="384" y="515">both fail 19</text></g>
+        </g>
+
+        <g class="scene" data-scene="5">
+          <text class="st-text st-muted" x="92" y="96" font-size="16">Held-out panel · untouched tasks</text>
+          <text class="st-text st-fg" x="92" y="140" font-size="40" font-weight="700">149 → 176</text>
+          <g id="grid-v4"></g>
+          <g class="st-text" font-size="14"><circle cx="80" cy="510" r="7" class="dot pass"/><text class="st-muted" x="94" y="515">both 136</text>
+          <circle cx="190" cy="510" r="7" class="dot gain"/><text class="st-muted" x="204" y="515">gained 40</text>
+          <circle cx="310" cy="510" r="7" class="dot loss"/><text class="st-muted" x="324" y="515">lost 13</text>
+          <circle cx="420" cy="510" r="7" class="dot"/><text class="st-muted" x="434" y="515">both fail 3</text></g>
+        </g>
+
+        <g class="scene" data-scene="6">
+          <text class="st-text st-fg" x="60" y="104" font-size="22" font-weight="700">coding-4b-r2 vs the rule</text>
+          <text class="st-text st-muted" x="60" y="160" font-size="16">Tool tasks</text><text class="st-text st-violet" x="540" y="160" font-size="16" text-anchor="end" font-weight="700">192 / 192</text>
+          <rect class="st-track" x="60" y="172" width="480" height="18" rx="9"/><rect class="st-violet bar" x="60" y="172" width="480" height="18" rx="9"/>
+          <text class="st-text st-muted" x="60" y="236" font-size="16">Arithmetic · base</text><text class="st-text st-blue" x="540" y="236" font-size="16" text-anchor="end" font-weight="700">62 / 64</text>
+          <rect class="st-track" x="60" y="248" width="480" height="18" rx="9"/><rect class="st-blue bar" x="60" y="248" width="465" height="18" rx="9"/>
+          <text class="st-text st-muted" x="60" y="312" font-size="16">Arithmetic · r2</text><text class="st-text st-rose" x="540" y="312" font-size="16" text-anchor="end" font-weight="700">46 / 64</text>
+          <rect class="st-track" x="60" y="324" width="480" height="18" rx="9"/><rect class="st-rose bar" x="60" y="324" width="345" height="18" rx="9"/>
+          <g class="stamp"><rect x="170" y="388" width="260" height="84" rx="14" fill="none" stroke="var(--rose)" stroke-width="5"/><text class="st-text st-rose" x="300" y="444" font-size="40" font-weight="700" text-anchor="middle" letter-spacing="6">REJECT</text></g>
+          <text class="st-text st-faint" x="300" y="520" font-size="14" text-anchor="middle">math_anchor_regressed · completion_regressed</text>
+        </g>
+
+        <g class="scene" data-scene="7">
+          <g class="fade-out"><rect class="st-panel" x="150" y="90" width="300" height="120" rx="16"/><text class="st-text st-fg" x="300" y="146" font-size="20" font-weight="700" text-anchor="middle">GPU rental</text><text class="st-text st-muted" x="300" y="176" font-size="14" text-anchor="middle">destroyed · confirmed absent</text></g>
+          <g class="st-text" font-size="16">
+            <text class="st-muted" x="110" y="270">Confirmation run (RTX 3090)</text><text class="st-fg num" x="490" y="270" text-anchor="end">$0.27</text>
+            <text class="st-muted" x="110" y="306">LoRA training round (RTX 4090)</text><text class="st-fg num" x="490" y="306" text-anchor="end">$0.09</text>
+            <text class="st-muted" x="110" y="342">Held-out run, coding-4b</text><text class="st-fg num" x="490" y="342" text-anchor="end">$0.91</text>
+            <text class="st-muted" x="110" y="378">Held-out run, coding-4b-r2</text><text class="st-fg num" x="490" y="378" text-anchor="end">$0.76</text>
+            <path d="M110 400h380" class="st-stroke" stroke-width="2"/>
+            <text class="st-fg" x="110" y="440" font-weight="700" font-size="20">Total recorded</text><text class="st-teal num" x="490" y="440" text-anchor="end" font-weight="700" font-size="28">$2.04</text>
+          </g>
+          <text class="st-text st-faint" x="300" y="512" font-size="15" text-anchor="middle">run costs from STATUS.json</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="results">
+  <div class="wrap">
+    <div class="block-head"><span class="eyebrow">Results</span><h2>Measured on GPUs, decided by rule</h2>
+      <p class="lede">Three arms on the same 256 untouched tasks. The base model's two independent runs produced identical text on all 256 tasks, so differences come from the adapter, not noise.</p></div>
+    <div class="two">
+      <figure class="figure"><img src="assets/heldout-results.svg" alt="Held-out results: tool passes 149, 176 and 192 of 192 for base, coding-4b and coding-4b-r2; arithmetic 62, 64 and 46 of 64." loading="lazy"><figcaption>Held-out panel, RTX 4090, BF16.</figcaption></figure>
+      <figure class="figure"><img src="assets/tool-families.svg" alt="Tool passes per family out of 24: grep 0, 24, 24; test 8, 24, 24; write 21, 8, 24; all other families 24 for every arm." loading="lazy"><figcaption>Where the adapter changes behaviour, per tool family.</figcaption></figure>
+    </div>
+    <div class="table-wrap" style="margin-top:28px">
+      <table>
+        <thead><tr><th>Run</th><th class="num">Tool passes</th><th class="num">Gains / losses</th><th class="num">Arithmetic</th><th class="num">Paired p</th><th>Decision</th><th class="num">GPU cost</th></tr></thead>
+        <tbody>
+          <tr><td>Confirmation · coding-4b</td><td class="num">123 → 173 / 192</td><td class="num">50 / 0</td><td class="num">63 → 63</td><td class="num">1.8e-15</td><td class="ok">Keep</td><td class="num">$0.27</td></tr>
+          <tr><td>Held out · coding-4b</td><td class="num">149 → 176 / 192</td><td class="num">40 / 13</td><td class="num">62 → 64</td><td class="num">2.7e-4</td><td class="ok">Keep</td><td class="num">$0.91</td></tr>
+          <tr><td>Held out · coding-4b-r2</td><td class="num">149 → 192 / 192</td><td class="num">43 / 0</td><td class="num">62 → 46</td><td class="num">—</td><td style="color:var(--rose);font-weight:600">Reject</td><td class="num">$0.76</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="why">
+  <div class="wrap">
+    <div class="block-head"><span class="eyebrow">Why RuVLLM</span><h2>Model work you can defend</h2></div>
+    <div class="benefits">
+      <div class="benefit"><svg viewBox="0 0 34 34" aria-hidden="true"><rect x="6" y="14" width="22" height="16" rx="4" fill="var(--teal)"/><path d="M11 14V10a6 6 0 0 1 12 0v4" stroke="var(--teal)" stroke-width="3" fill="none"/></svg><h3>Rules locked first</h3><p>Tasks, settings and the keep rule are SHA-pinned before generation, so a result can't be reshaped after you see it.</p></div>
+      <div class="benefit"><svg viewBox="0 0 34 34" aria-hidden="true"><circle cx="11" cy="17" r="7" fill="var(--blue)"/><circle cx="23" cy="17" r="7" fill="var(--teal)" opacity=".85"/></svg><h3>Paired, per-task statistics</h3><p>Base and candidate answer identical tasks. Exact McNemar tests on gains and losses, not a single averaged score.</p></div>
+      <div class="benefit"><svg viewBox="0 0 34 34" aria-hidden="true"><path d="M8 17a9 9 0 1 0 3-6.7" stroke="var(--violet)" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M6 6v6h6" stroke="var(--violet)" stroke-width="3" fill="none" stroke-linecap="round"/></svg><h3>Byte-exact restore</h3><p>Edits go to a copy inside policy limits; the Rust engine restores the original and proves it with matching hashes.</p></div>
+      <div class="benefit"><svg viewBox="0 0 34 34" aria-hidden="true"><rect x="5" y="9" width="24" height="16" rx="3" fill="var(--amber)"/><path d="M10 25v4M24 25v4M10 5v4M24 5v4" stroke="var(--amber)" stroke-width="3"/></svg><h3>Cheap, capped GPU runs</h3><p>Four spending limits and an independent destroy timer. A full 256-task paired evaluation costs under a dollar.</p></div>
+      <div class="benefit"><svg viewBox="0 0 34 34" aria-hidden="true"><path d="M7 9h20M7 17h14M7 25h18" stroke="var(--rose)" stroke-width="3" stroke-linecap="round"/></svg><h3>Every answer kept</h3><p>Raw responses, receipts, logs and failure taxonomy stay with the result, ready for anyone to re-score.</p></div>
+      <div class="benefit"><svg viewBox="0 0 34 34" aria-hidden="true"><rect x="5" y="5" width="11" height="11" rx="3" fill="var(--teal)"/><rect x="18" y="5" width="11" height="11" rx="3" fill="var(--blue)"/><rect x="5" y="18" width="11" height="11" rx="3" fill="var(--violet)"/><rect x="18" y="18" width="11" height="11" rx="3" fill="var(--amber)"/></svg><h3>Works where you work</h3><p>npm CLI, Claude Code plugins over MCP, a Ruflo-compatible server, and an OpenAI-compatible local API on Apple Silicon.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="compare">
+  <div class="wrap">
+    <div class="block-head"><span class="eyebrow">Compare</span><h2>Versus the usual fine-tune loop</h2>
+      <p class="lede">What changes when evaluation is built into the workflow rather than bolted on afterwards.</p></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Question</th><th>Typical ad-hoc workflow</th><th>RuVLLM</th></tr></thead>
+      <tbody>
+        <tr><td>When is the success rule set?</td><td class="meh">Often after looking at scores</td><td class="ok">Before generation, SHA-pinned</td></tr>
+        <tr><td>How are models compared?</td><td class="meh">Aggregate accuracy, separate runs</td><td class="ok">Same tasks, same GPU, per-task exact McNemar</td></tr>
+        <tr><td>Are regressions visible?</td><td class="meh">Averaged into one number</td><td class="ok">Per family and per case, with a failure taxonomy</td></tr>
+        <tr><td>Held-out tasks?</td><td class="meh">Sometimes reused from development</td><td class="ok">Fresh panel, checked disjoint from training data</td></tr>
+        <tr><td>Can a third party re-check?</td><td class="meh">Usually only summary numbers</td><td class="ok">Raw outputs + frozen scorer, re-score locally</td></tr>
+        <tr><td>What happens to the original?</td><td class="meh">Overwritten or untracked</td><td class="ok">Untouched; byte-exact restore verified</td></tr>
+        <tr><td>GPU spend control?</td><td class="meh">Manual, easy to leave running</td><td class="ok">Budget, price, accrual caps + destroy timer + confirmed cleanup</td></tr>
+        <tr><td>Can a shiny result be rejected?</td><td class="meh">Rarely in practice</td><td class="ok">Yes: 192/192 tools rejected for an arithmetic loss</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+<section class="block" id="tutorial">
+  <div class="wrap">
+    <div class="block-head"><span class="eyebrow">Tutorial</span><h2>From install to your own verdict</h2>
+      <p class="lede">Steps 1–5 run on a laptop with no GPU. Step 6 is where rented GPUs come in.</p></div>
+    <div class="tutorial">
+      <div class="lesson"><div class="body">
+        <h3>Install the CLI</h3><p>The npm package ships the experiment controller, the GPU loop and the Vast.ai host adapter.</p><span class="needs">Needs Node 22+</span>
+        <div class="code"><button class="copy" type="button">Copy</button><pre><code>npm install @ruvector/ruvllm
+npx ruvllm --help
+npx ruvllm-gpu-loop --help</code></pre></div>
+      </div></div>
+      <div class="lesson"><div class="body">
+        <h3>Verify the published evidence</h3><p>Clone the repository and check the adapter files, frozen protocols, diagrams and saved benchmark generations against their recorded fingerprints.</p><span class="needs">Needs Python 3.12+ · no model download</span>
+        <div class="code"><button class="copy" type="button">Copy</button><pre><code>git clone https://github.com/ruvnet/ruvllm.git
+cd ruvllm
+python3 scripts/check_repository.py
+python3 scripts/verify_benchmarks.py</code></pre></div>
+        <p class="expect">Look for <code>"verified": true</code> in both reports.</p>
+      </div></div>
+      <div class="lesson"><div class="body">
+        <h3>Make a real weight edit, then restore it</h3><p>The Rust engine writes a tiny weight file, applies one allowed change, rejects forbidden ones and restores the original bytes.</p><span class="needs">Needs Rust 1.97.1 (pinned in native/rust-toolchain.toml)</span>
+        <div class="code"><button class="copy" type="button">Copy</button><pre><code>cd native
+cargo build --locked --release --bin weight_evolution
+python3 smoke.py
+cd ..</code></pre></div>
+        <p class="expect">Expect <code>"passed": true</code> with equal <code>source_sha256</code> and <code>restored_sha256</code>.</p>
+      </div></div>
+      <div class="lesson"><div class="body">
+        <h3>Run a bounded experiment</h3><p>MetaHarness runs several candidate edits against one unchanged checkpoint, packages the evidence, restores every patch and ranks the qualified candidates. This fixture uses synthetic scores to show the workflow end to end.</p>
+        <div class="code"><button class="copy" type="button">Copy</button><pre><code>(cd integrations/metaharness &amp;&amp; npm ci --ignore-scripts)
+mkdir -p runtime
+node integrations/metaharness/src/cli.mjs fixture \
+  --dir "$PWD/runtime/metaharness-fixture" \
+  --binary "$PWD/native/target/release/weight_evolution"</code></pre></div>
+      </div></div>
+      <div class="lesson"><div class="body">
+        <h3>Re-score a real GPU run yourself</h3><p>The held-out run's raw answers are in the repository. Rerun the frozen scorer and get the regression breakdown by tool and failure type.</p>
+        <div class="code"><button class="copy" type="button">Copy</button><pre><code>R=experiments/model-improvement
+python3 $R/regression-dashboard.py \
+  --bundle $R/frozen/v4 \
+  --base $R/results/qwen35-4b-heldout-v4-coding-4b/base \
+  --adapter $R/results/qwen35-4b-heldout-v4-coding-4b/adapter \
+  --out runtime/v4-dashboard.md</code></pre></div>
+        <p class="expect">Expect <strong>Keep for research</strong>, tool 149/192 → 176/192, and 13 Write wrong-argument regressions.</p>
+      </div></div>
+      <div class="lesson"><div class="body">
+        <h3>Schedule your own GPU run</h3><p>Copy the example config to a private owner-only directory, set a spending ceiling, a model pin and a Vast offer, then tick the loop with the pinned host adapter. With <code>budgetUsd: 0</code> nothing is ever submitted.</p><span class="needs">Needs a Vast.ai account key on the control host</span>
+        <div class="code"><button class="copy" type="button">Copy</button><pre><code>cp integrations/metaharness/examples/gpu-loop.example.json /abs/private/gpu-loop.json
+chmod 600 /abs/private/gpu-loop.json
+A=integrations/metaharness/src/vast-host-adapter.mjs
+npx ruvllm-gpu-loop status --config /abs/private/gpu-loop.json
+npx ruvllm-gpu-loop tick --config /abs/private/gpu-loop.json \
+  --adapter "$PWD/$A" --adapter-sha256 "$(sha256sum $A | cut -d' ' -f1)"</code></pre></div>
+        <p class="expect">Full field reference in <a href="https://github.com/ruvnet/ruvllm/blob/main/integrations/metaharness/GPU-LOOP.md">GPU-LOOP.md</a>; Claude Code users can drive the same loop with <code>/loop</code>.</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="inside">
+  <div class="wrap">
+    <div class="block-head"><span class="eyebrow">What's in the box</span><h2>Components</h2></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Component</th><th>What you get</th><th>Built with</th></tr></thead>
+      <tbody>
+        <tr><td>Weight editor</td><td>Inspect, patch, validate and restore Safetensors weights within a policy; RVF evidence packages</td><td>Rust</td></tr>
+        <tr><td>coding-4b adapter</td><td>1.5M-parameter LoRA for Qwen3.5 4B, PEFT and MLX formats, checksummed</td><td>Safetensors</td></tr>
+        <tr><td>Paired measurement</td><td>Frozen bundles, CUDA worker, exact McNemar scorer, regression dashboard</td><td>Python, Rust reports</td></tr>
+        <tr><td>GPU loop + Vast adapter</td><td>Restart-safe queue, reservations, deadlines, destroy timer, confirmed cleanup</td><td>Node (npm)</td></tr>
+        <tr><td>eval-report tools</td><td>Failure taxonomy, three-way comparisons, SFT pool building and panel freezing</td><td>Rust</td></tr>
+        <tr><td>Claude Code plugins</td><td>MCP tools and a guided weight-experiment command; Ruflo-compatible</td><td>Node, MCP</td></tr>
+        <tr><td>Local serving</td><td>OpenAI-compatible API for the adapter on Apple Silicon</td><td>MLX</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>RuVLLM · Apache-2.0 research toolkit · native engine MIT</span>
+    <span><a href="https://github.com/ruvnet/ruvllm">GitHub</a> · <a href="https://www.npmjs.com/package/@ruvector/ruvllm">npm</a> · <a href="https://github.com/ruvnet/ruvllm/tree/main/experiments/model-improvement/results">Raw results</a></span>
+  </div>
+</footer>
+<script src="site.js"></script>
+</body>
+</html>
