@@ -1,0 +1,18 @@
+{
+  "adapter_precision": "float32",
+  "backbone_precision": "bf16-with-native-fp32-stability-parameters",
+  "device": "cuda",
+  "fixture": false,
+  "gpu_name": "NVIDIA GeForce RTX 4090",
+  "gpu_total_memory_bytes": 25250627584,
+  "gpu_uuid": "ea379c27-2716-ad38-82c4-98024f218ff0",
+  "python_version": "3.12.3",
+  "schema": "ruvllm-measurement-runtime/v1",
+  "torch_cuda_version": "12.8",
+  "versions": {
+    "peft": "0.21.2",
+    "safetensors": "0.7.0",
+    "torch": "2.11.0+cu128",
+    "transformers": "5.12.1"
+  }
+}

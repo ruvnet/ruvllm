@@ -1,0 +1,12 @@
+{
+  "at": "2026-11-04T18:59:25.088Z",
+  "costUsd": 0.092034,
+  "remote": {
+    "schema": "ruvllm-vast-remote-status/v1",
+    "state": "done",
+    "step": "trained",
+    "commit": "a762c42101ca5bc1f7160ae022eb852f8fa97dff",
+    "at": 1793818760
+  },
+  "tail": "f0a1bd431c1adb8b4138164dcfd228536604bd7b342695128e00bec87e125af\", \"adapter_model.safetensors\": \"b8788af005d3e047f2c471ea343dfc5b2901fcca28274f8e05b1f751427b1c10\", \"adapter_config.json\": \"884141ae9d64edf8ba961abb02ee84a733bf706970104e2841df7091f70058a7\"}}}\nRUFLO_TRAIN {\"kind\": \"completed\", \"data\": {\"steps\": 96, \"manifest_sha256\": \"b63efb5ade19a3a009f3952e5b77abb5db0ab389f9e55735aadd036e0a848ea6\"}}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "schema": "ruvllm-vast-verification/v1",
+  "jobId": "qwen35-4b-paired-v3",
+  "localRescoreMatchesRemote": true,
+  "evidenceMode": "gpu-inference",
+  "researchImprovementConfirmed": true,
+  "reasons": []
+}

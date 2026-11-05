@@ -46,7 +46,7 @@ def verify_assets(protocol, model_dir, adapter_dir):
     if not isinstance(files, dict) or not files:
         raise ValueError("Pinned model weights are required")
     for name, digest in files.items():
-        if not re.fullmatch(r"model(?:-\d{5}-of-\d{5})?\.safetensors", name):
+        if not re.fullmatch(r"model(?:-\d{5}-of-\d{5}|\.safetensors-\d{5}-of-\d{5})?\.safetensors", name):
             raise ValueError("Only safe model weight filenames are supported")
         checked_file(model_dir, name, digest)
     actual = {p.name for p in model_dir.glob("model*.safetensors")}
@@ -199,9 +199,11 @@ def run_until(args, started, deadline):
         raise ValueError("Tokenizer EOS token does not match model generation configuration")
     base = Qwen3_5ForConditionalGeneration.from_pretrained(str(model_dir), local_files_only=True,
             trust_remote_code=False, token=False, dtype=torch.bfloat16, device_map="cuda", attn_implementation="sdpa")
-    # Meta allocation/assign preserves the FP32 trained adapter exactly; backbone stays BF16.
+    # Eager allocation keeps the FP32 trained adapter bit-exact; backbone stays BF16.
+    # low_cpu_mem_usage=True materializes LoRA tensors in the BF16 base dtype first,
+    # rounding them before the FP32 upcast (caught by verify_adapter below).
     model = PeftModel.from_pretrained(base, str(adapter_dir), local_files_only=True, is_trainable=False,
-                                      low_cpu_mem_usage=True, autocast_adapter_dtype=True)
+                                      low_cpu_mem_usage=False, autocast_adapter_dtype=True)
     expected = load_file(str(adapter_dir / "adapter_model.safetensors"), device="cpu")
     # Disable embedding auto-detection: it may query the adapter's remote base repo.
     verify_adapter(model, expected, get_peft_model_state_dict(model, save_embedding_layers=False), torch.equal)

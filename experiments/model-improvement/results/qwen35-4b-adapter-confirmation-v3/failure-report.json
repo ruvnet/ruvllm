@@ -1,0 +1,575 @@
+{
+  "schema": "ruvllm-failure-report/v1",
+  "run_id": "qwen35-4b-adapter-confirmation-v3",
+  "report_sha256": "9ce87cdada76c2902c07180b2b63e0e9a0f35a36d9279d16a5e579d8c9f0bf37",
+  "decision": {
+    "verdict": "keep",
+    "basis": "Preregistered ADR-016 rule satisfied: positive tool delta, McNemar p < 0.05, no arithmetic or completion regression.",
+    "reasons": [],
+    "production_activation": false,
+    "rule": "ADR-016 research qualification"
+  },
+  "categories": {
+    "tool": {
+      "base": {
+        "argument_extra": 24,
+        "argument_type": 24,
+        "argument_value": 21,
+        "correct": 123
+      },
+      "adapter": {
+        "argument_value": 19,
+        "correct": 173
+      }
+    },
+    "math": {
+      "base": {
+        "correct": 63,
+        "truncated": 1
+      },
+      "adapter": {
+        "correct": 63,
+        "truncated": 1
+      }
+    }
+  },
+  "category_groups": {
+    "argument_extra": "argument_error",
+    "argument_missing": "argument_error",
+    "argument_type": "argument_error",
+    "argument_value": "argument_error",
+    "correct": "correct",
+    "correct_undelivered": "truncation",
+    "extra_calls": "instruction_following",
+    "malformed_call": "format",
+    "no_boxed_answer": "arithmetic",
+    "no_tool_call": "instruction_following",
+    "truncated": "truncation",
+    "wrong_answer": "arithmetic",
+    "wrong_tool": "tool_selection"
+  },
+  "families": {
+    "edit": {
+      "count": 24,
+      "base_correct": 24,
+      "adapter_correct": 24,
+      "gains": 0,
+      "regressions": 0
+    },
+    "glob": {
+      "count": 24,
+      "base_correct": 3,
+      "adapter_correct": 5,
+      "gains": 2,
+      "regressions": 0
+    },
+    "grep": {
+      "count": 24,
+      "base_correct": 0,
+      "adapter_correct": 24,
+      "gains": 24,
+      "regressions": 0
+    },
+    "injection": {
+      "count": 24,
+      "base_correct": 24,
+      "adapter_correct": 24,
+      "gains": 0,
+      "regressions": 0
+    },
+    "integer_arithmetic": {
+      "count": 64,
+      "base_correct": 63,
+      "adapter_correct": 63,
+      "gains": 0,
+      "regressions": 0
+    },
+    "read": {
+      "count": 24,
+      "base_correct": 24,
+      "adapter_correct": 24,
+      "gains": 0,
+      "regressions": 0
+    },
+    "slice": {
+      "count": 24,
+      "base_correct": 24,
+      "adapter_correct": 24,
+      "gains": 0,
+      "regressions": 0
+    },
+    "test": {
+      "count": 24,
+      "base_correct": 0,
+      "adapter_correct": 24,
+      "gains": 24,
+      "regressions": 0
+    },
+    "write": {
+      "count": 24,
+      "base_correct": 24,
+      "adapter_correct": 24,
+      "gains": 0,
+      "regressions": 0
+    }
+  },
+  "regressions_by_group": {},
+  "regressions": [],
+  "gains": [
+    {
+      "id": "confirmation-tool-glob-00",
+      "family": "glob",
+      "base": "argument_value",
+      "adapter": "correct",
+      "detail": "path",
+      "adapter_excerpt": "<tool_call> <function=Glob> <parameter=path> /workspace/confirmation_v1/glob/saffron_00 </parameter> <parameter=pattern> **/test_saffron_00*.py </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Glob> <parameter=path> /workspace/confirmation_v1/glob </parameter> <parameter=pattern> **/test_saffron_00*.py </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "confirmation-tool-glob-12",
+      "family": "glob",
+      "base": "argument_value",
+      "adapter": "correct",
+      "detail": "path",
+      "adapter_excerpt": "<tool_call> <function=Glob> <parameter=path> /workspace/confirmation_v1/glob/cobalt_12 </parameter> <parameter=pattern> **/test_cobalt_12*.py </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Glob> <parameter=path> /workspace/confirmation_v1/glob </parameter> <parameter=pattern> **/test_cobalt_12*.py </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "confirmation-tool-grep-00",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> content </parameter> <parameter=path> /workspace/confirmation_v1/grep/saffron_00/src </parameter> <parameter=pattern> saffron_00_registry </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> saffron_00_registry </parameter> <parameter=glob> /workspace/confirmation_v1/grep/saffron_00/src/**/* </parameter> <parameter=-n> True </parameter> <parameter=output_mode> content </parameter>…"
+    },
+    {
+      "id": "confirmation-tool-grep-01",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> content </parameter> <parameter=path> /workspace/confirmation_v1/grep/basalt_01/src </parameter> <parameter=pattern> basalt_01_registry </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> basalt_01_registry </parameter> <parameter=glob> /workspace/confirmation_v1/grep/basalt_01/src/**/* </parameter> <parameter=-n> True </parameter> <parameter=output_mode> content </parameter> <…"
+    },
+    {
+      "id": "confirmation-tool-grep-02",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> content </parameter> <parameter=path> /workspace/confirmation_v1/grep/tundra_02/src </parameter> <parameter=pattern> tundra_02_registry </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> tundra_02_registry </parameter> <parameter=glob> /workspace/confirmation_v1/grep/tundra_02/src/**/* </parameter> <parameter=-n> True </parameter> <parameter=output_mode> content </parameter> <…"
+    },
+    {
+      "id": "confirmation-tool-grep-03",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> content </parameter> <parameter=path> /workspace/confirmation_v1/grep/lichen_03/src </parameter> <parameter=pattern> lichen_03_registry </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> lichen_03_registry </parameter> <parameter=glob> /workspace/confirmation_v1/grep/lichen_03/src/**/* </parameter> <parameter=-n> True </parameter> <parameter=output_mode> content </parameter> <…"
+    },
+    {
+      "id": "confirmation-tool-grep-04",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> content </parameter> <parameter=path> /workspace/confirmation_v1/grep/cobalt_04/src </parameter> <parameter=pattern> cobalt_04_registry </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> cobalt_04_registry </parameter> <parameter=glob> /workspace/confirmation_v1/grep/cobalt_04/src/**/* </parameter> <parameter=-n> True </parameter> <parameter=output_mode> content </parameter> <…"
+    },
+    {
+      "id": "confirmation-tool-grep-05",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> content </parameter> <parameter=path> /workspace/confirmation_v1/grep/quartz_05/src </parameter> <parameter=pattern> quartz_05_registry </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> quartz_05_registry </parameter> <parameter=glob> /workspace/confirmation_v1/grep/quartz_05/src/**/* </parameter> <parameter=-n> True </parameter> <parameter=output_mode> content </parameter> <…"
+    },
+    {
+      "id": "confirmation-tool-grep-06",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> content </parameter> <parameter=path> /workspace/confirmation_v1/grep/mangrove_06/src </parameter> <parameter=pattern> mangrove_06_registry </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> mangrove_06_registry </parameter> <parameter=glob> /workspace/confirmation_v1/grep/mangrove_06/src/**/* </parameter> <parameter=-n> True </parameter> <parameter=output_mode> content </paramete…"
+    },
+    {
+      "id": "confirmation-tool-grep-07",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> content </parameter> <parameter=path> /workspace/confirmation_v1/grep/sequoia_07/src </parameter> <parameter=pattern> sequoia_07_registry </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> sequoia_07_registry </parameter> <parameter=glob> /workspace/confirmation_v1/grep/sequoia_07/src/**/* </parameter> <parameter=-n> True </parameter> <parameter=output_mode> content </parameter>…"
+    },
+    {
+      "id": "confirmation-tool-grep-08",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> content </parameter> <parameter=path> /workspace/confirmation_v1/grep/saffron_08/src </parameter> <parameter=pattern> saffron_08_registry </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> saffron_08_registry </parameter> <parameter=glob> /workspace/confirmation_v1/grep/saffron_08/src/**/* </parameter> <parameter=-n> True </parameter> <parameter=output_mode> content </parameter>…"
+    },
+    {
+      "id": "confirmation-tool-grep-09",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> content </parameter> <parameter=path> /workspace/confirmation_v1/grep/basalt_09/src </parameter> <parameter=pattern> basalt_09_registry </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> basalt_09_registry </parameter> <parameter=glob> /workspace/confirmation_v1/grep/basalt_09/src/**/* </parameter> <parameter=-n> True </parameter> <parameter=output_mode> content </parameter> <…"
+    },
+    {
+      "id": "confirmation-tool-grep-10",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> content </parameter> <parameter=path> /workspace/confirmation_v1/grep/tundra_10/src </parameter> <parameter=pattern> tundra_10_registry </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> tundra_10_registry </parameter> <parameter=glob> /workspace/confirmation_v1/grep/tundra_10/src/**/* </parameter> <parameter=-n> True </parameter> <parameter=output_mode> content </parameter> <…"
+    },
+    {
+      "id": "confirmation-tool-grep-11",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> content </parameter> <parameter=path> /workspace/confirmation_v1/grep/lichen_11/src </parameter> <parameter=pattern> lichen_11_registry </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> lichen_11_registry </parameter> <parameter=glob> /workspace/confirmation_v1/grep/lichen_11/src/**/* </parameter> <parameter=-n> True </parameter> <parameter=output_mode> content </parameter> <…"
+    },
+    {
+      "id": "confirmation-tool-grep-12",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> content </parameter> <parameter=path> /workspace/confirmation_v1/grep/cobalt_12/src </parameter> <parameter=pattern> cobalt_12_registry </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> cobalt_12_registry </parameter> <parameter=glob> /workspace/confirmation_v1/grep/cobalt_12/src/**/* </parameter> <parameter=-n> True </parameter> <parameter=output_mode> content </parameter> <…"
+    },
+    {
+      "id": "confirmation-tool-grep-13",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> content </parameter> <parameter=path> /workspace/confirmation_v1/grep/quartz_13/src </parameter> <parameter=pattern> quartz_13_registry </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> quartz_13_registry </parameter> <parameter=glob> /workspace/confirmation_v1/grep/quartz_13/src/**/* </parameter> <parameter=-n> True </parameter> <parameter=output_mode> content </parameter> <…"
+    },
+    {
+      "id": "confirmation-tool-grep-14",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> content </parameter> <parameter=path> /workspace/confirmation_v1/grep/mangrove_14/src </parameter> <parameter=pattern> mangrove_14_registry </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> mangrove_14_registry </parameter> <parameter=glob> /workspace/confirmation_v1/grep/mangrove_14/src/**/* </parameter> <parameter=-n> True </parameter> <parameter=output_mode> content </paramete…"
+    },
+    {
+      "id": "confirmation-tool-grep-15",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> content </parameter> <parameter=path> /workspace/confirmation_v1/grep/sequoia_15/src </parameter> <parameter=pattern> sequoia_15_registry </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> sequoia_15_registry </parameter> <parameter=glob> /workspace/confirmation_v1/grep/sequoia_15/src/**/* </parameter> <parameter=-n> True </parameter> <parameter=output_mode> content </parameter>…"
+    },
+    {
+      "id": "confirmation-tool-grep-16",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> content </parameter> <parameter=path> /workspace/confirmation_v1/grep/saffron_16/src </parameter> <parameter=pattern> saffron_16_registry </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> saffron_16_registry </parameter> <parameter=glob> /workspace/confirmation_v1/grep/saffron_16/src/**/* </parameter> <parameter=-n> True </parameter> <parameter=output_mode> content </parameter>…"
+    },
+    {
+      "id": "confirmation-tool-grep-17",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> content </parameter> <parameter=path> /workspace/confirmation_v1/grep/basalt_17/src </parameter> <parameter=pattern> basalt_17_registry </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> basalt_17_registry </parameter> <parameter=glob> /workspace/confirmation_v1/grep/basalt_17/src/**/* </parameter> <parameter=-n> True </parameter> <parameter=output_mode> content </parameter> <…"
+    },
+    {
+      "id": "confirmation-tool-grep-18",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> content </parameter> <parameter=path> /workspace/confirmation_v1/grep/tundra_18/src </parameter> <parameter=pattern> tundra_18_registry </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> tundra_18_registry </parameter> <parameter=glob> /workspace/confirmation_v1/grep/tundra_18/src/**/* </parameter> <parameter=-n> True </parameter> <parameter=output_mode> content </parameter> <…"
+    },
+    {
+      "id": "confirmation-tool-grep-19",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> content </parameter> <parameter=path> /workspace/confirmation_v1/grep/lichen_19/src </parameter> <parameter=pattern> lichen_19_registry </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> lichen_19_registry </parameter> <parameter=glob> /workspace/confirmation_v1/grep/lichen_19/src/**/* </parameter> <parameter=-n> True </parameter> <parameter=output_mode> content </parameter> <…"
+    },
+    {
+      "id": "confirmation-tool-grep-20",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> content </parameter> <parameter=path> /workspace/confirmation_v1/grep/cobalt_20/src </parameter> <parameter=pattern> cobalt_20_registry </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> cobalt_20_registry </parameter> <parameter=glob> /workspace/confirmation_v1/grep/cobalt_20/src/**/* </parameter> <parameter=-n> True </parameter> <parameter=output_mode> content </parameter> <…"
+    },
+    {
+      "id": "confirmation-tool-grep-21",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> content </parameter> <parameter=path> /workspace/confirmation_v1/grep/quartz_21/src </parameter> <parameter=pattern> quartz_21_registry </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> quartz_21_registry </parameter> <parameter=glob> /workspace/confirmation_v1/grep/quartz_21/**/* </parameter> <parameter=output_mode> content </parameter> <parameter=-n> True </parameter> </fun…"
+    },
+    {
+      "id": "confirmation-tool-grep-22",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> content </parameter> <parameter=path> /workspace/confirmation_v1/grep/mangrove_22/src </parameter> <parameter=pattern> mangrove_22_registry </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> mangrove_22_registry </parameter> <parameter=glob> /workspace/confirmation_v1/grep/mangrove_22/src/**/* </parameter> <parameter=-n> True </parameter> <parameter=output_mode> content </paramete…"
+    },
+    {
+      "id": "confirmation-tool-grep-23",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> content </parameter> <parameter=path> /workspace/confirmation_v1/grep/sequoia_23/src </parameter> <parameter=pattern> sequoia_23_registry </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> sequoia_23_registry </parameter> <parameter=glob> /workspace/confirmation_v1/grep/sequoia_23/src/**/* </parameter> <parameter=-n> True </parameter> <parameter=output_mode> content </parameter>…"
+    },
+    {
+      "id": "confirmation-tool-test-00",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/saffron_00/tests/test_saffron_00.py -q </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/saffron_00/tests/test_saffron_00.py -q </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "confirmation-tool-test-01",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "description",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/basalt_01/tests/test_basalt_01.py -q </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/basalt_01/tests/test_basalt_01.py -q </parameter> <parameter=description> Run pytest on the specified test file with quiet output </parameter> …"
+    },
+    {
+      "id": "confirmation-tool-test-02",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "description",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/tundra_02/tests/test_tundra_02.py -q </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/tundra_02/tests/test_tundra_02.py -q </parameter> <parameter=description> Run pytest on the specified test file with quiet output </parameter> …"
+    },
+    {
+      "id": "confirmation-tool-test-03",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/lichen_03/tests/test_lichen_03.py -q </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/lichen_03/tests/test_lichen_03.py -q </parameter> <parameter=timeout> 120 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "confirmation-tool-test-04",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/cobalt_04/tests/test_cobalt_04.py -q </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/cobalt_04/tests/test_cobalt_04.py -q </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "confirmation-tool-test-05",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/quartz_05/tests/test_quartz_05.py -q </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/quartz_05/tests/test_quartz_05.py -q </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "confirmation-tool-test-06",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/mangrove_06/tests/test_mangrove_06.py -q </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/mangrove_06/tests/test_mangrove_06.py -q </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "confirmation-tool-test-07",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "description",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/sequoia_07/tests/test_sequoia_07.py -q </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/sequoia_07/tests/test_sequoia_07.py -q </parameter> <parameter=description> Run pytest on the specified test file with quiet output </parameter…"
+    },
+    {
+      "id": "confirmation-tool-test-08",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/saffron_08/tests/test_saffron_08.py -q </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/saffron_08/tests/test_saffron_08.py -q </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "confirmation-tool-test-09",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "description",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/basalt_09/tests/test_basalt_09.py -q </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/basalt_09/tests/test_basalt_09.py -q </parameter> <parameter=description> Run pytest on the specified test file with quiet output </parameter> …"
+    },
+    {
+      "id": "confirmation-tool-test-10",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "description",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/tundra_10/tests/test_tundra_10.py -q </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/tundra_10/tests/test_tundra_10.py -q </parameter> <parameter=description> Run pytest on the specified test file with quiet output </parameter> …"
+    },
+    {
+      "id": "confirmation-tool-test-11",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/lichen_11/tests/test_lichen_11.py -q </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/lichen_11/tests/test_lichen_11.py -q </parameter> <parameter=timeout> 120 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "confirmation-tool-test-12",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "description",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/cobalt_12/tests/test_cobalt_12.py -q </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/cobalt_12/tests/test_cobalt_12.py -q </parameter> <parameter=description> Run pytest on the specified test file with quiet output </parameter> …"
+    },
+    {
+      "id": "confirmation-tool-test-13",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "description",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/quartz_13/tests/test_quartz_13.py -q </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/quartz_13/tests/test_quartz_13.py -q </parameter> <parameter=description> Run pytest on the specified test file with quiet output </parameter> …"
+    },
+    {
+      "id": "confirmation-tool-test-14",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/mangrove_14/tests/test_mangrove_14.py -q </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/mangrove_14/tests/test_mangrove_14.py -q </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "confirmation-tool-test-15",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "description",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/sequoia_15/tests/test_sequoia_15.py -q </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/sequoia_15/tests/test_sequoia_15.py -q </parameter> <parameter=description> Run pytest on the specified test file with quiet output </parameter…"
+    },
+    {
+      "id": "confirmation-tool-test-16",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/saffron_16/tests/test_saffron_16.py -q </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/saffron_16/tests/test_saffron_16.py -q </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "confirmation-tool-test-17",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "description",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/basalt_17/tests/test_basalt_17.py -q </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/basalt_17/tests/test_basalt_17.py -q </parameter> <parameter=description> Run pytest on the specified test file with quiet output </parameter> …"
+    },
+    {
+      "id": "confirmation-tool-test-18",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "description",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/tundra_18/tests/test_tundra_18.py -q </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/tundra_18/tests/test_tundra_18.py -q </parameter> <parameter=description> Run pytest on the specified test file with quiet output </parameter> …"
+    },
+    {
+      "id": "confirmation-tool-test-19",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/lichen_19/tests/test_lichen_19.py -q </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/lichen_19/tests/test_lichen_19.py -q </parameter> <parameter=timeout> 120 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "confirmation-tool-test-20",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "description",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/cobalt_20/tests/test_cobalt_20.py -q </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/cobalt_20/tests/test_cobalt_20.py -q </parameter> <parameter=description> Run pytest on the specified test file with quiet output </parameter> …"
+    },
+    {
+      "id": "confirmation-tool-test-21",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "description",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/quartz_21/tests/test_quartz_21.py -q </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/quartz_21/tests/test_quartz_21.py -q </parameter> <parameter=description> Run pytest on the specified test file with quiet output </parameter> …"
+    },
+    {
+      "id": "confirmation-tool-test-22",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/mangrove_22/tests/test_mangrove_22.py -q </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/mangrove_22/tests/test_mangrove_22.py -q </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "confirmation-tool-test-23",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "description",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/sequoia_23/tests/test_sequoia_23.py -q </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> python -m pytest /workspace/confirmation_v1/test/sequoia_23/tests/test_sequoia_23.py -q </parameter> <parameter=description> Run pytest on the specified test file with quiet output </parameter…"
+    }
+  ],
+  "mean_output_tokens": {
+    "base": 122.171875,
+    "adapter": 118.1640625
+  },
+  "scope": "Descriptive breakdown of one frozen paired run; only the scorer's primary test supports the decision."
+}

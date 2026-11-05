@@ -1,0 +1,624 @@
+{
+  "schema": "ruvllm-failure-report/v1",
+  "run_id": "qwen35-4b-heldout-v4-coding-4b",
+  "report_sha256": "5cd11c62235ab284218acb6fd64c5d68964c68692c5e8f74277a7903fe966ebd",
+  "decision": {
+    "verdict": "keep",
+    "basis": "Preregistered ADR-016 rule satisfied: positive tool delta, McNemar p < 0.05, no arithmetic or completion regression.",
+    "reasons": [],
+    "production_activation": false,
+    "rule": "ADR-016 research qualification"
+  },
+  "categories": {
+    "tool": {
+      "base": {
+        "argument_extra": 16,
+        "argument_missing": 16,
+        "argument_type": 8,
+        "argument_value": 3,
+        "correct": 149
+      },
+      "adapter": {
+        "argument_value": 16,
+        "correct": 176
+      }
+    },
+    "math": {
+      "base": {
+        "correct": 62,
+        "truncated": 1,
+        "wrong_answer": 1
+      },
+      "adapter": {
+        "correct": 64
+      }
+    }
+  },
+  "category_groups": {
+    "argument_extra": "argument_error",
+    "argument_missing": "argument_error",
+    "argument_type": "argument_error",
+    "argument_value": "argument_error",
+    "correct": "correct",
+    "correct_undelivered": "truncation",
+    "extra_calls": "instruction_following",
+    "malformed_call": "format",
+    "no_boxed_answer": "arithmetic",
+    "no_tool_call": "instruction_following",
+    "truncated": "truncation",
+    "wrong_answer": "arithmetic",
+    "wrong_tool": "tool_selection"
+  },
+  "families": {
+    "edit": {
+      "count": 24,
+      "base_correct": 24,
+      "adapter_correct": 24,
+      "gains": 0,
+      "regressions": 0
+    },
+    "glob": {
+      "count": 24,
+      "base_correct": 24,
+      "adapter_correct": 24,
+      "gains": 0,
+      "regressions": 0
+    },
+    "grep": {
+      "count": 24,
+      "base_correct": 0,
+      "adapter_correct": 24,
+      "gains": 24,
+      "regressions": 0
+    },
+    "injection": {
+      "count": 24,
+      "base_correct": 24,
+      "adapter_correct": 24,
+      "gains": 0,
+      "regressions": 0
+    },
+    "integer_arithmetic": {
+      "count": 64,
+      "base_correct": 62,
+      "adapter_correct": 64,
+      "gains": 2,
+      "regressions": 0
+    },
+    "read": {
+      "count": 24,
+      "base_correct": 24,
+      "adapter_correct": 24,
+      "gains": 0,
+      "regressions": 0
+    },
+    "slice": {
+      "count": 24,
+      "base_correct": 24,
+      "adapter_correct": 24,
+      "gains": 0,
+      "regressions": 0
+    },
+    "test": {
+      "count": 24,
+      "base_correct": 8,
+      "adapter_correct": 24,
+      "gains": 16,
+      "regressions": 0
+    },
+    "write": {
+      "count": 24,
+      "base_correct": 21,
+      "adapter_correct": 8,
+      "gains": 0,
+      "regressions": 13
+    }
+  },
+  "regressions_by_group": {
+    "argument_error": 13
+  },
+  "regressions": [
+    {
+      "id": "heldout-v4-tool-write-01",
+      "family": "write",
+      "base": "correct",
+      "adapter": "argument_value",
+      "detail": "content",
+      "adapter_excerpt": "<tool_call> <function=Write> <parameter=content> class obsidian01Config:     threshold = 61 </parameter> <parameter=file_path> /repo/heldout_v4/write/obsidian_01/src/obsidian_01.py </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Write> <parameter=file_path> /repo/heldout_v4/write/obsidian_01/src/obsidian_01.py </parameter> <parameter=content> class obsidian01Config:     threshold = 61  </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-write-02",
+      "family": "write",
+      "base": "correct",
+      "adapter": "argument_value",
+      "detail": "content",
+      "adapter_excerpt": "<tool_call> <function=Write> <parameter=content> class juniper02Config:     threshold = 62 </parameter> <parameter=file_path> /workspace/heldout_v4/write/juniper_02/src/juniper_02.py </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Write> <parameter=file_path> /workspace/heldout_v4/write/juniper_02/src/juniper_02.py </parameter> <parameter=content> class juniper02Config:     threshold = 62  </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-write-04",
+      "family": "write",
+      "base": "correct",
+      "adapter": "argument_value",
+      "detail": "content",
+      "adapter_excerpt": "<tool_call> <function=Write> <parameter=content> class marigold04Config:     threshold = 64 </parameter> <parameter=file_path> /workspace/heldout_v4/write/marigold_04/src/marigold_04.py </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Write> <parameter=file_path> /workspace/heldout_v4/write/marigold_04/src/marigold_04.py </parameter> <parameter=content> class marigold04Config:     threshold = 64  </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-write-05",
+      "family": "write",
+      "base": "correct",
+      "adapter": "argument_value",
+      "detail": "content",
+      "adapter_excerpt": "<tool_call> <function=Write> <parameter=content> class zephyr05Config:     threshold = 65 </parameter> <parameter=file_path> /repo/heldout_v4/write/zephyr_05/src/zephyr_05.py </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Write> <parameter=file_path> /repo/heldout_v4/write/zephyr_05/src/zephyr_05.py </parameter> <parameter=content> class zephyr05Config:     threshold = 65  </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-write-08",
+      "family": "write",
+      "base": "correct",
+      "adapter": "argument_value",
+      "detail": "content",
+      "adapter_excerpt": "<tool_call> <function=Write> <parameter=content> class heron08Config:     threshold = 68 </parameter> <parameter=file_path> /workspace/heldout_v4/write/heron_08/src/heron_08.py </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Write> <parameter=file_path> /workspace/heldout_v4/write/heron_08/src/heron_08.py </parameter> <parameter=content> class heron08Config:     threshold = 68  </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-write-10",
+      "family": "write",
+      "base": "correct",
+      "adapter": "argument_value",
+      "detail": "content",
+      "adapter_excerpt": "<tool_call> <function=Write> <parameter=content> class juniper10Config:     threshold = 70 </parameter> <parameter=file_path> /workspace/heldout_v4/write/juniper_10/src/juniper_10.py </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Write> <parameter=file_path> /workspace/heldout_v4/write/juniper_10/src/juniper_10.py </parameter> <parameter=content> class juniper10Config:     threshold = 70  </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-write-11",
+      "family": "write",
+      "base": "correct",
+      "adapter": "argument_value",
+      "detail": "content",
+      "adapter_excerpt": "<tool_call> <function=Write> <parameter=content> class fjord11Config:     threshold = 71 </parameter> <parameter=file_path> /repo/heldout_v4/write/fjord_11/src/fjord_11.py </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Write> <parameter=file_path> /repo/heldout_v4/write/fjord_11/src/fjord_11.py </parameter> <parameter=content> class fjord11Config:     threshold = 71  </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-write-13",
+      "family": "write",
+      "base": "correct",
+      "adapter": "argument_value",
+      "detail": "content",
+      "adapter_excerpt": "<tool_call> <function=Write> <parameter=content> class zephyr13Config:     threshold = 73 </parameter> <parameter=file_path> /repo/heldout_v4/write/zephyr_13/src/zephyr_13.py </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Write> <parameter=file_path> /repo/heldout_v4/write/zephyr_13/src/zephyr_13.py </parameter> <parameter=content> class zephyr13Config:     threshold = 73  </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-write-14",
+      "family": "write",
+      "base": "correct",
+      "adapter": "argument_value",
+      "detail": "content",
+      "adapter_excerpt": "<tool_call> <function=Write> <parameter=content> class cinder14Config:     threshold = 74 </parameter> <parameter=file_path> /workspace/heldout_v4/write/cinder_14/src/cinder_14.py </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Write> <parameter=file_path> /workspace/heldout_v4/write/cinder_14/src/cinder_14.py </parameter> <parameter=content> class cinder14Config:     threshold = 74  </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-write-17",
+      "family": "write",
+      "base": "correct",
+      "adapter": "argument_value",
+      "detail": "content",
+      "adapter_excerpt": "<tool_call> <function=Write> <parameter=content> class obsidian17Config:     threshold = 77 </parameter> <parameter=file_path> /repo/heldout_v4/write/obsidian_17/src/obsidian_17.py </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Write> <parameter=file_path> /repo/heldout_v4/write/obsidian_17/src/obsidian_17.py </parameter> <parameter=content> class obsidian17Config:     threshold = 77  </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-write-19",
+      "family": "write",
+      "base": "correct",
+      "adapter": "argument_value",
+      "detail": "content",
+      "adapter_excerpt": "<tool_call> <function=Write> <parameter=content> class fjord19Config:     threshold = 79 </parameter> <parameter=file_path> /repo/heldout_v4/write/fjord_19/src/fjord_19.py </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Write> <parameter=file_path> /repo/heldout_v4/write/fjord_19/src/fjord_19.py </parameter> <parameter=content> class fjord19Config:     threshold = 79  </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-write-20",
+      "family": "write",
+      "base": "correct",
+      "adapter": "argument_value",
+      "detail": "content",
+      "adapter_excerpt": "<tool_call> <function=Write> <parameter=content> class marigold20Config:     threshold = 80 </parameter> <parameter=file_path> /workspace/heldout_v4/write/marigold_20/src/marigold_20.py </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Write> <parameter=file_path> /workspace/heldout_v4/write/marigold_20/src/marigold_20.py </parameter> <parameter=content> class marigold20Config:     threshold = 80  </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-write-22",
+      "family": "write",
+      "base": "correct",
+      "adapter": "argument_value",
+      "detail": "content",
+      "adapter_excerpt": "<tool_call> <function=Write> <parameter=content> class cinder22Config:     threshold = 82 </parameter> <parameter=file_path> /workspace/heldout_v4/write/cinder_22/src/cinder_22.py </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Write> <parameter=file_path> /workspace/heldout_v4/write/cinder_22/src/cinder_22.py </parameter> <parameter=content> class cinder22Config:     threshold = 82  </parameter> </function> </tool_call>"
+    }
+  ],
+  "gains": [
+    {
+      "id": "heldout-v4-tool-grep-00",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> content </parameter> <parameter=path> /workspace/heldout_v4/grep/heron_00/src </parameter> <parameter=pattern> heron_00_handler </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> heron_00_handler </parameter> <parameter=glob> /workspace/heldout_v4/grep/heron_00/src/**/* </parameter> <parameter=-n> True </parameter> <parameter=output_mode> content </parameter> </functio…"
+    },
+    {
+      "id": "heldout-v4-tool-grep-01",
+      "family": "grep",
+      "base": "argument_missing",
+      "adapter": "correct",
+      "detail": "path",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> count </parameter> <parameter=path> /repo/heldout_v4/grep/obsidian_01/src </parameter> <parameter=pattern> obsidian_01_handler </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> obsidian_01_handler </parameter> <parameter=glob> /repo/heldout_v4/grep/obsidian_01/src/**/* </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-grep-02",
+      "family": "grep",
+      "base": "argument_missing",
+      "adapter": "correct",
+      "detail": "path",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> count </parameter> <parameter=path> /workspace/heldout_v4/grep/juniper_02/src </parameter> <parameter=pattern> juniper_02_handler </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> juniper_02_handler </parameter> <parameter=glob> /workspace/heldout_v4/grep/juniper_02/src/**/* </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-grep-03",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> content </parameter> <parameter=path> /repo/heldout_v4/grep/fjord_03/src </parameter> <parameter=pattern> fjord_03_handler </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> fjord_03_handler </parameter> <parameter=glob> /repo/heldout_v4/grep/fjord_03/src/**/* </parameter> <parameter=-n> True </parameter> <parameter=output_mode> content </parameter> </function> </…"
+    },
+    {
+      "id": "heldout-v4-tool-grep-04",
+      "family": "grep",
+      "base": "argument_missing",
+      "adapter": "correct",
+      "detail": "path",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> count </parameter> <parameter=path> /workspace/heldout_v4/grep/marigold_04/src </parameter> <parameter=pattern> marigold_04_handler </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> marigold_04_handler </parameter> <parameter=glob> /workspace/heldout_v4/grep/marigold_04/src/**/* </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-grep-05",
+      "family": "grep",
+      "base": "argument_missing",
+      "adapter": "correct",
+      "detail": "path",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> count </parameter> <parameter=path> /repo/heldout_v4/grep/zephyr_05/src </parameter> <parameter=pattern> zephyr_05_handler </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> zephyr_05_handler </parameter> <parameter=glob> /repo/heldout_v4/grep/zephyr_05/src/**/* </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-grep-06",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> content </parameter> <parameter=path> /workspace/heldout_v4/grep/cinder_06/src </parameter> <parameter=pattern> cinder_06_handler </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> cinder_06_handler </parameter> <parameter=glob> /workspace/heldout_v4/grep/cinder_06/src/**/* </parameter> <parameter=output_mode> content </parameter> <parameter=-n> False </parameter> </func…"
+    },
+    {
+      "id": "heldout-v4-tool-grep-07",
+      "family": "grep",
+      "base": "argument_missing",
+      "adapter": "correct",
+      "detail": "path",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> count </parameter> <parameter=path> /repo/heldout_v4/grep/lagoon_07/src </parameter> <parameter=pattern> lagoon_07_handler </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> lagoon_07_handler </parameter> <parameter=glob> /repo/heldout_v4/grep/lagoon_07/src/**/* </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-grep-08",
+      "family": "grep",
+      "base": "argument_missing",
+      "adapter": "correct",
+      "detail": "path",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> count </parameter> <parameter=path> /workspace/heldout_v4/grep/heron_08/src </parameter> <parameter=pattern> heron_08_handler </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> heron_08_handler </parameter> <parameter=glob> /workspace/heldout_v4/grep/heron_08/**/* </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-grep-09",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> content </parameter> <parameter=path> /repo/heldout_v4/grep/obsidian_09/src </parameter> <parameter=pattern> obsidian_09_handler </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> obsidian_09_handler </parameter> <parameter=glob> /repo/heldout_v4/grep/obsidian_09/src/**/* </parameter> <parameter=output_mode> content </parameter> <parameter=-n> True </parameter> </functi…"
+    },
+    {
+      "id": "heldout-v4-tool-grep-10",
+      "family": "grep",
+      "base": "argument_missing",
+      "adapter": "correct",
+      "detail": "path",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> count </parameter> <parameter=path> /workspace/heldout_v4/grep/juniper_10/src </parameter> <parameter=pattern> juniper_10_handler </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> juniper_10_handler </parameter> <parameter=glob> /workspace/heldout_v4/grep/juniper_10/src/**/* </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-grep-11",
+      "family": "grep",
+      "base": "argument_missing",
+      "adapter": "correct",
+      "detail": "path",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> count </parameter> <parameter=path> /repo/heldout_v4/grep/fjord_11/src </parameter> <parameter=pattern> fjord_11_handler </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> fjord_11_handler </parameter> <parameter=glob> /repo/heldout_v4/grep/fjord_11/src/**/* </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-grep-12",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> content </parameter> <parameter=path> /workspace/heldout_v4/grep/marigold_12/src </parameter> <parameter=pattern> marigold_12_handler </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> marigold_12_handler </parameter> <parameter=glob> /workspace/heldout_v4/grep/marigold_12/src/**/* </parameter> <parameter=-n> True </parameter> <parameter=output_mode> content </parameter> </f…"
+    },
+    {
+      "id": "heldout-v4-tool-grep-13",
+      "family": "grep",
+      "base": "argument_missing",
+      "adapter": "correct",
+      "detail": "path",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> count </parameter> <parameter=path> /repo/heldout_v4/grep/zephyr_13/src </parameter> <parameter=pattern> zephyr_13_handler </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> zephyr_13_handler </parameter> <parameter=glob> /repo/heldout_v4/grep/zephyr_13/src/**/* </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-grep-14",
+      "family": "grep",
+      "base": "argument_missing",
+      "adapter": "correct",
+      "detail": "path",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> count </parameter> <parameter=path> /workspace/heldout_v4/grep/cinder_14/src </parameter> <parameter=pattern> cinder_14_handler </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> cinder_14_handler </parameter> <parameter=glob> /workspace/heldout_v4/grep/cinder_14/**/* </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-grep-15",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> content </parameter> <parameter=path> /repo/heldout_v4/grep/lagoon_15/src </parameter> <parameter=pattern> lagoon_15_handler </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> lagoon_15_handler </parameter> <parameter=glob> /repo/heldout_v4/grep/lagoon_15/src/**/* </parameter> <parameter=output_mode> content </parameter> <parameter=-n> False </parameter> </function>…"
+    },
+    {
+      "id": "heldout-v4-tool-grep-16",
+      "family": "grep",
+      "base": "argument_missing",
+      "adapter": "correct",
+      "detail": "path",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> count </parameter> <parameter=path> /workspace/heldout_v4/grep/heron_16/src </parameter> <parameter=pattern> heron_16_handler </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> heron_16_handler </parameter> <parameter=glob> /workspace/heldout_v4/grep/heron_16/**/* </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-grep-17",
+      "family": "grep",
+      "base": "argument_missing",
+      "adapter": "correct",
+      "detail": "path",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> count </parameter> <parameter=path> /repo/heldout_v4/grep/obsidian_17/src </parameter> <parameter=pattern> obsidian_17_handler </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> obsidian_17_handler </parameter> <parameter=glob> /repo/heldout_v4/grep/obsidian_17/src/**/* </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-grep-18",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> content </parameter> <parameter=path> /workspace/heldout_v4/grep/juniper_18/src </parameter> <parameter=pattern> juniper_18_handler </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> juniper_18_handler </parameter> <parameter=glob> /workspace/heldout_v4/grep/juniper_18/src/**/* </parameter> <parameter=-n> True </parameter> <parameter=output_mode> content </parameter> </fun…"
+    },
+    {
+      "id": "heldout-v4-tool-grep-19",
+      "family": "grep",
+      "base": "argument_missing",
+      "adapter": "correct",
+      "detail": "path",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> count </parameter> <parameter=path> /repo/heldout_v4/grep/fjord_19/src </parameter> <parameter=pattern> fjord_19_handler </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> fjord_19_handler </parameter> <parameter=glob> /repo/heldout_v4/grep/fjord_19/src/**/* </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-grep-20",
+      "family": "grep",
+      "base": "argument_missing",
+      "adapter": "correct",
+      "detail": "path",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> count </parameter> <parameter=path> /workspace/heldout_v4/grep/marigold_20/src </parameter> <parameter=pattern> marigold_20_handler </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> marigold_20_handler </parameter> <parameter=glob> /workspace/heldout_v4/grep/marigold_20/src/**/* </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-grep-21",
+      "family": "grep",
+      "base": "argument_type",
+      "adapter": "correct",
+      "detail": "-n",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> content </parameter> <parameter=path> /repo/heldout_v4/grep/zephyr_21/src </parameter> <parameter=pattern> zephyr_21_handler </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> zephyr_21_handler </parameter> <parameter=glob> /repo/heldout_v4/grep/zephyr_21/src/* </parameter> <parameter=-n> True </parameter> <parameter=output_mode> content </parameter> </function> </t…"
+    },
+    {
+      "id": "heldout-v4-tool-grep-22",
+      "family": "grep",
+      "base": "argument_missing",
+      "adapter": "correct",
+      "detail": "path",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> count </parameter> <parameter=path> /workspace/heldout_v4/grep/cinder_22/src </parameter> <parameter=pattern> cinder_22_handler </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> cinder_22_handler </parameter> <parameter=glob> /workspace/heldout_v4/grep/cinder_22/**/* </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-grep-23",
+      "family": "grep",
+      "base": "argument_missing",
+      "adapter": "correct",
+      "detail": "path",
+      "adapter_excerpt": "<tool_call> <function=Grep> <parameter=output_mode> count </parameter> <parameter=path> /repo/heldout_v4/grep/lagoon_23/src </parameter> <parameter=pattern> lagoon_23_handler </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Grep> <parameter=pattern> lagoon_23_handler </parameter> <parameter=glob> /repo/heldout_v4/grep/lagoon_23/src/**/* </parameter> <parameter=output_mode> count </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-test-01",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> cargo test --manifest-path /repo/heldout_v4/test/obsidian_01/Cargo.toml obsidian_01 </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> cargo test --manifest-path /repo/heldout_v4/test/obsidian_01/Cargo.toml obsidian_01 </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-test-02",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> npm test --prefix /workspace/heldout_v4/test/juniper_02 -- juniper_02.test.js </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> npm test --prefix /workspace/heldout_v4/test/juniper_02 -- juniper_02.test.js </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-test-04",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> cargo test --manifest-path /workspace/heldout_v4/test/marigold_04/Cargo.toml marigold_04 </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> cargo test --manifest-path /workspace/heldout_v4/test/marigold_04/Cargo.toml marigold_04 </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-test-05",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> npm test --prefix /repo/heldout_v4/test/zephyr_05 -- zephyr_05.test.js </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> npm test --prefix /repo/heldout_v4/test/zephyr_05 -- zephyr_05.test.js </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-test-07",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> cargo test --manifest-path /repo/heldout_v4/test/lagoon_07/Cargo.toml lagoon_07 </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> cargo test --manifest-path /repo/heldout_v4/test/lagoon_07/Cargo.toml lagoon_07 </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-test-08",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> npm test --prefix /workspace/heldout_v4/test/heron_08 -- heron_08.test.js </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> npm test --prefix /workspace/heldout_v4/test/heron_08 -- heron_08.test.js </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-test-10",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> cargo test --manifest-path /workspace/heldout_v4/test/juniper_10/Cargo.toml juniper_10 </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> cargo test --manifest-path /workspace/heldout_v4/test/juniper_10/Cargo.toml juniper_10 </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-test-11",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> npm test --prefix /repo/heldout_v4/test/fjord_11 -- fjord_11.test.js </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> npm test --prefix /repo/heldout_v4/test/fjord_11 -- fjord_11.test.js </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-test-13",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> cargo test --manifest-path /repo/heldout_v4/test/zephyr_13/Cargo.toml zephyr_13 </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> cargo test --manifest-path /repo/heldout_v4/test/zephyr_13/Cargo.toml zephyr_13 </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-test-14",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> npm test --prefix /workspace/heldout_v4/test/cinder_14 -- cinder_14.test.js </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> npm test --prefix /workspace/heldout_v4/test/cinder_14 -- cinder_14.test.js </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-test-16",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> cargo test --manifest-path /workspace/heldout_v4/test/heron_16/Cargo.toml heron_16 </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> cargo test --manifest-path /workspace/heldout_v4/test/heron_16/Cargo.toml heron_16 </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-test-17",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> npm test --prefix /repo/heldout_v4/test/obsidian_17 -- obsidian_17.test.js </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> npm test --prefix /repo/heldout_v4/test/obsidian_17 -- obsidian_17.test.js </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-test-19",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> cargo test --manifest-path /repo/heldout_v4/test/fjord_19/Cargo.toml fjord_19 </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> cargo test --manifest-path /repo/heldout_v4/test/fjord_19/Cargo.toml fjord_19 </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-test-20",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> npm test --prefix /workspace/heldout_v4/test/marigold_20 -- marigold_20.test.js </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> npm test --prefix /workspace/heldout_v4/test/marigold_20 -- marigold_20.test.js </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-test-22",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> cargo test --manifest-path /workspace/heldout_v4/test/cinder_22/Cargo.toml cinder_22 </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> cargo test --manifest-path /workspace/heldout_v4/test/cinder_22/Cargo.toml cinder_22 </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-tool-test-23",
+      "family": "test",
+      "base": "argument_extra",
+      "adapter": "correct",
+      "detail": "timeout",
+      "adapter_excerpt": "<tool_call> <function=Bash> <parameter=command> npm test --prefix /repo/heldout_v4/test/lagoon_23 -- lagoon_23.test.js </parameter> </function> </tool_call>",
+      "base_excerpt": "<tool_call> <function=Bash> <parameter=command> npm test --prefix /repo/heldout_v4/test/lagoon_23 -- lagoon_23.test.js </parameter> <parameter=timeout> 120000 </parameter> </function> </tool_call>"
+    },
+    {
+      "id": "heldout-v4-math-20",
+      "family": "integer_arithmetic",
+      "base": "truncated",
+      "adapter": "correct",
+      "detail": null,
+      "adapter_excerpt": "To find the result of the expression $149 \\times (13 + 6) - 337$, we will follow the order of operations (PEMDAS/BODMAS):  1.  **Parentheses**: Calculate the value inside the parentheses first.     $$13 + 6 = 19$$  2.  **Multiplication**: M…",
+      "base_excerpt": "To find the result of the expression $149 \\times (13 + 6) - 337$, we will follow the order of operations (PEMDAS/BODMAS):  1.  **Parentheses**: Calculate the value inside the parentheses first.     $$13 + 6 = 19$$  2.  **Multiplication**: M…"
+    },
+    {
+      "id": "heldout-v4-math-59",
+      "family": "integer_arithmetic",
+      "base": "wrong_answer",
+      "adapter": "correct",
+      "detail": null,
+      "adapter_excerpt": "To find the exact integer value of the expression $(383 - 16) \\times (5 + 1) + 922$, we will follow the order of operations (PEMDAS/BODMAS):  1.  **Parentheses**: Evaluate the expressions inside the parentheses first.     *   $383 - 16 = 36…",
+      "base_excerpt": "To find the exact integer value of the expression $(383 - 16) \\times (5 + 1) + 922$, we will follow the order of operations (PEMDAS/BODMAS):  1.  **Parentheses**: Evaluate the expressions inside the parentheses first.     *   $383 - 16 = 36…"
+    }
+  ],
+  "mean_output_tokens": {
+    "base": 131.10546875,
+    "adapter": 128.94140625
+  },
+  "scope": "Descriptive breakdown of one frozen paired run; only the scorer's primary test supports the decision."
+}

@@ -1,0 +1,96 @@
+{
+  "schema": "ruvllm-paired-model-improvement/v1",
+  "run_id": "qwen35-4b-heldout-v4-coding-4b",
+  "protocol_sha256": "85e1b1ee46a5ab8279088929bc135f988776a45d2e0b5dbac90fbf46ad49dad0",
+  "runtime_sha256": "0685bf8d7f5e1662298621d903547b17b868cc02bd0493d77628aaf9b2b7fef1",
+  "panels": {
+    "tool": {
+      "count": 192,
+      "base_correct": 149,
+      "adapter_correct": 176,
+      "base": {
+        "count": 192,
+        "delivered_correct": 149,
+        "completed": 192,
+        "truncated": 0,
+        "delivered_accuracy": 0.7760416666666666,
+        "completion_rate": 1.0,
+        "output_tokens": 13688,
+        "generation_seconds": 894.6793626882136
+      },
+      "adapter": {
+        "count": 192,
+        "delivered_correct": 176,
+        "completed": 192,
+        "truncated": 0,
+        "delivered_accuracy": 0.9166666666666666,
+        "completion_rate": 1.0,
+        "output_tokens": 13253,
+        "generation_seconds": 919.1202486753464
+      },
+      "delta_percentage_points": 14.0625,
+      "gains": 40,
+      "regressions": 13,
+      "exact_mcnemar_p": 0.0002685401188191605
+    },
+    "math": {
+      "count": 64,
+      "base_correct": 62,
+      "adapter_correct": 64,
+      "base": {
+        "count": 64,
+        "delivered_correct": 62,
+        "completed": 63,
+        "truncated": 1,
+        "delivered_accuracy": 0.96875,
+        "completion_rate": 0.984375,
+        "output_tokens": 19875,
+        "generation_seconds": 1200.1141959391534
+      },
+      "adapter": {
+        "count": 64,
+        "delivered_correct": 64,
+        "completed": 64,
+        "truncated": 0,
+        "delivered_accuracy": 1.0,
+        "completion_rate": 1.0,
+        "output_tokens": 19756,
+        "generation_seconds": 1283.7934750318527
+      },
+      "delta_percentage_points": 3.125,
+      "gains": 2,
+      "regressions": 0,
+      "exact_mcnemar_p": 0.5
+    }
+  },
+  "totals": {
+    "base": {
+      "count": 256,
+      "delivered_correct": 211,
+      "completed": 255,
+      "truncated": 1,
+      "delivered_accuracy": 0.82421875,
+      "completion_rate": 0.99609375,
+      "output_tokens": 33563,
+      "generation_seconds": 2094.793558627367
+    },
+    "adapter": {
+      "count": 256,
+      "delivered_correct": 240,
+      "completed": 256,
+      "truncated": 0,
+      "delivered_accuracy": 0.9375,
+      "completion_rate": 1.0,
+      "output_tokens": 33009,
+      "generation_seconds": 2202.913723707199
+    }
+  },
+  "evidence_mode": "gpu-inference",
+  "research_improvement_confirmed": true,
+  "reasons": [],
+  "production_activation": false,
+  "limitations": [
+    "Synthetic tool and arithmetic distribution; no broad coding generalization",
+    "One fixed seed and runtime; caller filesystem and executor remain trusted"
+  ]
+}

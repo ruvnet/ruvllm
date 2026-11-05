@@ -1,0 +1,28 @@
+{
+  "schema": "ruvllm-training-preregistration/v1",
+  "recorded": "2026-11-04",
+  "recorded_before": "any training or v4/v5 inference",
+  "pool": {
+    "generator": "tools/eval-report case-gen pool (namespace /workspace|/home/dev|/srv pool_v4, own vocabulary and phrasing)",
+    "rows": 216,
+    "train_rows": 192,
+    "valid_rows": 24,
+    "composition": {"read": 22, "slice": 22, "glob": 40, "grep": 22, "write": 22, "edit": 22, "injection": 22, "test": 22, "math": 22},
+    "glob_weighting": "Glob is weighted up because it holds all 19 remaining coding-4b failures on v3",
+    "verification": "Every target is ground truth from the generator; each was rendered through the pinned chat template and graded delivered-correct by the frozen measurement.py grade(): 216/216",
+    "disjoint_from": ["frozen/v3/cases.json (exact prompts and IDs)", "frozen/v4/cases.json (exact prompts and IDs)", "data/training/train.jsonl and valid.jsonl, the coding-4b training data (exact prompts)"]
+  },
+  "trainer": "scripts/cloud_train.py unmodified: seed 20261102, 96 steps, effective batch 2, LoRA r8/alpha16 on down_proj layers 16-31",
+  "checkpoint_rule": "Publish step-064 only, matching the coding-4b precedent. No checkpoint is chosen by panel results.",
+  "publication": "weights/coding-4b-r2: adapter_model.safetensors copied byte-for-byte; adapter_config.json gets the pinned base revision, inference_mode true and the coding-4b auto_mapping, the only fields PEFT leaves unset in training",
+  "panel": {
+    "cases_sha256": "0d7c91531b014fa5c999bd38b6b9bd3cb27202e998c1f4f44dfdcd832eb09c2c",
+    "bundles": {"v4": "base vs coding-4b", "v5": "base vs coding-4b-r2, identical cases, frozen after publication"}
+  },
+  "decisions": {
+    "primary": "v5 under the unchanged ADR-016 rule: positive tool delta, exact McNemar p < 0.05, no arithmetic or completion regression. This decides keep/reject for coding-4b-r2 against base.",
+    "secondary_descriptive": "coding-4b-r2 vs coding-4b: exact two-sided McNemar on per-case delivered correctness of the two adapter arms over the identical 192 tool cases. Descriptive only; it cannot by itself replace coding-4b.",
+    "replacement": "Recommend coding-4b-r2 over coding-4b only if the primary rule passes, the secondary comparison shows more gains than regressions with p < 0.05, and arithmetic is not lower.",
+    "base_reproducibility": "The v4 and v5 base arms run the same deterministic decode on identical cases; any per-case text difference is reported."
+  }
+}

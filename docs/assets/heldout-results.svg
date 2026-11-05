@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="520" viewBox="0 0 960 520" role="img" aria-labelledby="title desc">
+  <title id="title">Held-out results: keep coding-4b, reject coding-4b-r2</title>
+  <desc id="desc">On 256 held-out tasks run on RTX 4090 GPUs, tool passes were 149 of 192 for the base model, 176 for coding-4b and 192 for coding-4b-r2. Arithmetic passes were 62 of 64 for the base model, 64 for coding-4b and 46 for coding-4b-r2. Under the preregistered rule, coding-4b is kept and coding-4b-r2 is rejected because its arithmetic regressed. Pulses highlight recorded values; bars remain at their measured sizes.</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1">
+      <stop stop-color="#101c35" />
+      <stop offset="1" stop-color="#111827" />
+    </linearGradient>
+  </defs>
+  <style>text{font-family:ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif}.pulse{animation:pulse 4s ease-in-out infinite}.warn{animation:warn 4s ease-in-out infinite}@keyframes pulse{0%,100%{opacity:.55}50%{opacity:1}}@keyframes warn{0%,100%{opacity:.6}50%{opacity:1}}@media(prefers-reduced-motion:reduce){.pulse,.warn{animation:none!important}}</style>
+  <rect width="960" height="520" rx="24" fill="url(#bg)" />
+  <rect x="1" y="1" width="958" height="518" rx="23" stroke="#304361" fill="none" />
+  <text x="40" y="54" font-size="34" fill="#f8fafc" font-weight="700">Does the new adapter beat the old one?</text>
+  <text x="40" y="90" font-size="21" fill="#bacce4" font-weight="400">Held-out panel · 256 untouched tasks · Qwen3.5 4B · RTX 4090</text>
+
+  <rect x="40" y="122" width="400" height="290" rx="16" fill="#15253e" stroke="#3a5275" />
+  <text x="62" y="160" font-size="27" fill="#f1f5f9" font-weight="650">Tool tasks</text>
+  <text x="62" y="198" font-size="21" fill="#bacce4">Base</text>
+  <text x="418" y="198" font-size="21" fill="#60a5fa" font-weight="600" text-anchor="end">149 / 192</text>
+  <rect x="62" y="211" width="356" height="15" rx="7" fill="#283950" />
+  <rect x="62" y="211" width="276.27" height="15" rx="7" fill="#60a5fa" />
+  <text x="62" y="266" font-size="21" fill="#bacce4">coding-4b</text>
+  <text x="418" y="266" font-size="21" fill="#5eead4" font-weight="600" text-anchor="end">176 / 192</text>
+  <rect x="62" y="279" width="356" height="15" rx="7" fill="#283950" />
+  <rect x="62" y="279" width="326.33" height="15" rx="7" fill="#5eead4" />
+  <text x="62" y="334" font-size="21" fill="#bacce4">coding-4b-r2</text>
+  <text x="418" y="334" font-size="21" fill="#c4b5fd" font-weight="600" text-anchor="end">192 / 192</text>
+  <rect x="62" y="347" width="356" height="15" rx="7" fill="#283950" />
+  <rect x="62" y="347" width="356" height="15" rx="7" fill="#c4b5fd" />
+  <circle cx="411" cy="354.5" r="4" fill="#f5f3ff" class="pulse" />
+  <text x="62" y="394" font-size="19" fill="#a7f3d0" font-weight="600">r2 vs coding-4b: +16, no regressions</text>
+
+  <rect x="520" y="122" width="400" height="290" rx="16" fill="#15253e" stroke="#3a5275" />
+  <text x="542" y="160" font-size="27" fill="#f1f5f9" font-weight="650">Arithmetic</text>
+  <text x="542" y="198" font-size="21" fill="#bacce4">Base</text>
+  <text x="898" y="198" font-size="21" fill="#60a5fa" font-weight="600" text-anchor="end">62 / 64</text>
+  <rect x="542" y="211" width="356" height="15" rx="7" fill="#283950" />
+  <rect x="542" y="211" width="344.88" height="15" rx="7" fill="#60a5fa" />
+  <text x="542" y="266" font-size="21" fill="#bacce4">coding-4b</text>
+  <text x="898" y="266" font-size="21" fill="#5eead4" font-weight="600" text-anchor="end">64 / 64</text>
+  <rect x="542" y="279" width="356" height="15" rx="7" fill="#283950" />
+  <rect x="542" y="279" width="356" height="15" rx="7" fill="#5eead4" />
+  <text x="542" y="334" font-size="21" fill="#bacce4">coding-4b-r2</text>
+  <text x="898" y="334" font-size="21" fill="#fda4af" font-weight="600" text-anchor="end">46 / 64</text>
+  <rect x="542" y="347" width="356" height="15" rx="7" fill="#283950" />
+  <rect x="542" y="347" width="255.88" height="15" rx="7" fill="#fda4af" />
+  <circle cx="790.88" cy="354.5" r="4" fill="#fff1f2" class="warn" />
+  <text x="542" y="394" font-size="19" fill="#fda4af" font-weight="600">16 below base · 6 cut off at 512</text>
+
+  <rect x="40" y="436" width="196" height="44" rx="22" fill="#123c3a" stroke="#5eead4" />
+  <text x="138" y="465" font-size="19" fill="#a7f3d0" font-weight="700" text-anchor="middle">coding-4b: keep</text>
+  <rect x="252" y="436" width="236" height="44" rx="22" fill="#3f1d2a" stroke="#fda4af" />
+  <text x="370" y="465" font-size="19" fill="#fecdd3" font-weight="700" text-anchor="middle">coding-4b-r2: reject</text>
+  <text x="510" y="465" font-size="17" fill="#bacce4">Rule fixed before training</text>
+</svg>

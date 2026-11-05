@@ -1,0 +1,7 @@
+{
+  "schema": "ruvllm-vast-cleanup/v1",
+  "jobId": "qwen35-4b-paired-v5",
+  "instanceId": "59148457",
+  "confirmedAbsent": true,
+  "at": "2026-11-04T19:58:23.230Z"
+}

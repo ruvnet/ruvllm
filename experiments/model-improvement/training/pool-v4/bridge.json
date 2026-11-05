@@ -1,0 +1,12 @@
+{
+  "schema": "ruvllm-sft-bridge/v1",
+  "train_rows": 192,
+  "valid_rows": 24,
+  "training_sha256": "0705293d22eacd87c6f49c7420324f476a79347daeeef2c10c1924603515ba6b",
+  "sft_sha256": "32b09f2c43dbcb8132739030aa883b7f965821539a8749083b5e326ceb3908db",
+  "holdout_cases": 512,
+  "excluded_sft_rows": 324,
+  "trainer": "scripts/cloud_train.py (unmodified)",
+  "payload_bytes": 24880,
+  "training_executed": false
+}

@@ -1,0 +1,25 @@
+{
+  "schema": "ruvllm-adapter-publication/v2",
+  "base_model": "Qwen/Qwen3.5-4B",
+  "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+  "reference_adapter": "coding-4b",
+  "provenance": {
+    "training_receipt": "experiments/model-improvement/results/qwen35-4b-train-r2/receipts/verification.json",
+    "checkpoint": "training-v1/step-064"
+  },
+  "checkpoint_files": {
+    "adapter_model.safetensors": "ec64251a41890d9386bab970a84e75cc601a773995479c762ec04fb68c7a62a9",
+    "adapter_config.json": "884141ae9d64edf8ba961abb02ee84a733bf706970104e2841df7091f70058a7"
+  },
+  "files": {
+    "adapter_model.safetensors": "ec64251a41890d9386bab970a84e75cc601a773995479c762ec04fb68c7a62a9",
+    "adapter_config.json": "694187a0c4fa3aa1b416243597938fea3cb69dcb94e24499890098ad3074c7ed"
+  },
+  "filled_config_fields": [
+    "revision",
+    "inference_mode",
+    "auto_mapping"
+  ],
+  "sota_verified": false,
+  "production_qualified": false
+}

@@ -1,0 +1,48 @@
+{
+  "schema": "ruvllm-model-measurement/v1",
+  "run_id": "qwen35-4b-heldout-v5-coding-4b-r2",
+  "adapter_dir": "coding-4b-r2",
+  "model": {
+    "repo_id": "Qwen/Qwen3.5-4B",
+    "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+    "weight_files": {
+      "model.safetensors-00001-of-00002.safetensors": "26a93f066e1916adb13453dae5a0c707c0fbc71299ed98779571a907b8e74c61",
+      "model.safetensors-00002-of-00002.safetensors": "cb544bd9bfae93dc59b0f22b292f5933573854a7f9b97835c67060d7d910e188"
+    },
+    "asset_files": {
+      "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+      "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670",
+      "merges.txt": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d",
+      "model.safetensors.index.json": "cf3f798ee02ba45f9622aa8892a47369ab667d0afbf154ee7c2212de42e6302d",
+      "preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+      "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+      "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+      "video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+      "vocab.json": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+    }
+  },
+  "adapter": {
+    "weights_sha256": "ec64251a41890d9386bab970a84e75cc601a773995479c762ec04fb68c7a62a9",
+    "config_sha256": "694187a0c4fa3aa1b416243597938fea3cb69dcb94e24499890098ad3074c7ed"
+  },
+  "generation": {
+    "max_new_tokens": 512,
+    "do_sample": false,
+    "thinking": false,
+    "seed": 20261103
+  },
+  "cases_sha256": "0d7c91531b014fa5c999bd38b6b9bd3cb27202e998c1f4f44dfdcd832eb09c2c",
+  "case_count": 256,
+  "runtime_versions": {
+    "torch": "2.11.0",
+    "transformers": "5.12.1",
+    "peft": "0.21.2",
+    "safetensors": "0.7.0"
+  },
+  "source_sha256": {
+    "worker.py": "8b69684921b971f1c6021612e7485b556600769c3841615b7a3757ea7150e820",
+    "measurement.py": "ab61be64f0e46b9c3756239eb2f64682d3d9aa1dc63b8ddb253bb823d1574ca8",
+    "prepare.py": "323d91e36475d9d29c87c4bfdeef8fde6b5452f17560603ad386e93a94ba95ab",
+    "model-assets.json": "560e35687c3112f75352921de3e9064936aa47ddfd3810055a18114de4d2a798"
+  }
+}
