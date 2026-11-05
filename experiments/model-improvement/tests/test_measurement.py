@@ -11,6 +11,10 @@ sys.path.insert(0, str(SOURCE))
 import measurement
 import prepare
 
+dashboard_spec = importlib.util.spec_from_file_location('regression_dashboard', SOURCE / 'regression-dashboard.py')
+dashboard = importlib.util.module_from_spec(dashboard_spec)
+dashboard_spec.loader.exec_module(dashboard)
+
 
 class ScoringContracts(unittest.TestCase):
     def setup_runs(self, root):
@@ -70,6 +74,21 @@ class ScoringContracts(unittest.TestCase):
             self.assertFalse(report['research_improvement_confirmed'])
             self.assertIn('synthetic_fixture_evidence', report['reasons'])
             self.assertEqual(report['totals']['adapter']['completed'], 256)
+
+    def test_dashboard_classifies_regressions_and_excludes_fixture_decisions(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            bundle = self.setup_runs(root)
+            _, cases, _ = measurement.load_bundle(bundle)
+            expected = cases[0]['expected']
+            self.mutate(root / 'base', lambda rows: rows[0].update(text=json.dumps(expected)))
+            self.mutate(root / 'adapter', lambda rows: rows[0].update(
+                text=json.dumps({**expected, 'arguments': {}})))
+            output = dashboard.build_dashboard(bundle, root / 'base', root / 'adapter', allow_fixture=True)
+            self.assertIn('Fixture only. No model decision.', output)
+            self.assertIn(f"| {expected['name']} | Wrong arguments | 1 |", output)
+            with self.assertRaisesRegex(ValueError, 'Fixture'):
+                dashboard.build_dashboard(bundle, root / 'base', root / 'adapter')
 
     def test_duplicate_missing_wrong_prompt_and_stale_run_are_rejected(self):
         changes = [lambda rows: rows.__setitem__(1, rows[0]), lambda rows: rows.pop(),
