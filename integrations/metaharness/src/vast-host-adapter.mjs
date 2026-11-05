@@ -15,6 +15,10 @@ import { fileURLToPath } from 'node:url';
 export const HOST_CONFIG_ENV = 'RUVLLM_VAST_HOST_CONFIG';
 const SELF = fileURLToPath(import.meta.url);
 const INSPECT_BUDGET_MS = 24000;
+// Evidence comes from a rented host and is untrusted until re-scored here.
+const DEFAULT_MAX_EVIDENCE_BYTES = 2 * 1024 ** 3;
+const DEFAULT_MAX_EVIDENCE_ENTRIES = 20000;
+const EVIDENCE_ROOTS = new Set(['out', 'run']);
 const fail = code => { const error = new Error(code); error.code = code; throw error; };
 const need = (ok, code) => { if (!ok) fail(code); };
 const abs = value => typeof value === 'string' && isAbsolute(value) && resolve(value) === value;
@@ -45,6 +49,17 @@ export async function readHostConfig(path = process.env[HOST_CONFIG_ENV]) {
   need(config.adapterDir === undefined || (/^[a-z0-9][a-z0-9._-]{0,63}$/.test(config.adapterDir) && !config.adapterDir.includes('..')), 'VAST_HOST_CONFIG_ADAPTER');
   need(config.trainPayload === undefined || /^experiments\/model-improvement\/training\/[a-z0-9][a-z0-9._-]{0,63}$/.test(config.trainPayload), 'VAST_HOST_CONFIG_PAYLOAD');
   need(config.secrets && typeof config.secrets === 'object' && Object.values(config.secrets).every(entry => abs(entry?.file)), 'VAST_HOST_CONFIG_SECRETS');
+  need(config.maxEvidenceBytes === undefined || (Number.isSafeInteger(config.maxEvidenceBytes) && config.maxEvidenceBytes >= 1 << 20 && config.maxEvidenceBytes <= 64 * 1024 ** 3), 'VAST_HOST_CONFIG_EVIDENCE');
+  need(config.maxEvidenceEntries === undefined || (Number.isInteger(config.maxEvidenceEntries) && config.maxEvidenceEntries >= 1 && config.maxEvidenceEntries <= 1000000), 'VAST_HOST_CONFIG_EVIDENCE');
+  // SSH host keys: pinned in an operator-managed known_hosts file, or trust on
+  // first use only when explicitly enabled. Checked before anything is rented.
+  need(config.sshTrustOnFirstUse === undefined || typeof config.sshTrustOnFirstUse === 'boolean', 'VAST_HOST_CONFIG_SSH_TRUST');
+  need(config.sshKnownHosts === undefined || abs(config.sshKnownHosts), 'VAST_HOST_CONFIG_SSH_TRUST');
+  need(config.sshKnownHosts !== undefined || config.sshTrustOnFirstUse === true, 'VAST_HOST_CONFIG_SSH_TRUST');
+  if (config.sshKnownHosts !== undefined) {
+    const info = await stat(config.sshKnownHosts);
+    need(info.isFile() && (info.mode & 0o022) === 0 && info.uid === process.getuid() && info.size > 0, 'VAST_SSH_KNOWN_HOSTS_UNSAFE');
+  }
   return Object.freeze({ ...config, sha256 });
 }
 
@@ -59,25 +74,107 @@ async function apiKey(config, ref) {
 }
 
 // Bounded child process without a shell. Output is collected, never echoed.
-function defaultRun(command, args, { timeoutMs, cwd, stdoutFile, input } = {}) {
+function defaultRun(command, args, { timeoutMs, cwd, stdoutFile, input, maxStdoutBytes } = {}) {
   return new Promise(resolvePromise => {
     const child = spawn(command, args, { cwd, stdio: ['pipe', 'pipe', 'pipe'] });
     const chunks = [], errors = [];
-    let size = 0;
+    let size = 0, overflow = false;
     const sink = stdoutFile ? createWriteStream(stdoutFile, { flags: 'wx', mode: 0o600 }) : null;
     const flushed = sink ? new Promise(done => { sink.on('close', done); sink.on('error', done); }) : Promise.resolve();
     const timer = setTimeout(() => child.kill('SIGKILL'), Math.max(1, timeoutMs ?? 10000));
-    if (sink) child.stdout.pipe(sink);
+    if (sink) {
+      child.stdout.on('data', chunk => {
+        size += chunk.length;
+        if (maxStdoutBytes !== undefined && size > maxStdoutBytes && !overflow) { overflow = true; child.kill('SIGKILL'); }
+      });
+      child.stdout.pipe(sink);
+    }
     else child.stdout.on('data', chunk => { size += chunk.length; if (size <= 8 << 20) chunks.push(chunk); });
     child.stderr.on('data', chunk => { if (errors.length < 64) errors.push(chunk); });
     child.on('error', () => {});
     child.on('close', async code => {
       clearTimeout(timer);
       await flushed;
-      resolvePromise({ code, stdout: Buffer.concat(chunks).toString('utf8'), stderr: Buffer.concat(errors).toString('utf8') });
+      resolvePromise({ code: overflow ? null : code, overflow, stdout: Buffer.concat(chunks).toString('utf8'), stderr: Buffer.concat(errors).toString('utf8') });
     });
     child.stdin.end(input ?? '');
   });
+}
+
+// Tar numeric field: octal text, or GNU base-256 when the high bit is set.
+function tarNumber(header, offset, length) {
+  const field = header.subarray(offset, offset + length);
+  if (field[0] & 0x80) {
+    let value = field[0] & 0x7f;
+    for (const byte of field.subarray(1)) value = value * 256 + byte;
+    need(Number.isSafeInteger(value), 'VAST_EVIDENCE_ARCHIVE');
+    return value;
+  }
+  const text = field.toString('latin1').replace(/[\0 ]+$/, '').trim();
+  need(/^[0-7]*$/.test(text), 'VAST_EVIDENCE_ARCHIVE');
+  return text ? parseInt(text, 8) : 0;
+}
+
+function evidenceName(name) {
+  const clean = name.replace(/\/+$/, '');
+  const parts = clean.split('/');
+  need(clean.length > 0 && clean.length <= 4096 && !clean.includes('\0') && !clean.includes('\\') && !isAbsolute(clean)
+    && EVIDENCE_ROOTS.has(parts[0]) && parts.every(part => part !== '..' && part !== ''), 'VAST_EVIDENCE_UNSAFE_PATH');
+}
+
+// Validate every header of a retrieved tar before extracting it: regular files
+// and directories only (no links or devices), relative paths under out/ or
+// run/ with no `..`, and bounded entry count and total size.
+async function checkEvidenceArchive(path, { maxBytes, maxEntries }) {
+  const handle = await open(path, constants.O_RDONLY | constants.O_NOFOLLOW);
+  try {
+    const { size } = await handle.stat();
+    need(size <= maxBytes, 'VAST_EVIDENCE_TOO_LARGE');
+    need(size > 0 && size % 512 === 0, 'VAST_EVIDENCE_ARCHIVE');
+    const header = Buffer.alloc(512);
+    const read = async (buffer, position) => {
+      const { bytesRead } = await handle.read(buffer, 0, buffer.length, position);
+      need(bytesRead === buffer.length, 'VAST_EVIDENCE_ARCHIVE');
+    };
+    let offset = 0, entries = 0, total = 0, longName = null, paxPath = null, ended = false;
+    while (offset + 512 <= size) {
+      await read(header, offset); offset += 512;
+      if (header.every(byte => byte === 0)) { ended = true; break; }
+      let sum = 0;
+      for (let i = 0; i < 512; i++) sum += i >= 148 && i < 156 ? 32 : header[i];
+      need(sum === tarNumber(header, 148, 8), 'VAST_EVIDENCE_ARCHIVE');
+      const type = header[156] === 0 ? '0' : String.fromCharCode(header[156]);
+      const bodySize = tarNumber(header, 124, 12);
+      const padded = Math.ceil(bodySize / 512) * 512;
+      need(offset + padded <= size, 'VAST_EVIDENCE_ARCHIVE');
+      if (type === 'L' || type === 'x') {
+        need(bodySize <= 65536, 'VAST_EVIDENCE_ARCHIVE');
+        const body = Buffer.alloc(bodySize); await read(body, offset);
+        if (type === 'L') longName = body.toString('utf8').replace(/\0.*$/s, '');
+        else {
+          for (const record of body.toString('utf8').split('\n').filter(Boolean)) {
+            const match = /^[0-9]+ ([^=]+)=(.*)$/s.exec(record);
+            need(match, 'VAST_EVIDENCE_ARCHIVE');
+            if (match[1] === 'path') paxPath = match[2];
+          }
+        }
+        offset += padded;
+        continue;
+      }
+      need(type === '0' || type === '7' || type === '5', 'VAST_EVIDENCE_ENTRY_TYPE');
+      const ustar = header.subarray(257, 263).toString('latin1') === 'ustar\0';
+      const field = (start, length) => header.subarray(start, start + length).toString('utf8').replace(/\0.*$/s, '');
+      const prefix = ustar ? field(345, 155) : '';
+      const name = paxPath ?? longName ?? (prefix ? `${prefix}/${field(0, 100)}` : field(0, 100));
+      longName = null; paxPath = null;
+      evidenceName(name);
+      entries += 1; total += bodySize;
+      need(entries <= maxEntries, 'VAST_EVIDENCE_TOO_MANY_ENTRIES');
+      need(total <= maxBytes, 'VAST_EVIDENCE_TOO_LARGE');
+      offset += padded;
+    }
+    need(ended && entries > 0, 'VAST_EVIDENCE_ARCHIVE');
+  } finally { await handle.close(); }
 }
 
 async function writePrivate(path, value) {
@@ -118,8 +215,14 @@ export function createVastAdapter({ fetchImpl = globalThis.fetch, run = defaultR
     fail('VAST_LIST_UNBOUNDED');
   }
   const attemptDir = (config, key) => join(config.resultsRoot, key);
+  // Host keys: verified against the operator's pinned known_hosts file; an
+  // unknown or changed key is refused. Trust on first use (a fresh per-instance
+  // file) only when the host config sets sshTrustOnFirstUse: true.
+  const hostKeyOptions = (config, instance) => config.sshKnownHosts !== undefined
+    ? ['-o', 'StrictHostKeyChecking=yes', '-o', `UserKnownHostsFile=${config.sshKnownHosts}`, '-o', 'GlobalKnownHostsFile=/dev/null']
+    : ['-o', 'StrictHostKeyChecking=accept-new', '-o', `UserKnownHostsFile=${join(config.resultsRoot, `known_hosts-${instance.id}`)}`];
   const ssh = (config, instance, remote) => ['-i', config.sshKey, '-p', String(instance.ssh_port), '-o', 'BatchMode=yes', '-o', 'ConnectTimeout=8',
-    '-o', 'StrictHostKeyChecking=accept-new', '-o', `UserKnownHostsFile=${join(config.resultsRoot, `known_hosts-${instance.id}`)}`, '-o', 'IdentitiesOnly=yes',
+    ...hostKeyOptions(config, instance), '-o', 'IdentitiesOnly=yes',
     `root@${instance.ssh_host}`, remote];
 
   async function submit({ job, idempotencyKey, signal }) {
@@ -159,15 +262,28 @@ export function createVastAdapter({ fetchImpl = globalThis.fetch, run = defaultR
     return { runId: String(instanceId) };
   }
 
+  // 'ok' | 'retry' (slow or failed pull; next tick tries again) | 'rejected'
+  // (archive over the caps or with unsafe entries; never extracted).
   async function retrieve(config, instance, dir, started) {
     const left = () => INSPECT_BUDGET_MS - (now() - started);
     const archive = join(dir, 'evidence.tar');
+    const maxBytes = config.maxEvidenceBytes ?? DEFAULT_MAX_EVIDENCE_BYTES;
+    const maxEntries = config.maxEvidenceEntries ?? DEFAULT_MAX_EVIDENCE_ENTRIES;
     await rm(archive, { force: true }); await rm(join(dir, 'evidence'), { recursive: true, force: true });
-    if (left() < 4000) return false;
-    const pulled = await run('ssh', ssh(config, instance, 'tar -C /workspace -cf - out run'), { timeoutMs: left() - 3000, stdoutFile: archive });
-    if (pulled.code !== 0) return false;
+    if (left() < 4000) return 'retry';
+    const pulled = await run('ssh', ssh(config, instance, 'tar -C /workspace -cf - out run'), { timeoutMs: left() - 3000, stdoutFile: archive, maxStdoutBytes: maxBytes });
+    const reject = async reason => {
+      await rm(archive, { force: true });
+      await writePrivate(join(dir, 'evidence-rejected.json'), { schema: 'ruvllm-vast-evidence-rejected/v1', reason, maxBytes, maxEntries, at: new Date(now()).toISOString() });
+      return 'rejected';
+    };
+    if (pulled.overflow) return reject('VAST_EVIDENCE_TOO_LARGE');
+    if (pulled.code !== 0) return 'retry';
+    try { await checkEvidenceArchive(archive, { maxBytes, maxEntries }); }
+    catch (error) { if (error.code?.startsWith('VAST_EVIDENCE_')) return reject(error.code); throw error; }
     await mkdir(join(dir, 'evidence'), { mode: 0o700 });
-    return (await run('tar', ['-xf', archive, '-C', join(dir, 'evidence'), '--no-same-owner', '--no-same-permissions'], { timeoutMs: 5000 })).code === 0;
+    const extracted = await run('tar', ['-xf', archive, '-C', join(dir, 'evidence'), '--no-same-owner', '--no-same-permissions'], { timeoutMs: 5000 });
+    return extracted.code === 0 ? 'ok' : 'retry';
   }
 
   async function verify(config, job, dir) {
@@ -230,8 +346,11 @@ export function createVastAdapter({ fetchImpl = globalThis.fetch, run = defaultR
     if (remote.state === 'running') return { status: 'running', costUsd };
     if (remote.state === 'failed') { await retrieve(config, instance, dir, started); return { status: 'failed', costUsd }; }
     if (remote.state !== 'done') return { status: 'running', costUsd };
-    // Retain raw outputs locally before any terminal report; retry next tick on a slow pull.
-    if (!await retrieve(config, instance, dir, started)) return { status: 'running', costUsd };
+    // Retain raw outputs locally before any terminal report; retry next tick on a
+    // slow pull; an oversized or unsafe archive fails the job.
+    const retrieved = await retrieve(config, instance, dir, started);
+    if (retrieved === 'rejected') return { status: 'failed', costUsd };
+    if (retrieved !== 'ok') return { status: 'running', costUsd };
     const checked = job.task === 'train' ? await verifyTraining(config, job, dir) : await verify(config, job, dir);
     return { status: 'completed', costUsd, completion: { completionVersion: 1, completionVerified: checked.ok, status: checked.ok ? 'ok' : 'error',
       exitCode: checked.ok ? 0 : 1, assertionsVerified: checked.ok, evidenceComplete: checked.ok, truncated: false, jobId: job.id,
@@ -264,11 +383,18 @@ export const submit = input => defaults.submit(input);
 export const inspect = input => defaults.inspect(input);
 export const cleanup = input => defaults.cleanup(input);
 
-if (process.argv[1] === SELF && process.argv[2] === 'guard') {
-  const [instanceId, ref] = process.argv.slice(3);
+// The destroy timer entry point. No top-level await, so this module can also be
+// loaded with require() where Node supports require(esm).
+async function guard(instanceId, ref) {
   const config = await readHostConfig();
   const released = await defaults.destroyConfirmed(config, await apiKey(config, ref), instanceId);
   await writePrivate(join(config.resultsRoot, `guard-${instanceId}.json`), { schema: 'ruvllm-vast-guard/v1', instanceId,
     confirmedAbsent: released, at: new Date().toISOString() });
-  process.exitCode = released ? 0 : 1;
+  return released;
+}
+
+if (process.argv[1] === SELF && process.argv[2] === 'guard') {
+  const [instanceId, ref] = process.argv.slice(3);
+  guard(instanceId, ref).then(released => { process.exitCode = released ? 0 : 1; },
+    error => { console.error(error.code ?? 'VAST_GUARD_FAILED'); process.exitCode = 1; });
 }

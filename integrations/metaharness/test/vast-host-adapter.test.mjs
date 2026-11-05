@@ -1,15 +1,18 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, mkdir, writeFile, readFile } from 'node:fs/promises';
+import { mkdtemp, mkdir, writeFile, readFile, chmod } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { createHash } from 'node:crypto';
 import { join } from 'node:path';
-import { createVastAdapter, onstartScript } from '../src/vast-host-adapter.mjs';
+import { createVastAdapter, onstartScript, readHostConfig } from '../src/vast-host-adapter.mjs';
+import { tarArchive } from './tar-fixture.mjs';
 
 const job = { id: 'paired', secretRef: 'ruos.vast.primary', resource: { offerId: '123' }, maxCostUsd: 1.6, timeoutSeconds: 14400,
   model: { repo: 'Qwen/Qwen3.5-4B', revision: '851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a' } };
 
-async function setup({ dph = 0.2, instances = [], guardCode = 0, remoteState = 'running', reportsMatch = true, extract, host = {} } = {}) {
+const EVIDENCE = tarArchive([{ name: 'out/', type: '5' }, { name: 'out/scored/report.json', body: '{}' }, { name: 'run/status.json', body: '{}' }]);
+
+async function setup({ dph = 0.2, instances = [], guardCode = 0, remoteState = 'running', reportsMatch = true, extract, host = {}, archive = EVIDENCE, overflow = false } = {}) {
   const root = await mkdtemp(join(tmpdir(), 'vast-adapter-'));
   const config = { schema: 'ruvllm-vast-host/v1', apiBase: 'https://vast.test', image: 'pytorch/pytorch@sha256:' + 'a'.repeat(64),
     repoUrl: 'https://github.com/ruvnet/ruvllm.git', commit: 'b'.repeat(40), bundle: 'v2', diskGb: 40, armDeadlineSeconds: 5400,
@@ -31,7 +34,7 @@ async function setup({ dph = 0.2, instances = [], guardCode = 0, remoteState = '
     calls.push([command, args.at(-1)]);
     if (command === 'systemd-run') return { code: guardCode, stdout: '' };
     if (command === 'ssh' && args.at(-1).startsWith('cat ')) return { code: 0, stdout: JSON.stringify({ state: remoteState }) + '\n' };
-    if (command === 'ssh') { await writeFile(options.stdoutFile, 'tar'); return { code: 0 }; }
+    if (command === 'ssh') { calls.push(['ssh-args', args]); await writeFile(options.stdoutFile, archive); return overflow ? { code: null, overflow: true } : { code: 0 }; }
     if (command === 'tar' && extract) { await extract(args[3]); return { code: 0 }; }
     if (command === 'tar') {
       const out = join(args[3], 'out', 'scored'); await mkdir(out, { recursive: true });
@@ -159,4 +162,80 @@ test('a container runtime error on the host fails the attempt instead of waiting
   assert.equal((await adapter.inspect({ job, runId: '77', idempotencyKey: 'key-1' })).status, 'failed');
   const loading = await setup({ instances: [{ id: 77, dph_total: 0.2, start_date: 1_800_000_000, actual_status: 'loading', status_msg: 'Download complete' }] });
   assert.equal((await loading.adapter.inspect({ job, runId: '77', idempotencyKey: 'key-1' })).status, 'running');
+});
+
+const done = { remoteState: 'done', instances: [{ id: 77, dph_total: 0.2, start_date: 1_800_000_000, actual_status: 'running', ssh_host: 'h', ssh_port: 1 }] };
+
+test('unsafe or oversized evidence archives are rejected before extraction and fail the job', async () => {
+  const cases = {
+    VAST_EVIDENCE_UNSAFE_PATH: [
+      [{ name: 'out/../../etc/cron.d/x', body: 'x' }],
+      [{ name: '/etc/passwd', body: 'x' }],
+      [{ name: 'home/elsewhere', body: 'x' }],
+      [{ name: 'out/' + 'a/'.repeat(80) + '../../../../x', body: 'x', longName: true }],
+    ],
+    VAST_EVIDENCE_ENTRY_TYPE: [
+      [{ name: 'out/link', type: '2', linkname: '/etc/passwd' }],
+      [{ name: 'out/hard', type: '1', linkname: 'out/x' }],
+      [{ name: 'out/dev', type: '3' }],
+    ],
+  };
+  for (const [reason, archives] of Object.entries(cases)) {
+    for (const entries of archives) {
+      const fixture = await setup({ ...done, archive: tarArchive(entries) });
+      await mkdir(join(fixture.root, 'key-1'));
+      assert.equal((await fixture.adapter.inspect({ job, runId: '77', idempotencyKey: 'key-1' })).status, 'failed', JSON.stringify(entries));
+      assert.ok(!fixture.calls.some(([command]) => command === 'tar'), 'never extracted');
+      assert.equal(JSON.parse(await readFile(join(fixture.root, 'key-1', 'evidence-rejected.json'), 'utf8')).reason, reason);
+    }
+  }
+  const garbage = await setup({ ...done, archive: Buffer.from('not a tar archive') });
+  await mkdir(join(garbage.root, 'key-1'));
+  assert.equal((await garbage.adapter.inspect({ job, runId: '77', idempotencyKey: 'key-1' })).status, 'failed');
+});
+
+test('evidence size and entry caps apply to the pull and to the archive', async () => {
+  const many = await setup({ ...done, host: { maxEvidenceEntries: 2 } });
+  await mkdir(join(many.root, 'key-1'));
+  assert.equal((await many.adapter.inspect({ job, runId: '77', idempotencyKey: 'key-1' })).status, 'failed');
+  assert.equal(JSON.parse(await readFile(join(many.root, 'key-1', 'evidence-rejected.json'), 'utf8')).reason, 'VAST_EVIDENCE_TOO_MANY_ENTRIES');
+  const big = await setup({ ...done, host: { maxEvidenceBytes: 2048 } });
+  await mkdir(join(big.root, 'key-1'));
+  assert.equal((await big.adapter.inspect({ job, runId: '77', idempotencyKey: 'key-1' })).status, 'failed');
+  const pulled = await setup({ ...done, overflow: true });
+  await mkdir(join(pulled.root, 'key-1'));
+  assert.equal((await pulled.adapter.inspect({ job, runId: '77', idempotencyKey: 'key-1' })).status, 'failed');
+  assert.equal(JSON.parse(await readFile(join(pulled.root, 'key-1', 'evidence-rejected.json'), 'utf8')).reason, 'VAST_EVIDENCE_TOO_LARGE');
+  const ssh = pulled.calls.find(([command]) => command === 'ssh-args');
+  assert.ok(ssh, 'pull ran');
+});
+
+test('ssh host keys are pinned by default and trust on first use is opt-in', async () => {
+  const pinned = await setup({ ...done, host: { sshKnownHosts: '/etc/ruvllm/known_hosts' } });
+  await mkdir(join(pinned.root, 'key-1'));
+  await pinned.adapter.inspect({ job, runId: '77', idempotencyKey: 'key-1' });
+  const pinnedArgs = pinned.calls.find(([command]) => command === 'ssh-args')[1];
+  assert.ok(pinnedArgs.includes('StrictHostKeyChecking=yes') && pinnedArgs.includes('UserKnownHostsFile=/etc/ruvllm/known_hosts'));
+  assert.ok(!pinnedArgs.some(arg => arg.includes('accept-new')));
+  const tofu = await setup({ ...done, host: { sshTrustOnFirstUse: true } });
+  await mkdir(join(tofu.root, 'key-1'));
+  await tofu.adapter.inspect({ job, runId: '77', idempotencyKey: 'key-1' });
+  assert.ok(tofu.calls.find(([command]) => command === 'ssh-args')[1].includes('StrictHostKeyChecking=accept-new'));
+});
+
+test('host config must pin ssh host keys or explicitly opt in to trust on first use', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'vast-config-'));
+  const base = { schema: 'ruvllm-vast-host/v1', apiBase: 'https://vast.test', image: 'pytorch/pytorch@sha256:' + 'a'.repeat(64),
+    repoUrl: 'https://github.com/ruvnet/ruvllm.git', commit: 'b'.repeat(40), bundle: 'v2', diskGb: 40, armDeadlineSeconds: 5400,
+    guardGraceSeconds: 900, resultsRoot: root, sshKey: '/k', repoRoot: '/repo', python: '/py', node: '/node', secrets: {} };
+  const write = async (name, value, mode = 0o600) => { const path = join(root, name); await writeFile(path, typeof value === 'string' ? value : JSON.stringify(value), { mode }); return path; };
+  await assert.rejects(readHostConfig(await write('none.json', base)), { code: 'VAST_HOST_CONFIG_SSH_TRUST' });
+  await assert.rejects(readHostConfig(await write('bad.json', { ...base, sshTrustOnFirstUse: 'yes' })), { code: 'VAST_HOST_CONFIG_SSH_TRUST' });
+  assert.equal((await readHostConfig(await write('tofu.json', { ...base, sshTrustOnFirstUse: true }))).sshTrustOnFirstUse, true);
+  const knownHosts = await write('known_hosts', '[ssh4.vast.ai]:12345 ssh-ed25519 AAAA\n', 0o600);
+  assert.equal((await readHostConfig(await write('pinned.json', { ...base, sshKnownHosts: knownHosts }))).sshKnownHosts, knownHosts);
+  const shared = await write('known_hosts_shared', '[h]:1 ssh-ed25519 AAAA\n', 0o666);
+  await chmod(shared, 0o666);
+  await assert.rejects(readHostConfig(await write('shared.json', { ...base, sshKnownHosts: shared })), { code: 'VAST_SSH_KNOWN_HOSTS_UNSAFE' });
+  await assert.rejects(readHostConfig(await write('cap.json', { ...base, sshTrustOnFirstUse: true, maxEvidenceBytes: 10 })), { code: 'VAST_HOST_CONFIG_EVIDENCE' });
 });

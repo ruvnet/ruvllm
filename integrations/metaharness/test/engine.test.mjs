@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, readFile, writeFile, rm, chmod, symlink, realpath } from 'node:fs/promises';
+import { mkdtemp, readFile, writeFile, rm, chmod, symlink, realpath, copyFile, stat, utimes } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -137,4 +137,19 @@ test('untrusted JSON rejects duplicates, non-finite values and excessive nesting
   assert.throws(() => parseJson(Buffer.from('['.repeat(100) + '0' + ']'.repeat(100))), /nesting/);
   assert.throws(() => parseJson(Buffer.from('true false')), /Trailing/);
   assert.equal(parseJson(Buffer.from('{"safe":[1,null,true,"ok"]}')).safe[3], 'ok');
+});
+
+test('the cached binary digest still catches a same-size change with the mtime restored', async t => {
+  const temporary = await realpath(await mkdtemp(join(tmpdir(), 'ruvllm-engine-bin-')));
+  t.after(() => rm(temporary, { recursive: true, force: true }));
+  const copy = join(temporary, 'weight_evolution');
+  await copyFile(binaryPath, copy); await chmod(copy, 0o700);
+  const fixture = await createFixture({ directory: join(temporary, 'fixture'), binaryPath: copy });
+  const first = await runExperiment(fixture);
+  assert.equal(first.candidates.length, 2);
+  const before = await stat(copy);
+  const bytes = await readFile(copy); bytes[bytes.length - 1] ^= 0xff;
+  await writeFile(copy, bytes); await utimes(copy, before.atime, before.mtime);
+  assert.equal((await stat(copy)).size, before.size);
+  await assert.rejects(runExperiment(fixture), /Binary digest mismatch/);
 });

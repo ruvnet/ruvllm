@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { mkdtemp, mkdir, writeFile, rm, realpath, chmod, symlink, readFile } from 'node:fs/promises';
+import { createRequire, syncBuiltinESMExports } from 'node:module';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { spawnSync } from 'node:child_process';
@@ -126,4 +127,50 @@ test('run mode wakes for a job deadline before a longer schedule interval', asyn
   assert.equal(ticks.length, 2);
   assert.equal(ticks[1].jobs[0].status, 'cleanup');
   assert.equal(ticks[1].jobs[0].reason, 'job_deadline');
+});
+
+// Swap the module on disk right after the loader has read and hashed it
+// (when its file handle closes). The import must still run the verified bytes.
+async function swapAfterRead(t, fixture, replacement) {
+  const require = createRequire(import.meta.url);
+  const fsPromises = require('node:fs').promises;
+  const original = fsPromises.open;
+  let swapped = false;
+  fsPromises.open = async function open(path, ...rest) {
+    const handle = await original.call(this, path, ...rest);
+    if (path !== fixture.modulePath || swapped) return handle;
+    const close = handle.close.bind(handle);
+    handle.close = async () => {
+      await close();
+      swapped = true;
+      await writeFile(fixture.modulePath, replacement, { mode: 0o600 });
+    };
+    return handle;
+  };
+  syncBuiltinESMExports();
+  t.after(() => { fsPromises.open = original; syncBuiltinESMExports(); });
+  return () => swapped;
+}
+
+test('a module swapped after verification is never executed', async t => {
+  const fixture = await setup(t);
+  const didSwap = await swapAfterRead(t, fixture, `globalThis.__gpuHostSwapped = true;\n${source.replace('contract-test-run', 'swapped-run')}`);
+  const host = await loadHostAdapter(fixture);
+  assert.equal(didSwap(), true, 'the file was swapped between hashing and import');
+  assert.deepEqual(await host.submit({ job: { id: 'job-1' }, idempotencyKey: 'k' }), { runId: 'contract-test-run' });
+  assert.equal(globalThis.__gpuHostSwapped, undefined);
+});
+
+test('verified-bytes import also works without module.registerHooks (async loader hooks)', async t => {
+  const fixture = await setup(t);
+  const loader = new URL('../src/gpu-host.mjs', import.meta.url).href;
+  const script = `
+    import nodeModule from 'node:module';
+    nodeModule.registerHooks = undefined;
+    const { loadHostAdapter } = await import(${JSON.stringify(loader)});
+    const host = await loadHostAdapter({ modulePath: ${JSON.stringify(fixture.modulePath)}, sha256: ${JSON.stringify(fixture.sha256)} });
+    console.log(JSON.stringify(await host.submit({ job: { id: 'j' }, idempotencyKey: 'k' })));`;
+  const result = spawnSync(process.execPath, ['--input-type=module', '-e', script], { encoding: 'utf8', timeout: 20000 });
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(JSON.parse(result.stdout.trim().split('\n').at(-1)), { runId: 'contract-test-run' });
 });
