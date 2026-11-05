@@ -21,7 +21,7 @@ try {
     if (!flags['--dir'] || !flags['--binary']) throw new Error('fixture requires --dir and --binary');
     result = await runExperiment(await createFixture({ directory: flags['--dir'], binaryPath: flags['--binary'] }));
   } else if (command === '--help' || command === 'help') {
-    console.log('Usage: ruvllm-experiment run --config ABS --plan ABS\n       ruvllm-experiment fixture --dir NEW_ABS --binary ABS');
+    console.log('Usage: ruvllm-gpu run --config ABS --plan ABS\n       ruvllm-gpu fixture --dir NEW_ABS --binary ABS');
     process.exit(0);
   } else throw new Error('Expected run, fixture or --help');
   console.log(JSON.stringify(result, null, 2));

@@ -4,19 +4,37 @@
 
 <p align="center"><img src="https://raw.githubusercontent.com/ruvnet/ruvllm/ruvllm-npm-v4.0.1/docs/assets/heldout-results.svg" alt="Held-out results on 256 untouched tasks: tool passes 149, 176 and 192 of 192 for base, coding-4b and coding-4b-r2; arithmetic 62, 64 and 46 of 64. coding-4b is kept; coding-4b-r2 is rejected." width="100%"></p>
 
-Published on npm as `@ruvector/ruvllm`. Version 4.0.0 replaces the 3.x
-inference runtime from `ruvnet/ruvector` with this package, because ruvllm now
-lives in `ruvnet/ruvllm`. The 3.x API and its CLI subcommands are not part of
-4.x; pin `@ruvector/ruvllm@3` to keep using them. The npm package ships the
-JavaScript controller, GPU loop and Vast.ai host adapter. It does not ship the
-native `weight_evolution` binary, model weights or adapters. Build the binary
-from this repository and pass its path with `--binary`.
+Published on npm as [`@ruvector/ruvllm-gpu-loop`](https://www.npmjs.com/package/@ruvector/ruvllm-gpu-loop).
+The package ships the JavaScript controller, GPU loop and Vast.ai host adapter.
+It does not ship the native `weight_evolution` binary, model weights or
+adapters. Build the binary from this repository and pass its path with
+`--binary`.
 
 ```sh
-npm install @ruvector/ruvllm
-npx ruvllm --help            # bounded weight-edit experiments
+npm install @ruvector/ruvllm-gpu-loop
+npx ruvllm-gpu --help        # bounded weight-edit experiments
 npx ruvllm-gpu-loop status --config /abs/private/gpu-loop.json
 ```
+
+### Package name: `@ruvector/ruvllm-gpu-loop`, not `@ruvector/ruvllm`
+
+Versions 4.0.0 and 4.0.1 of this harness were published as `@ruvector/ruvllm`
+by mistake. That name belongs to the RuVLLM inference runtime (GGUF inference,
+TurboQuant KV cache, SONA, FlashAttention) built from
+[`ruvnet/RuVector`](https://github.com/ruvnet/RuVector/tree/main/npm/packages/ruvllm),
+and the 4.0.x upload replaced it for everyone. `@ruvector/ruvllm@4.1.0`
+restores the runtime and depends on this package, so its GPU-loop subpaths keep
+working:
+
+| 4.0.x (`@ruvector/ruvllm`) | Now (`@ruvector/ruvllm-gpu-loop`) | Via `@ruvector/ruvllm@^4.1.0` |
+| :--- | :--- | :--- |
+| `import … from '@ruvector/ruvllm'` (`runExperiment`) | `import … from '@ruvector/ruvllm-gpu-loop'` | `@ruvector/ruvllm/engine` |
+| `@ruvector/ruvllm/gpu-loop`, `/adapters`, `/gpu-host`, `/gpu-spool-adapter`, `/vast-host-adapter`, `/fixture` | same subpaths on `@ruvector/ruvllm-gpu-loop` | same subpaths |
+| `npx ruvllm run …` / `npx ruvllm fixture …` | `npx ruvllm-gpu run …` / `npx ruvllm-gpu fixture …` | `npx ruvllm gpu run …` |
+| `npx ruvllm-gpu-loop`, `npx ruvllm-adapters` | unchanged | unchanged |
+
+A `prepublishOnly` guard (`scripts/check-package-name.mjs`) refuses to publish
+this package under the runtime's name.
 
 Run multiple bounded RuVLLM edits against one unchanged checkpoint, validate
 supplied evaluations, package RVF evidence, restore every patched checkpoint,
