@@ -48,6 +48,9 @@ jobs:
           subprocess.run(['node', '--test', 'plugins/ruflo-neural-evolution/test/native-wire.test.mjs'], env=env, check=True)
           PY
 
+      - name: Refuse to ship the harness under the runtime's npm name
+        working-directory: integrations/metaharness
+        run: node scripts/check-package-name.mjs
       - name: Install pinned MetaHarness adapters without lifecycle scripts
         working-directory: integrations/metaharness
         run: npm ci --ignore-scripts
@@ -60,7 +63,7 @@ jobs:
         run: python -m unittest discover -s experiments/model-improvement/tests -v
 
   python-and-sandbox:
-    runs-on: macos-14
+    runs-on: macos-15
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262

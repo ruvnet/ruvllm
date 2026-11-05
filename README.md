@@ -6,7 +6,7 @@
 
 RuVLLM trains and edits small adapters for open language models, then measures each one against the unchanged base on the same tasks, under a rule written before the results. Every decision to keep or reject an adapter is backed by every raw answer, a paired significance test and a local re-score. The original weights restore byte for byte.
 
-[**Interactive tour and tutorial →**](https://ruvnet.github.io/ruvllm/) · [npm](https://www.npmjs.com/package/@ruvector/ruvllm) · [Results](#results) · [Compare](#how-it-compares) · [Quick start](#quick-start)
+[**Interactive tour and tutorial →**](https://ruvnet.github.io/ruvllm/) · [npm](https://www.npmjs.com/package/@ruvector/ruvllm-gpu-loop) · [Results](#results) · [Compare](#how-it-compares) · [Quick start](#quick-start)
 
 | | |
 | :--- | :--- |
@@ -88,7 +88,7 @@ The [interactive tutorial](https://ruvnet.github.io/ruvllm/#tutorial) walks thro
 
 | Step | Command | Needs |
 | :--- | :--- | :--- |
-| Install the CLI | `npm install @ruvector/ruvllm` then `npx ruvllm --help` | Node 22+ |
+| Install the CLI | `npm install @ruvector/ruvllm-gpu-loop` then `npx ruvllm-gpu --help` | Node 22+ |
 | Verify the evidence | `python3 scripts/check_repository.py` and `python3 scripts/verify_benchmarks.py` | Python 3.12+ |
 | Edit and restore weights | `cd native && cargo build --locked --release --bin weight_evolution && python3 smoke.py` | Rust 1.97.1 |
 | Re-score a real GPU run | `regression-dashboard.py` on the held-out results (below) | Python 3.12+ |

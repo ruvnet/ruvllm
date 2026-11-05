@@ -1,8 +1,8 @@
 {
-  "name": "@ruvector/ruvllm",
-  "version": "4.0.1",
+  "name": "@ruvector/ruvllm-gpu-loop",
+  "version": "1.0.0",
   "type": "module",
-  "description": "Bounded RuVLLM weight experiments, a durable GPU job loop with a Vast.ai host adapter, and verified paired measurements",
+  "description": "RuVLLM GPU job loop: bounded weight experiments, a durable GPU job scheduler with a Vast.ai host adapter, adapter archives and verified paired measurements (split out of @ruvector/ruvllm 4.0.x)",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
@@ -15,18 +15,22 @@
   },
   "keywords": [
     "ruvllm",
+    "ruvllm-gpu-loop",
     "metaharness",
     "lora",
+    "adapters",
     "gpu",
+    "gpu-scheduler",
     "vast.ai",
     "evaluation",
-    "weight-editing"
+    "weight-editing",
+    "ruvector"
   ],
   "engines": {
     "node": ">=22"
   },
   "bin": {
-    "ruvllm": "src/cli.mjs",
+    "ruvllm-gpu": "src/cli.mjs",
     "ruvllm-gpu-loop": "src/gpu-loop-cli.mjs",
     "ruvllm-adapters": "src/adapters-cli.mjs"
   },
@@ -49,17 +53,19 @@
     "NOTICE"
   ],
   "scripts": {
+    "guard:name": "node scripts/check-package-name.mjs",
     "test": "node --test test/*.test.mjs",
     "bench": "node bench/run.mjs",
     "prepack": "cp ../../LICENSE ../../NOTICE .",
-    "postpack": "rm -f LICENSE NOTICE"
+    "postpack": "rm -f LICENSE NOTICE",
+    "prepublishOnly": "node scripts/check-package-name.mjs"
   },
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@metaharness/darwin": "0.12.0",
-    "@metaharness/flywheel": "0.1.13",
-    "@metaharness/weight-eft": "0.1.2"
+    "@metaharness/darwin": "^0.12.0",
+    "@metaharness/flywheel": "^0.1.13",
+    "@metaharness/weight-eft": "^0.1.2"
   }
 }
