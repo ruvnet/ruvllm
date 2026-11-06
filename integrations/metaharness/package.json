@@ -27,7 +27,7 @@
     "ruvector"
   ],
   "engines": {
-    "node": ">=22"
+    "node": ">=20"
   },
   "bin": {
     "ruvllm-gpu": "src/cli.mjs",
